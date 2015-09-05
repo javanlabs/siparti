@@ -24,7 +24,7 @@
             "database"
         ],
         "psr-4": {
-            "Laravolt\\Auth\\": "packages/Laravolt/Auth/src",
+            "Laravolt\\Packer\\": "packages/laravolt/packer/src",
             "App\\": "app/"
         }
     },

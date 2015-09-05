@@ -150,7 +150,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Laravolt\Auth\AuthServiceProvider::class,
+        Laravolt\Packer\PackerServiceProvider::class,
 
     ],
 
