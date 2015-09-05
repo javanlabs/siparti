@@ -138,7 +138,10 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         'JeroenG\Packager\PackagerServiceProvider',
-        
+        'Collective\Html\HtmlServiceProvider',
+        'Watson\BootstrapForm\BootstrapFormServiceProvider',
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -198,6 +201,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
+        'Form'=> 'Collective\Html\FormFacade',
+        'HTML'=> 'Collective\Html\HtmlFacade',
+        'BootForm' => 'Watson\BootstrapForm\Facades\BootstrapForm',
     ],
 
 ];
