@@ -137,6 +137,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        'JeroenG\Packager\PackagerServiceProvider',
+        
         /*
          * Application Service Providers...
          */
@@ -144,6 +146,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        Laravolt\Auth\AuthServiceProvider::class,
 
     ],
 
