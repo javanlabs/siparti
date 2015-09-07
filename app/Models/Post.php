@@ -10,6 +10,11 @@ class Post extends Model implements Commentable
 {
     use CommentableTrait;
 
+    public function getCommentableTitleAttribute()
+    {
+        return $this->title;
+    }
+
     public function getCommentablePermalinkAttribute()
     {
         return url('posts/' . $this->id);

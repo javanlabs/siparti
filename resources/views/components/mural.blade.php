@@ -13,6 +13,26 @@
             <div class="column eight wide">
                 {!! Mural::render($model, 'default') !!}
             </div>
+            <div class="column eight wide">
+                <div class="ui segment">
+                    <h3 class="ui header">Comment Retrieval</h3>
+                    <div class="ui feed">
+                        @foreach($comments as $comment)
+                        <div class="event">
+                            <div class="content">
+                                <div class="summary">
+                                    <a href="{{ $comment->author->commentator_permalink }}">{{ $comment->author->commentator_name }}</a> mengomentari
+                                    <a href="{{ $comment->commentable->commentable_permalink }}">{{ $comment->commentable->commentable_title }}</a>
+                                </div>
+                                <div class="text">
+                                    {{ $comment->body }}
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
