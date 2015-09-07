@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -141,6 +141,7 @@ return [
         'Collective\Html\HtmlServiceProvider',
         'Watson\BootstrapForm\BootstrapFormServiceProvider',
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Laravolt\Mural\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -204,6 +205,7 @@ return [
         'Form'=> 'Collective\Html\FormFacade',
         'HTML'=> 'Collective\Html\HtmlFacade',
         'BootForm' => 'Watson\BootstrapForm\Facades\BootstrapForm',
+        'Mural'  => Laravolt\Mural\Facade::class,
     ],
 
 ];

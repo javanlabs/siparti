@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,13 +11,23 @@ use App\Http\Controllers\Controller;
 class ComponentController extends Controller
 {
     /**
+     * ComponentController constructor.
+     */
+    public function __construct()
+    {
+        auth()->loginUsingId(1);
+    }
+
+
+    /**
      * @return \Illuminate\View\View
      */
     public function getMural()
     {
-        $model = User::firstOrFail();
+        $model = Post::firstOrFail();
         return view('components/mural', compact('model'));
     }
+
     /**
      * @return \Illuminate\View\View
      */
@@ -26,6 +36,7 @@ class ComponentController extends Controller
         $model = User::firstOrFail();
         return view('components/votee', compact('model'));
     }
+
     /**
      * @return \Illuminate\View\View
      */
@@ -34,6 +45,7 @@ class ComponentController extends Controller
         $model = User::firstOrFail();
         return view('components/senarai', compact('model'));
     }
+
     /**
      * @return \Illuminate\View\View
      */

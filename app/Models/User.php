@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -9,10 +9,12 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Laravolt\Mural\Contracts\Commentator;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
-                                    CanResetPasswordContract
+                                    CanResetPasswordContract,
+                                    Commentator
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
@@ -36,4 +38,20 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function getCommentatorAvatarAttribute()
+    {
+        return 'https://s3.amazonaws.com/uifaces/faces/twitter/mantia/24.jpg';
+    }
+
+    public function getCommentatorPermalinkAttribute()
+    {
+        return url('users/' . $this->id);
+    }
+
+    public function canModerateComment()
+    {
+        return true;
+    }
+
 }
