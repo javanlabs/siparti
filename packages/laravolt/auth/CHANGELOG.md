@@ -1,6 +1,6 @@
 # Changelog
 
-All Notable changes to `foo` will be documented in this file
+All Notable changes to `auth` will be documented in this file
 
 ## NEXT - YYYY-MM-DD
 

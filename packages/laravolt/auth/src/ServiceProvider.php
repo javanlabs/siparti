@@ -1,13 +1,13 @@
 <?php
 
-namespace Laravolt\Foo;
+namespace Laravolt\Auth;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
  * Class PackageServiceProvider
  *
- * @package LaraLeague\Foo
+ * @package LaraLeague\Auth
  * @see http://laravel.com/docs/5.1/packages#service-providers
  * @see http://laravel.com/docs/5.1/providers
  */
@@ -47,7 +47,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->registerTranslations();
         $this->registerConfigurations();
 
-        if(! $this->app->routesAreCached() && config('foo.routes')) {
+        if(! $this->app->routesAreCached() && config('auth.routes')) {
             $this->registerRoutes();
         }
     }
@@ -61,10 +61,10 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerViews()
     {
         // register views within the application with the set namespace
-        $this->loadViewsFrom($this->packagePath('resources/views'), 'foo');
+        $this->loadViewsFrom($this->packagePath('resources/views'), 'auth');
         // allow views to be published to the storage directory
         $this->publishes([
-            $this->packagePath('resources/views') => base_path('resources/views/laravolt/foo'),
+            $this->packagePath('resources/views') => base_path('resources/views'),
         ], 'views');
     }
 
@@ -102,7 +102,7 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerAssets()
     {
         $this->publishes([
-            $this->packagePath('resources/assets') => public_path('laravolt/foo'),
+            $this->packagePath('resources/assets') => public_path('laravolt/auth'),
         ], 'public');
     }
 
@@ -114,7 +114,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function registerTranslations()
     {
-        $this->loadTranslationsFrom($this->packagePath('resources/lang'), 'foo');
+        $this->loadTranslationsFrom($this->packagePath('resources/lang'), 'auth');
     }
 
     /**
@@ -126,10 +126,10 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerConfigurations()
     {
         $this->mergeConfigFrom(
-            $this->packagePath('config/config.php'), 'foo'
+            $this->packagePath('config/config.php'), 'auth'
         );
         $this->publishes([
-            $this->packagePath('config/config.php') => config_path('foo.php'),
+            $this->packagePath('config/config.php') => config_path('auth.php'),
         ], 'config');
     }
 
@@ -144,13 +144,18 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerRoutes()
     {
         $this->app['router']->group([
-            'namespace' => __NAMESPACE__
-        ], function() {
-            // index action showing the packages
-            $this->app['router']->any('/foo', [
-                'as'   => 'foo:index',
-                'uses' => 'Controllers\FooController@index'
-            ]);
+            'namespace' => __NAMESPACE__ . '\Http\Controllers'
+        ], function($router) {
+            $router->get('auth/login', 'AuthController@getLogin');
+            $router->post('auth/login', 'AuthController@postLogin');
+            $router->get('auth/logout', 'AuthController@getLogout');
+            $router->get('auth/register', 'AuthController@getRegister');
+            $router->post('auth/register', 'AuthController@postRegister');
+            $router->get('password/email', 'PasswordController@getEmail');
+            $router->post('password/email', 'PasswordController@postEmail');
+            $router->get('password/reset/{token}', 'PasswordController@getReset');
+            $router->post('password/reset', 'PasswordController@postReset');
+            $router->get('auth/activate/{token}', 'AuthController@getActivate');
 
         });
     }

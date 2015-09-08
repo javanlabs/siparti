@@ -1,11 +1,11 @@
 {
-    "name": "laravolt/foo",
+    "name": "laravolt/auth",
     "description": ":package_description",
     "keywords": [
         "laravolt",
-        "foo"
+        "auth"
     ],
-    "homepage": "https://github.com/laravolt/foo",
+    "homepage": "https://github.com/laravolt/auth",
     "license": "MIT",
     "authors": [
         {
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravolt\\Foo\\": "src"
+            "Laravolt\\Auth\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laravolt\\Foo\\Test\\": "tests"
+            "Laravolt\\Auth\\Test\\": "tests"
         }
     },
     "scripts": {

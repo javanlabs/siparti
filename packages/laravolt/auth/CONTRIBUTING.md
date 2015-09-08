@@ -2,7 +2,7 @@
 
 Contributions are **welcome** and will be fully **credited**.
 
-We accept contributions via Pull Requests on [Github](https://github.com/lara-league/foo).
+We accept contributions via Pull Requests on [Github](https://github.com/lara-league/auth).
 
 
 ## Pull Requests
