@@ -4,7 +4,7 @@
 .page-component {
     margin-top: 40px;
 }
-.header.title {
+h2.header.title {
     padding: 40px 0;
     border-bottom: 1px solid #ddd;
 }
