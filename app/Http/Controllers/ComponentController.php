@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Post;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class ComponentController extends Controller
 {
@@ -15,9 +13,8 @@ class ComponentController extends Controller
      */
     public function __construct()
     {
-        auth()->loginUsingId(1);
-    }
 
+    }
 
     /**
      * @return \Illuminate\View\View
@@ -28,6 +25,16 @@ class ComponentController extends Controller
         $comments = $model->comments;
 
         return view('components/mural', compact('model', 'comments'));
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function getStar()
+    {
+        $model = Post::firstOrFail();
+
+        return view('components/star', compact('model'));
     }
 
     /**

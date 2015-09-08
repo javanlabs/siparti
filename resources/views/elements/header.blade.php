@@ -15,6 +15,11 @@
                     <p>Comment stream</p>
                 </a>
                 <div href="" class="divider"></div>
+                <a class="item" href="{{ url('components/star') }}">
+                    <h4 style="margin-bottom: 0">Star</h4>
+                    <p>5 star rating</p>
+                </a>
+                <div href="" class="divider"></div>
                 <a class="item" href="{{ url('components/votee') }}">
                     <h4 style="margin-bottom: 0">Votee</h4>
                     <p>Like dislike, upvote downvote</p>
