@@ -33,8 +33,10 @@
     </div>
 
     <div class="ui list small">
-    </div>
-    <div class="item">@lang('auth::auth.not_registered_yet?') <a href="{{ url('auth/register') }}">@lang('auth::auth.register_here')</a></div>
+        <div class="item">
+            @lang('auth::auth.not_registered_yet?')
+            <a href="{{ url('auth/register') }}">@lang('auth::auth.register_here')</a>
+        </div>
     </div>
 
 @endsection

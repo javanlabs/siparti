@@ -2,9 +2,9 @@
 
 namespace Laravolt\Auth\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Laravolt\Auth\Activation;
 use Validator;
+use App\Models\User;
+use Laravolt\Auth\Activation;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -69,17 +69,6 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => $data['password'],
         ]);
-    }
-
-    /**
-     * Get the needed authorization credentials from the request.
-     *
-     * @param  Request  $request
-     * @return array
-     */
-    protected function getCredentials(Request $request)
-    {
-        return $request->only($this->loginUsername(), 'password') + ['status' => UserStatus::ACTIVE()];
     }
 
 }

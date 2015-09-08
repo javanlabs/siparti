@@ -20,12 +20,12 @@ trait Activation
         $user = $this->create($request->all());
         $token = $this->createToken($user);
 
-        Mail::send('emails.activation', compact('token'), function($message) use ($user){
+        Mail::send('auth::auth.activation', compact('token'), function($message) use ($user){
             $message->subject(trans('auth.activation_subject'));
             $message->to($user['email']);
         });
 
-        flash()->warning(trans('auth.activation_needed'));
+        //flash()->warning(trans('auth.activation_needed'));
         return redirect()->back();
     }
 

@@ -3,6 +3,7 @@
 namespace Laravolt\Auth\Http\Controllers;
 
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 
 class PasswordController extends Controller
@@ -18,7 +19,7 @@ class PasswordController extends Controller
     |
     */
 
-    use ResetsPasswords;
+    use ResetsPasswords, ValidatesRequests;
 
     /**
      * Create a new password controller instance.

@@ -45,8 +45,6 @@
                         {{ auth()->user()->name }} <i class="dropdown icon"></i>
                     </a>
                     <div class="menu small">
-                        <a href="{{ auth()->user()->permalink }}" class="item">Your Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                        <div class="divider"></div>
                         <a href="{{ url('auth/logout') }}" class="item">Logout</a>
                     </div>
                 </div>
