@@ -21,6 +21,8 @@ class PasswordController extends Controller
 
     use ResetsPasswords, ValidatesRequests;
 
+    protected $redirectPath = '/';
+
     /**
      * Create a new password controller instance.
      *
