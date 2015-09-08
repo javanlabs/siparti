@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3a5abdca03b6c68dd96d54f5bf3d4c64",
+    "hash": "d673fd5a32f9fbe5fc2c778c5c8a7d79",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -885,7 +885,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/mural/zipball/62f3fdf2d19e1ad8cd52ace9516784f2057220a1",
+                "url": "https://api.github.com/repos/laravolt/mural/zipball/588cb1f1fced1899f39f52b0deff82e64d0017f9",
                 "reference": "62f3fdf2d19e1ad8cd52ace9516784f2057220a1",
                 "shasum": ""
             },
@@ -930,17 +930,63 @@
             "time": "2015-08-19 06:34:34"
         },
         {
-            "name": "league/flysystem",
-            "version": "1.0.11",
+            "name": "laravolt/packer",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "c16222fdc02467eaa12cb6d6d0e65527741f6040"
+                "url": "https://github.com/laravolt/packer.git",
+                "reference": "7892c5d8aa0a340fbedc2c5a07551c33a553fa6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c16222fdc02467eaa12cb6d6d0e65527741f6040",
-                "reference": "c16222fdc02467eaa12cb6d6d0e65527741f6040",
+                "url": "https://api.github.com/repos/laravolt/packer/zipball/7892c5d8aa0a340fbedc2c5a07551c33a553fa6d",
+                "reference": "7892c5d8aa0a340fbedc2c5a07551c33a553fa6d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5",
+                "illuminate/filesystem": "~5",
+                "illuminate/support": "~5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laravolt\\Packer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "EUPL-1.1"
+            ],
+            "authors": [
+                {
+                    "name": "Bayu Hendra",
+                    "email": "uyab.exe@gmail.com",
+                    "homepage": "https://github.com/uyab"
+                }
+            ],
+            "description": "A cli tool for creating Laravel packages.",
+            "homepage": "https://github.com/laravolt/packer",
+            "keywords": [
+                "Skeleton",
+                "laravel",
+                "package",
+                "packager"
+            ],
+            "time": "2015-09-08 09:34:08"
+        },
+        {
+            "name": "league/flysystem",
+            "version": "1.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "7323424a9d39c24e597ed3f2144419dfbb52e086"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/7323424a9d39c24e597ed3f2144419dfbb52e086",
+                "reference": "7323424a9d39c24e597ed3f2144419dfbb52e086",
                 "shasum": ""
             },
             "require": {
@@ -1008,7 +1054,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-07-28 20:41:58"
+            "time": "2015-09-05 12:06:41"
         },
         {
             "name": "maximebf/debugbar",
@@ -2340,16 +2386,16 @@
         },
         {
             "name": "watson/bootstrap-form",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dwightwatson/bootstrap-form.git",
-                "reference": "f373a4ac6327f43741c833bc820336c9b0cba1e2"
+                "reference": "82e33b5cc8fb87d3a25944a99debb554bdcb6460"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dwightwatson/bootstrap-form/zipball/f373a4ac6327f43741c833bc820336c9b0cba1e2",
-                "reference": "f373a4ac6327f43741c833bc820336c9b0cba1e2",
+                "url": "https://api.github.com/repos/dwightwatson/bootstrap-form/zipball/82e33b5cc8fb87d3a25944a99debb554bdcb6460",
+                "reference": "82e33b5cc8fb87d3a25944a99debb554bdcb6460",
                 "shasum": ""
             },
             "require": {
@@ -2385,7 +2431,7 @@
                 "form",
                 "laravel"
             ],
-            "time": "2015-09-02 00:08:12"
+            "time": "2015-09-06 12:39:45"
         }
     ],
     "packages-dev": [
@@ -2641,16 +2687,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.2.1",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "e9a40577323e67f1de2e214abf32976a0352d8f8"
+                "reference": "36635a903bdeb54899d7407bc95610501fd98559"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/e9a40577323e67f1de2e214abf32976a0352d8f8",
-                "reference": "e9a40577323e67f1de2e214abf32976a0352d8f8",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/36635a903bdeb54899d7407bc95610501fd98559",
+                "reference": "36635a903bdeb54899d7407bc95610501fd98559",
                 "shasum": ""
             },
             "require": {
@@ -2662,15 +2708,14 @@
                 "symfony/console": "~2.3",
                 "symfony/event-dispatcher": "~2.1",
                 "symfony/finder": "~2.1",
-                "symfony/process": "~2.1",
+                "symfony/process": "^2.6",
                 "symfony/yaml": "~2.1"
             },
             "require-dev": {
                 "behat/behat": "^3.0.11",
                 "bossa/phpspec2-expect": "~1.0",
                 "phpunit/phpunit": "~4.4",
-                "symfony/filesystem": "~2.1",
-                "symfony/process": "~2.1"
+                "symfony/filesystem": "~2.1"
             },
             "suggest": {
                 "phpspec/nyan-formatters": "~1.0 – Adds Nyan formatters"
@@ -2715,7 +2760,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2015-05-30 15:21:40"
+            "time": "2015-09-07 07:07:37"
         },
         {
             "name": "phpspec/prophecy",
@@ -3568,7 +3613,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "laravolt/packer": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

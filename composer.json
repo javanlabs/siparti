@@ -7,12 +7,12 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "jeroen-g/laravel-packager": "^1.0",
         "barryvdh/laravel-debugbar": "^2.0",
         "laravelcollective/html": "5.1.*",
         "watson/bootstrap-form": "~1.0",
         "barryvdh/laravel-ide-helper": "^2.1",
-        "laravolt/mural": "^0.1.0"
+        "laravolt/mural": "^0.1.0",
+        "laravolt/packer": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -26,7 +26,6 @@
         ],
         "psr-4": {
             "Laravolt\\Auth\\": "packages/laravolt/auth/src",
-            "Laravolt\\Packer\\": "packages/laravolt/packer/src",
             "App\\": "app/"
         }
     },
