@@ -12,6 +12,7 @@
         "watson/bootstrap-form": "~1.0",
         "barryvdh/laravel-ide-helper": "^2.1",
         "laravolt/mural": "^0.1.0",
+        "laravolt/votee": "dev-master",
         "laravolt/packer": "dev-master"
     },
     "require-dev": {

@@ -42,7 +42,7 @@ class ComponentController extends Controller
      */
     public function getVotee()
     {
-        $model = User::firstOrFail();
+        $model = Post::firstOrFail();
         return view('components/votee', compact('model'));
     }
 

@@ -137,11 +137,12 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        'JeroenG\Packager\PackagerServiceProvider',
         'Collective\Html\HtmlServiceProvider',
         'Watson\BootstrapForm\BootstrapFormServiceProvider',
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Laravolt\Mural\ServiceProvider::class,
+        Laravolt\Votee\ServiceProvider::class,
+        Laravolt\Packer\PackerServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -151,8 +152,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Laravolt\Auth\ServiceProvider::class,
-
-        Laravolt\Packer\PackerServiceProvider::class,
 
     ],
 
@@ -207,6 +206,7 @@ return [
         'HTML'=> 'Collective\Html\HtmlFacade',
         'BootForm' => 'Watson\BootstrapForm\Facades\BootstrapForm',
         'Mural'  => Laravolt\Mural\Facade::class,
+        'Votee'  => Laravolt\Votee\VoteeFacade::class,
     ],
 
 ];

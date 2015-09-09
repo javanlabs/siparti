@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Laravolt\Mural\CommentableTrait;
 use Laravolt\Mural\Contracts\Commentable;
+use Laravolt\Votee\Traits\Voteable;
 
 class Post extends Model implements Commentable
 {
-    use CommentableTrait;
+    use CommentableTrait, Voteable;
 
     public function getCommentableTitleAttribute()
     {
