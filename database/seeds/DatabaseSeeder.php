@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         // root user
-        factory(\App\Models\User::class)->create(['email' => 'root@laravolt.com']);
+        factory(\App\Models\User::class)->create(['email' => 'root@laravolt.com', 'status' => 'active']);
 
         factory(\App\Models\User::class, 10)->create();
         factory(\App\Models\Post::class, 10)->create();

@@ -1,6 +1,7 @@
 <?php
 namespace Laravolt\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -21,15 +22,14 @@ trait Activation
         $token = $this->createToken($user);
 
         Mail::send('auth::auth.activation', compact('token'), function($message) use ($user){
-            $message->subject(trans('auth.activation_subject'));
+            $message->subject(trans('auth::auth.activation_subject'));
             $message->to($user['email']);
         });
 
-        //flash()->warning(trans('auth.activation_needed'));
-        return redirect()->back();
+        return redirect()->back()->with('info', trans('auth::auth.register_success'));
     }
 
-    public function getActivate(UserRepository $user, $token)
+    public function getActivate($token)
     {
         $userId = DB::table('users_activation')->whereToken($token)->pluck('user_id');
 
@@ -37,9 +37,13 @@ trait Activation
             abort(404);
         }
 
-        $user->activate($userId);
-        flash()->success(trans('auth.activation_success'));
-        return redirect()->to('auth/login');
+        $user = User::findOrFail($userId);
+        $user->status = 'active';
+        $user->save();
+
+        DB::table('users_activation')->whereToken($token)->delete();
+
+        return redirect()->to('auth/login')->with('success', trans('auth::auth.activation_success'));
     }
 
     protected function createToken($user)

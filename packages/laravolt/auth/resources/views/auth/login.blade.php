@@ -2,6 +2,12 @@
 
 @section('content')
 
+    @if (session('success'))
+        <div class="ui success message">
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
+
     <div class="ui segment very padded">
         <form class="ui form" method="POST" action="{{ url('/auth/login') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
