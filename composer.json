@@ -11,9 +11,10 @@
         "laravelcollective/html": "5.1.*",
         "watson/bootstrap-form": "~1.0",
         "barryvdh/laravel-ide-helper": "^2.1",
-        "laravolt/mural": "^0.1.0",
+        "laravolt/mural": "dev-master",
         "laravolt/votee": "dev-master",
-        "laravolt/packer": "dev-master"
+        "laravolt/packer": "dev-master",
+        "efriandika/laravel-settings": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -143,6 +143,7 @@ return [
         Laravolt\Mural\ServiceProvider::class,
         Laravolt\Votee\ServiceProvider::class,
         Laravolt\Packer\PackerServiceProvider::class,
+        'Efriandika\LaravelSettings\SettingsServiceProvider',
 
         /*
          * Application Service Providers...
@@ -207,6 +208,8 @@ return [
         'BootForm' => 'Watson\BootstrapForm\Facades\BootstrapForm',
         'Mural'  => Laravolt\Mural\Facade::class,
         'Votee'  => Laravolt\Votee\VoteeFacade::class,
+        'Settings'  => Efriandika\LaravelSettings\Facades\Settings::class,
+
     ],
 
 ];

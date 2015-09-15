@@ -4,7 +4,7 @@
             <img class="logo" src="{{ asset('img/logo-laravolt.png') }}">
             &nbsp;
             &nbsp;
-            <a href="{{url('/')}}">LARAVOLT</a>
+            <a href="{{url('/')}}">{{ settings('app.name') }}</a>
         </div>
 
         <div class="ui dropdown item">

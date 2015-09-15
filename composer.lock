@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "14f0929eba344e0fd529b1f53d69bde9",
+    "hash": "e855f5142e78e87fac735ddfdd030bbf",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v2.0.5",
+            "version": "v2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "753106cd1f9c724d05bb48728bc652231174e279"
+                "reference": "23672cbbe78278ff1fdb258caa0b1de7b5d0bc0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/753106cd1f9c724d05bb48728bc652231174e279",
-                "reference": "753106cd1f9c724d05bb48728bc652231174e279",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/23672cbbe78278ff1fdb258caa0b1de7b5d0bc0c",
+                "reference": "23672cbbe78278ff1fdb258caa0b1de7b5d0bc0c",
                 "shasum": ""
             },
             "require": {
@@ -29,7 +29,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -58,7 +58,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2015-07-09 14:51:59"
+            "time": "2015-09-09 11:39:27"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -332,6 +332,59 @@
                 "string"
             ],
             "time": "2014-12-20 21:24:13"
+        },
+        {
+            "name": "efriandika/laravel-settings",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/efriandika/laravel-settings.git",
+                "reference": "77224a6507913d2fb61c85e94e13949bfb2bffac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/efriandika/laravel-settings/zipball/77224a6507913d2fb61c85e94e13949bfb2bffac",
+                "reference": "77224a6507913d2fb61c85e94e13949bfb2bffac",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.1.x",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "illuminate/database": "~5.1",
+                "illuminate/events": "5.1.*",
+                "phpunit/phpunit": "4.6.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/database/migrations"
+                ],
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Efriandika\\LaravelSettings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Efriandika Pratama",
+                    "email": "efriandika@gmail.com"
+                }
+            ],
+            "description": "Laravel 5 Persistent Settings",
+            "keywords": [
+                "Settings",
+                "laravel",
+                "persistent"
+            ],
+            "time": "2015-06-15 09:56:40"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -658,16 +711,16 @@
         },
         {
             "name": "laravolt/mural",
-            "version": "0.1.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/mural.git",
-                "reference": "d0f10422dd9bc5e341cf461fd3c8b8a015607287"
+                "reference": "1e6f561cf072f100364f7f058df9392b6af2522e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/mural/zipball/d0f10422dd9bc5e341cf461fd3c8b8a015607287",
-                "reference": "d0f10422dd9bc5e341cf461fd3c8b8a015607287",
+                "url": "https://api.github.com/repos/laravolt/mural/zipball/1e6f561cf072f100364f7f058df9392b6af2522e",
+                "reference": "1e6f561cf072f100364f7f058df9392b6af2522e",
                 "shasum": ""
             },
             "require": {
@@ -708,7 +761,7 @@
                 "laravel",
                 "mural"
             ],
-            "time": "2015-09-09 07:31:25"
+            "time": "2015-09-10 03:10:48"
         },
         {
             "name": "laravolt/packer",
@@ -716,12 +769,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/packer.git",
-                "reference": "7892c5d8aa0a340fbedc2c5a07551c33a553fa6d"
+                "reference": "f6c3c4af04336ad90df01edc759f980d2048197d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/packer/zipball/7892c5d8aa0a340fbedc2c5a07551c33a553fa6d",
-                "reference": "7892c5d8aa0a340fbedc2c5a07551c33a553fa6d",
+                "url": "https://api.github.com/repos/laravolt/packer/zipball/f6c3c4af04336ad90df01edc759f980d2048197d",
+                "reference": "f6c3c4af04336ad90df01edc759f980d2048197d",
                 "shasum": ""
             },
             "require": {
@@ -754,7 +807,7 @@
                 "package",
                 "packager"
             ],
-            "time": "2015-09-08 09:34:08"
+            "time": "2015-09-10 09:32:09"
         },
         {
             "name": "laravolt/votee",
@@ -766,7 +819,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/votee/zipball/8eabebb0ddebcf529090b6b5a1cdcdc979141be3",
+                "url": "https://api.github.com/repos/laravolt/votee/zipball/d96f31e1ca7614c72ced455956c5ca5b3d3fb936",
                 "reference": "8eabebb0ddebcf529090b6b5a1cdcdc979141be3",
                 "shasum": ""
             },
@@ -3398,6 +3451,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "laravolt/mural": 20,
         "laravolt/votee": 20,
         "laravolt/packer": 20
     },
