@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Post;
+use App\Entities\User;
+use App\Entities\Post;
 use App\Http\Requests;
 
 class ComponentController extends Controller

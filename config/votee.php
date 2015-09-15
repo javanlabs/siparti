@@ -18,5 +18,5 @@ return [
         'down'    => -1,
         'neutral' => 0
     ],
-    'content_model' => \App\Models\Post::class
+    'content_model' => \App\Entities\Post::class
 ];
