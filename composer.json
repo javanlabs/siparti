@@ -14,7 +14,9 @@
         "laravolt/mural": "dev-master",
         "laravolt/votee": "dev-master",
         "laravolt/packer": "dev-master",
-        "efriandika/laravel-settings": "^1.1"
+        "efriandika/laravel-settings": "^1.1",
+        "prettus/l5-repository": "^2.1",
+        "league/fractal": "^0.12.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

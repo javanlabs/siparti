@@ -144,6 +144,7 @@ return [
         Laravolt\Votee\ServiceProvider::class,
         Laravolt\Packer\PackerServiceProvider::class,
         'Efriandika\LaravelSettings\SettingsServiceProvider',
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
         /*
          * Application Service Providers...

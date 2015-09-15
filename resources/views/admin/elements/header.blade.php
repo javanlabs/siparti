@@ -6,6 +6,7 @@
             &nbsp;
             <a href="{{url('/')}}">{{ settings('app.name') }}</a>
         </div>
+        <a href="{{ route('admin.users.index') }}" class="item">Users</a>
         <a href="{{ route('admin.settings.index') }}" class="item">Settings</a>
 
 
