@@ -10,8 +10,8 @@ class Sortable
 
     public static function link($parameters)
     {
-        //if (count($parameters) == 1) $parameters[1] = ucfirst($parameters[0]);
-        $parameters[1] ?: ucfirst($parameters[0]);
+        if (count($parameters) == 1) $parameters[1] = ucfirst($parameters[0]);
+
         $column = $parameters[0];
         $title = $parameters[1];
 
@@ -24,7 +24,8 @@ class Sortable
             'orderBy' => $column,
             'sortedBy' => request('sortedBy') === 'asc' ? 'desc' : 'asc'
         ];
-        $url = route(request()->route()->getName(), array_merge(request()->route()->parameters(), $queryString));
+
+        $url = route(request()->route()->getName(), array_merge(request()->input(), $queryString));
 
         return '<th class="' . $class . '"><a href="' . $url . '"' . '>' . htmlentities($title) . '</a></th>';
 
