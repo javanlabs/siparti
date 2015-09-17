@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         // root user
-        factory(\App\Models\User::class)->create(['email' => 'root@laravolt.com', 'status' => 'active']);
+        factory(\App\Entities\User::class)->create(['email' => 'root@laravolt.com', 'status' => \App\Enum\UserStatus::ACTIVE()]);
 
-        factory(\App\Models\User::class, 10)->create();
-        factory(\App\Models\Post::class, 10)->create();
+        factory(\App\Entities\User::class, 100)->create();
+        factory(\App\Entities\Post::class, 10)->create();
 
         Model::reguard();
     }

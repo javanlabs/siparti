@@ -1,4 +1,4 @@
-<div class="ui attached menu stackable borderless">
+<div class="ui attached menu stackable borderless" style="background-color: #fafafa;">
     <div class="ui container">
         <div href="#" class="header item">
             <img class="logo" src="{{ asset('img/logo-laravolt.png') }}">

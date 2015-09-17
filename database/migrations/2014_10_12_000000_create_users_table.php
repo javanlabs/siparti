@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->string('status')->default('pending');
+            $table->string('status')->default(\App\Enum\UserStatus::PENDING());
             $table->rememberToken();
             $table->timestamps();
 

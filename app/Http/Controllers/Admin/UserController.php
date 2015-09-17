@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\User\AdminEditProfile;
 use App\Presenters\UserPresenter;
 use App\Repositories\UserRepositoryEloquent;
 use Illuminate\Http\Request;
@@ -77,19 +78,21 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->repository->skipPresenter()->find($id);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param AdminEditProfile $request
+     * @param  int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminEditProfile $request, $id)
     {
-        //
+        $this->repository->update($request->only('name', 'email', 'status'), $id);
+        return redirect()->back();
     }
 
     /**
