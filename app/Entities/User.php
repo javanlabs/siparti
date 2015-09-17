@@ -10,13 +10,18 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Laravolt\Mural\Contracts\Commentator;
+use Prettus\Repository\Contracts\Presentable;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\PresentableTrait;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract,
-    Commentator
+    Commentator,
+    Presentable,
+    Transformable
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword, PresentableTrait;
 
     /**
      * The database table used by the model.
@@ -57,6 +62,14 @@ class User extends Model implements AuthenticatableContract,
     public function canModerateComment()
     {
         return true;
+    }
+
+    /**
+     * @return array
+     */
+    public function transform()
+    {
+        return ['id' => $this->id];
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Presenters\UserPresenter;
 use App\Repositories\UserRepositoryEloquent;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->repository->paginate();
+        $users = $this->repository->skipPresenter()->paginate();
         return view('admin.users.index', compact('users'));
     }
 

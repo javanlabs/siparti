@@ -30,6 +30,7 @@
         ],
         "psr-4": {
             "Laravolt\\Auth\\": "packages/laravolt/auth/src",
+            "Laravolt\\Support\\": "packages/laravolt/support/src",
             "App\\": "app/"
         }
     },

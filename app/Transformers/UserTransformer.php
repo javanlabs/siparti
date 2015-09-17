@@ -22,6 +22,8 @@ class UserTransformer extends TransformerAbstract
         return [
             'id'         => (int) $model->id,
             'name'       => $model->name,
+            'email'     => $model->email,
+            'status'    => $model->status,
 
             /* place your other model properties here */
 
