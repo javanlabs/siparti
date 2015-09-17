@@ -9,4 +9,5 @@
         @yield('content')
     </div>
 
+    @include('admin.elements.footer')
 @endsection
