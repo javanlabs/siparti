@@ -47,7 +47,7 @@ class SemanticUiPagination extends BootstrapThreePresenter implements Presenter
             $to = $this->paginator->total();
         }
 
-        return trans('pagination.summary', ['from' => $from, 'to' => $to, "total" => $this->paginator->total()]);
+        return trans('support::pagination.summary', ['from' => $from, 'to' => $to, "total" => $this->paginator->total()]);
     }
 
 }

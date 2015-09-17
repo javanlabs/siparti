@@ -20,6 +20,7 @@ class SupportServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->registerBladeExtensions();
+        $this->registerTranslations();
     }
 
     /**
@@ -47,6 +48,28 @@ class SupportServiceProvider extends ServiceProvider {
             return "<?php echo \Laravolt\Support\Pagination\Sortable::link(array {$expression});?>";
         });
 
+    }
+
+    /**
+     * Register the package translations
+     *
+     * @see http://laravel.com/docs/5.1/packages#translations
+     * @return void
+     */
+    protected function registerTranslations()
+    {
+        $this->loadTranslationsFrom($this->packagePath('resources/lang'), 'support');
+    }
+
+    /**
+     * Loads a path relative to the package base directory
+     *
+     * @param string $path
+     * @return string
+     */
+    protected function packagePath($path = '')
+    {
+        return sprintf("%s/../%s", __DIR__ , $path);
     }
 
 }
