@@ -40,8 +40,8 @@
             <table class="ui very compact table bottom small sortable">
                 <thead>
                 <tr>
-                    <th class="descending sorted"><a href="">@lang('users.name')</a></th>
-                    <th>@lang('users.email')</th>
+                    @sortby('name', trans('users.name'))
+                    @sortby('email', trans('users.email'))
                     <th>@lang('users.status')</th>
                     <th>&nbsp;</th>
                 </tr>

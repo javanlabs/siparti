@@ -154,6 +154,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Laravolt\Auth\ServiceProvider::class,
+        Laravolt\Support\SupportServiceProvider::class,
 
     ],
 
