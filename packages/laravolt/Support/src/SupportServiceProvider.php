@@ -21,6 +21,7 @@ class SupportServiceProvider extends ServiceProvider {
     {
         $this->registerBladeExtensions();
         $this->registerTranslations();
+        $this->registerConfigurations();
     }
 
     /**
@@ -59,6 +60,19 @@ class SupportServiceProvider extends ServiceProvider {
     protected function registerTranslations()
     {
         $this->loadTranslationsFrom($this->packagePath('resources/lang'), 'support');
+    }
+
+    /**
+     * Register the package configurations
+     *
+     * @see http://laravel.com/docs/5.1/packages#configuration
+     * @return void
+     */
+    protected function registerConfigurations()
+    {
+        $this->mergeConfigFrom(
+            $this->packagePath('resources/config/timezones.php'), 'timezones'
+        );
     }
 
     /**

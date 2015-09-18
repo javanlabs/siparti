@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Entities\Profile;
 use App\Presenters\UserPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -44,4 +45,28 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         return UserPresenter::class;
     }
+
+    /**
+     * Update a entity in repository by id
+     *
+     * @throws ValidatorException
+     * @param array $attributes
+     * @param $id
+     * @return mixed
+     */
+    public function update(array $attributes, $id)
+    {
+        $this->skipPresenter();
+        $user = parent::update($attributes, $id);
+
+        $profile = $user->profile;
+        if(!$profile) {
+            $profile = new Profile();
+        }
+        $profile->fill(array_only($attributes, ['bio', 'timezone']));
+
+        return $user->profile()->save($profile);
+    }
+
+
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\User\AdminEditProfile;
-use App\Presenters\UserPresenter;
+use App\Repositories\TimezoneRepositoryArray;
 use App\Repositories\UserRepositoryEloquent;
 use Illuminate\Http\Request;
 
@@ -18,12 +18,19 @@ class UserController extends Controller
     private $repository;
 
     /**
+     * @var TimezoneRepositoryArray
+     */
+    private $timezone;
+
+    /**
      * UserController constructor.
      * @param UserRepositoryEloquent $repository
+     * @param TimezoneRepositoryArray $timezone
      */
-    public function __construct(UserRepositoryEloquent $repository)
+    public function __construct(UserRepositoryEloquent $repository, TimezoneRepositoryArray $timezone)
     {
         $this->repository = $repository;
+        $this->timezone = $timezone;
     }
 
 
@@ -79,7 +86,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->repository->skipPresenter()->find($id);
-        return view('admin.users.edit', compact('user'));
+        $timezones = $this->timezone->lists();
+
+        return view('admin.users.edit', compact('user', 'timezones'));
     }
 
     /**
@@ -91,7 +100,7 @@ class UserController extends Controller
      */
     public function update(AdminEditProfile $request, $id)
     {
-        $this->repository->update($request->only('name', 'email', 'status'), $id);
+        $this->repository->update($request->only('name', 'email', 'status', 'bio', 'timezone'), $id);
         return redirect()->back();
     }
 

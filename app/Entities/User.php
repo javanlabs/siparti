@@ -11,15 +11,13 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Laravolt\Mural\Contracts\Commentator;
 use Prettus\Repository\Contracts\Presentable;
-use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\PresentableTrait;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract,
     Commentator,
-    Presentable,
-    Transformable
+    Presentable
 {
     use Authenticatable, Authorizable, CanResetPassword, PresentableTrait;
 
@@ -44,6 +42,11 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
     public function getCommentatorNameAttribute()
     {
         return $this['name'];
@@ -64,12 +67,12 @@ class User extends Model implements AuthenticatableContract,
         return true;
     }
 
-    /**
-     * @return array
-     */
-    public function transform()
+    public function getTimezoneAttribute()
     {
-        return ['id' => $this->id];
-    }
+        if($this->profile) {
+            return $this->profile->timezone;
+        }
 
+        return config('app.timezone');
+    }
 }

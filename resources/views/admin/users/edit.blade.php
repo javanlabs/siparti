@@ -13,6 +13,8 @@
                 'class' => 'ui form'
             ]) !!}
 
+            <h3 class="ui header">Account</h3>
+
             <div class="field">
                 <label>@lang('user.name')</label>
                 {!! Form::text('name', old('name', $user['name'])) !!}
@@ -40,8 +42,20 @@
             {{--</div>--}}
             {{--</div>--}}
             <div class="field">
-            <label>@lang('user.status')</label>
-            {!! Form::select('status', \App\Enum\UserStatus::values(), old('status', $user['status']), ['class' => 'ui dropdown']) !!}
+                <label>@lang('user.status')</label>
+                {!! Form::select('status', \App\Enum\UserStatus::values(), old('status', $user['status']), ['class' => 'ui dropdown']) !!}
+            </div>
+
+            <h3 class="ui header">Profile</h3>
+
+            <div class="field">
+                <label>@lang('user.bio')</label>
+                {!! Form::textarea('bio', old('bio', $user['profile']['bio']), ['rows' => 3]) !!}
+            </div>
+
+            <div class="field">
+                <label>@lang('user.timezone')</label>
+                {!! Form::select('timezone', $timezones, old('timezone', $user['profile']['timezone']), ['class' => 'ui dropdown']) !!}
             </div>
 
             <div class="ui divider hidden"></div>

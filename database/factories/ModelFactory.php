@@ -20,6 +20,13 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Entities\Profile::class, function (Faker\Generator $faker) {
+    return [
+        'bio'      => $faker->paragraph(),
+        'timezone' => $faker->timezone,
+    ];
+});
+
 $factory->define(App\Entities\Post::class, function (Faker\Generator $faker) {
     return [
         'title'   => $faker->sentence(),

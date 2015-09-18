@@ -43,6 +43,7 @@
                     @sortby('name', trans('users.name'))
                     @sortby('email', trans('users.email'))
                     <th>@lang('users.status')</th>
+                    @sortby('created_at', trans('users.registered_at'))
                     <th>&nbsp;</th>
                 </tr>
                 </thead>
@@ -53,6 +54,7 @@
                         <td>{{ $user['name'] }}</td>
                         <td>{{ $user['email'] }}</td>
                         <td>{{ $user['status'] }}</td>
+                        <td>{{ $user['registered_at'] }}</td>
                         <td class="right aligned"><a href="{{ route('admin.users.edit', $user['id']) }}" class="ui button basic mini">@lang('users.manage')</a></td>
                     </tr>
                 @empty
