@@ -20,4 +20,5 @@ Route::controller('components', 'ComponentController');
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
     Route::resource('users', 'UserController');
+    Route::resource('password', 'PasswordController');
 });
