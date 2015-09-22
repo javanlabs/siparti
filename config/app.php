@@ -139,6 +139,7 @@ return [
 
         'Collective\Html\HtmlServiceProvider',
         'Watson\BootstrapForm\BootstrapFormServiceProvider',
+        Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Laravolt\Mural\ServiceProvider::class,
         Laravolt\Votee\ServiceProvider::class,
@@ -146,6 +147,7 @@ return [
         'Efriandika\LaravelSettings\SettingsServiceProvider',
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         'Lavary\Menu\ServiceProvider',
+        'Krucas\Notification\NotificationServiceProvider',
 
         /*
          * Application Service Providers...
@@ -213,6 +215,7 @@ return [
         'Votee'  => Laravolt\Votee\VoteeFacade::class,
         'Settings'  => Efriandika\LaravelSettings\Facades\Settings::class,
         'Menu'       => 'Lavary\Menu\Facade',
+        'Notification' => 'Krucas\Notification\Facades\Notification'
 
     ],
 

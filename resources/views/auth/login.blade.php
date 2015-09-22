@@ -20,6 +20,9 @@
                 <input type="password" name="password" placeholder="@lang('auth::auth.password')">
                 <i class="lock icon"></i>
             </div>
+            <div class="ui field">
+                <button type="submit" class="ui big fluid button">@lang('auth::auth.login')</button>
+            </div>
             <div class="ui equal width grid field">
                 <div class="column left aligned">
                     <div class="ui checkbox big">
@@ -31,9 +34,7 @@
                     <a href="{{ url('/password/email') }}">@lang('auth::auth.forgot_password')</a>
                 </div>
             </div>
-            <div class="ui field">
-                <button type="submit" class="ui big fluid button">@lang('auth::auth.login')</button>
-            </div>
+
         </form>
 
     </div>

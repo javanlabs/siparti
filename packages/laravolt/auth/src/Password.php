@@ -1,6 +1,7 @@
 <?php
 namespace Laravolt\Auth;
 
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Mail\Message;
 use Password as BasePassword;
@@ -31,14 +32,14 @@ class Password
         return $response;
     }
 
-    public function sendNewPassword($user)
+    public function sendNewPassword(CanResetPassword $user)
     {
         $password = str_random(8);
         $user->password = $password;
         $user->save();
 
         $this->mailer->send('auth::emails.new_password', compact('user', 'password'), function($m) use ($user) {
-            $m->to($user->email);
+            $m->to($user->getEmailForPasswordReset());
         });
     }
 

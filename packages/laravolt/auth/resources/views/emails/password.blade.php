@@ -1,1 +1,1 @@
-Click here to reset your password: {{ url('password/reset/'.$token) }}
+@lang('auth::auth.click_to_reset', ['link' => url('password/reset/' . $token)])

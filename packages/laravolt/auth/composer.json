@@ -1,23 +1,26 @@
 {
     "name": "laravolt/auth",
-    "description": ":package_description",
+    "description": "Laravel auth extended",
     "keywords": [
         "laravolt",
-        "auth"
+        "auth",
+        "laravel"
     ],
     "homepage": "https://github.com/laravolt/auth",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Bayu Hendra Winata",
+            "email": "uyab.exe@gmail.com",
+            "homepage": "http://id-laravel.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php" : ">=5.5.0",
-        "illuminate/support": "~5.1"
+        "illuminate/support": "~5.1",
+        "illuminate/auth": "~5.1",
+        "illuminate/mail": "~5.1"
     },
     "require-dev": {
         "phpunit/phpunit" : "4.*",

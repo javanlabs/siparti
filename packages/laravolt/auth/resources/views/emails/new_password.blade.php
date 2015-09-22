@@ -1,1 +1,1 @@
-Password baru Anda adalah <strong>{{ $password }}</strong>
+@lang('auth::auth.your_new_password', ['password' => $password])

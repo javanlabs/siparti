@@ -18,7 +18,8 @@
         "prettus/l5-repository": "^2.1",
         "league/fractal": "^0.12.0",
         "myclabs/php-enum": "^1.4",
-        "lavary/laravel-menu": "dev-master"
+        "lavary/laravel-menu": "dev-master",
+        "edvinaskrucas/notification": "5.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
