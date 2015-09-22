@@ -3,6 +3,8 @@
 return [
     'name'                 => 'Nama',
     'email'                => 'Email',
+    'password'             => 'Password',
+    'password_confirmation'=> 'Konfirmasi Password',
     'status'               => 'Status',
     'registered_at'        => 'Terdaftar',
     'bio'                  => 'Deskripsi',
