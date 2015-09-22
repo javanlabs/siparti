@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Krucas\Notification\Facades\Notification;
 
 class UserController extends Controller
 {
@@ -77,5 +78,12 @@ class UserController extends Controller
     public function edit($id)
     {
         return redirect(route('admin.profile.edit', $id));
+    }
+
+    public function destroy($id)
+    {
+        $this->repository->delete($id);
+        Notification::warning('User berhasil dihapus');
+        return redirect(route('admin.users.index'));
     }
 }
