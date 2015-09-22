@@ -3,7 +3,7 @@
 namespace Laravolt\Auth\Http\Controllers;
 
 use Validator;
-use App\Models\User;
+use App\Entities\User;
 use Illuminate\Http\Request;
 use Laravolt\Auth\Activation;
 use App\Http\Controllers\Controller;
