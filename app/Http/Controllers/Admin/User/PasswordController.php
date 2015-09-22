@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin\User;
 
-use App\Repositories\UserRepositoryEloquent;
-use Illuminate\Http\Request;
 use App\Http\Requests;
+use Laravolt\Auth\Password;
+use Illuminate\Mail\Message;
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepositoryEloquent;
 
 class PasswordController extends Controller
 {
@@ -15,12 +16,19 @@ class PasswordController extends Controller
     private $repository;
 
     /**
+     * @var Password
+     */
+    private $password;
+
+    /**
      * PasswordController constructor.
      * @param UserRepositoryEloquent $repository
+     * @param Password $password
      */
-    public function __construct(UserRepositoryEloquent $repository)
+    public function __construct(UserRepositoryEloquent $repository, Password $password)
     {
         $this->repository = $repository;
+        $this->password = $password;
     }
 
     /**
@@ -37,11 +45,13 @@ class PasswordController extends Controller
 
     public function reset($id)
     {
-
+        $this->password->sendResetLink(['id' => $id]);
+        return redirect()->back();
     }
 
     public function generate($id)
     {
-
+        $this->password->sendNewPassword($this->repository->skipPresenter()->find($id));
+        return redirect()->back();
     }
 }

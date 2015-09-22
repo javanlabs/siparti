@@ -75,4 +75,9 @@ class User extends Model implements AuthenticatableContract,
 
         return config('app.timezone');
     }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 }

@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@section('script-head')
+    <script src="http://cdn.intercoolerjs.org/intercooler-0.9.0.min.js"></script>
+@endsection
+
 @section('body')
     @include('admin.elements.header')
     @include('elements.flash')
