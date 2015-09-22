@@ -19,6 +19,15 @@ Route::controller('components', 'ComponentController');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
-    Route::resource('users', 'UserController');
-    Route::resource('password', 'PasswordController');
+
+    Route::group(['namespace' => 'User'], function(){
+        Route::resource('users', 'UserController');
+        Route::resource('profile', 'ProfileController');
+
+        Route::resource('password', 'PasswordController');
+        Route::post('password/{id}/reset', ['uses' => 'PasswordController@reset', 'as' => 'admin.password.reset']);
+        Route::post('password/{id}/generate', ['uses' => 'PasswordController@generate', 'as' => 'admin.password.generate']);
+
+        Route::resource('account', 'AccountController');
+    });
 });

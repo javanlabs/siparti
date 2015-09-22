@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Requests\User\AdminEditProfile;
 use App\Repositories\TimezoneRepositoryArray;
@@ -15,12 +15,12 @@ class UserController extends Controller
     /**
      * @var UserRepositoryEloquent
      */
-    private $repository;
+    protected $repository;
 
     /**
      * @var TimezoneRepositoryArray
      */
-    private $timezone;
+    protected $timezone;
 
     /**
      * UserController constructor.
@@ -31,6 +31,8 @@ class UserController extends Controller
     {
         $this->repository = $repository;
         $this->timezone = $timezone;
+
+        //$this->middleware('menus.admin');
     }
 
 
@@ -56,17 +58,6 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -85,33 +76,6 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->repository->skipPresenter()->find($id);
-        $timezones = $this->timezone->lists();
-
-        return view('admin.users.edit', compact('user', 'timezones'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param AdminEditProfile $request
-     * @param  int $id
-     * @return Response
-     */
-    public function update(AdminEditProfile $request, $id)
-    {
-        $this->repository->update($request->only('name', 'email', 'status', 'bio', 'timezone'), $id);
-        return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect(route('admin.profile.edit', $id));
     }
 }

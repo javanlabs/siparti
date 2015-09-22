@@ -54,10 +54,10 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      * @param $id
      * @return mixed
      */
-    public function update(array $attributes, $id)
+    public function updateProfile(array $attributes, $id)
     {
         $this->skipPresenter();
-        $user = parent::update($attributes, $id);
+        $user = $this->find($id);
 
         $profile = $user->profile;
         if(!$profile) {

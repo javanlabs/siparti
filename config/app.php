@@ -145,6 +145,7 @@ return [
         Laravolt\Packer\PackerServiceProvider::class,
         'Efriandika\LaravelSettings\SettingsServiceProvider',
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        'Lavary\Menu\ServiceProvider',
 
         /*
          * Application Service Providers...
@@ -211,6 +212,7 @@ return [
         'Mural'  => Laravolt\Mural\Facade::class,
         'Votee'  => Laravolt\Votee\VoteeFacade::class,
         'Settings'  => Efriandika\LaravelSettings\Facades\Settings::class,
+        'Menu'       => 'Lavary\Menu\Facade',
 
     ],
 
