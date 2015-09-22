@@ -20,8 +20,8 @@ Route::controller('components', 'ComponentController');
 Route::group(['namespace' => 'My', 'prefix' => 'my', 'middleware' => 'auth'], function(){
     Route::get('profile', 'ProfileController@edit');
     Route::put('profile', 'ProfileController@update');
-    Route::get('account', 'AccountController@edit');
-    Route::put('account', 'AccountController@update');
+    Route::get('email', 'EmailController@edit');
+    Route::put('email', 'EmailController@update');
     Route::get('password', 'PasswordController@edit');
     Route::put('password', 'PasswordController@update');
 

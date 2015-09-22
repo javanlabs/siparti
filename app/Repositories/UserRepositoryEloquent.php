@@ -72,6 +72,12 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function addEmail($email, $id)
     {
+        $user = $this->skipPresenter()->find($id);
+
+        if ($user->email == $email) {
+            return false;
+        }
+
         $token = Str::random(40);
         $saved = \DB::table('users_emails')->insert([
             'user_id'    => $id,
@@ -108,6 +114,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         $user = $this->skipPresenter()->find($id);
         $user->password = $password;
+
         return $user->save();
     }
 }

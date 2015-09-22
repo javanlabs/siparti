@@ -3,7 +3,7 @@
 @section('content-my')
     {!! Form::open([
         'method' => 'put',
-        'url' => 'my/account',
+        'url' => 'my/email',
         'class' => 'ui form'
     ]) !!}
 
