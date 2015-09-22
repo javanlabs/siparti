@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Requests;
+use Krucas\Notification\Facades\Notification;
 use Laravolt\Auth\Password;
 use Illuminate\Mail\Message;
 use App\Http\Controllers\Controller;
@@ -46,12 +47,14 @@ class PasswordController extends Controller
     public function reset($id)
     {
         $this->password->sendResetLink(['id' => $id]);
+        Notification::success('Email reset password telah dikirimkan.');
         return redirect()->back();
     }
 
     public function generate($id)
     {
         $this->password->sendNewPassword($this->repository->skipPresenter()->find($id));
+        Notification::success('Password berhasil diganti dan telah dikirim ke email.');
         return redirect()->back();
     }
 }
