@@ -17,7 +17,7 @@ Route::get('/', function(){
 
 Route::controller('components', 'ComponentController');
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
 
     Route::group(['namespace' => 'User'], function(){
