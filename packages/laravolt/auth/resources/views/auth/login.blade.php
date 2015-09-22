@@ -9,14 +9,14 @@
     @endif
 
     <div class="ui segment very padded">
-        <form class="ui form" method="POST" action="{{ url('/auth/login') }}">
+        <form class="ui form large" method="POST" action="{{ url('/auth/login') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-            <div class="ui field left icon input big fluid">
+            <div class="ui field left icon input fluid">
                 <input type="email" name="email" placeholder="@lang('auth::auth.identifier')" value="{{ old('email') }}">
                 <i class="mail icon"></i>
             </div>
-            <div class="ui field left icon input big fluid">
+            <div class="ui field left icon input fluid">
                 <input type="password" name="password" placeholder="@lang('auth::auth.password')">
                 <i class="lock icon"></i>
             </div>

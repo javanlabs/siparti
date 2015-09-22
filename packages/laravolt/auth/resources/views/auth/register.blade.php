@@ -3,18 +3,18 @@
 @section('content')
 
     <div class="ui segment very padded">
-        <form class="ui form" method="POST" action="{{ url('/auth/register') }}">
+        <form class="ui large form" method="POST" action="{{ url('/auth/register') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-            <div class="ui field left icon input big fluid">
+            <div class="ui field left icon input fluid">
                 <input type="text" name="name" placeholder="@lang('auth::auth.name')" value="{{ old('name') }}">
                 <i class="user icon"></i>
             </div>
-            <div class="ui field left icon input big fluid">
+            <div class="ui field left icon input fluid">
                 <input type="email" name="email" placeholder="@lang('auth::auth.identifier')" value="{{ old('email') }}">
                 <i class="mail icon"></i>
             </div>
-            <div class="ui field left icon input big fluid">
+            <div class="ui field left icon input fluid">
                 <input type="password" name="password" placeholder="@lang('auth::auth.password')">
                 <i class="lock icon"></i>
             </div>
