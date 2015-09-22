@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Admin\User;
 
-use App\Http\Requests\User\AdminEditProfile;
-use App\Repositories\TimezoneRepositoryArray;
-use App\Repositories\UserRepositoryEloquent;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepositoryEloquent;
 use Krucas\Notification\Facades\Notification;
+use App\Repositories\TimezoneRepositoryArray;
+
 
 class UserController extends Controller
 {

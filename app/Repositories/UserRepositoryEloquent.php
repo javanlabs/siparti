@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Entities\Profile;
 use App\Presenters\UserPresenter;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Entities\User;
@@ -19,7 +21,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'name' => 'like',
+        'name'  => 'like',
         'email' => 'like'
     ];
 
@@ -60,7 +62,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $user = $this->find($id);
 
         $profile = $user->profile;
-        if(!$profile) {
+        if (!$profile) {
             $profile = new Profile();
         }
         $profile->fill(array_only($attributes, ['bio', 'timezone']));
@@ -68,5 +70,38 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return $user->profile()->save($profile);
     }
 
+    public function addEmail($email, $id)
+    {
+        $token = Str::random(40);
+        $saved = \DB::table('users_emails')->insert([
+            'user_id'    => $id,
+            'email'      => $email,
+            'token'      => $token,
+            'created_at' => new Carbon(),
+            'updated_at' => new Carbon(),
+        ]);
+
+        if ($saved) {
+            return $token;
+        }
+
+        return false;
+    }
+
+    public function activateEmail($token)
+    {
+        $email = \DB::table('users_emails')->whereToken($token)->first();
+
+        if (!$email) {
+            return false;
+        }
+
+        $data = ['email' => $email->email];
+        $this->update($data, $email->user_id);
+
+        \DB::table('users_emails')->whereEmail($email->email)->delete();
+
+        return true;
+    }
 
 }

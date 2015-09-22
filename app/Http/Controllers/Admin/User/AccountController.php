@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Admin\User;
 
-use App\Repositories\UserRepositoryEloquent;
-use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class AccountController extends UserController
 {

@@ -17,6 +17,17 @@ Route::get('/', function(){
 
 Route::controller('components', 'ComponentController');
 
+Route::group(['namespace' => 'My', 'prefix' => 'my', 'middleware' => 'auth'], function(){
+    Route::get('profile', 'ProfileController@edit');
+    Route::put('profile', 'ProfileController@update');
+    Route::get('account', 'AccountController@edit');
+    Route::put('account', 'AccountController@update');
+    Route::get('password', 'PasswordController@edit');
+    Route::put('password', 'PasswordController@update');
+
+    Route::get('email/activation/{token}', 'EmailController@activate');
+});
+
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
 

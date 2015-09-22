@@ -45,6 +45,7 @@
                         {{ auth()->user()->name }} <i class="dropdown icon"></i>
                     </a>
                     <div class="menu small">
+                        <a href="{{ url('my/profile') }}" class="item">Settings</a>
                         <a href="{{ url('auth/logout') }}" class="item">Logout</a>
                     </div>
                 </div>
