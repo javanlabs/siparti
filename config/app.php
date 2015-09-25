@@ -148,6 +148,7 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         'Lavary\Menu\ServiceProvider',
         'Krucas\Notification\NotificationServiceProvider',
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -156,6 +157,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Laravolt\Email\ServiceProvider::class,
         Laravolt\Auth\ServiceProvider::class,
         Laravolt\Support\SupportServiceProvider::class,
 
@@ -215,7 +217,8 @@ return [
         'Votee'  => Laravolt\Votee\VoteeFacade::class,
         'Settings'  => Efriandika\LaravelSettings\Facades\Settings::class,
         'Menu'       => 'Lavary\Menu\Facade',
-        'Notification' => 'Krucas\Notification\Facades\Notification'
+        'Notification' => 'Krucas\Notification\Facades\Notification',
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\My;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepositoryEloquent;
-use Krucas\Notification\Facades\Notification;
 use App\Repositories\TimezoneRepositoryArray;
 
 

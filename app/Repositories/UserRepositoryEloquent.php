@@ -70,46 +70,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return $user->profile()->save($profile);
     }
 
-    public function addEmail($email, $id)
-    {
-        $user = $this->skipPresenter()->find($id);
-
-        if ($user->email == $email) {
-            return false;
-        }
-
-        $token = Str::random(40);
-        $saved = \DB::table('users_emails')->insert([
-            'user_id'    => $id,
-            'email'      => $email,
-            'token'      => $token,
-            'created_at' => new Carbon(),
-            'updated_at' => new Carbon(),
-        ]);
-
-        if ($saved) {
-            return $token;
-        }
-
-        return false;
-    }
-
-    public function activateEmail($token)
-    {
-        $email = \DB::table('users_emails')->whereToken($token)->first();
-
-        if (!$email) {
-            return false;
-        }
-
-        $data = ['email' => $email->email];
-        $this->update($data, $email->user_id);
-
-        \DB::table('users_emails')->whereEmail($email->email)->delete();
-
-        return true;
-    }
-
     public function updatePassword($password, $id)
     {
         $user = $this->skipPresenter()->find($id);

@@ -19,7 +19,8 @@
         "league/fractal": "^0.12.0",
         "myclabs/php-enum": "^1.4",
         "lavary/laravel-menu": "dev-master",
-        "edvinaskrucas/notification": "5.*"
+        "edvinaskrucas/notification": "5.*",
+        "laravel/socialite": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -32,6 +33,7 @@
             "database"
         ],
         "psr-4": {
+            "Laravolt\\Email\\": "packages/laravolt/email/src",
             "Laravolt\\Auth\\": "packages/laravolt/auth/src",
             "Laravolt\\Support\\": "packages/laravolt/support/src",
             "App\\": "app/"
