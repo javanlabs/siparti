@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\CreateAccount;
 use App\Repositories\UserRepositoryEloquent;
 use Krucas\Notification\Facades\Notification;
 use App\Repositories\TimezoneRepositoryArray;
@@ -53,18 +54,20 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
-     * Display the specified resource.
+     * Store the specified resource.
      *
-     * @param  int  $id
+     * @param CreateAccount $request
      * @return Response
      */
-    public function show($id)
+    public function store(CreateAccount $request)
     {
-        //
+        $this->repository->create($request->only('name', 'email', 'password', 'status'));
+        Notification::success(trans('users.creation_success'));
+        return redirect()->route('admin.users.index');
     }
 
     /**

@@ -49,6 +49,23 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     }
 
     /**
+     * Save a new entity in repository
+     *
+     * @throws ValidatorException
+     * @param array $attributes
+     * @return mixed
+     */
+    public function create(array $attributes)
+    {
+        parent::skipPresenter();
+        $user = parent::create($attributes);
+        $this->updateProfile($attributes, $user['id']);
+
+        return $user;
+    }
+
+
+    /**
      * Update a entity in repository by id
      *
      * @throws ValidatorException

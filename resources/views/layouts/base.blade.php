@@ -14,7 +14,7 @@
     @include('elements.favicon')
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{{ asset('lib/semantic-ui/semantic.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('lib/semantic-ui/semantic.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     @yield('style-head')
 
