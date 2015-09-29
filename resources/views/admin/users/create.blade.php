@@ -41,7 +41,7 @@
             <div class="field">
                 <div class="ui checkbox">
                     <input type="checkbox" name="must_change_password" {{ request()->old('must_change_password')?'checked':'' }}>
-                    <label>@lang('users.change_password_on_first_login')</label>
+                    <label>@lang('password::password.change_password_on_first_login')</label>
                 </div>
             </div>
             <div class="ui divider hidden"></div>

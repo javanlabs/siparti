@@ -34,6 +34,7 @@
             "database"
         ],
         "psr-4": {
+            "Laravolt\\Password\\": "packages/laravolt/password/src",
             "Laravolt\\Email\\": "packages/laravolt/email/src",
             "Laravolt\\Support\\": "packages/laravolt/support/src",
             "App\\": "app/"

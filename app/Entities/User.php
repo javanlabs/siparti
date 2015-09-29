@@ -10,16 +10,19 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Laravolt\Mural\Contracts\Commentator;
+use Laravolt\Password\CanChangePassword;
+use Laravolt\Password\CanChangePasswordContract;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract,
+    CanChangePasswordContract,
     Commentator,
     Presentable
 {
-    use Authenticatable, Authorizable, CanResetPassword, PresentableTrait;
+    use Authenticatable, Authorizable, CanResetPassword, CanChangePassword, PresentableTrait;
 
     /**
      * The database table used by the model.
@@ -71,20 +74,10 @@ class User extends Model implements AuthenticatableContract,
 
     public function getTimezoneAttribute()
     {
-        if($this->profile) {
+        if ($this->profile) {
             return $this->profile->timezone;
         }
 
         return config('app.timezone');
-    }
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
-    public function mustChangePassword()
-    {
-        return $this->attributes['password_last_set'] == null;
     }
 }

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Requests;
-use Krucas\Notification\Facades\Notification;
-use Laravolt\Auth\Password;
-use Illuminate\Mail\Message;
+use Illuminate\Http\Request;
+use Laravolt\Password\Password;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepositoryEloquent;
+use Krucas\Notification\Facades\Notification;
 
 class PasswordController extends Controller
 {
@@ -24,12 +24,11 @@ class PasswordController extends Controller
     /**
      * PasswordController constructor.
      * @param UserRepositoryEloquent $repository
-     * @param Password $password
      */
-    public function __construct(UserRepositoryEloquent $repository, Password $password)
+    public function __construct(UserRepositoryEloquent $repository)
     {
         $this->repository = $repository;
-        $this->password = $password;
+        $this->password = app('password');
     }
 
     /**
@@ -51,9 +50,11 @@ class PasswordController extends Controller
         return redirect()->back();
     }
 
-    public function generate($id)
+    public function generate(Request $request, $id)
     {
-        $this->password->sendNewPassword($this->repository->skipPresenter()->find($id));
+        $user = $this->repository->skipPresenter()->find($id);
+        $this->password->sendNewPassword($user, $request->has('must_change_password'));
+
         Notification::success('Password berhasil diganti dan telah dikirim ke email.');
         return redirect()->back();
     }

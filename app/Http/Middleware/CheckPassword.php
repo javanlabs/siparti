@@ -26,8 +26,8 @@ class CheckPassword
             return $next($request);
         }
 
-        if(auth()->user()->mustChangePassword()) {
-            Notification::warning(trans('users.must_change_password'));
+        if(auth()->user()->passwordMustBeChanged()) {
+            Notification::warning(trans('password::password.must_change_password'));
             return redirect('my/password');
         }
 

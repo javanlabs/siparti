@@ -95,8 +95,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function updatePassword($password, $id)
     {
         $user = $this->skipPresenter()->find($id);
-        $user->password = $password;
-        $user->password_last_set = new Carbon();
+        $user->setPassword($password);
 
         return $user->save();
     }
