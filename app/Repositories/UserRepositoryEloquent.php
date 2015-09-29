@@ -2,13 +2,12 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
+use App\Entities\User;
 use App\Entities\Profile;
 use App\Presenters\UserPresenter;
-use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Entities\User;
 
 /**
  * Class UserRepositoryEloquent
@@ -55,9 +54,15 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      * @param array $attributes
      * @return mixed
      */
-    public function create(array $attributes)
+    public function createByAdmin(array $attributes)
     {
         parent::skipPresenter();
+
+        $attributes['password_last_set'] = new Carbon();
+        if(array_has($attributes, 'must_change_password')) {
+            $attributes['password_last_set'] = null;
+        }
+
         $user = parent::create($attributes);
         $this->updateProfile($attributes, $user['id']);
 
@@ -91,6 +96,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         $user = $this->skipPresenter()->find($id);
         $user->password = $password;
+        $user->password_last_set = new Carbon();
 
         return $user->save();
     }

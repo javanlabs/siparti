@@ -8,7 +8,7 @@
      ]) !!}
 
     <div class="field">
-        <label>@lang('users.password')</label>
+        <label>@lang('users.password_new')</label>
         {!! Form::password('password', old('password')) !!}
     </div>
     <div class="field">

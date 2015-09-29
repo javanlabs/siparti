@@ -13,10 +13,11 @@
 
 $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
     return [
-        'name'           => $faker->name,
-        'email'          => $faker->email,
-        'password'       => 'password',
-        'remember_token' => str_random(10),
+        'name'              => $faker->name,
+        'email'             => $faker->email,
+        'password'          => 'password',
+        'password_last_set' => new Carbon\Carbon(),
+        'remember_token'    => str_random(10),
     ];
 });
 

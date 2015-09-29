@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateAccount;
 use App\Repositories\UserRepositoryEloquent;
+use Illuminate\Support\Facades\Mail;
 use Krucas\Notification\Facades\Notification;
 use App\Repositories\TimezoneRepositoryArray;
 
@@ -65,7 +66,18 @@ class UserController extends Controller
      */
     public function store(CreateAccount $request)
     {
-        $this->repository->create($request->only('name', 'email', 'password', 'status'));
+        // save to db
+        $user = $this->repository->createByAdmin($request->only('name', 'email', 'password', 'status', 'must_change_password'));
+        $password = $request->get('password');
+
+        // send account info to email
+        if($request->has('send_account_information')) {
+            Mail::send('emails.account_information', compact('user', 'password'), function($message) use ($user) {
+                $message->subject('Your Account Information');
+                $message->to($user->email);
+            });
+        }
+
         Notification::success(trans('users.creation_success'));
         return redirect()->route('admin.users.index');
     }

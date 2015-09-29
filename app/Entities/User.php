@@ -42,6 +42,8 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
+    protected $dates = ['password_last_set'];
+
     public function profile()
     {
         return $this->hasOne(Profile::class);
@@ -79,5 +81,10 @@ class User extends Model implements AuthenticatableContract,
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function mustChangePassword()
+    {
+        return $this->attributes['password_last_set'] == null;
     }
 }
