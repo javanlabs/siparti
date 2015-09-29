@@ -1,18 +1,11 @@
 <?php
-
-namespace App\Http\Middleware;
+namespace Laravolt\Password;
 
 use Closure;
 use Krucas\Notification\Facades\Notification;
 
 class CheckPassword
 {
-    protected $except = [
-        'my/password',
-        'auth/logout',
-        '_debugbar/*',
-    ];
-
     /**
      * Handle an incoming request.
      *
@@ -28,7 +21,7 @@ class CheckPassword
 
         if(auth()->user()->passwordMustBeChanged()) {
             Notification::warning(trans('password::password.must_change_password'));
-            return redirect('my/password');
+            return redirect(config('password.redirect'));
         }
 
         return $next($request);
@@ -36,8 +29,10 @@ class CheckPassword
 
     protected function shouldPassThrough($request)
     {
-        foreach ($this->except as $except) {
-            if ($request->is($except)) {
+        $except = array_merge((array) config('password.except'), (array) config('password.redirect'));
+
+        foreach ($except as $pattern) {
+            if ($request->is($pattern)) {
                 return true;
             }
         }
