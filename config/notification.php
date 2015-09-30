@@ -37,7 +37,7 @@ return array(
     */
     'default_format'                        => array(
 
-        'default'               => '<div class="ui attached message :type">:message</div>',
+        'default'               => '<div class="ui attached message :type"><div class="ui container">:message</div></div>',
 
     ),
 

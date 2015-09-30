@@ -20,7 +20,6 @@
         "league/fractal": "^0.12.0",
         "myclabs/php-enum": "^1.4",
         "lavary/laravel-menu": "dev-master",
-        "edvinaskrucas/notification": "5.*",
         "laravel/socialite": "^2.0"
     },
     "require-dev": {
