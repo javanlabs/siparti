@@ -19,7 +19,7 @@ class CheckPassword
             return $next($request);
         }
 
-        if(auth()->user()->passwordMustBeChanged()) {
+        if(auth()->user()->passwordMustBeChanged(config('password.duration'))) {
             Notification::warning(trans('password::password.must_change_password'));
             return redirect(config('password.redirect'));
         }

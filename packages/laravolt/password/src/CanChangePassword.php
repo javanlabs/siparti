@@ -23,11 +23,19 @@ trait CanChangePassword
     }
 
     /**
+     * @param null $durationInDays
      * @return bool
      */
-    public function passwordMustBeChanged()
+    public function passwordMustBeChanged($durationInDays = null)
     {
-        return $this->attributes['password_last_set'] == null;
+        $durationInDays = (int) $durationInDays;
+        if($durationInDays != null && $this->password_last_set != null){
+            $expired = $this->password_last_set->addDays($durationInDays);
+
+            return $expired->lte(Carbon::now());
+        }
+
+        return $this->password_last_set == null;
     }
 
     public function getEmailForNewPassword()
