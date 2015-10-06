@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Laravolt\Auth\Traits\HasSocialAccount;
 use Laravolt\Mural\Contracts\Commentator;
 use Laravolt\Password\CanChangePassword;
 use Laravolt\Password\CanChangePasswordContract;
@@ -22,7 +23,7 @@ class User extends Model implements AuthenticatableContract,
     Commentator,
     Presentable
 {
-    use Authenticatable, Authorizable, CanResetPassword, CanChangePassword, PresentableTrait;
+    use Authenticatable, Authorizable, CanResetPassword, CanChangePassword, PresentableTrait, HasSocialAccount;
 
     /**
      * The database table used by the model.
