@@ -51,12 +51,11 @@
                         </thead>
                         <tbody>
                         @forelse($users as $user)
-                            <?php $user = $user->presenter()['data'];?>
                             <tr>
-                                <td>{{ $user['name'] }}</td>
-                                <td>{{ $user['email'] }}</td>
-                                <td>{{ $user['status'] }}</td>
-                                <td>{{ $user['registered_at'] }}</td>
+                                <td>{{ $user->present('name') }}</td>
+                                <td>{{ $user->present('email') }}</td>
+                                <td>{{ $user->present('status') }}</td>
+                                <td>{{ $user->present('registered_at') }}</td>
                                 <td class="right aligned"><a href="{{ route('admin.users.edit', $user['id']) }}" class="ui button basic mini">@lang('users.manage')</a></td>
                             </tr>
                         @empty

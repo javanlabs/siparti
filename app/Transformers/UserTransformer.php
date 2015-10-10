@@ -26,7 +26,7 @@ class UserTransformer extends TransformerAbstract
             'name'          => $model->name,
             'email'         => $model->email,
             'status'        => $model->status,
-            'registered_at' => $model->created_at->timezone(new \DateTimeZone(auth()->user()->getTimezoneAttribute())),
+            'registered_at' => $model->created_at->timezone(new \DateTimeZone(auth()->user()->getTimezoneAttribute()))->formatLocalized('%d %B %Y'),
             'created_at'    => $model->created_at,
             'updated_at'    => $model->updated_at
         ];
