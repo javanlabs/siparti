@@ -16,6 +16,7 @@
         "laravolt/packer": "dev-master",
         "laravolt/auth": "dev-master",
         "laravolt/support": "dev-master",
+        "laravolt/avatar": "dev-master",
         "efriandika/laravel-settings": "^1.1",
         "prettus/l5-repository": "dev-master",
         "league/fractal": "^0.12.0",
