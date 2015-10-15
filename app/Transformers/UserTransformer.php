@@ -2,9 +2,9 @@
 
 namespace App\Transformers;
 
-use App\Entities\Profile;
 use League\Fractal\TransformerAbstract;
 use App\Entities\User;
+use Avatar;
 
 /**
  * Class UserTransformer
@@ -14,6 +14,7 @@ class UserTransformer extends TransformerAbstract
 {
 
     protected $defaultIncludes = ['profile'];
+
     /**
      * Transform the \User entity
      * @param User $model
@@ -26,9 +27,11 @@ class UserTransformer extends TransformerAbstract
             'name'          => $model->name,
             'email'         => $model->email,
             'status'        => $model->status,
-            'registered_at' => $model->created_at->timezone(new \DateTimeZone(auth()->user()->getTimezoneAttribute()))->formatLocalized('%d %B %Y'),
+            'registered_at' => $model->created_at->timezone(new \DateTimeZone(auth()->user()->getTimezoneAttribute()))
+                                                 ->formatLocalized('%d %B %Y'),
             'created_at'    => $model->created_at,
-            'updated_at'    => $model->updated_at
+            'updated_at'    => $model->updated_at,
+            'avatar'        => Avatar::create($model->name)->toBase64()
         ];
     }
 
