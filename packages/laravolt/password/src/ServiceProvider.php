@@ -47,7 +47,6 @@ class ServiceProvider extends BaseServiceProvider
         $this->registerViews();
         $this->registerMigrations();
         $this->registerSeeds();
-        $this->registerAssets();
         $this->registerTranslations();
         $this->registerConfigurations();
 
@@ -95,19 +94,6 @@ class ServiceProvider extends BaseServiceProvider
         $this->publishes([
             $this->packagePath('database/seeds') => database_path('/seeds')
         ], 'seeds');
-    }
-
-    /**
-     * Register the package public assets
-     *
-     * @see http://laravel.com/docs/5.1/packages#public-assets
-     * @return void
-     */
-    protected function registerAssets()
-    {
-        $this->publishes([
-            $this->packagePath('resources/assets') => public_path('laravolt/password'),
-        ], 'public');
     }
 
     /**
