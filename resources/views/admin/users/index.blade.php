@@ -52,7 +52,7 @@
                         <tbody>
                         @forelse($users as $user)
                             <tr>
-                                <td>{{ $user->present('name') }}</td>
+                                <td><img src="{{ Avatar::data($user->present('name')) }}" alt="" class="ui image avatar">{{ $user->present('name') }}</td>
                                 <td>{{ $user->present('email') }}</td>
                                 <td>{{ $user->present('status') }}</td>
                                 <td>{{ $user->present('registered_at') }}</td>

@@ -5,7 +5,7 @@
     <div class="ui divider hidden"></div>
 
     <div class="ui container">
-        <h2 class="ui header"><i class="icon user"></i> {{ $user['name'] }}</h2>
+        <h2 class="ui header"><img class="ui image avatar" src="{{ Avatar::data($user->present('name')) }}" alt=""> {{ $user->present('name') }}</h2>
         <div class="ui hidden divider"></div>
         <div class="ui tabular menu top attached">
             <a class="item {{ (request()->segment(2) == 'profile')?'active':'' }}" href="{{ url('my/profile') }}">@lang('users.menu.profile')</a>

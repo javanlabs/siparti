@@ -149,6 +149,7 @@ return [
         'Lavary\Menu\ServiceProvider',
         'Krucas\Notification\NotificationServiceProvider',
         Laravel\Socialite\SocialiteServiceProvider::class,
+        'Intervention\Image\ImageServiceProvider',
 
         /*
          * Application Service Providers...
@@ -157,6 +158,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Laravolt\Avatar\ServiceProvider::class,
         Laravolt\Password\ServiceProvider::class,
         Laravolt\Email\ServiceProvider::class,
         Laravolt\Auth\ServiceProvider::class,
@@ -220,7 +222,7 @@ return [
         'Menu'       => 'Lavary\Menu\Facade',
         'Notification' => 'Krucas\Notification\Facades\Notification',
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+        'Avatar'    => Laravolt\Avatar\Facade::class
     ],
 
 ];

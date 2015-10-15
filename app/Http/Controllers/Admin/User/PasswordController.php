@@ -39,7 +39,7 @@ class PasswordController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->repository->find($id)['data'];
+        $user = $this->repository->skipPresenter()->find($id);
         return view('admin.users.password.edit', compact('user'));
     }
 

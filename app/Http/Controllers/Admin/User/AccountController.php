@@ -16,7 +16,7 @@ class AccountController extends UserController
      */
     public function edit($id)
     {
-        $user = $this->repository->find($id)['data'];
+        $user = $this->repository->skipPresenter()->find($id);
         return view('admin.users.account.edit', compact('user'));
     }
 

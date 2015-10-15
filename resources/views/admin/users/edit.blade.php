@@ -2,7 +2,7 @@
 
 @section('content-left')
     <div class="ui container">
-        <h2 class="ui header"><i class="icon user"></i> {{ $user['name'] }}</h2>
+        <h2 class="ui header"><img class="ui image avatar" src="{{ Avatar::url($user) }}" alt=""> {{ $user->present('name') }}</h2>
         <div class="ui hidden divider"></div>
         <div class="ui tabular menu top attached">
             <a class="item {{ (request()->segment(2) == 'profile')?'active':'' }}" href="{{ route('admin.profile.edit', $user['id']) }}">@lang('users.menu.profile')</a>

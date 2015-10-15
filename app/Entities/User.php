@@ -15,6 +15,7 @@ use Laravolt\Password\CanChangePassword;
 use Laravolt\Password\CanChangePasswordContract;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
+use Avatar;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
@@ -60,7 +61,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function getCommentatorAvatarAttribute()
     {
-        return asset('img/avatar.png');
+        return Avatar::data($this->attributes['name']);
     }
 
     public function getCommentatorPermalinkAttribute()
