@@ -61,7 +61,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function getCommentatorAvatarAttribute()
     {
-        return Avatar::data($this->attributes['name']);
+        return Avatar::create($this->attributes['name'])->toBase64();
     }
 
     public function getCommentatorPermalinkAttribute()
