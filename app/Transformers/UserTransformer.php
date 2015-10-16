@@ -31,7 +31,7 @@ class UserTransformer extends TransformerAbstract
                                                  ->formatLocalized('%d %B %Y'),
             'created_at'    => $model->created_at,
             'updated_at'    => $model->updated_at,
-            'avatar'        => Avatar::create($model->name)->toBase64()
+            'avatar'        => $model->getAvatar()
         ];
     }
 

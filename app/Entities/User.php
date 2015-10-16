@@ -16,15 +16,18 @@ use Laravolt\Password\CanChangePasswordContract;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
 use Avatar;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract,
     CanChangePasswordContract,
     Commentator,
-    Presentable
+    Presentable,
+    HasMedia
 {
-    use Authenticatable, Authorizable, CanResetPassword, CanChangePassword, PresentableTrait, HasSocialAccount;
+    use Authenticatable, Authorizable, CanResetPassword, CanChangePassword, PresentableTrait, HasSocialAccount, HasMediaTrait;
 
     /**
      * The database table used by the model.
@@ -48,6 +51,13 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
 
     protected $dates = ['password_last_set'];
+
+    protected static function boot()
+    {
+        static::created(function ($user) {
+            $user->profile()->save(new Profile());
+        });
+    }
 
     public function profile()
     {
@@ -81,5 +91,16 @@ class User extends Model implements AuthenticatableContract,
         }
 
         return config('app.timezone');
+    }
+
+    public function getAvatar()
+    {
+        $avatar = $this->getMedia('avatar')->first();
+
+        if ($avatar) {
+            return $avatar->getUrl();
+        }
+
+        return Avatar::create($this->name)->toBase64();
     }
 }

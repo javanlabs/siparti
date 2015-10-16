@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1fa19d7fb3c585577568a716505696c4",
-    "content-hash": "b54d76d2b944f2e24a230011e281a4cb",
+    "hash": "95d2fa92ba68a80c3d819f1ddbd5aa44",
+    "content-hash": "45b32f701ef5faf2e1541e41c89052fb",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -639,7 +639,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/6d6c3a68fbea09c50b251553d59b9209b475e272",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/90d7d39a97295a932ce597f12d6b65da7be8bad3",
                 "reference": "6d6c3a68fbea09c50b251553d59b9209b475e272",
                 "shasum": ""
             },
@@ -701,7 +701,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/97fe7210def29451ec74923b27e552238defd75a",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/b1e1c0d55f8083c71eda2c28c12a228d708294ea",
                 "reference": "97fe7210def29451ec74923b27e552238defd75a",
                 "shasum": ""
             },
@@ -1017,7 +1017,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/dff448f2c9f04ddaf8bf9ecce4f96b65a55a1e19",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/34f41613ecb70da06077ea1bd9358c32fa2bf9be",
                 "reference": "dff448f2c9f04ddaf8bf9ecce4f96b65a55a1e19",
                 "shasum": ""
             },
@@ -1306,7 +1306,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/avatar/zipball/2b9d4eb7ef428d26fc3802edfffe4c406f140d4d",
+                "url": "https://api.github.com/repos/laravolt/avatar/zipball/30412e22c000c573e52c49535a294a7840abe1a9",
                 "reference": "2b9d4eb7ef428d26fc3802edfffe4c406f140d4d",
                 "shasum": ""
             },
@@ -1449,6 +1449,62 @@
                 "packager"
             ],
             "time": "2015-10-12 07:00:25"
+        },
+        {
+            "name": "laravolt/password",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravolt/password.git",
+                "reference": "3e4e34b7167107fd21e5b810dc2ba8f369a53128"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravolt/password/zipball/3e4e34b7167107fd21e5b810dc2ba8f369a53128",
+                "reference": "3e4e34b7167107fd21e5b810dc2ba8f369a53128",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "~5.1",
+                "illuminate/database": "~5.1",
+                "illuminate/support": "~5.1",
+                "nesbot/carbon": "~1.19",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravolt\\Password\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bayu Hendra Winata",
+                    "email": "uyab.exe@gmail.com",
+                    "homepage": "http://id-laravel.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel password extended",
+            "homepage": "https://github.com/laravolt/password",
+            "keywords": [
+                "laravel",
+                "laravolt",
+                "password"
+            ],
+            "time": "2015-09-30 04:37:00"
         },
         {
             "name": "laravolt/support",
@@ -1612,7 +1668,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/7e7a4c01b0196cd4696cfeba5c0d0e265b663622",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f46f18a62f50d85750798d1d2f57fb04e1cdc707",
                 "reference": "7e7a4c01b0196cd4696cfeba5c0d0e265b663622",
                 "shasum": ""
             },
@@ -2237,7 +2293,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tchwork/utf8/zipball/1bd4a8af3cdbb2233bb365b98fc5af1dfbc4a45d",
+                "url": "https://api.github.com/repos/tchwork/utf8/zipball/25a55c6c668de61cc3b97aab4237ebf6dadabe17",
                 "reference": "1bd4a8af3cdbb2233bb365b98fc5af1dfbc4a45d",
                 "shasum": ""
             },
@@ -3247,7 +3303,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/d2819537b826be4f400616c2655ff0cdc62a7091",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/b5aabdcc2d256168aa8226e84610602f031e65af",
                 "reference": "d2819537b826be4f400616c2655ff0cdc62a7091",
                 "shasum": ""
             },
@@ -3299,7 +3355,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/2edd0cd55d601b966c217e692cf111795e1e8b2b",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/b56f9fad3f1259c1d5cc0a1e5a96c341e9633d5e",
                 "reference": "2edd0cd55d601b966c217e692cf111795e1e8b2b",
                 "shasum": ""
             },
@@ -4373,7 +4429,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/00194eb95989190a73198390ceca081ad3441a7f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/be067d6105286b74272facefc2697038f8807b77",
                 "reference": "00194eb95989190a73198390ceca081ad3441a7f",
                 "shasum": ""
             },
@@ -4919,6 +4975,7 @@
         "laravolt/auth": 20,
         "laravolt/support": 20,
         "laravolt/avatar": 20,
+        "laravolt/password": 20,
         "prettus/l5-repository": 20,
         "lavary/laravel-menu": 20,
         "laravel/homestead": 20

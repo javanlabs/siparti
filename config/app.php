@@ -150,6 +150,7 @@ return [
         'Krucas\Notification\NotificationServiceProvider',
         Laravel\Socialite\SocialiteServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
+        Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
 
         /*
          * Application Service Providers...

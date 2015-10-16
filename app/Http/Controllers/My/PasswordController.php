@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\My;
 
 use App\Http\Requests\User\UpdatePassword;
+use App\Presenters\UserPresenter;
 use Krucas\Notification\Facades\Notification;
 
 class PasswordController extends MyController
@@ -14,7 +15,7 @@ class PasswordController extends MyController
      */
     public function edit()
     {
-        $user = auth()->user();
+        $user = auth()->user()->setPresenter(new UserPresenter());
         return view('my.password.edit', compact('user'));
     }
 
