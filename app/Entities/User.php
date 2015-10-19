@@ -16,18 +16,15 @@ use Laravolt\Password\CanChangePasswordContract;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
 use Avatar;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract,
     CanChangePasswordContract,
     Commentator,
-    Presentable,
-    HasMedia
+    Presentable
 {
-    use Authenticatable, Authorizable, CanResetPassword, CanChangePassword, PresentableTrait, HasSocialAccount, HasMediaTrait;
+    use Authenticatable, Authorizable, CanResetPassword, CanChangePassword, PresentableTrait, HasSocialAccount;
 
     /**
      * The database table used by the model.
@@ -95,12 +92,6 @@ class User extends Model implements AuthenticatableContract,
 
     public function getAvatar()
     {
-        $avatar = $this->getMedia('avatar')->first();
-
-        if ($avatar) {
-            return $avatar->getUrl();
-        }
-
         return Avatar::create($this->name)->toBase64();
     }
 }

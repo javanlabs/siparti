@@ -17,7 +17,8 @@
         "laravolt/auth": "dev-master",
         "laravolt/support": "dev-master",
         "laravolt/avatar": "dev-master",
-        "laravolt/password": "^1.0@dev",
+        "laravolt/password": "dev-master",
+        "laravolt/email": "dev-master",
         "efriandika/laravel-settings": "^1.1",
         "prettus/l5-repository": "dev-master",
         "league/fractal": "^0.12.0",
@@ -39,7 +40,6 @@
             "database"
         ],
         "psr-4": {
-            "Laravolt\\Email\\": "packages/laravolt/email/src",
             "App\\": "app/"
         }
     },

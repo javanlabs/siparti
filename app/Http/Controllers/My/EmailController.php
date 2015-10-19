@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\My;
 
 use App\Http\Requests\User\AddEmail;
+use App\Presenters\UserPresenter;
 use Illuminate\Http\Request;
 use Laravolt\Email\Email;
 
@@ -15,7 +16,7 @@ class EmailController extends MyController
      */
     public function edit()
     {
-        $user = auth()->user();
+        $user = auth()->user()->setPresenter(new UserPresenter);
 
         return view('my.email.edit', compact('user'));
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\My;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Repositories\UserRepositoryEloquent;
+use App\Presenters\UserPresenter;
 
 class ProfileController extends MyController
 {
@@ -13,9 +13,9 @@ class ProfileController extends MyController
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserRepositoryEloquent $userRepo)
+    public function edit()
     {
-        $user = $userRepo->skipPresenter()->find(auth()->user()->getAuthIdentifier());
+        $user = auth()->user()->setPresenter(new UserPresenter());
         $profile = $user->profile;
         $timezones = $this->timezone->lists();
         return view('my.profile.edit', compact('user', 'profile', 'timezones'));

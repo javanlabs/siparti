@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\My;
 
-use App\Http\Requests\User\UpdatePassword;
 use App\Presenters\UserPresenter;
+use App\Http\Requests\User\UpdatePassword;
 use Krucas\Notification\Facades\Notification;
 
 class PasswordController extends MyController
