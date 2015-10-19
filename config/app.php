@@ -160,7 +160,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravolt\Avatar\ServiceProvider::class,
         Laravolt\Password\ServiceProvider::class,
-        //Laravolt\Email\ServiceProvider::class,
+        Laravolt\Email\ServiceProvider::class,
         Laravolt\Auth\ServiceProvider::class,
         Laravolt\Support\SupportServiceProvider::class,
 
