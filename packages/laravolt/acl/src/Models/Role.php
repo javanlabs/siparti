@@ -8,6 +8,8 @@ class Role extends Model
 {
     protected $table = 'acl_roles';
 
+    protected $fillable = ['name'];
+
     public function permissions()
     {
         return $this->belongsToMany(Permission::class, 'acl_permission_role');
@@ -35,4 +37,10 @@ class Role extends Model
 
         return $this->permissions()->detach($permission);
     }
+
+    public function syncPermission(array $permissions)
+    {
+        return $this->permissions()->sync($permissions);
+    }
+
 }
