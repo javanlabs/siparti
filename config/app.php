@@ -158,6 +158,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Laravolt\Acl\ServiceProvider::class,
         Laravolt\Avatar\ServiceProvider::class,
         Laravolt\Password\ServiceProvider::class,
         Laravolt\Email\ServiceProvider::class,

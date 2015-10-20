@@ -18,6 +18,7 @@ return [
         'account'  => 'Akun',
         'password' => 'Ganti Password',
         'email'    => 'Email',
+        'role'     => 'Role',
     ],
     'send_account_information_via_email'    => 'Kirim informasi akun dan password via email',
 ];

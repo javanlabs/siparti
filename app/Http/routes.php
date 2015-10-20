@@ -40,5 +40,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         Route::post('password/{id}/generate', ['uses' => 'PasswordController@generate', 'as' => 'admin.password.generate']);
 
         Route::resource('account', 'AccountController');
+        Route::resource('role', 'RoleController', ['only' => ['edit', 'update']]);
     });
 });
