@@ -11,6 +11,15 @@ use App\Http\Controllers\Controller;
 class SettingController extends Controller
 {
     /**
+     * SettingController constructor.
+     */
+    public function __construct()
+    {
+        $this->authorize('manage-settings');
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response

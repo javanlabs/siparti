@@ -33,7 +33,7 @@ class UserController extends Controller
         $this->repository = $repository;
         $this->timezone = $timezone;
 
-        //$this->middleware('menus.admin');
+        $this->authorize('manage-users');
     }
 
 
