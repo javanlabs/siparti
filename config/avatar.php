@@ -3,12 +3,17 @@
  * Set specific configuration variables here
  */
 return [
+    'ascii'    => true,
+    'shape'     => 'circle',
     'width'    => 100,
     'height'   => 100,
     'chars'    => 2,
     'fontSize' => 48,
     'fonts'    => ['OpenSans-Bold.ttf', 'rockwell.ttf'],
-    'colors'   => [
+    'backgrounds'   => [
+        '#FFFFFF'
+    ],
+    'foregrounds'   => [
         '#f44336',
         '#E91E63',
         '#9C27B0',
@@ -24,5 +29,9 @@ return [
         '#FFC107',
         '#FF9800',
         '#FF5722',
+    ],
+    'border'    => [
+        'size'  => 2,
+        'color' => 'foreground'
     ]
 ];
