@@ -16,8 +16,10 @@ class MenuMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $this->menuAdmin();
-        $this->menuMember();
+        if (auth()->check()) {
+            $this->menuAdmin();
+            $this->menuMember();
+        }
 
         return $next($request);
     }
