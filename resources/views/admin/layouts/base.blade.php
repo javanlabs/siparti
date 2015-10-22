@@ -5,13 +5,19 @@
 @endsection
 
 @section('body')
-    @include('admin.elements.header')
-    @include('elements.flash')
+    @include('admin.elements.sidebar')
 
-    <div id="layout-admin" style="min-height: calc(80% - 100px)">
-        <div class="ui divider hidden"></div>
-        @yield('content')
+    <div class="pusher">
+        @include('admin.elements.header')
+        @include('elements.flash')
+
+        <div id="layout-admin">
+            <div class="ui divider hidden"></div>
+            @yield('content')
+        </div>
+
+        @include('admin.elements.footer')
+
     </div>
 
-    @include('admin.elements.footer')
 @endsection

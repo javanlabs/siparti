@@ -20,6 +20,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\VerifyCsrfToken::class,
         'Krucas\Notification\Middleware\NotificationMiddleware',
         \Laravolt\Password\CheckPassword::class,
+        Middleware\MenuMiddleware::class,
     ];
 
     /**
@@ -30,7 +31,6 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'menus.admin' => Middleware\Menus\Admin::class
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class
     ];
 }

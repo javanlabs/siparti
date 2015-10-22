@@ -42,11 +42,16 @@
             @if(auth()->check())
                 <div class="ui pointing dropdown item">
                     <a href="">
+                        <img src="{{ auth()->user()->getAvatar() }}" alt="" class="ui image avatar">
                         {{ auth()->user()->name }} <i class="dropdown icon"></i>
                     </a>
                     <div class="menu small">
-                        <a href="{{ url('my/profile') }}" class="item">Settings</a>
-                        <a href="{{ url('auth/logout') }}" class="item">Logout</a>
+                        @foreach(Menu::get('member')->roots() as $item)
+                            <a class="item" href="{{ $item->url() }}">{!!  $item->title !!}</a>
+                            @if($item->divider)
+                                <div class="ui divider"></div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             @else
