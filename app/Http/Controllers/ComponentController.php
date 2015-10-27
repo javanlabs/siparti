@@ -22,9 +22,8 @@ class ComponentController extends Controller
     public function getMural()
     {
         $model = Post::firstOrFail();
-        $comments = $model->comments;
 
-        return view('components/mural', compact('model', 'comments'));
+        return view('components/mural', compact('model'));
     }
 
     /**

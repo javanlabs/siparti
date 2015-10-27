@@ -9,4 +9,6 @@
     </div>
 
     @include('elements.footer')
+    @include('votee::script')
+    @include('mural::script')
 @endsection
