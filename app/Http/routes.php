@@ -31,6 +31,7 @@ Route::group(['namespace' => 'My', 'prefix' => 'my', 'middleware' => 'auth'], fu
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
     Route::resource('roles', 'RoleController');
+    Route::resource('auditTrail', 'AuditTrailController');
 
     Route::group(['namespace' => 'User'], function(){
         Route::resource('users', 'UserController');

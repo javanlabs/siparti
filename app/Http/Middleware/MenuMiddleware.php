@@ -33,6 +33,9 @@ class MenuMiddleware
             $menu->add(trans('menus.admin.roles'), ['route' => ['admin.roles.index']])
                  ->data('permission', 'manage-roles')
                  ->prepend('<i class="icon unlock alternate"></i>');
+            $menu->add(trans('menus.admin.audit_trail'), ['route' => ['admin.auditTrail.index']])
+                 ->data('permission', 'manage-audit-trails')
+                 ->prepend('<i class="icon history"></i>');
             $menu->add(trans('menus.admin.settings'), ['route' => ['admin.settings.index']])
                  ->data('permission', 'manage-settings')
                  ->prepend('<i class="icon options"></i>');

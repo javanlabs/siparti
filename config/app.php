@@ -150,6 +150,7 @@ return [
         'Krucas\Notification\NotificationServiceProvider',
         Laravel\Socialite\SocialiteServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
+        'Sofa\Revisionable\Laravel\ServiceProvider',
 
         /*
          * Application Service Providers...
