@@ -16,6 +16,10 @@ class Revision extends Model
         return $this->morphTo();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(config('auth.model'));
+    }
 
     /**
      * Get array of updated fields.

@@ -26,7 +26,7 @@ class Post extends Model implements Commentable
 
     function __toString()
     {
-        return __CLASS__;
+        return $this->title;
     }
 
 

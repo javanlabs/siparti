@@ -38,9 +38,9 @@
                             <td>{{ $item->created_at }}</td>
                             <td>{{ $item->user }}</td>
                             <td>
-                                {{ $item->revisionable . '.' . $item->action }}
+                                {{ $item->revisionable->getTypeForHuman() . '.' . $item->action }}
                             </td>
-                            <td>{{ $item->row_id }}</td>
+                            <td><a href="">{{ $item->revisionable }}</a></td>
                             <td>
                                 @if($item->action !== 'deleted')
                                 <button class="ui button mini basic btn-view-log" data-target="#modal-log-{{ $item->id }}">@lang('audit_trail.detail')</button>

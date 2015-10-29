@@ -97,4 +97,11 @@ class User extends Model implements AuthenticatableContract,
     {
         return Avatar::create($this->name)->toBase64();
     }
+
+    function __toString()
+    {
+        return $this->name;
+    }
+
+
 }

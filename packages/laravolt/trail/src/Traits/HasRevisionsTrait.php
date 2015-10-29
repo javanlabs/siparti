@@ -29,6 +29,15 @@ trait HasRevisionsTrait
         return $this->morphMany(Revision::class, 'revisionable');
     }
 
+    public function getTypeForHuman()
+    {
+        if (property_exists($this, 'typeForHuman')) {
+            return $this->typeForHuman;
+        }
+
+        return (new \ReflectionClass($this))->getShortName();
+    }
+
     public function setResponsibleUser(Model $user)
     {
         $this->responsibleUser = $user;
