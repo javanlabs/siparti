@@ -51,6 +51,12 @@ class ServiceProvider extends BaseServiceProvider
 
     protected function registerAcl($gate)
     {
+        $gate->before(function ($user, $ability) {
+            if ($user->hasRole('root')) {
+                return true;
+            }
+        });
+
         $permissions = Permission::all();
 
         foreach ($permissions as $permission) {
