@@ -19,7 +19,10 @@ class DatabaseSeeder extends Seeder
 
         factory(\App\Entities\User::class, 100)->create();
 
-        factory(\App\Entities\Post::class, 10)->create();
+        factory(\App\Entities\Post::class, 10)->make()->each(function($post){
+            $post->setResponsibleUser(\App\Entities\User::first());
+            $post->save();
+        });
 
         Model::reguard();
     }

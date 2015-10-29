@@ -150,7 +150,6 @@ return [
         'Krucas\Notification\NotificationServiceProvider',
         Laravel\Socialite\SocialiteServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
-        'Sofa\Revisionable\Laravel\ServiceProvider',
 
         /*
          * Application Service Providers...
@@ -159,6 +158,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Laravolt\Trail\ServiceProvider::class,
         Laravolt\Acl\ServiceProvider::class,
         Laravolt\Avatar\ServiceProvider::class,
         Laravolt\Password\ServiceProvider::class,

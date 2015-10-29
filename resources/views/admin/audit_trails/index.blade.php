@@ -28,6 +28,7 @@
                         <th>@lang('audit_trail.time')</th>
                         <th>@lang('audit_trail.user')</th>
                         <th>@lang('audit_trail.action')</th>
+                        <th>@lang('audit_trail.object')</th>
                         <th>&nbsp;</th>
                     </tr>
                     </thead>
@@ -37,14 +38,15 @@
                             <td>{{ $item->created_at }}</td>
                             <td>{{ $item->user }}</td>
                             <td>
-                                {{ $item->table_name . '.' . $item->action }}
+                                {{ $item->revisionable . '.' . $item->action }}
                             </td>
+                            <td>{{ $item->row_id }}</td>
                             <td>
                                 @if($item->action !== 'deleted')
                                 <button class="ui button mini basic btn-view-log" data-target="#modal-log-{{ $item->id }}">@lang('audit_trail.detail')</button>
 
                                 <div class="ui modal small" id="modal-log-{{ $item->id }}">
-                                    <div class="header">{{ $item->table_name . '.' . $item->action }}</div>
+                                    <div class="header">{{ $item->revisionable . '.' . $item->action }}</div>
                                     <div class="content">
                                         <table class="ui definition table small">
                                             <thead>

@@ -5,13 +5,12 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Laravolt\Mural\CommentableTrait;
 use Laravolt\Mural\Contracts\Commentable;
+use Laravolt\Trail\Traits\HasRevisionsTrait;
 use Laravolt\Votee\Traits\Voteable;
-use Sofa\Revisionable\Laravel\RevisionableTrait;
-use Sofa\Revisionable\Revisionable;
 
-class Post extends Model implements Commentable, Revisionable
+class Post extends Model implements Commentable
 {
-    use CommentableTrait, Voteable, RevisionableTrait;
+    use CommentableTrait, Voteable, HasRevisionsTrait;
 
     protected $fillable = ['title', 'content'];
 
@@ -24,4 +23,11 @@ class Post extends Model implements Commentable, Revisionable
     {
         return url('posts/' . $this->id);
     }
+
+    function __toString()
+    {
+        return __CLASS__;
+    }
+
+
 }
