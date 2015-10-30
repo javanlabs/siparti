@@ -13,7 +13,7 @@ class Revision extends Model
 
     public function revisionable()
     {
-        return $this->morphTo();
+        return $this->morphTo()->withTrashed();
     }
 
     public function user()

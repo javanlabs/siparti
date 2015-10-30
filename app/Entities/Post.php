@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravolt\Mural\CommentableTrait;
 use Laravolt\Mural\Contracts\Commentable;
 use Laravolt\Trail\Traits\HasRevisionsTrait;
@@ -10,7 +11,7 @@ use Laravolt\Votee\Traits\Voteable;
 
 class Post extends Model implements Commentable
 {
-    use CommentableTrait, Voteable, HasRevisionsTrait;
+    use CommentableTrait, Voteable, HasRevisionsTrait, SoftDeletes;
 
     protected $fillable = ['title', 'content'];
 
