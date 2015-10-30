@@ -51,13 +51,15 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
-    protected $dates = ['password_last_set'];
+    protected $dates = ['password_last_set', 'deleted_at'];
 
     protected static function boot()
     {
         static::created(function ($user) {
             $user->profile()->save(new Profile());
         });
+
+        parent::boot();
     }
 
     public function profile()
