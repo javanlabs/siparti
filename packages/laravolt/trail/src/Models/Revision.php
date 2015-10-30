@@ -22,6 +22,17 @@ class Revision extends Model
     }
 
     /**
+     * Determine whether field was updated during current action.
+     *
+     * @param  string $key
+     * @return boolean
+     */
+    public function isUpdated($key)
+    {
+        return in_array($key, $this->getUpdated());
+    }
+
+    /**
      * Get array of updated fields.
      *
      * @return array
@@ -30,6 +41,7 @@ class Revision extends Model
     {
         return array_keys(array_diff_assoc($this->new, $this->old));
     }
+
     /**
      * Get diff of the old/new arrays.
      *
@@ -42,6 +54,28 @@ class Revision extends Model
             $diff[$key]['old'] = array_get($this->old, $key);
             $diff[$key]['new'] = array_get($this->new, $key);
         }
+
+        return $this->formatDiff($diff);
+    }
+
+    protected function formatDiff($diff)
+    {
+        $casts = array_flip($this->revisionable->getRevisionableCasts());
+
+        foreach ($diff as $field => $value) {
+            if ($relation = array_search($field, $casts)) {
+
+                $oldRevision = new $this->revisionable;
+                $oldRevision->setRawAttributes($this->old);
+
+                $newRevision = new $this->revisionable;
+                $newRevision->setRawAttributes($this->new);
+
+                $diff[$field]['old'] = $oldRevision->{$relation};
+                $diff[$field]['new'] = $newRevision->{$relation};
+            }
+        }
+
         return $diff;
     }
 }

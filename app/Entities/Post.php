@@ -14,6 +14,13 @@ class Post extends Model implements Commentable
 
     protected $fillable = ['title', 'content'];
 
+    protected $revisionableCasts = ['author_id' => 'author'];
+
+    public function author()
+    {
+        return $this->belongsTo(config('auth.model'), 'author_id');
+    }
+
     public function getCommentableTitleAttribute()
     {
         return $this->title;
@@ -29,5 +36,8 @@ class Post extends Model implements Commentable
         return $this->title;
     }
 
-
+    public function presentRevisionForAuthorId($value)
+    {
+        return $this->author()->find($value);
+    }
 }

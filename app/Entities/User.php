@@ -103,5 +103,4 @@ class User extends Model implements AuthenticatableContract,
         return $this->name;
     }
 
-
 }

@@ -38,6 +38,15 @@ trait HasRevisionsTrait
         return (new \ReflectionClass($this))->getShortName();
     }
 
+    public function getRevisionableCasts()
+    {
+        if (property_exists($this, 'revisionableCasts')) {
+            return $this->revisionableCasts;
+        }
+
+        return [];
+    }
+
     public function setResponsibleUser(Model $user)
     {
         $this->responsibleUser = $user;
