@@ -2,6 +2,7 @@
     "name": "laravolt/trail",
     "description": "Just another audit trail for Eloquent",
     "keywords": [
+        "laravel",
         "laravolt",
         "trail",
         "audit",
