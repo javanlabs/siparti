@@ -7,6 +7,7 @@ $.ajaxSetup({
 $(function(){
     $('.ui.dropdown').dropdown();
     $('.ui.checkbox').checkbox();
+    $('.ui.accordion').accordion({exclusive: false});
     $('.message .close')
         .on('click', function() {
             $(this)
@@ -25,4 +26,9 @@ $(function(){
             }
         })
     ;
+
+    $('.section-audit-trails').on('click', '.btn-view-log', function(e){
+        e.preventDefault();
+        $($(this).data('target')).modal('show');
+    });
 });

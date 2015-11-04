@@ -2,8 +2,8 @@
 <div class="ui menu borderless" style="box-shadow: none; border: 0 none">
     <div class="ui container">
         <a class="item item-browse-menu">
-            <i class="sidebar icon"></i>
             Menu
+            <i class="angle down icon"></i>
         </a>
         <div class="ui flowing popup popup-menu-admin vertical menu">
             @foreach(Menu::get('admin')->roots() as $item)

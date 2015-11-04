@@ -5,6 +5,7 @@ namespace App\Entities;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -27,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
     Presentable,
     HasRoleAndPermissionContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, CanChangePassword, PresentableTrait, HasSocialAccount, HasRoleAndPermission;
+    use Authenticatable, Authorizable, CanResetPassword, CanChangePassword, PresentableTrait, HasSocialAccount, HasRoleAndPermission, SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -50,13 +51,15 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
-    protected $dates = ['password_last_set'];
+    protected $dates = ['password_last_set', 'deleted_at'];
 
     protected static function boot()
     {
         static::created(function ($user) {
             $user->profile()->save(new Profile());
         });
+
+        parent::boot();
     }
 
     public function profile()
@@ -97,4 +100,10 @@ class User extends Model implements AuthenticatableContract,
     {
         return Avatar::create($this->name)->toBase64();
     }
+
+    function __toString()
+    {
+        return $this->name;
+    }
+
 }

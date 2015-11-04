@@ -25,7 +25,8 @@
         "myclabs/php-enum": "^1.4",
         "lavary/laravel-menu": "dev-master",
         "laravel/socialite": "^2.0",
-        "fabpot/goutte": "^3.1"
+        "fabpot/goutte": "^3.1",
+        "laravolt/trail": "^1.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
