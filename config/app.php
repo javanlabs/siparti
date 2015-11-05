@@ -165,7 +165,7 @@ return [
         Laravolt\Email\ServiceProvider::class,
         Laravolt\Auth\ServiceProvider::class,
         Laravolt\Support\SupportServiceProvider::class,
-
+        Mitul\Generator\GeneratorServiceProvider::class,
     ],
 
     /*
