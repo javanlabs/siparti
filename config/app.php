@@ -158,6 +158,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Laravolt\SemanticForm\ServiceProvider::class,
         Laravolt\Trail\ServiceProvider::class,
         Laravolt\Acl\ServiceProvider::class,
         Laravolt\Avatar\ServiceProvider::class,
@@ -224,7 +225,8 @@ return [
         'Menu'       => 'Lavary\Menu\Facade',
         'Notification' => 'Krucas\Notification\Facades\Notification',
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Avatar'    => Laravolt\Avatar\Facade::class
+        'Avatar'    => Laravolt\Avatar\Facade::class,
+        'SemanticForm'    => Laravolt\SemanticForm\Facade::class,
     ],
 
 ];

@@ -53,6 +53,7 @@
             "database"
         ],
         "psr-4": {
+            "Laravolt\\SemanticForm\\": "packages/laravolt/semantic-form/src",
             "Laravolt\\Acl\\": "packages/laravolt/acl/src",
             "App\\": "app/"
         }

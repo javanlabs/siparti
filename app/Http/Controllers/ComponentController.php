@@ -62,4 +62,9 @@ class ComponentController extends Controller
         $model = User::firstOrFail();
         return view('components/multilog', compact('model'));
     }
+
+    public function getForm()
+    {
+        return view('components/form');
+    }
 }
