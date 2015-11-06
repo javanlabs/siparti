@@ -2,6 +2,9 @@
 
 namespace Laravolt\SemanticForm;
 
+use AdamWathan\Form\FormBuilder;
+use AdamWathan\Form\ErrorStore\IlluminateErrorStore;
+use AdamWathan\Form\OldInput\IlluminateOldInputProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
@@ -29,8 +32,16 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->app->bindShared('semantic-form', function($app) {
-            return new SemanticForm($app['form'], $app['html'], $app['config']);
+        $this->app->bindShared('semantic-form', function ($app) {
+
+            $builder = new FormBuilder();
+            $builder->setToken($app['session.store']->token());
+
+            return new SemanticForm(
+                $builder,
+                new IlluminateErrorStore($app['session.store']),
+                new IlluminateOldInputProvider($app['session.store'])
+            );
         });
     }
 
@@ -79,6 +90,6 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function packagePath($path = '')
     {
-        return sprintf("%s/../%s", __DIR__ , $path);
+        return sprintf("%s/../%s", __DIR__, $path);
     }
 }

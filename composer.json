@@ -38,7 +38,8 @@
         "fabpot/goutte": "^3.1",
         "laravolt/trail": "^1.0@dev",
         "mitulgolakiya/laravel-api-generator": "dev-master",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "adamwathan/bootforms": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

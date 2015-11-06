@@ -8,7 +8,7 @@
         </h2>
 
         {!! SemanticForm::open() !!}
-        {!! SemanticForm::text('Username') !!}
+        {!! SemanticForm::text('username') !!}
         {!! SemanticForm::submit('Submit') !!}
         {!! SemanticForm::close() !!}
     </div>

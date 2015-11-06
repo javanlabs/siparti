@@ -1,138 +1,203 @@
 <?php
 namespace Laravolt\SemanticForm;
 
-use Collective\Html\FormBuilder;
-use Collective\Html\HtmlBuilder;
-use Illuminate\Contracts\Config\Repository as Config;
-use Lang;
+use AdamWathan\Form\ErrorStore\ErrorStoreInterface;
+use AdamWathan\Form\OldInput\OldInputInterface;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Str;
+use AdamWathan\Form\FormBuilder;
+use Laravolt\SemanticForm\Elements\GroupWrapper;
+use Laravolt\SemanticForm\Elements\InputGroup;
+use Laravolt\SemanticForm\Elements\FormGroup;
 
 class SemanticForm
 {
 
-    protected $form;
-    protected $html;
-    protected $config;
+    protected $builder;
 
-    protected $semanticClasses = [
-        'form'  => 'form ui',
-        'field' => 'field',
-        'text'  => '',
-    ];
-
-    /**
-     * SemanticForm constructor.
-     * @param $form
-     * @param $html
-     * @param $config
-     */
-    public function __construct(FormBuilder $form, HtmlBuilder $html, Config $config)
+    public function __construct(FormBuilder $builder, ErrorStoreInterface $errorBag, OldInputInterface $oldInput)
     {
-        $this->form = $form;
-        $this->html = $html;
-        $this->config = $config;
+        $this->builder = $builder;
+        $this->builder->setErrorStore($errorBag);
+        $this->builder->setOldInputProvider($oldInput);
     }
 
-    public function open(array $options = [])
+    public function open()
     {
-        $options = $this->decorateOptions($options, 'form');
-
-        return $this->form->open($options);
+        return $this->builder->open()->addClass('ui form');
     }
 
-    /**
-     * Create a new model based form builder.
-     *
-     * @param  mixed $model
-     * @param  array $options
-     *
-     * @return string
-     */
-    public function model($model, array $options = [])
+    public function text($name, $label = null, $value = null)
     {
-        return $this->form->model($model, $options);
+        $control = $this->builder->text($name)->value($value);
+
+        return $this->formGroup($label, $name, $control);
     }
 
-    /**
-     * Set the model instance on the form builder.
-     *
-     * @param  mixed $model
-     *
-     * @return void
-     */
-    public function setModel($model)
+    public function password($name, $label = null)
     {
-        $this->form->setModel($model);
+        $control = $this->builder->password($name);
+
+        return $this->formGroup($label, $name, $control);
     }
 
-    /**
-     * Close the current form.
-     *
-     * @return string
-     */
-    public function close()
+    public function button($value, $name = null, $type = "")
     {
-        return $this->form->close();
+        return $this->builder->button($value, $name)->addClass('ui button')->addClass($type);
     }
 
-    /**
-     * Create a text input field.
-     *
-     * @param  string $name
-     * @param  string $value
-     * @param  array $options
-     *
-     * @return string
-     */
-    public function text($name, $label = null, $value = null, $options = [])
+    public function submit($value = "Submit", $type = "")
+    {
+        return $this->builder->submit($value)->addClass('ui button')->addClass($type);
+    }
+
+    public function select($name, $label = null, $options = array())
+    {
+        $control = $this->builder->select($name, $options);
+
+        return $this->formGroup($label, $name, $control);
+    }
+
+    public function checkbox($name, $label = null)
+    {
+        $control = $this->builder->checkbox($name);
+        $label = $this->getLabelTitle($label, $name);
+
+        return $this->checkGroup($name, $label, $control);
+    }
+
+    public function inlineCheckbox($name, $label = null)
+    {
+        return $this->checkbox($name, $label)->inline();
+    }
+
+    protected function checkGroup($name, $label, $control)
+    {
+        $checkGroup = $this->buildCheckGroup($name, $label, $control);
+
+        return $this->wrap($checkGroup->addClass('checkbox'));
+    }
+
+    protected function buildCheckGroup($name, $label, $control)
+    {
+        $label = $this->builder->label($label, $name)->after($control)->addClass('control-label');
+
+        $checkGroup = new CheckGroup($label);
+
+        if ($this->builder->hasError($name)) {
+            $checkGroup->helpBlock($this->builder->getError($name));
+            $checkGroup->addClass('has-error');
+        }
+
+        return $checkGroup;
+    }
+
+    public function radio($name, $label = null, $value = null)
+    {
+        if (is_null($value)) {
+            $value = $label;
+        }
+
+        $control = $this->builder->radio($name, $value);
+        $label = $this->getLabelTitle($label, $name);
+
+        return $this->radioGroup($name, $label, $control);
+    }
+
+    public function inlineRadio($label, $name, $value = null)
+    {
+        return $this->radio($label, $name, $value)->inline();
+    }
+
+    protected function radioGroup($label, $name, $control)
+    {
+        $checkGroup = $this->buildCheckGroup($label, $name, $control);
+
+        return $this->wrap($checkGroup->addClass('radio'));
+    }
+
+    public function textarea($name, $label = null)
+    {
+        $control = $this->builder->textarea($name);
+        $label = $this->getLabelTitle($label, $name);
+
+        return $this->formGroup($label, $name, $control);
+    }
+
+    public function date($name, $label = null, $value = null)
+    {
+        $control = $this->builder->date($name)->value($value);
+        $label = $this->getLabelTitle($label, $name);
+
+        return $this->formGroup($label, $name, $control);
+    }
+
+    public function email($name, $label = null, $value = null)
+    {
+        $control = $this->builder->email($name)->value($value);
+        $label = $this->getLabelTitle($label, $name);
+
+        return $this->formGroup($label, $name, $control);
+    }
+
+    //public function file($label, $name, $value = null)
+    //{
+    //    $control = $this->builder->file($name)->value($value);
+    //    $label = $this->builder->label($label, $name)->addClass('control-label')->forId($name);
+    //    $control->id($name);
+    //
+    //    $formGroup = new FormGroup($label, $control);
+    //
+    //    if ($this->builder->hasError($name)) {
+    //        $formGroup->helpBlock($this->builder->getError($name));
+    //        $formGroup->addClass('has-error');
+    //    }
+    //
+    //    return $this->wrap($formGroup);
+    //}
+
+    public function inputGroup($name, $label = null, $value = null)
+    {
+        $control = new InputGroup($name);
+        if (!is_null($value) || !is_null($value = $this->getValueFor($name))) {
+            $control->value($value);
+        }
+
+        return $this->formGroup($label, $name, $control);
+    }
+
+    public function __call($method, $parameters)
+    {
+        return call_user_func_array(array($this->builder, $method), $parameters);
+    }
+
+    protected function formGroup($label, $name, $control)
     {
         $title = $this->getLabelTitle($label, $name);
-        $label = $this->form->label($name, $title);
-        $input = $this->form->text($name, $value, $options);
+        $label = $this->builder->label($title, $name)->forId($name);
+        $control->id($name);
 
-        return $this->wrapInput($input, $label);
+        $formGroup = new FormGroup($label, $control);
+
+        if ($this->builder->hasError($name)) {
+            $formGroup->helpBlock($this->builder->getError($name));
+            $formGroup->addClass('has-error');
+        }
+
+        return $this->wrap($formGroup);
     }
 
-    /**
-     * Create a Semantic-UI submit button.
-     *
-     * @param  string  $value
-     * @param  array   $options
-     * @return string
-     */
-    public function submit($value = null, array $options = [])
+    protected function wrap($group)
     {
-        $options = array_merge(['class' => 'ui button', 'type' => 'submit'], $options);
-
-        return $this->form->button($value, $options);
+        return new GroupWrapper($group);
     }
 
-    protected function decorateOptions($options, $type)
-    {
-        $semanticClass = array_get($this->semanticClasses, $type, '');
-        $options['class'] = trim($semanticClass . ' ' . array_get($options, 'class', ''));
-
-        return $options;
-    }
-
-    /**
-     * Get the label title for a form field, first by using the provided one
-     * or titleizing the field name.
-     *
-     * @param  string $label
-     * @param  string $name
-     * @return string
-     */
     protected function getLabelTitle($label, $name)
     {
         if (is_null($label) && Lang::has("forms.{$name}")) {
             return Lang::get("forms.{$name}");
         }
 
-        return $label ?: title_case($name);
-    }
-
-    protected function wrapInput($input, $label)
-    {
-        return '<div class="field">' . $label . $input . '</div>';
+        return $label ?: Str::title($name);
     }
 }
