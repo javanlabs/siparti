@@ -22,7 +22,8 @@
         "adamwathan/form": "~0.7.1"
     },
     "require-dev": {
-        "phpunit/phpunit" : "4.*"
+        "phpunit/phpunit" : "4.*",
+        "mockery/mockery": "0.9.*"
     },
     "autoload": {
         "psr-4": {
@@ -32,14 +33,6 @@
     "autoload-dev": {
         "psr-4": {
             "Laravolt\\SemanticForm\\Test\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "phpunit"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
         }
     }
 }

@@ -1,11 +1,11 @@
 <?php
 namespace Laravolt\SemanticForm;
 
-use AdamWathan\Form\ErrorStore\ErrorStoreInterface;
-use AdamWathan\Form\OldInput\OldInputInterface;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Str;
 use AdamWathan\Form\FormBuilder;
+use Illuminate\Translation\Translator;
+use Laravolt\SemanticForm\Elements\CheckboxField;
+use Laravolt\SemanticForm\Elements\CheckboxGroup;
 use Laravolt\SemanticForm\Elements\GroupWrapper;
 use Laravolt\SemanticForm\Elements\InputGroup;
 use Laravolt\SemanticForm\Elements\FormGroup;
@@ -15,11 +15,17 @@ class SemanticForm
 
     protected $builder;
 
-    public function __construct(FormBuilder $builder, ErrorStoreInterface $errorBag, OldInputInterface $oldInput)
+    protected $translator;
+
+    /**
+     * SemanticForm constructor.
+     * @param FormBuilder $builder
+     * @param Translator $translator
+     */
+    public function __construct(FormBuilder $builder, Translator $translator)
     {
         $this->builder = $builder;
-        $this->builder->setErrorStore($errorBag);
-        $this->builder->setOldInputProvider($oldInput);
+        $this->translator = $translator;
     }
 
     public function open()
@@ -29,8 +35,7 @@ class SemanticForm
 
     public function text($name, $label = null, $value = null)
     {
-        $control = $this->builder->text($name)->value($value);
-
+        $control = $this->builder->text($name)->defaultValue($value);
         return $this->formGroup($label, $name, $control);
     }
 
@@ -41,29 +46,63 @@ class SemanticForm
         return $this->formGroup($label, $name, $control);
     }
 
-    public function button($value, $name = null, $type = "")
+    public function button($value, $name = null, $class = "")
     {
-        return $this->builder->button($value, $name)->addClass('ui button')->addClass($type);
+        $button = $this->builder->button($value, $name)->addClass('ui button');
+
+        if ($class) {
+            $button->addClass($class);
+        }
+
+        return $button;
     }
 
-    public function submit($value = "Submit", $type = "")
+    public function submit($value = "Submit", $name = null, $class = "")
     {
-        return $this->builder->submit($value)->addClass('ui button')->addClass($type);
+        $button = $this->builder->submit($value)->attribute('name', $name)->addClass('ui button');
+
+        if ($class) {
+            $button->addClass($class);
+        }
+
+        return $button;
     }
 
-    public function select($name, $label = null, $options = array())
+    public function select($name, $options = array(), $label = null)
     {
         $control = $this->builder->select($name, $options);
 
         return $this->formGroup($label, $name, $control);
     }
 
-    public function checkbox($name, $label = null)
+    public function checkbox($name, $value, $label = null)
     {
-        $control = $this->builder->checkbox($name);
-        $label = $this->getLabelTitle($label, $name);
+        $control = $this->builder->checkbox($name, $value);
 
-        return $this->checkGroup($name, $label, $control);
+        $label = $this->getLabelTitle($label, $value);
+
+        return $this->checkboxField($label, $name, $control);
+    }
+
+    public function checkboxGroup($name, $options, $checked = null, $label = null)
+    {
+        $checked = collect($checked);
+
+        $checkboxGroup = [];
+        foreach($options as $value => $text) {
+
+            $checkbox = $this->checkbox($name, $value, $text);
+
+            if($checked->search($value) !== false) {
+                $checkbox->check();
+            }
+
+            $checkboxGroup[] = $checkbox;
+        }
+
+        $groupLabel = $this->builder->label($this->getLabelTitle($label, $name));
+
+        return new CheckboxGroup($groupLabel, $checkboxGroup);
     }
 
     public function inlineCheckbox($name, $label = null)
@@ -75,12 +114,27 @@ class SemanticForm
     {
         $checkGroup = $this->buildCheckGroup($name, $label, $control);
 
-        return $this->wrap($checkGroup->addClass('checkbox'));
+        return $this->wrap($checkGroup->addClass('field'));
+    }
+
+    protected function checkboxField($label, $name, $control)
+    {
+        $title = $this->getLabelTitle($label, $name);
+        $label = $this->builder->label($title, $name);
+
+        $formGroup = new CheckboxField($label, $control);
+
+        if ($this->builder->hasError($name)) {
+            $formGroup->addClass('error');
+        }
+
+        return $formGroup;
     }
 
     protected function buildCheckGroup($name, $label, $control)
     {
-        $label = $this->builder->label($label, $name)->after($control)->addClass('control-label');
+        $title = $this->getLabelTitle($label, $name);
+        $label = $this->builder->label($title, $name);
 
         $checkGroup = new CheckGroup($label);
 
@@ -180,8 +234,8 @@ class SemanticForm
         $formGroup = new FormGroup($label, $control);
 
         if ($this->builder->hasError($name)) {
-            $formGroup->helpBlock($this->builder->getError($name));
-            $formGroup->addClass('has-error');
+            //$formGroup->helpBlock($this->builder->getError($name));
+            $formGroup->addClass('error');
         }
 
         return $this->wrap($formGroup);
@@ -194,10 +248,14 @@ class SemanticForm
 
     protected function getLabelTitle($label, $name)
     {
-        if (is_null($label) && Lang::has("forms.{$name}")) {
-            return Lang::get("forms.{$name}");
+        if (! is_null($label)) {
+            return $label;
         }
 
-        return $label ?: Str::title($name);
+        if ($this->translator->has("forms.{$name}")) {
+            return $this->translator->get("forms.{$name}");
+        }
+
+        return title_case($name);
     }
 }

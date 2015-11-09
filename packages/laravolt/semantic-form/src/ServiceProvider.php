@@ -36,12 +36,10 @@ class ServiceProvider extends BaseServiceProvider
 
             $builder = new FormBuilder();
             $builder->setToken($app['session.store']->token());
+            $builder->setErrorStore(new IlluminateErrorStore($app['session.store']));
+            $builder->setOldInputProvider(new IlluminateOldInputProvider($app['session.store']));
 
-            return new SemanticForm(
-                $builder,
-                new IlluminateErrorStore($app['session.store']),
-                new IlluminateOldInputProvider($app['session.store'])
-            );
+            return new SemanticForm($builder, $app['translator']);
         });
     }
 

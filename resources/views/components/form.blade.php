@@ -8,7 +8,10 @@
         </h2>
 
         {!! SemanticForm::open() !!}
-        {!! SemanticForm::text('username') !!}
+        {!! SemanticForm::text('text') !!}
+        {!! SemanticForm::password('password') !!}
+        {!! SemanticForm::checkboxGroup('name[]', ['satu' => 'Satu', 'dua' => 'Dua'], 'Checkbox') !!}
+        {!! SemanticForm::textarea('textarea') !!}
         {!! SemanticForm::submit('Submit') !!}
         {!! SemanticForm::close() !!}
     </div>
