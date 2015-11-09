@@ -39,7 +39,8 @@
         "laravolt/trail": "^1.0@dev",
         "mitulgolakiya/laravel-api-generator": "dev-master",
         "doctrine/dbal": "^2.5",
-        "adamwathan/bootforms": "dev-master"
+        "adamwathan/bootforms": "dev-master",
+        "laravolt/semantic-form": "^0.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -54,7 +55,6 @@
             "database"
         ],
         "psr-4": {
-            "Laravolt\\SemanticForm\\": "packages/laravolt/semantic-form/src",
             "Laravolt\\Acl\\": "packages/laravolt/acl/src",
             "App\\": "app/"
         }

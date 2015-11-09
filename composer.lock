@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a28a4a670aa52aa6b8851202f2228504",
-    "content-hash": "d92b59babad000ae8bb582d7fe0b4cc6",
+    "hash": "3165d67c95d34c74b91042eb21157718",
+    "content-hash": "efb9db4ee08d082c2672896aa7c3162e",
     "packages": [
         {
             "name": "adamwathan/bootforms",
@@ -1453,7 +1453,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/da385bf80d527070a7377925a0d083f694706ae9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a69a0b3919782d77224a43800ca5e868a5f2afa4",
                 "reference": "da385bf80d527070a7377925a0d083f694706ae9",
                 "shasum": ""
             },
@@ -2001,6 +2001,58 @@
             "time": "2015-10-20 10:17:26"
         },
         {
+            "name": "laravolt/semantic-form",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravolt/semantic-form.git",
+                "reference": "fc3f93ad47c842a7cefb25969da449deb1377426"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravolt/semantic-form/zipball/fc3f93ad47c842a7cefb25969da449deb1377426",
+                "reference": "fc3f93ad47c842a7cefb25969da449deb1377426",
+                "shasum": ""
+            },
+            "require": {
+                "adamwathan/form": "~0.7.1",
+                "illuminate/support": "~5.1",
+                "laravelcollective/html": "5.1.*",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laravolt\\SemanticForm\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bayu Hendra Winata",
+                    "email": "uyab.exe@gmail.com",
+                    "homepage": "http://id-laravel.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Semantic-UI form helpers",
+            "homepage": "https://github.com/laravolt/semantic-form",
+            "keywords": [
+                "form",
+                "laravel",
+                "laravolt",
+                "semantic-ui"
+            ],
+            "time": "2015-11-09 05:05:55"
+        },
+        {
             "name": "laravolt/support",
             "version": "dev-master",
             "source": {
@@ -2429,7 +2481,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/30e53e8a28284b69dd223c9f5ee8957befd72636",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/ac9040b1fa1c7ac51c320a75a39ddcdcf9c36dc5",
                 "reference": "30e53e8a28284b69dd223c9f5ee8957befd72636",
                 "shasum": ""
             },
