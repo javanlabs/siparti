@@ -4,6 +4,16 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/mitulgolakiya/laracast-flash"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/laravolt/laravel-api-generator"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
@@ -26,7 +36,11 @@
         "lavary/laravel-menu": "dev-master",
         "laravel/socialite": "^2.0",
         "fabpot/goutte": "^3.1",
-        "laravolt/trail": "^1.0@dev"
+        "laravolt/trail": "^1.0@dev",
+        "mitulgolakiya/laravel-api-generator": "dev-master",
+        "doctrine/dbal": "^2.5",
+        "adamwathan/bootforms": "dev-master",
+        "laravolt/semantic-form": "^0.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

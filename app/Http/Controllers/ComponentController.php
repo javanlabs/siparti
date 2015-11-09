@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\User;
 use App\Entities\Post;
-use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class ComponentController extends Controller
 {
@@ -61,5 +61,16 @@ class ComponentController extends Controller
     {
         $model = User::firstOrFail();
         return view('components/multilog', compact('model'));
+    }
+
+    public function getForm()
+    {
+        return view('components/form');
+    }
+
+    public function postForm(Request $request)
+    {
+        $rules = ['username' => 'required|min:4'];
+        $this->validate($request, $rules);
     }
 }
