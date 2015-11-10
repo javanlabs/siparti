@@ -33,6 +33,10 @@ class DatabaseSeeder extends Seeder
             $post->save();
         });
 
+        factory(\App\Entities\Satker::class, 10)->create()->each(function($satker){
+            factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id]);
+        });
+
         Model::reguard();
     }
 }

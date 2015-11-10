@@ -24,7 +24,7 @@
 
     @yield('script-head')
 </head>
-<body>
+<body class="{{ (request()->is('/'))?'home':'' }}">
 @yield('body')
 @yield('script-end')
 </body>

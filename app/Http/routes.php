@@ -17,6 +17,9 @@ Route::get('/', function(){
 
 Route::controller('components', 'ComponentController');
 
+Route::controller('program-kerja', 'ProgramKerjaController');
+Route::controller('site', 'SiteController');
+
 Route::group(['namespace' => 'My', 'prefix' => 'my', 'middleware' => 'auth'], function(){
     Route::get('profile', 'ProfileController@edit');
     Route::put('profile', 'ProfileController@update');

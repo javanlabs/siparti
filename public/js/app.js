@@ -21,7 +21,7 @@ $(function(){
             hoverable : true,
             position  : 'bottom left',
             delay     : {
-                show: 300,
+                show: 100,
                 hide: 500
             }
         })

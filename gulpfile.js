@@ -10,7 +10,8 @@ var elixir = require('laravel-elixir');
  | file for our application, as well as publishing vendor resources.
  |
  */
+require('laravel-elixir-livereload');
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.sass('app.scss').livereload();
 });

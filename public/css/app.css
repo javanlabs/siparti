@@ -1,16 +1,59 @@
-#layout-frontend {
-    min-height: 500px;
-}
-.page-component {
-    margin-top: 40px;
-}
-h2.header.title {
-    padding: 40px 0;
-    border-bottom: 1px solid #ddd;
-}
+body {
+  background-color: #EBEEF5; }
+
+.menu#menu-navbar {
+  background-color: #293D82; }
+  .menu#menu-navbar .menu .item .meta {
+    display: block;
+    font-weight: 300; }
+  .menu#menu-navbar .ui.search .prompt {
+    background-color: rgba(255, 255, 255, 0.5); }
+    .menu#menu-navbar .ui.search .prompt:focus {
+      background-color: white; }
+
+body.home {
+  background: #EBEEF5 url("../img/community.png") 0 -100px repeat-x;
+  background-size: cover; }
+
+.home #menu-navbar {
+  background-color: transparent; }
+
+section.welcome {
+  padding: 80px 0; }
+  section.welcome .headline {
+    font-style: italic;
+    margin-bottom: 40px;
+    color: #fff; }
+    section.welcome .headline h2.title {
+      font-size: 3em;
+      margin-bottom: 0; }
+      section.welcome .headline h2.title .highlight {
+        text-transform: uppercase;
+        color: #1E9DD7; }
+    section.welcome .headline h3.body {
+      margin: 0;
+      font-weight: 300; }
+
+section.page {
+  margin: 40px 0;
+  min-height: 400px; }
+  section.page .ui.header {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px; }
+    section.page .ui.header span {
+      color: #1E9DD7; }
+
+section.program-category {
+  margin: 80px 0; }
+
+section.program-list {
+  margin: 80px 0; }
+
 .ui.segment.fitted {
-    padding: 0;
-}
+  padding: 0; }
+
 .ui.segment.fitted > table.ui.table {
-    border: 0 none;
-}
+  border: 0 none; }
+
+/*# sourceMappingURL=app.css.map */

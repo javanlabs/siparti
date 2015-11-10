@@ -1,2 +1,90 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+$primary-color: #1E9DD7;
 
+$background-color: #EBEEF5;
+$navbar-bgcolor: #293D82;
+
+body {
+  background-color: $background-color;
+  //display: flex;
+  //min-height: 100vh;
+  //flex-direction: column;
+}
+
+#layout-frontend {
+  //flex: 1;
+}
+
+.menu#menu-navbar {
+  background-color: $navbar-bgcolor;
+  .menu {
+    .item {
+      .meta {
+        display: block;
+        font-weight: 300;
+      }
+    }
+  }
+  .ui.search .prompt {
+    background-color: rgba(255,255,255, .5);
+
+    &:focus {
+      background-color: rgba(255,255,255, 1);
+    }
+  }
+}
+body.home {
+  background: $background-color url('../img/community.png') 0 -100px repeat-x;
+  background-size: cover;
+}
+.home #menu-navbar {
+  background-color: transparent;
+}
+
+section.welcome {
+  padding: 80px 0;
+  .headline {
+    font-style: italic;
+    margin-bottom: 40px;
+    color: #fff;
+    h2.title {
+      font-size: 3em;
+      margin-bottom:0;
+      .highlight {
+        text-transform: uppercase;
+        color: $primary-color;;
+      }
+    }
+    h3.body {
+      margin: 0;
+      font-weight: 300;
+    }
+  }
+}
+
+section.page {
+  margin: 40px 0;
+  min-height: 400px;
+  .ui.header {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    span {
+      color: $primary-color;
+    }
+  }
+}
+
+section.program-category {
+  margin: 80px 0;
+}
+
+section.program-list {
+  margin: 80px 0;
+}
+
+.ui.segment.fitted {
+  padding: 0;
+}
+.ui.segment.fitted > table.ui.table {
+  border: 0 none;
+}
