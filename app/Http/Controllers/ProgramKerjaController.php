@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ProgramKerjaRepositoryEloquent;
+use App\Repositories\FaseRepositoryEloquent;
 use App\Http\Requests;
 
 class ProgramKerjaController extends Controller
@@ -14,9 +14,10 @@ class ProgramKerjaController extends Controller
 
 
     /**
-     * ProgramKerjaController constructor.
+     * FaseController constructor.
+     * @param FaseRepositoryEloquent $repository
      */
-    public function __construct(ProgramKerjaRepositoryEloquent $repository)
+    public function __construct(FaseRepositoryEloquent $repository)
     {
         $this->repository = $repository;
     }

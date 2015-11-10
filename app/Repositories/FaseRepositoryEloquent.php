@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Presenters\FasePresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\FaseRepository;
 use App\Entities\Fase;
 
 /**
@@ -13,6 +13,8 @@ use App\Entities\Fase;
  */
 class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
 {
+
+    protected $skipPresenter = true;
     /**
      * Specify Model class name
      *
@@ -21,6 +23,11 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
     public function model()
     {
         return Fase::class;
+    }
+
+    public function presenter()
+    {
+        return FasePresenter::class;
     }
 
     /**

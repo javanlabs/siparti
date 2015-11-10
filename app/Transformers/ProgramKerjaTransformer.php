@@ -23,6 +23,7 @@ class ProgramKerjaTransformer extends TransformerAbstract
         return [
             'id'         => (int) $model->id,
             'name'      => $model->name,
+            'satker'      => $model->satker_id,
             /* place your other model properties here */
 
             'created_at' => $model->created_at,

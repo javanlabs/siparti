@@ -28,16 +28,22 @@
             </div>
         </form>
         <div class="ui segment attached fitted">
-            <table class="ui very compact table bottom small sortable">
+            <table class="ui very compact table bottom small">
                 <thead>
                 <tr>
                     <th>Nama</th>
+                    <th>Satker</th>
+                    <th>Fase</th>
+                    <th>Tahun</th>
                 </tr>
                 </thead>
                 <tbody>
                 @forelse($programKerja as $item)
                     <tr>
                         <td>{{ $item->present('name') }}</td>
+                        <td>{{ $item->present('satker') }}</td>
+                        <td>{{ $item->present('fase') }}</td>
+                        <td>{{ $item->present('tahun') }}</td>
                     </tr>
                 @empty
                     <tr>

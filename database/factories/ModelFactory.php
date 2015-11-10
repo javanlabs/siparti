@@ -58,15 +58,14 @@ $factory->define(App\Entities\Fase::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Entities\ProgramKerja::class, function (Faker\Generator $faker) {
     return [
-        'name'   => $faker->title,
-        'creator_id' => factory(\App\Entities\User::class)->create()->id,
-        'current_fase_id' => factory(\App\Entities\Fase::class)->create()->id,
+        'name'   => $faker->sentence(),
+        'creator_id' => factory(\App\Entities\User::class)->create()->id
     ];
 });
 
 $factory->define(App\Entities\ProgramKerjaUsulan::class, function (Faker\Generator $faker) {
     return [
-        'name'   => $faker->title,
+        'name'   => $faker->sentence(),
         'creator_id' => factory(\App\Entities\User::class)->create()->id,
         'instansi_stakeholder' => $faker->company
     ];
@@ -74,7 +73,7 @@ $factory->define(App\Entities\ProgramKerjaUsulan::class, function (Faker\Generat
 
 $factory->define(App\Entities\UjiPublik::class, function (Faker\Generator $faker) {
     return [
-        'name'   => $faker->title,
+        'name'   => $faker->sentence(),
         'creator_id' => factory(\App\Entities\User::class)->create()->id,
         'materi' => $faker->paragraph(),
     ];

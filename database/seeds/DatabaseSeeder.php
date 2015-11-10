@@ -34,7 +34,14 @@ class DatabaseSeeder extends Seeder
         });
 
         factory(\App\Entities\Satker::class, 10)->create()->each(function($satker){
-            factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id]);
+            factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id])->each(function($proker){
+                factory(\App\Entities\Fase::class)->create(['type' => \App\Enum\FaseType::PERENCANAAN, 'proker_id' => $proker->id, 'satker_id' => $proker->satker_id]);
+                factory(\App\Entities\Fase::class)->create(['type' => \App\Enum\FaseType::PELAKSANAAN, 'proker_id' => $proker->id, 'satker_id' => $proker->satker_id]);
+                $fase = factory(\App\Entities\Fase::class)->create(['type' => \App\Enum\FaseType::PENGAWASAN, 'proker_id' => $proker->id, 'satker_id' => $proker->satker_id]);
+
+                $proker->current_fase_id = $fase->id;
+                $proker->save();
+            });
         });
 
         Model::reguard();
