@@ -4,7 +4,7 @@
     <section class="welcome">
         <div class="ui container center aligned">
             <div class="headline">
-                <h2 class="title">Selamat Datang di <span class="highlight">Open Kominfo</span></h2>
+                <h2 class="title">Selamat Datang di <span class="highlight">{{ settings('app.name') }}</span></h2>
 
                 <h3 class="body">Layanan partisipasi publik dalam membangun program kerja <br> Kominfo yang berkualitas.
                 </h3>
