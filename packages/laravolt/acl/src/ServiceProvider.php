@@ -42,7 +42,9 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function boot(Gate $gate)
     {
-        $this->registerAcl($gate);
+        if (!$this->app->runningInConsole()) {
+            $this->registerAcl($gate);
+        }
 
         $this->registerMigrations();
         $this->registerSeeds();
