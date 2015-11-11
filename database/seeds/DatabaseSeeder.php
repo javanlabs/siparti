@@ -44,6 +44,10 @@ class DatabaseSeeder extends Seeder
             });
         });
 
+        factory(\App\Entities\ProgramKerjaUsulan::class, 50)->create();
+
+        factory(\App\Entities\UjiPublik::class, 50)->create();
+
         Model::reguard();
     }
 }
