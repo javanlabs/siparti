@@ -3,6 +3,6 @@
 <div class="ui inverted link list">
     <a href="{{ url('auth/login') }}" class="item">Masuk</a>
     <a href="{{ url('auth/register') }}" class="item">Daftar</a>
-    <a href="{{ url('site/tentang') }}" class="item">Tentang Open Kominfo</a>
+    <a href="{{ url('site/tentang') }}" class="item">Tentang SIPARTI</a>
     <a href="{{ url('site/kontak') }}" class="item">Hubungi Kami</a>
 </div>

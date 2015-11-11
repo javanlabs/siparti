@@ -4,7 +4,7 @@
             <img src="{{ asset('img/logo-white.png') }}">
         </div>
         <a href="{{ url('/') }}" class="item">
-            Open Kominfo
+            SIPARTI
         </a>
         <a class="item item-browse-menu">
             Program Kerja
@@ -26,7 +26,7 @@
 
         <div class="menu right">
             <a href="{{ url('site/tentang') }}" class="item">
-                <h4 class="header">Tentang <i class="meta">Open Kominfo</i></h4>
+                <h4 class="header">Tentang <i class="meta">SIPARTI</i></h4>
             </a>
             <a href="{{ url('site/kontak') }}" class="item">
                 <h4 class="header">Kontak <i class="meta">Pengelola Aplikasi</i></h4>
