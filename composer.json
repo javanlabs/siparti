@@ -12,6 +12,10 @@
         {
             "type": "git",
             "url": "https://github.com/laravolt/laravel-api-generator"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/uyab/laravel-menu"
         }
     ],
     "require": {
