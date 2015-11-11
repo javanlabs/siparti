@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('status')->default(\App\Enum\UserStatus::PENDING());
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

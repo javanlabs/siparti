@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enum\FaseType;
 use App\Presenters\FasePresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -15,6 +16,7 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
 {
 
     protected $skipPresenter = true;
+
     /**
      * Specify Model class name
      *
@@ -36,5 +38,10 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function lists()
+    {
+        return collect(FaseType::toArray())->prepend('-- Semua Fase --');
     }
 }

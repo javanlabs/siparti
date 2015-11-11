@@ -17,7 +17,11 @@ Route::get('/', function(){
 
 Route::controller('components', 'ComponentController');
 
-Route::controller('program-kerja', 'ProgramKerjaController');
+Route::get('program-kerja/arsip', 'ProgramKerjaController@arsip');
+Route::get('program-kerja/berjalan', 'ProgramKerjaController@berjalan');
+Route::get('program-kerja/usulan', 'ProgramKerjaController@usulan');
+Route::resource('proker', 'ProgramKerjaController');
+
 Route::controller('site', 'SiteController');
 
 Route::group(['namespace' => 'My', 'prefix' => 'my', 'middleware' => 'auth'], function(){

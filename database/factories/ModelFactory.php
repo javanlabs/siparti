@@ -43,9 +43,9 @@ $factory->define(App\Entities\Satker::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Entities\Fase::class, function (Faker\Generator $faker) {
     return [
-        'description'   => $faker->sentence(),
+        'description'   => $faker->paragraphs(5, true),
         'scope' => $faker->paragraph(10),
-        'instansi_terkait' => $faker->paragraph(2),
+        'instansi_terkait' => $faker->company,
         'start_date' => $faker->date(),
         'end_date' => $faker->date(),
         'progress' => $faker->sentence(),

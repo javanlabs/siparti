@@ -30,4 +30,9 @@ class SatkerRepositoryEloquent extends BaseRepository implements SatkerRepositor
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+    public function lists()
+    {
+        return $this->model->lists('name', 'id')->prepend('-- Semua Satker --');
+    }
 }
