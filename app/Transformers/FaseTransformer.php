@@ -3,6 +3,7 @@
 namespace App\Transformers;
 
 use App\Entities\ProgramKerja;
+use App\Enum\FaseType;
 use League\Fractal\TransformerAbstract;
 use App\Entities\Fase;
 
@@ -34,6 +35,7 @@ class FaseTransformer extends TransformerAbstract
             'tahun'            => $model->start_date->format('Y'),
             'url'              => route('proker.show', $model->id),
             'description'      => $model->description,
+            'excerpt'          => str_limit($model->description, 150),
             'scope'            => $model->scope,
             'target'           => $model->target,
             'process'          => $model->process,
@@ -42,6 +44,9 @@ class FaseTransformer extends TransformerAbstract
             'periode'          => $model->start_date->formatLocalized('%e %B %Y') . ' s/d ' . $model->end_date->formatLocalized('%e %B %Y'),
             'pic'              => $model->pic,
             'pagu'             => $model->pagu,
+            'komentar'         => $model->comments()->count(),
+            'dukungan'         => $model->vote_up,
+            'label'            => (new FaseType($model->type))->label(),
 
 
             'created_at' => $model->created_at,

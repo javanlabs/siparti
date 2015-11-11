@@ -13,4 +13,23 @@ class FaseType extends Enum
     const PERENCANAAN = 'PERENCANAAN';
     const PELAKSANAAN = 'PELAKSANAAN';
     const PENGAWASAN = 'PENGAWASAN';
+
+    public function label()
+    {
+        return "<span class=\"ui basic small label {$this->getCssClass()} \">{$this->value}</span>";
+    }
+
+    public function getCssClass()
+    {
+        return array_get($this->getAvailableClass(), $this->value);
+    }
+
+    protected function getAvailableClass()
+    {
+        return [
+            static::PERENCANAAN => 'teal',
+            static::PELAKSANAAN => 'green',
+            static::PENGAWASAN => 'yellow',
+        ];
+    }
 }

@@ -16,7 +16,7 @@
     <section class="program-category ui container center aligned">
         <div class="ui equal width grid stackable">
             <div class="row">
-                <a class="column" href="">
+                <a class="column" href="{{ route('proker.arsip') }}">
                     <i class="bordered inverted red archive icon massive"></i>
 
                     <h3 class="ui header">
@@ -24,7 +24,7 @@
                         <div class="sub header">Daftar semua program kerja yang pernah dibuat.</div>
                     </h3>
                 </a>
-                <a class="column" href="">
+                <a class="column" href="{{ route('proker.berjalan') }}">
                     <i class="bordered inverted blue tasks icon massive"></i>
 
                     <h3 class="ui header">
@@ -32,7 +32,7 @@
                         <div class="sub header">Daftar program kerja yang sedang berjalan.</div>
                     </h3>
                 </a>
-                <a class="column" href="">
+                <a class="column" href="{{ route('proker.usulan') }}">
                     <i class="bordered inverted yellow idea icon massive"></i>
 
                     <h3 class="ui header">
@@ -49,59 +49,67 @@
             <div class="column">
                 <div class="ui blue inverted segment center aligned"><h4>Program Kerja Terbaru</h4></div>
 
-                @foreach(range(1, 3) as $item)
+                @foreach($terbaru as $item)
                     <div class="ui card fluid">
                         <div class="content">
-                            <span class="ui teal right ribbon label">Pelaksanaan</span>
 
-                            <a class="header">Open Data Summit</a>
-
+                            <a class="header">{{ $item->present('name') }}</a>
                             <div class="meta">
-                                <span class="date">12 Oktober 2013</span>
+                                <span class="date">{{ $item->present('periode') }}</span>
                             </div>
+
                             <div class="description">
-                                Kristy is an art director living in New York.
+                                {{ $item->present('excerpt') }}
                             </div>
                         </div>
                         <div class="content">
-                            <span class="right floated">
-                            <i class="comment icon"></i>
-                            3 komentar
-                            </span>
                             <i class="thumbs up icon"></i>
-                            5 dukungan
+                            {{ $item->present('dukungan') }} dukungan
+                            &nbsp;
+                            &nbsp;
+                            <i class="comment icon"></i>
+                            {{ $item->present('komentar') }} komentar
+
+                            <span class="right floated">
+                                {!! $item->present('label') !!}
+                            </span>
+
                         </div>
                     </div>
                 @endforeach
-                <a href="" class="ui button fluid basic">Lihat Program Terbaru Lainnya</a>
+                <a href="{{ route('proker.berjalan') }}" class="ui button fluid basic">Lihat Program Terbaru Lainnya</a>
             </div>
             <div class="column">
                 <div class="ui blue inverted segment center aligned"><h4>Program Kerja Terpopuler</h4></div>
-                @foreach(range(1, 3) as $item)
+                @foreach($terbaru as $item)
                     <div class="ui card fluid">
                         <div class="content">
-                            <span class="ui red right ribbon label">Perencanaan</span>
 
-                            <a class="header">Open Data Summit</a>
-
+                            <a class="header">{{ $item->present('name') }}</a>
                             <div class="meta">
-                                <span class="date">12 Oktober 2013</span>
+                                <span class="date">{{ $item->present('periode') }}</span>
                             </div>
+
                             <div class="description">
-                                Kristy is an art director living in New York.
+                                {{ $item->present('excerpt') }}
                             </div>
                         </div>
                         <div class="content">
-                            <span class="right floated">
-                            <i class="comment icon"></i>
-                            3 komentar
-                            </span>
                             <i class="thumbs up icon"></i>
-                            5 dukungan
+                            {{ $item->present('dukungan') }} dukungan
+                            &nbsp;
+                            &nbsp;
+                            <i class="comment icon"></i>
+                            {{ $item->present('komentar') }} komentar
+
+                            <span class="right floated">
+                                {!! $item->present('label') !!}
+                            </span>
+
                         </div>
                     </div>
                 @endforeach
-                <a href="" class="ui button fluid basic">Lihat Program Populer Lainnya</a>
+                <a href="{{ route('proker.arsip') }}" class="ui button fluid basic">Lihat Program Populer Lainnya</a>
             </div>
         </div>
     </section>

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function(){
-    return view('home.index');
-});
+Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home']);
 
 Route::controller('components', 'ComponentController');
 

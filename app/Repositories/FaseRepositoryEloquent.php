@@ -44,4 +44,18 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
     {
         return collect(FaseType::toArray())->prepend('-- Semua Fase --');
     }
+
+    public function terbaru($limit)
+    {
+        $results = $this->model->latest()->limit($limit)->get();
+
+        return $this->parserResult($results);
+    }
+
+    public function terpopuler($limit)
+    {
+        $results = $this->model->mostVoted()->limit($limit)->get();
+
+        return $this->parserResult($results);
+    }
 }
