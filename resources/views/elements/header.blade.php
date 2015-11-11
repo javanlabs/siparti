@@ -4,7 +4,7 @@
             <img src="{{ asset('img/logo-white.png') }}">
         </div>
         <a href="{{ url('/') }}" class="item">
-            SIPARTI
+            {{ settings('app.name') }}
         </a>
         <a class="item item-browse-menu">
             Program Kerja
