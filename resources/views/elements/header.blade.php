@@ -16,14 +16,14 @@
             <a class="item" href="{{ url('program-kerja/usulan') }}">Usulan Masyarakat</a>
         </div>
         <a href="{{ route('uji-publik.index') }}" class="item">Uji Publik</a>
-        <div class="item">
-            <div class="ui search">
-                <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="Pencarian...">
-                    <i class="search icon"></i>
-                </div>
-            </div>
-        </div>
+        {{--<div class="item">--}}
+            {{--<div class="ui search">--}}
+                {{--<div class="ui icon input">--}}
+                    {{--<input class="prompt" type="text" placeholder="Pencarian...">--}}
+                    {{--<i class="search icon"></i>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
         <div class="menu right">
             {{--<a href="{{ url('site/tentang') }}" class="item">--}}
