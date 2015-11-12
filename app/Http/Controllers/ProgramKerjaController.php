@@ -62,7 +62,7 @@ class ProgramKerjaController extends Controller
 
     public function usulan()
     {
-        $usulan = $this->programKerjaUsulanRepository->paginate(16);
+        $usulan = $this->programKerjaUsulanRepository->paginate(18);
 
         return view('program_kerja.usulan', compact('usulan'));
     }

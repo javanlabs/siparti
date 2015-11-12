@@ -1,23 +1,19 @@
 @extends('layouts.frontend')
 
 @section('content')
-    <section class="ui container page">
+    <section class="ui container page" id="page-program-kerja-usulan">
         <h2 class="ui header"><span>Usulan</span> Program Kerja</h2>
 
-        <div class="ui four doubling cards">
+        <div class="ui three stackable doubling cards">
             @foreach($usulan as $item)
                 <div class="ui card fluid">
                     <div class="content">
-                        <a href=""><img src="{{ $item->present('creator_avatar') }}" class="ui avatar image" alt=""> {{ $item->present('creator_name') }}</a>
+                        <a href=""><img src="{{ $item->present('creator_avatar') }}" class="ui avatar image" alt=""> {{ $item->present('creator_name') }}
+                        </a>
                     </div>
 
-                    <div class="content">
-
-                        <a class="header">{{ $item->present('name') }}</a>
-
-                        <div class="description">
-                            {{ $item->present('excerpt') }}
-                        </div>
+                    <div class="content body">
+                        <div class="header" href="{{ $item->present('url') }}">{{ str_limit($item->present('name'), 150) }}</div>
                     </div>
 
                     <div class="content">
@@ -36,7 +32,9 @@
             @endforeach
         </div>
 
-        {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($usulan))->render('ui') !!}
+        <div class="ui segment basic center aligned padded">
+            {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($usulan))->render('ui compact') !!}
+        </div>
 
     </section>
 @endsection
