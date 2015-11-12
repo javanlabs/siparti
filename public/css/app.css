@@ -10,6 +10,10 @@ body {
     background-color: rgba(255, 255, 255, 0.5); }
     .menu#menu-navbar .ui.search .prompt:focus {
       background-color: white; }
+  .menu#menu-navbar #popup-proker {
+    background-color: #1E9DD7; }
+    .menu#menu-navbar #popup-proker:before {
+      background-color: #1E9DD7; }
 
 body.home {
   background: #EBEEF5 url("../img/community.png") 0 -100px repeat-x;

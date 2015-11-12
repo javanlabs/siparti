@@ -31,6 +31,13 @@ body {
       background-color: rgba(255,255,255, 1);
     }
   }
+
+  #popup-proker {
+    background-color: $primary-color;
+    &:before {
+      background-color: $primary-color;
+    }
+  }
 }
 body.home {
   background: $background-color url('../img/community.png') 0 -100px repeat-x;

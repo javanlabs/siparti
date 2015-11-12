@@ -6,11 +6,11 @@
         <a href="{{ url('/') }}" class="item">
             {{ settings('app.name') }}
         </a>
-        <a class="item item-browse-menu">
+        <a class="item browse-proker">
             Program Kerja
             <i class="angle down icon"></i>
         </a>
-        <div class="ui flowing popup popup-menu-admin inverted vertical menu">
+        <div class="ui flowing popup inverted vertical menu" id="popup-proker">
             <a class="item" href="{{ url('program-kerja/arsip') }}">Arsip</a>
             <a class="item" href="{{ url('program-kerja/berjalan') }}">Sedang Berjalan</a>
             <a class="item" href="{{ url('program-kerja/usulan') }}">Usulan Masyarakat</a>
