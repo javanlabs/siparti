@@ -28,9 +28,15 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="ui segment very padded">
+                    <p>
+                        Bagaimana pendapat Anda tentang program kerja ini?<br>
+                        Berikan penilaian setuju atau tidak setuju, dan jangan lupa memberikan komentar yang membangun.
+                    </p>
+                    {!! Votee::render($programKerja, ['class' => 'basic fluid']) !!}
+                </div>
 
-                {!! Votee::render($programKerja, ['class' => 'fluid']) !!}
-                {!! Mural::render($programKerja, 'default') !!}
+                {!! Mural::render($programKerja, 'default', ['class' => 'very padded']) !!}
 
             </div>
             <div class="column six wide">
