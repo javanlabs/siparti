@@ -67,10 +67,10 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
 
     public function yearOptions($emptyText = null)
     {
-        $years = collect(range(date('Y'), settings('app.min_year', 2000)));
+        $years = collect(array_combine($range = range(date('Y'), settings('app.min_year', 2000)), $range));
 
         if ($emptyText) {
-            $years->prepend($emptyText);
+            $years->prepend($emptyText, 0);
         }
 
         return $years;

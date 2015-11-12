@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Criteria\UjiPUblikSearchCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\UjiPublikRepository;
 use App\Entities\UjiPublik;
+use App\Presenters\UjiPublikPresenter;
 
 /**
  * Class UjiPublikRepositoryEloquent
@@ -13,6 +13,9 @@ use App\Entities\UjiPublik;
  */
 class UjiPublikRepositoryEloquent extends BaseRepository implements UjiPublikRepository
 {
+
+    protected $skipPresenter = true;
+
     /**
      * Specify Model class name
      *
@@ -23,11 +26,27 @@ class UjiPublikRepositoryEloquent extends BaseRepository implements UjiPublikRep
         return UjiPublik::class;
     }
 
+    public function presenter()
+    {
+        return UjiPublikPresenter::class;
+    }
     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(app(UjiPUblikSearchCriteria::class));
     }
+
+    public function yearOptions($emptyText = null)
+    {
+        $years = collect(array_combine($range = range(date('Y'), settings('app.min_year', 2000)), $range));
+
+        if ($emptyText) {
+            $years->prepend($emptyText, 0);
+        }
+
+        return $years;
+    }
+
 }

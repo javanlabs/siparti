@@ -3,7 +3,7 @@
 namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use App\Entities\UjiPublikPresenter;
+use App\Entities\UjiPublik;
 
 /**
  * Class UjiPublikTransformer
@@ -18,11 +18,14 @@ class UjiPublikTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform(UjiPublikPresenter $model)
+    public function transform(UjiPublik $model)
     {
         return [
-            'id'         => (int) $model->id,
-
+            'id'    => (int)$model->id,
+            'name'  => $model->name,
+            'url'   => route('uji-publik.show', $model->id),
+            'tahun' => $model->created_at->format('Y'),
+            'materi' => $model->materi,
             /* place your other model properties here */
 
             'created_at' => $model->created_at,
