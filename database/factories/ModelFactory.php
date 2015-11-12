@@ -65,7 +65,7 @@ $factory->define(App\Entities\ProgramKerja::class, function (Faker\Generator $fa
 
 $factory->define(App\Entities\ProgramKerjaUsulan::class, function (Faker\Generator $faker) {
     return [
-        'name'   => $faker->sentence(),
+        'name'   => $faker->sentence(255),
         'creator_id' => factory(\App\Entities\User::class)->create()->id,
         'instansi_stakeholder' => $faker->company
     ];
