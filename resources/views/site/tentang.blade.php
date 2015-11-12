@@ -6,10 +6,8 @@
         <div class="ui centered grid">
             <div class="ten wide column">
                 <div class="ui segment very padded">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut commodi, dicta dolorum earum eos fuga illo impedit modi non numquam omnis quia quibusdam, reprehenderit suscipit totam ullam voluptatibus. Maiores!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut commodi, dicta dolorum earum eos fuga illo impedit modi non numquam omnis quia quibusdam, reprehenderit suscipit totam ullam voluptatibus. Maiores!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut commodi, dicta dolorum earum eos fuga illo impedit modi non numquam omnis quia quibusdam, reprehenderit suscipit totam ullam voluptatibus. Maiores!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut commodi, dicta dolorum earum eos fuga illo impedit modi non numquam omnis quia quibusdam, reprehenderit suscipit totam ullam voluptatibus. Maiores!</p>
+                    <p>{{ settings('app.name') }} adalah sebuah program dari Kementerian Komunikasi dan Informasi Republik Indonesia untuk memberikan transparansi kepada publik tentang program kerja dari Departemen Komunikasi dan Informasi, baik yang sedang berjalan maupun yang sedang dalam perencanaan.</p>
+                    <p>Dengan adanya transparansi ini diiharapkan publik dapat memberikan masukan atau usulan terkait program kerja yang sedang berjalan maupun sedang dalam perencanaan tersebut.</p>
                 </div>
             </div>
         </div>
