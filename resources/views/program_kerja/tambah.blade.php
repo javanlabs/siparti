@@ -7,7 +7,7 @@
             <div class="column one wide">
             </div>
 
-            <div class="column ten wide" >
+            <div class="column fourteen wide" >
 
             @if(Session::has('flash_message'))
                 <div class="ui positive message">
@@ -24,10 +24,16 @@
 
                 ]) !!}
 
-                <div class="field">
-                    {!! Form::label('namaProgram', 'Nama Program Kerja', ['class' => 'my-label']) !!}
-                    {!! Form::text('namaProgram', null) !!}
+                <div class="ui grid">
+                    <div class="column eight wide">
+                        {!! Form::label('namaProgram', 'Nama Program Kerja', ['class' => 'my-label']) !!} 
+                    </div>
+
+                    <div class="column eight wide">
+                        {!! Form::text('namaProgram', null) !!}
+                    </div>
                 </div>
+               
 
                 <div class="field">
                     {!! Form::label('instansiTerkait', 'Instansi Terkait') !!}
@@ -41,7 +47,18 @@
 
                  <div class="field ui primary button" style="color: white">
                     
-                    {!! Form::file('file', null) !!}
+                    {!! Form::file('file', null, 
+                        
+                        [
+                            'style' => "width: 0.1px;
+                                        height: 0.1px;
+                                        opacity: 0;
+                                        overflow: hidden;
+    position: absolute;
+    z-index: -1;" 
+                        ]
+
+                    ) !!}
                     
                 </div>
 
