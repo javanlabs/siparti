@@ -9,10 +9,23 @@
 
                 <table class="ui definition table small">
                     <tbody>
-                    <tr><td>Status</td><td>{{ $programKerja->present('status') }}</td></tr>
-                    <tr><td>Periode Fase</td><td>{{ $programKerja->present('periode') }}</td></tr>
+                    <tr><td style="width: 150px">Fase Sekarang</td><td>{!! $programKerja->present('label') !!}</td></tr>
+                    <tr><td>Periode</td><td>{{ $programKerja->present('periode') }}</td></tr>
                     <tr><td>Instansi Terkait</td><td>{{ $programKerja->present('instansi_terkait') }}</td></tr>
                     <tr><td>Deskripsi</td><td>{{ $programKerja->present('description') }}</td></tr>
+                    <tr>
+                        <td>Fase Terkait</td>
+                        <td>
+                            <div class="ui list divided middle aligned relaxed">
+                                @foreach($related as $item)
+                                    <div class="item">
+                                        {!! $item->present('label') !!}
+                                        <a href="{{ $item->present('url') }}">{{ $item->present('periode') }}</a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -21,12 +34,7 @@
 
             </div>
             <div class="column six wide">
-                <div class="ui segments">
-                    <div class="ui segment blue"><h3>Program Kerja Terkait</h3></div>
-                    @foreach($related as $item)
-                        <div class="ui segment"><a href="{{ $item->present('url') }}">{{ $item->present('name') }}</a></div>
-                    @endforeach
-                </div>
+
             </div>
         </div>
 

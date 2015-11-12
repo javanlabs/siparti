@@ -41,7 +41,7 @@ class FaseTransformer extends TransformerAbstract
             'process'          => $model->process,
             'kendala'          => $model->kendala,
             'instansi_terkait' => $model->instansi_terkait,
-            'periode'          => $model->start_date->formatLocalized('%e %B %Y') . ' s/d ' . $model->end_date->formatLocalized('%e %B %Y'),
+            'periode'          => $model->start_date->formatLocalized('%e %B %Y') . ' - ' . $model->end_date->formatLocalized('%e %B %Y'),
             'pic'              => $model->pic,
             'pagu'             => $model->pagu,
             'komentar'         => $model->comments()->count(),
