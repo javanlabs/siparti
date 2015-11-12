@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Repositories\FaseRepositoryEloquent;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Repositories\SatkerRepositoryEloquent;
+use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
+use Illuminate\Support\Facades\Session;
+
 
 class ProgramKerjaController extends Controller
 {
@@ -13,15 +17,18 @@ class ProgramKerjaController extends Controller
 
     protected $satkerRepository;
 
+    protected $programKerjaRepository;
+
 
     /**
      * FaseController constructor.
      * @param FaseRepositoryEloquent $faseRepository
      */
-    public function __construct(FaseRepositoryEloquent $faseRepository, SatkerRepositoryEloquent $satkerRepository)
+    public function __construct(FaseRepositoryEloquent $faseRepository, SatkerRepositoryEloquent $satkerRepository, ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepositoyEloquent)
     {
         $this->faseRepository = $faseRepository;
         $this->satkerRepository = $satkerRepository;
+        $this->programKerjaUsulanRepository = $programKerjaUsulanRepositoyEloquent;
     }
 
     public function getIndex()
@@ -57,5 +64,29 @@ class ProgramKerjaController extends Controller
         $programKerja = $this->faseRepository->find($id);
 
         return view('program_kerja.show', compact('programKerja'));
+    }
+
+    public function tambah(Request $request)
+    {
+        
+        if ($request->isMethod('post')) {
+
+            $this->validate($request, 
+                [
+                    'namaProgram' => 'required',
+                    'instansiTerkait' => 'required',
+                    'description' => 'required',
+                    'file' => 'required'
+                ]
+            );
+
+            $this->programKerjaUsulanRepository->create($request->all());
+
+            Session::flash('flash_message', 'Usulan Program Kerja Berhasil Disimpan');
+
+
+        }
+        
+        return view("program_kerja.tambah");
     }
 }

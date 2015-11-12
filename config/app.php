@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', 'SomeRandomStringWith32Characters'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -150,7 +150,8 @@ return [
         'Krucas\Notification\NotificationServiceProvider',
         Laravel\Socialite\SocialiteServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
-
+        Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */

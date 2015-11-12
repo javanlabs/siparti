@@ -56,4 +56,9 @@ section.program-list {
 .ui.segment.fitted > table.ui.table {
   border: 0 none; }
 
+.my-label {
+
+  font-size: 20px;
+}  
+
 /*# sourceMappingURL=app.css.map */

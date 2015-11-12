@@ -6,6 +6,8 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\ProgramKerjaUsulanRepository;
 use App\Entities\ProgramKerjaUsulan;
+use Prettus\Repository\Events\RepositoryEntityCreated;
+
 
 /**
  * Class ProgramKerjaUsulanRepositoryEloquent
@@ -29,5 +31,33 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function create(array $attributes)
+    {
+
+        if ( !is_null($this->validator) ) {
+            $this->validator->with($attributes)
+                ->passesOrFail( ValidatorInterface::RULE_CREATE );
+        }
+
+        $model = $this->model->newInstance();
+
+        $model->name = $attributes["namaProgram"];
+        $model->instansi_stakeholder = $attributes['instansiTerkait'];
+        $model->description = $attributes['description'];
+        $model->created_at = date("U");
+        $model->updated_at = date("U");
+
+        $model->save();
+
+        $model->addMedia($attributes['file'])->toCollection('media');
+
+
+        $this->resetModel();
+
+        event(new RepositoryEntityCreated($this, $model));
+
+        return $this->parserResult($model);
     }
 }

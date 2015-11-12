@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3165d67c95d34c74b91042eb21157718",
-    "content-hash": "efb9db4ee08d082c2672896aa7c3162e",
+    "hash": "1f4ee53900c0224c5613c76aec364b0a",
+    "content-hash": "e239d4a40553c372a4054b596c70a245",
     "packages": [
         {
             "name": "adamwathan/bootforms",
@@ -92,6 +92,56 @@
             "time": "2015-08-07 18:04:49"
         },
         {
+            "name": "anahkiasen/underscore-php",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Anahkiasen/underscore-php.git",
+                "reference": "48f97b295c82d99c1fe10d8b0684c43f051b5580"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Anahkiasen/underscore-php/zipball/48f97b295c82d99c1fe10d8b0684c43f051b5580",
+                "reference": "48f97b295c82d99c1fe10d8b0684c43f051b5580",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "^1.0",
+                "patchwork/utf8": "^1.2",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "2.0.*@dev",
+                "phpunit/phpunit": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Underscore\\": [
+                        "src",
+                        "tests"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Fabre",
+                    "email": "ehtnam6@gmail.com"
+                }
+            ],
+            "description": "A redacted port of Underscore.js for PHP",
+            "keywords": [
+                "internals",
+                "laravel",
+                "toolkit"
+            ],
+            "time": "2015-05-16 19:24:58"
+        },
+        {
             "name": "barryvdh/laravel-debugbar",
             "version": "dev-master",
             "source": {
@@ -101,7 +151,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/7b872d670836ccaeaf5135b3dd4da9c16c039686",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/03e4e5bc7be63fc61821ab9bc6e01c9fdff653fe",
                 "reference": "7b872d670836ccaeaf5135b3dd4da9c16c039686",
                 "shasum": ""
             },
@@ -1453,7 +1503,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a69a0b3919782d77224a43800ca5e868a5f2afa4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/875baf2d1645ce23e2ec0bf94fa7bb3e7fbfd6ed",
                 "reference": "da385bf80d527070a7377925a0d083f694706ae9",
                 "shasum": ""
             },
@@ -1582,7 +1632,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/d248a25eade4f23363716933d4db660ceae20996",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/321786a69d2cd70de249e6db384859b1d6024438",
                 "reference": "d248a25eade4f23363716933d4db660ceae20996",
                 "shasum": ""
             },
@@ -2062,7 +2112,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/support/zipball/e06f5df119608186d6050755475cd9e5103bafd9",
+                "url": "https://api.github.com/repos/laravolt/support/zipball/784e32de91d0258e242a8fc49aa4bd4ddc4b545f",
                 "reference": "e06f5df119608186d6050755475cd9e5103bafd9",
                 "shasum": ""
             },
@@ -2224,8 +2274,8 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/lavary/laravel-menu.git",
-                "reference": "bebce996ef08cf911da0139c30a2da03a2768326"
+                "url": "https://github.com/uyab/laravel-menu",
+                "reference": "190d22196932bbe84dc2dd3059fc64db19560e80"
             },
             "dist": {
                 "type": "zip",
@@ -2407,6 +2457,67 @@
                 "rest"
             ],
             "time": "2015-03-19 15:16:43"
+        },
+        {
+            "name": "league/glide",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/glide.git",
+                "reference": "4f7e56b260573750c3cff7b8623ad2965700de61"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/glide/zipball/4f7e56b260573750c3cff7b8623ad2965700de61",
+                "reference": "4f7e56b260573750c3cff7b8623ad2965700de61",
+                "shasum": ""
+            },
+            "require": {
+                "intervention/image": "^2.1",
+                "league/flysystem": "^1.0",
+                "php": ">=5.4",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/php-token-stream": "^1.4",
+                "phpunit/phpunit": "~4.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Glide\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Reinink",
+                    "email": "jonathan@reinink.ca",
+                    "homepage": "http://reinink.ca"
+                }
+            ],
+            "description": "Wonderfully easy on-demand image manipulation library with an HTTP based API.",
+            "homepage": "http://glide.thephpleague.com",
+            "keywords": [
+                "ImageMagick",
+                "editing",
+                "gd",
+                "image",
+                "imagick",
+                "league",
+                "manipulation",
+                "processing"
+            ],
+            "time": "2015-10-02 11:50:33"
         },
         {
             "name": "league/oauth1-client",
@@ -2872,6 +2983,65 @@
             "time": "2015-10-23 13:21:37"
         },
         {
+            "name": "patchwork/utf8",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tchwork/utf8.git",
+                "reference": "25a55c6c668de61cc3b97aab4237ebf6dadabe17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tchwork/utf8/zipball/25a55c6c668de61cc3b97aab4237ebf6dadabe17",
+                "reference": "25a55c6c668de61cc3b97aab4237ebf6dadabe17",
+                "shasum": ""
+            },
+            "require": {
+                "lib-pcre": ">=7.3",
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "ext-iconv": "Use iconv for best performance",
+                "ext-intl": "Use Intl for best performance",
+                "ext-mbstring": "Use Mbstring for best performance",
+                "ext-wfio": "Use WFIO for UTF-8 filesystem access on Windows"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Patchwork\\": "src/Patchwork/"
+                },
+                "classmap": [
+                    "src/Normalizer.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "(Apache-2.0 or GPL-2.0)"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                }
+            ],
+            "description": "Portable and performant UTF-8, Unicode and Grapheme Clusters for PHP",
+            "homepage": "https://github.com/tchwork/utf8",
+            "keywords": [
+                "grapheme",
+                "i18n",
+                "unicode",
+                "utf-8",
+                "utf8"
+            ],
+            "time": "2015-10-14 08:58:12"
+        },
+        {
             "name": "phpdocumentor/reflection-docblock",
             "version": "2.0.4",
             "source": {
@@ -3197,6 +3367,212 @@
                 "user"
             ],
             "time": "2015-10-15 13:46:19"
+        },
+        {
+            "name": "spatie/laravel-glide",
+            "version": "2.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-glide.git",
+                "reference": "99a1c518f41c5f3a82eb6e5d14354df6b95eeb07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-glide/zipball/99a1c518f41c5f3a82eb6e5d14354df6b95eeb07",
+                "reference": "99a1c518f41c5f3a82eb6e5d14354df6b95eeb07",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*",
+                "league/glide": "0.3.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "2.*",
+                "mockery/mockery": "~0.9.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Spatie\\Glide": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be"
+                }
+            ],
+            "description": "A Glide Service Provider for Laravel",
+            "homepage": "https://github.com/spatie/laravel-glide",
+            "time": "2015-07-30 20:27:28"
+        },
+        {
+            "name": "spatie/laravel-medialibrary",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-medialibrary.git",
+                "reference": "f8e3c0c9b265c4f6567d4d7f52b1abb4a7b82b52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/f8e3c0c9b265c4f6567d4d7f52b1abb4a7b82b52",
+                "reference": "f8e3c0c9b265c4f6567d4d7f52b1abb4a7b82b52",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/bus": "^5.1",
+                "illuminate/console": "^5.1",
+                "illuminate/database": "^5.1",
+                "illuminate/support": "^5.1",
+                "php": ">=5.5.0",
+                "spatie/laravel-glide": "^2.2.4",
+                "spatie/pdf-to-image": "^1.0",
+                "spatie/string": "^2.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^2.5.2",
+                "mockery/mockery": "^0.9.4",
+                "orchestra/testbench": "^3.0",
+                "phpunit/phpunit": "^4.0",
+                "scrutinizer/ocular": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\MediaLibrary\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://murze.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Associate files with Eloquent models",
+            "homepage": "https://github.com/spatie/laravel-medialibrary",
+            "keywords": [
+                "cms",
+                "laravel",
+                "laravel-medialibrary",
+                "media",
+                "spatie"
+            ],
+            "time": "2015-11-11 06:53:11"
+        },
+        {
+            "name": "spatie/pdf-to-image",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/pdf-to-image.git",
+                "reference": "f0492e95fb0da51d90943a4104772f2575441706"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/f0492e95fb0da51d90943a4104772f2575441706",
+                "reference": "f0492e95fb0da51d90943a4104772f2575441706",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\PdfToImage\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Convert a pdf to an image",
+            "homepage": "https://github.com/spatie/pdf-to-image",
+            "keywords": [
+                "convert",
+                "image",
+                "pdf",
+                "pdf-to-image",
+                "spatie"
+            ],
+            "time": "2015-07-03 12:24:35"
+        },
+        {
+            "name": "spatie/string",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/string.git",
+                "reference": "1843189c711be4dcf62b655824f2f17120c2dc7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/string/zipball/1843189c711be4dcf62b655824f2f17120c2dc7d",
+                "reference": "1843189c711be4dcf62b655824f2f17120c2dc7d",
+                "shasum": ""
+            },
+            "require": {
+                "anahkiasen/underscore-php": "^2.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/string_functions.php"
+                ],
+                "psr-4": {
+                    "Spatie\\String\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://murze.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "String handling evolved",
+            "homepage": "https://github.com/spatie/string",
+            "keywords": [
+                "handling",
+                "handy",
+                "spatie",
+                "string"
+            ],
+            "time": "2015-11-02 13:00:37"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3758,7 +4134,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/cd4550722340132bbee1cc0e27aa7651f66c49fd",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/469d250b5f1021cb02d13c344f6318eeab2722a0",
                 "reference": "cd4550722340132bbee1cc0e27aa7651f66c49fd",
                 "shasum": ""
             },
@@ -4235,7 +4611,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/5a91b2475cd9a7a41d02615232eb4d1f18d4ae2c",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/cd5fb1c262e1734366e77688b011a0f0422ce06d",
                 "reference": "5a91b2475cd9a7a41d02615232eb4d1f18d4ae2c",
                 "shasum": ""
             },
@@ -4848,7 +5224,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9f57eb4797ad108d8dde64313d3d96e24347b81a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f9251d0910483fcbe22ee7a47ed604e43070770",
                 "reference": "9f57eb4797ad108d8dde64313d3d96e24347b81a",
                 "shasum": ""
             },
@@ -5348,7 +5724,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/29dee11bd37eae3de68b5113dc4b84dc8e2b786e",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/3f79752644a5eb87d56a8caafac072f0ecf5d278",
                 "reference": "29dee11bd37eae3de68b5113dc4b84dc8e2b786e",
                 "shasum": ""
             },
@@ -5404,6 +5780,7 @@
         "laravolt/trail": 20,
         "mitulgolakiya/laravel-api-generator": 20,
         "adamwathan/bootforms": 20,
+        "spatie/laravel-medialibrary": 20,
         "laravel/homestead": 20
     },
     "prefer-stable": false,
