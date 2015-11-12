@@ -33,19 +33,14 @@
                 <h4 class="header">Hubungi <i class="meta">Pengelola Aplikasi</i></h4>
             </a>
             @if(auth()->check())
-                <div class="ui pointing dropdown item">
-                    <a href="">
-                        <img src="{{ auth()->user()->getAvatar() }}" alt="" class="ui image avatar">
-                        {{ auth()->user()->name }} <i class="dropdown icon"></i>
-                    </a>
-                    <div class="menu small">
-                        @foreach(Menu::get('member')->roots() as $item)
-                            <a class="item" href="{{ $item->url() }}">{!!  $item->title !!}</a>
-                            @if($item->divider)
-                                <div class="ui divider"></div>
-                            @endif
-                        @endforeach
-                    </div>
+                <a href="#" class="item" id="browse-user-menu">
+                    <img src="{{ auth()->user()->getAvatar() }}" alt="" class="ui image avatar">
+                    {{ auth()->user()->name }} <i class="angle down icon"></i>
+                </a>
+                <div class="ui flowing popup inverted vertical menu" id="popup-user-menu">
+                    @foreach(Menu::get('member')->roots() as $item)
+                        <a class="item" href="{{ $item->url() }}">{!!  $item->title !!}</a>
+                    @endforeach
                 </div>
             @else
                 <a class="item" href="{{ url('auth/login') }}">
