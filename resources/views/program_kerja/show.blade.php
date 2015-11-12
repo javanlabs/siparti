@@ -21,7 +21,12 @@
 
             </div>
             <div class="column six wide">
-
+                <div class="ui segments">
+                    <div class="ui segment blue"><h3>Program Kerja Terkait</h3></div>
+                    @foreach($related as $item)
+                        <div class="ui segment"><a href="{{ $item->present('url') }}">{{ $item->present('name') }}</a></div>
+                    @endforeach
+                </div>
             </div>
         </div>
 

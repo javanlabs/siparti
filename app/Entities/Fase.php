@@ -33,6 +33,11 @@ class Fase extends Model implements Presentable, Commentable
         return $this->belongsTo(Satker::class, 'satker_id');
     }
 
+    public function related()
+    {
+        return $this->hasMany(self::class, 'proker_id', 'proker_id')->where('id', '<>', $this->id);
+    }
+
     public function scopeArsip($query)
     {
         return $query->where('end_date', '<', Carbon::now()->toDateString());

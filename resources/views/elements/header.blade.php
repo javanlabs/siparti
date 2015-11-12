@@ -26,12 +26,12 @@
         {{--</div>--}}
 
         <div class="menu right">
-            {{--<a href="{{ url('site/tentang') }}" class="item">--}}
-                {{--<h4 class="header">Tentang <i class="meta">{{ settings('app.name') }}</i></h4>--}}
-            {{--</a>--}}
-            {{--<a href="{{ url('site/kontak') }}" class="item">--}}
-                {{--<h4 class="header">Kontak <i class="meta">Pengelola Aplikasi</i></h4>--}}
-            {{--</a>--}}
+            <a href="{{ url('site/tentang') }}" class="item">
+                <h4 class="header">Tentang <i class="meta">{{ settings('app.name') }}</i></h4>
+            </a>
+            <a href="{{ url('site/kontak') }}" class="item">
+                <h4 class="header">Kontak <i class="meta">Pengelola Aplikasi</i></h4>
+            </a>
             @if(auth()->check())
                 <div class="ui pointing dropdown item">
                     <a href="">

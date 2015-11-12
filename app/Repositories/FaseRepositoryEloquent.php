@@ -87,4 +87,9 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
         $this->model = $this->model->berjalan();
         return $this->paginate();
     }
+
+    public function getRelated($fase)
+    {
+        return $this->parserResult($fase->related);
+    }
 }
