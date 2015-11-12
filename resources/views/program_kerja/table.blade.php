@@ -1,22 +1,22 @@
 <form class="ui form top attached menu borderless">
     <div class="item">
-        <input type="text" name="name" placeholder="Nama...">
+        <input type="text" name="nama" value="{{ request('nama') }}" placeholder="Nama...">
     </div>
     <div class="item">
         {!!  Form::select('satker_id', $satker, request('satker_id'), ['class' => 'ui dropdown']) !!}
     </div>
     <div class="item">
-        {!!  Form::select('type', $fase, request('type'), ['class' => 'ui dropdown']) !!}
+        {!!  Form::select('fase', $fase, request('fase'), ['class' => 'ui dropdown']) !!}
     </div>
     <div class="item">
-        {!!  Form::selectYear('tahun', date('Y'), 2000, request('tahun'), ['class' => 'ui dropdown']) !!}
+        {!!  Form::select('tahun', $year, request('tahun'), ['class' => 'ui dropdown']) !!}
     </div>
     <div class="item">
         <button type="submit" class="ui button primary">Cari</button>
     </div>
 </form>
 <div class="ui segment attached fitted">
-    <table class="ui table bottom small">
+    <table class="ui table bottom small padded">
         <thead>
         <tr>
             <th>Nama</th>
@@ -28,9 +28,9 @@
         <tbody>
         @forelse($programKerja as $item)
             <tr>
-                <td><a href="{{ $item->present('url') }}"><h4>{{ $item->present('name') }}</h4></a></td>
+                <td><a href="{{ $item->present('url') }}"><h5>{{ $item->present('name') }}</h5></a></td>
                 <td>{{ $item->present('satker') }}</td>
-                <td>{{ $item->present('fase') }}</td>
+                <td>{!! $item->present('label') !!}</td>
                 <td>{{ $item->present('tahun') }}</td>
             </tr>
         @empty

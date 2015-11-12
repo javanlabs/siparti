@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Criteria\ProgramKerjaSearchCriteria;
 use App\Repositories\FaseRepositoryEloquent;
 use App\Http\Requests;
 use App\Repositories\SatkerRepositoryEloquent;
@@ -29,27 +30,32 @@ class ProgramKerjaController extends Controller
         return redirect('program-kerja/sedang-berjalan');
     }
 
+    public function arsip()
+    {
+        $fase = $this->faseRepository->lists();
+        $satker = $this->satkerRepository->lists();
+        $year = $this->faseRepository->yearOptions('-- Semua Tahun --');
+
+        $programKerja = $this->faseRepository->paginateArsip();
+
+        return view('program_kerja.arsip', compact('programKerja', 'satker', 'fase', 'year'));
+    }
+
     public function berjalan()
     {
-        $programKerja = $this->faseRepository->paginate();
-        $satker = $this->satkerRepository->lists();
         $fase = $this->faseRepository->lists();
+        $satker = $this->satkerRepository->lists();
+        $year = $this->faseRepository->yearOptions('-- Semua Tahun --');
 
-        return view('program_kerja.berjalan', compact('programKerja', 'satker', 'fase'));
+        $programKerja = $this->faseRepository->paginateBerjalan();
+
+        return view('program_kerja.berjalan', compact('programKerja', 'satker', 'fase', 'year'));
+
     }
 
     public function usulan()
     {
         return view('program_kerja.usulan');
-    }
-
-    public function arsip()
-    {
-        $programKerja = $this->faseRepository->paginate();
-        $satker = $this->satkerRepository->lists();
-        $fase = $this->faseRepository->lists();
-
-        return view('program_kerja.arsip', compact('programKerja', 'satker', 'fase'));
     }
 
     public function show($id)

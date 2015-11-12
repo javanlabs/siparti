@@ -167,6 +167,7 @@ return [
         Laravolt\Auth\ServiceProvider::class,
         Laravolt\Support\SupportServiceProvider::class,
         Mitul\Generator\GeneratorServiceProvider::class,
+        Sofa\Eloquence\ServiceProvider::class
     ],
 
     /*

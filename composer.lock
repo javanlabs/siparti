@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "980bf69bb5f7745b867d83a400436d3c",
-    "content-hash": "03ab767813c8f1e548ce7132650aa783",
+    "hash": "2180ba4575a0dfcb7040975c13e2ca4b",
+    "content-hash": "057b1ebf1e3bb3ff82c002605b85cd80",
     "packages": [
         {
             "name": "adamwathan/bootforms",
@@ -2252,7 +2252,7 @@
             "keywords": [
                 "laravel"
             ],
-            "time": "2015-09-28 22:36:39"
+            "time": "2015-11-11 04:35:32"
         },
         {
             "name": "league/flysystem",
@@ -3148,6 +3148,62 @@
                 "shell"
             ],
             "time": "2015-11-08 22:24:35"
+        },
+        {
+            "name": "sofa/eloquence",
+            "version": "5.1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jarektkaczyk/eloquence.git",
+                "reference": "3a65d49cff134b8512d284182e15905641d7d8ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jarektkaczyk/eloquence/zipball/3a65d49cff134b8512d284182e15905641d7d8ad",
+                "reference": "3a65d49cff134b8512d284182e15905641d7d8ad",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "~5.1",
+                "illuminate/database": "~5.1",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.4",
+                "phpunit/phpunit": "4.5.0",
+                "squizlabs/php_codesniffer": "2.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sofa\\Eloquence\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jarek Tkaczyk",
+                    "email": "jarek@softonsofa.com",
+                    "homepage": "http://softonsofa.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Flexible Searchable, Mappable, Metable, Validation and more extensions for Laravel Eloquent ORM.",
+            "keywords": [
+                "eloquent",
+                "laravel",
+                "mappable",
+                "metable",
+                "mutable",
+                "searchable"
+            ],
+            "time": "2015-10-29 18:50:31"
         },
         {
             "name": "spatie/activitylog",
@@ -4846,12 +4902,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6cc501c1adf86482fbb54fb2958e1c7685f57a61"
+                "reference": "6f9251d0910483fcbe22ee7a47ed604e43070770"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6cc501c1adf86482fbb54fb2958e1c7685f57a61",
-                "reference": "6cc501c1adf86482fbb54fb2958e1c7685f57a61",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f9251d0910483fcbe22ee7a47ed604e43070770",
+                "reference": "6f9251d0910483fcbe22ee7a47ed604e43070770",
                 "shasum": ""
             },
             "require": {
@@ -4910,7 +4966,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-11-10 21:39:46"
+            "time": "2015-11-11 12:23:02"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -5402,6 +5458,7 @@
         "laravolt/password": 20,
         "laravolt/email": 20,
         "prettus/l5-repository": 20,
+        "sofa/eloquence": 20,
         "lavary/laravel-menu": 20,
         "laravolt/trail": 20,
         "mitulgolakiya/laravel-api-generator": 20,

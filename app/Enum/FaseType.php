@@ -16,7 +16,7 @@ class FaseType extends Enum
 
     public function label()
     {
-        return "<span class=\"ui basic small label {$this->getCssClass()} \">{$this->value}</span>";
+        return "<span class=\"ui basic mini label {$this->getCssClass()} \">{$this->value}</span>";
     }
 
     public function getCssClass()

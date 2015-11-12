@@ -2,16 +2,18 @@
 
 namespace App\Entities;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Laravolt\Mural\CommentableTrait;
 use Laravolt\Mural\Contracts\Commentable;
 use Laravolt\Votee\Traits\Voteable;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
+use Sofa\Eloquence\Eloquence;
 
 class Fase extends Model implements Presentable, Commentable
 {
-    use PresentableTrait, CommentableTrait, Voteable;
+    use PresentableTrait, CommentableTrait, Voteable, Eloquence;
 
     protected $table = 'fase';
 
@@ -29,6 +31,43 @@ class Fase extends Model implements Presentable, Commentable
     public function satker()
     {
         return $this->belongsTo(Satker::class, 'satker_id');
+    }
+
+    public function scopeArsip($query)
+    {
+        return $query->where('end_date', '<', Carbon::now()->toDateString());
+    }
+
+    public function scopeBerjalan($query)
+    {
+        return $query->where('end_date', '>=', Carbon::now()->toDateString());
+    }
+
+    public function scopeBySatker($query, $id)
+    {
+        if ($id) {
+            $query->where('satker_id', '=', $id);
+        }
+
+        return $query;
+    }
+
+    public function scopeByFase($query, $type)
+    {
+        if ($type) {
+            $query->where('type', '=', $type);
+        }
+
+        return $query;
+    }
+
+    public function scopeByYear($query, $year)
+    {
+        if ($year) {
+            $query->whereRaw("YEAR(start_date) = $year");
+        }
+
+        return $query;
     }
 
     public function getCommentableTitleAttribute()

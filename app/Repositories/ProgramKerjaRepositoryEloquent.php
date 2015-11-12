@@ -38,4 +38,5 @@ class ProgramKerjaRepositoryEloquent extends BaseRepository implements ProgramKe
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
 }
