@@ -2,10 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Criteria\ProgramKerjaUsulanRequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\ProgramKerjaUsulanRepository;
 use App\Entities\ProgramKerjaUsulan;
+use App\Presenters\ProgramKerjaUsulanPresenter;
 
 /**
  * Class ProgramKerjaUsulanRepositoryEloquent
@@ -13,6 +14,8 @@ use App\Entities\ProgramKerjaUsulan;
  */
 class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements ProgramKerjaUsulanRepository
 {
+
+    protected $skipPresenter = true;
     /**
      * Specify Model class name
      *
@@ -23,11 +26,15 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
         return ProgramKerjaUsulan::class;
     }
 
+    public function presenter()
+    {
+        return ProgramKerjaUsulanPresenter::class;
+    }
     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(app(ProgramKerjaUsulanRequestCriteria::class));
     }
 }
