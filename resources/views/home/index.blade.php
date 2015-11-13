@@ -32,7 +32,7 @@
                         <div class="sub header">Daftar program kerja yang sedang berjalan.</div>
                     </h3>
                 </a>
-                <a class="column" href="{{ route('proker.usulan') }}">
+                <a class="column" href="{{ route('proker-usulan.index') }}">
                     <i class="bordered inverted yellow idea icon massive"></i>
 
                     <h3 class="ui header">

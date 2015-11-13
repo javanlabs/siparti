@@ -17,8 +17,9 @@ Route::controller('components', 'ComponentController');
 
 Route::get('program-kerja/arsip', ['as' => 'proker.arsip', 'uses' => 'ProgramKerjaController@arsip']);
 Route::get('program-kerja/berjalan', ['as' => 'proker.berjalan', 'uses' => 'ProgramKerjaController@berjalan']);
-Route::get('program-kerja/usulan', ['as' => 'proker.usulan', 'uses' => 'ProgramKerjaController@usulan']);
 Route::resource('proker', 'ProgramKerjaController');
+
+Route::resource('proker-usulan', 'ProgramKerjaUsulanController');
 
 Route::resource('uji-publik', 'UjiPublikController');
 

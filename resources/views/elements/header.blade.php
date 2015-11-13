@@ -13,9 +13,12 @@
         <div class="ui flowing popup inverted vertical menu" id="popup-proker">
             <a class="item" href="{{ url('program-kerja/arsip') }}">Arsip</a>
             <a class="item" href="{{ url('program-kerja/berjalan') }}">Sedang Berjalan</a>
-            <a class="item" href="{{ url('program-kerja/usulan') }}">Usulan Masyarakat</a>
+            <a class="item" href="{{ route('proker-usulan.index') }}">Usulan Masyarakat</a>
         </div>
         <a href="{{ route('uji-publik.index') }}" class="item">Uji Publik</a>
+        <div class="item">
+            <a href="{{ route('proker-usulan.create') }}" class="ui button primary"><i class="icon file text"></i> Usulkan Program Kerja</a>
+        </div>
         {{--<div class="item">--}}
             {{--<div class="ui search">--}}
                 {{--<div class="ui icon input">--}}
@@ -26,12 +29,12 @@
         {{--</div>--}}
 
         <div class="menu right">
-            <a href="{{ url('site/tentang') }}" class="item">
-                <h4 class="header">Tentang <i class="meta">{{ settings('app.name') }}</i></h4>
-            </a>
-            <a href="{{ url('site/kontak') }}" class="item">
-                <h4 class="header">Hubungi <i class="meta">Pengelola Aplikasi</i></h4>
-            </a>
+            {{--<a href="{{ url('site/tentang') }}" class="item">--}}
+                {{--<h4 class="header">Tentang <i class="meta">{{ settings('app.name') }}</i></h4>--}}
+            {{--</a>--}}
+            {{--<a href="{{ url('site/kontak') }}" class="item">--}}
+                {{--<h4 class="header">Hubungi <i class="meta">Pengelola Aplikasi</i></h4>--}}
+            {{--</a>--}}
             @if(auth()->check())
                 <a href="#" class="item" id="browse-user-menu">
                     <img src="{{ auth()->user()->getAvatar() }}" alt="" class="ui image avatar">

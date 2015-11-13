@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Criteria\ProgramKerjaSearchCriteria;
 use App\Repositories\FaseRepositoryEloquent;
 use App\Http\Requests;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
@@ -60,18 +59,16 @@ class ProgramKerjaController extends Controller
 
     }
 
-    public function usulan()
-    {
-        $usulan = $this->programKerjaUsulanRepository->paginate(18);
-
-        return view('program_kerja.usulan', compact('usulan'));
-    }
-
     public function show($id)
     {
         $programKerja = $this->faseRepository->find($id);
         $related = $this->faseRepository->getRelated($programKerja);
 
         return view('program_kerja.show', compact('programKerja', 'related'));
+    }
+
+    public function tambahUsulan()
+    {
+        return view('program_kerja_usulan.create');
     }
 }
