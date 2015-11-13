@@ -70,7 +70,8 @@ $factory->define(App\Entities\ProgramKerja::class, function (Faker\Generator $fa
 
 $factory->define(App\Entities\ProgramKerjaUsulan::class, function (Faker\Generator $faker) {
     return [
-        'name'   => $faker->sentence(255),
+        'name'   => $faker->sentence(rand(20, 255)),
+        'description' => $faker->paragraphs(10, true),
         'creator_id' => factory(\App\Entities\User::class)->create()->id,
         'instansi_stakeholder' => $faker->company
     ];
