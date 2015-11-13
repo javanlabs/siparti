@@ -20,7 +20,9 @@ Route::controller('components', 'ComponentController');
 Route::get('program-kerja/arsip', 'ProgramKerjaController@arsip');
 Route::get('program-kerja/berjalan', 'ProgramKerjaController@berjalan');
 Route::get('program-kerja/usulan', 'ProgramKerjaController@usulan');
-Route::match(['get', 'post'], '/program-kerja-usulan/tambah', 'ProgramKerjaController@tambah');
+Route::get('/program-kerja-usulan/tambah', 'ProgramKerjaController@viewTambahKerjaUsulanForm');
+Route::post('/program-kerja-usulan/tambah', 'ProgramKerjaController@tambahKerjaUsulan')->name('tambahProgramKerjaUsulan');
+//Route::match(['get', 'post'], '/program-kerja-usulan/tambah', 'ProgramKerjaController@tambah');
 Route::resource('proker', 'ProgramKerjaController');
 
 Route::controller('site', 'SiteController');

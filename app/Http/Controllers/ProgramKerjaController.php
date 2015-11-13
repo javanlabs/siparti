@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\FaseRepositoryEloquent;
 use App\Http\Requests;
-use Illuminate\Http\Request;
-use App\Repositories\SatkerRepositoryEloquent;
+use App\Http\Requests\CreateProgramKerjaUsulanRequest;
+use App\Repositories\FaseRepositoryEloquent;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
+use App\Repositories\SatkerRepositoryEloquent;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Krucas\Notification\Facades\Notification;
+
 
 
 class ProgramKerjaController extends Controller
@@ -17,7 +20,7 @@ class ProgramKerjaController extends Controller
 
     protected $satkerRepository;
 
-    protected $programKerjaRepository;
+    protected $programKerjaUsulanRepository;
 
 
     /**
@@ -66,27 +69,20 @@ class ProgramKerjaController extends Controller
         return view('program_kerja.show', compact('programKerja'));
     }
 
-    public function tambah(Request $request)
+    public function viewTambahKerjaUsulanForm(Request $request)
     {
         
-        if ($request->isMethod('post')) {
-
-            $this->validate($request, 
-                [
-                    'namaProgram' => 'required',
-                    'instansiTerkait' => 'required',
-                    'description' => 'required',
-                    'file' => 'required'
-                ]
-            );
-
-            $this->programKerjaUsulanRepository->create($request->all());
-
-            Session::flash('flash_message', 'Usulan Program Kerja Berhasil Disimpan');
-
-
-        }
-        
-        return view("program_kerja.tambah");
+       return view("program_kerja.tambah");
     }
+
+    public function tambahKerjaUsulan(CreateProgramKerjaUsulanRequest $request)
+    {
+
+        $this->programKerjaUsulanRepository->create($request->all());
+        Notification::success('Usulan Program Kerja Berhasil Disimpan');
+        return redirect()->back();
+
+
+    }
+
 }

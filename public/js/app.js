@@ -32,3 +32,18 @@ $(function(){
         $($(this).data('target')).modal('show');
     });
 });
+
+$(document).ready(function() {
+            
+            $("input[type=file]").attr("style", "visibility: hidden;");
+            $("input[type=file]").attr("id", "file");
+            $("#file").css("position", "absolute");
+
+            $("#file").change(function() {
+                $("#uploadFile").val($(this).val());
+            });
+
+           $("#upload-button").click(function(e) {
+                $("#file").click();
+            });
+        });

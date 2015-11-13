@@ -45,7 +45,9 @@
         "doctrine/dbal": "^2.5",
         "adamwathan/bootforms": "dev-master",
         "laravolt/semantic-form": "^0.1.0",
-        "spatie/laravel-medialibrary": "dev-master"
+        "spatie/laravel-medialibrary": "dev-master",
+        "edvinaskrucas/notification": "5.*"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

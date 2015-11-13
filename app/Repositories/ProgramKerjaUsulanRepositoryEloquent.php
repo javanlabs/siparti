@@ -46,9 +46,7 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
         $model->name = $attributes["namaProgram"];
         $model->instansi_stakeholder = $attributes['instansiTerkait'];
         $model->description = $attributes['description'];
-        $model->created_at = date("U");
-        $model->updated_at = date("U");
-
+        
         $model->save();
 
         $model->addMedia($attributes['file'])->toCollection('media');
