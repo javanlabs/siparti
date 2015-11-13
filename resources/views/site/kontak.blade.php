@@ -16,8 +16,7 @@
                                             <i class="map marker icon"></i>
                                             <div class="content">
                                                 <div class="header">Alamat Kantor</div>
-                                                <div class="description">Jalan Medan Merdeka Barat No 9</div>
-                                                <div class="description">Jakarta 10110</div>
+                                                <div class="description">{{ settings('app.contact_address') }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -28,7 +27,7 @@
                                             <i class="phone icon"></i>
                                             <div class="content">
                                                 <div class="header">Nomor Telepon</div>
-                                                <div class="description">021 3452841</div>
+                                                <div class="description">{{ settings('app.contact_phone') }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +38,7 @@
                                             <i class="mail icon"></i>
                                             <div class="content">
                                                 <div class="header">Alamat Email</div>
-                                                <div class="description">humas@mail.kominfo.go.id</div>
+                                                <div class="description">{{ settings('app.contact_email') }}</div>
                                             </div>
                                         </div>
                                     </div>
