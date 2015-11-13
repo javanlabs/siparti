@@ -16,9 +16,11 @@
             <a class="item" href="{{ route('proker-usulan.index') }}">Usulan Masyarakat</a>
         </div>
         <a href="{{ route('uji-publik.index') }}" class="item">Uji Publik</a>
+        @if(auth()->check())
         <div class="item">
             <a href="{{ route('proker-usulan.create') }}" class="ui button primary"><i class="icon file text"></i> Usulkan Program Kerja</a>
         </div>
+        @endif
         {{--<div class="item">--}}
             {{--<div class="ui search">--}}
                 {{--<div class="ui icon input">--}}
