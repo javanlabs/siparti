@@ -23,7 +23,7 @@
                     <input type="email" name="contact_email" value="{{ settings('app.contact_email') }}">
                 </div>
 
-                <button class="ui button">Simpan</button>
+                <button class="ui button primary">Simpan</button>
             </form>
         </div>
     </div>

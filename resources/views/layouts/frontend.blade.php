@@ -4,7 +4,7 @@
     @include('elements.header')
     @include('elements.flash')
 
-    <div id="layout-frontend">
+    <div id="layout-frontend" style="margin-bottom: 40px">
         @yield('content')
     </div>
 
