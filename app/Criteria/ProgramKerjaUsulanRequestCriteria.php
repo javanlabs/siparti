@@ -21,6 +21,10 @@ class ProgramKerjaUsulanRequestCriteria implements CriteriaInterface
     {
         $model = $model->latest();
 
+        if ($keyword = $this->request->get('nama')) {
+            $model = $model->search($keyword, ['name', 'description']);
+        }
+
         return $model;
     }
 }

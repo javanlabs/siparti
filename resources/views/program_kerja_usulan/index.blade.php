@@ -4,36 +4,37 @@
     <section class="ui container page" id="page-program-kerja-usulan">
         <h2 class="ui header"><span>Usulan</span> Program Kerja</h2>
 
-        <div class="ui three stackable doubling cards">
-            @foreach($usulan as $item)
-                <div class="ui card fluid">
-                    <div class="content">
-                        <a href=""><img src="{{ $item->present('creator_avatar') }}" class="ui avatar image" alt=""> {{ $item->present('creator_name') }}
-                        </a>
+
+        <form class="ui form top attached segment padded">
+            <div class="ui grid two column stackable">
+                <div class="column">
+                    <div class="ui action input">
+                        <input type="text" name="nama" value="{{ request('nama') }}" placeholder="Cari Usulan Program Kerja...">
+                        <button type="submit" class="ui button primary">Cari</button>
                     </div>
-
-                    <div class="content body">
-                        <div class="header" href="{{ $item->present('url') }}">{{ str_limit($item->present('name'), 150) }}</div>
-                    </div>
-
-                    <div class="content">
-                        <i class="thumbs up icon"></i>
-                        {{ $item->present('dukungan') }}
-                        &nbsp;
-                        &nbsp;
-                        <i class="comment icon"></i>
-                        {{ $item->present('komentar') }}
-
-                        <span class="right floated meta">{{ $item->present('created_for_human') }}</span>
-
-                    </div>
-
                 </div>
-            @endforeach
+                <div class="column right">
+                    <div class="ui list horizontal link right floated" style="margin-top: 5px">
+                        <div class="item"><strong>Urut berdasar:</strong></div>
+                        <a href="{{ route('proker-usulan.index', ['orderBy' => 'created_at', 'sortedBy' => 'desc']) }}" class="item">Terbaru</a>
+                        <a href="{{ route('proker-usulan.index', ['orderBy' => 'vote_count', 'sortedBy' => 'desc']) }}" class="item">Dukungan</a>
+                        <a href="{{ route('proker-usulan.index', ['orderBy' => 'comment_count', 'sortedBy' => 'desc']) }}" class="item">Komentar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="ui segment padded attached">
+            <div class="ui three stackable doubling cards">
+                @foreach($usulan as $item)
+                    @include('program_kerja_usulan.card')
+                @endforeach
+            </div>
         </div>
-
-        <div class="ui segment basic center aligned padded">
-            {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($usulan))->render('ui compact') !!}
+        <div class="ui menu bottom attached">
+            <div class="item borderless">
+                <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($usulan))->summary() !!}</small>
+            </div>
+            {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($usulan))->render('attached bottom right') !!}
         </div>
 
     </section>

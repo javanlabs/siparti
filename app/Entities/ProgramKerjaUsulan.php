@@ -8,10 +8,11 @@ use Laravolt\Mural\Contracts\Commentable;
 use Laravolt\Votee\Traits\Voteable;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
+use Sofa\Eloquence\Eloquence;
 
 class ProgramKerjaUsulan extends Model implements Presentable, Commentable
 {
-    use PresentableTrait, CommentableTrait, Voteable;
+    use PresentableTrait, CommentableTrait, Voteable, Eloquence;
 
     protected $table = 'program_kerja_usulan';
 
