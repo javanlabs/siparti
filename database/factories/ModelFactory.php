@@ -56,6 +56,11 @@ $factory->define(App\Entities\Fase::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->defineAs(App\Entities\Fase::class, 'berjalan', function (Faker\Generator $faker) use ($factory) {
+    $fase = $factory->raw(App\Entities\Fase::class);
+    return array_merge($fase, ['start_date' => $faker->dateTimeBetween('-1 years', 'now'), 'end_date' => $faker->dateTimeBetween('now', '1 month')]);
+});
+
 $factory->define(App\Entities\ProgramKerja::class, function (Faker\Generator $faker) {
     return [
         'name'   => $faker->sentence(),
