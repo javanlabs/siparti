@@ -92,4 +92,9 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
     {
         return $this->parserResult($fase->related);
     }
+
+    public function getDocuments($fase)
+    {
+        return $fase->getMedia();
+    }
 }

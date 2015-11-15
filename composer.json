@@ -45,7 +45,8 @@
         "mitulgolakiya/laravel-api-generator": "dev-master",
         "doctrine/dbal": "^2.5",
         "adamwathan/bootforms": "dev-master",
-        "laravolt/semantic-form": "^0.1.0"
+        "laravolt/semantic-form": "^0.1.0",
+        "spatie/laravel-medialibrary": "^3.10"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -33,20 +33,47 @@ class DatabaseSeeder extends Seeder
             $post->save();
         });
 
-        factory(\App\Entities\Satker::class, 10)->create()->each(function($satker){
-            factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id])->each(function($proker){
-                factory(\App\Entities\Fase::class)->create(['type' => \App\Enum\FaseType::PERENCANAAN, 'proker_id' => $proker->id, 'satker_id' => $proker->satker_id]);
-                factory(\App\Entities\Fase::class, 'berjalan')->create(['type' => \App\Enum\FaseType::PELAKSANAAN, 'proker_id' => $proker->id, 'satker_id' => $proker->satker_id]);
-                $fase = factory(\App\Entities\Fase::class)->create(['type' => \App\Enum\FaseType::PENGAWASAN, 'proker_id' => $proker->id, 'satker_id' => $proker->satker_id]);
+        factory(\App\Entities\Satker::class, 10)->create()->each(function ($satker) {
+            factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id])->each(function ($proker
+            ) {
+                $fase = factory(\App\Entities\Fase::class)->create([
+                    'type'      => \App\Enum\FaseType::PERENCANAAN,
+                    'proker_id' => $proker->id,
+                    'satker_id' => $proker->satker_id
+                ]);
+                $fase->addDocument(base_path('resources/assets/files/sample.doc'));
+                $fase->addDocument(base_path('resources/assets/files/sample.pdf'));
+
+                $fase = factory(\App\Entities\Fase::class, 'berjalan')->create([
+                    'type'      => \App\Enum\FaseType::PELAKSANAAN,
+                    'proker_id' => $proker->id,
+                    'satker_id' => $proker->satker_id
+                ]);
+                $fase->addDocument(base_path('resources/assets/files/sample.doc'));
+                $fase->addDocument(base_path('resources/assets/files/sample.pdf'));
+
+                $fase = factory(\App\Entities\Fase::class)->create([
+                    'type'      => \App\Enum\FaseType::PENGAWASAN,
+                    'proker_id' => $proker->id,
+                    'satker_id' => $proker->satker_id
+                ]);
+                $fase->addDocument(base_path('resources/assets/files/sample.doc'));
+                $fase->addDocument(base_path('resources/assets/files/sample.pdf'));
 
                 $proker->current_fase_id = $fase->id;
                 $proker->save();
             });
         });
 
-        factory(\App\Entities\ProgramKerjaUsulan::class, 50)->create();
+        factory(\App\Entities\ProgramKerjaUsulan::class, 50)->create()->each(function ($model) {
+            $model->addDocument(base_path('resources/assets/files/sample.doc'));
+            $model->addDocument(base_path('resources/assets/files/sample.pdf'));
+        });
 
-        factory(\App\Entities\UjiPublik::class, 50)->create();
+        factory(\App\Entities\UjiPublik::class, 50)->create()->each(function ($model) {
+            $model->addDocument(base_path('resources/assets/files/sample.doc'));
+            $model->addDocument(base_path('resources/assets/files/sample.pdf'));
+        });
 
         Model::reguard();
     }

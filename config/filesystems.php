@@ -53,6 +53,11 @@ return [
             'root'   => public_path('media'),
         ],
 
+        'document' => [
+            'driver' => 'local',
+            'root'   => public_path('document'),
+        ],
+
         'ftp' => [
             'driver'   => 'ftp',
             'host'     => 'ftp.example.com',
