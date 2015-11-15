@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Criteria\UjiPUblikSearchCriteria;
+use App\Criteria\UjiPublikSearchCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Entities\UjiPublik;
 use App\Presenters\UjiPublikPresenter;
@@ -36,7 +36,7 @@ class UjiPublikRepositoryEloquent extends BaseRepository implements UjiPublikRep
      */
     public function boot()
     {
-        $this->pushCriteria(app(UjiPUblikSearchCriteria::class));
+        $this->pushCriteria(app(UjiPublikSearchCriteria::class));
     }
 
     public function yearOptions($emptyText = null)

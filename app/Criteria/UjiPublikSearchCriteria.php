@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Prettus\Repository\Contracts\RepositoryInterface;
 use Prettus\Repository\Contracts\CriteriaInterface;
 
-class UjiPUblikSearchCriteria implements CriteriaInterface
+class UjiPublikSearchCriteria implements CriteriaInterface
 {
     /**
      * @var \Illuminate\Http\Request
