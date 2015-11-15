@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Laravolt\Votee\Votee;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,14 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        //
+        $events->listen('votee.*', function($user, $voteable, $counter){
+            $voteable->vote_down = $counter->down;
+            $voteable->vote_up = $counter->up;
+            $voteable->save();
+        });
+
+        $events->listen('mural.comment.add', function($comment, $content, $author, $room){
+            $content->increment('comment');
+        });
     }
 }

@@ -26,7 +26,9 @@ class DatabaseSeeder extends Seeder
         ]);
         $user->assignRole($root);
 
-        $users = factory(\App\Entities\User::class, 100)->create();
+        auth()->login($user);
+
+        $users = factory(\App\Entities\User::class, 50)->create();
 
         factory(\App\Entities\Post::class, 10)->make()->each(function ($post) use ($users) {
             $author = $users->random();
@@ -37,8 +39,9 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info('Start Seed Satker, ProgramKerja, and Fase');
         factory(\App\Entities\Satker::class, 10)->create()->each(function ($satker) {
-            factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id])->each(function ($proker
-            ) {
+            $proker = factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id]);
+
+            $proker->each(function ($proker) {
                 $fase = factory(\App\Entities\Fase::class)->create([
                     'type'      => \App\Enum\FaseType::PERENCANAAN,
                     'proker_id' => $proker->id,
@@ -47,6 +50,12 @@ class DatabaseSeeder extends Seeder
                 $fase->addDocument(base_path('resources/assets/files/sample.doc'));
                 $fase->addDocument(base_path('resources/assets/files/sample.pdf'));
 
+                foreach(range(1, rand(1, 10)) as $id) {
+                    Mural::addComment($fase, Faker\Factory::create()->paragraph, 'default');
+                    Votee::voteUp($fase, \App\Entities\User::find($id));
+                    Votee::voteDown($fase, \App\Entities\User::find($id + 10));
+                }
+
                 $fase = factory(\App\Entities\Fase::class, 'berjalan')->create([
                     'type'      => \App\Enum\FaseType::PELAKSANAAN,
                     'proker_id' => $proker->id,
@@ -54,6 +63,11 @@ class DatabaseSeeder extends Seeder
                 ]);
                 $fase->addDocument(base_path('resources/assets/files/sample.doc'));
                 $fase->addDocument(base_path('resources/assets/files/sample.pdf'));
+                foreach(range(1, rand(1, 10)) as $id) {
+                    Mural::addComment($fase, Faker\Factory::create()->paragraph, 'default');
+                    Votee::voteUp($fase, \App\Entities\User::find($id));
+                    Votee::voteDown($fase, \App\Entities\User::find($id + 10));
+                }
 
                 $fase = factory(\App\Entities\Fase::class)->create([
                     'type'      => \App\Enum\FaseType::PENGAWASAN,
@@ -62,6 +76,11 @@ class DatabaseSeeder extends Seeder
                 ]);
                 $fase->addDocument(base_path('resources/assets/files/sample.doc'));
                 $fase->addDocument(base_path('resources/assets/files/sample.pdf'));
+                foreach(range(1, rand(1, 10)) as $id) {
+                    Mural::addComment($fase, Faker\Factory::create()->paragraph, 'default');
+                    Votee::voteUp($fase, \App\Entities\User::find($id));
+                    Votee::voteDown($fase, \App\Entities\User::find($id + 10));
+                }
 
                 $proker->current_fase_id = $fase->id;
                 $proker->save();
@@ -73,6 +92,12 @@ class DatabaseSeeder extends Seeder
         factory(\App\Entities\ProgramKerjaUsulan::class, 50)->create()->each(function ($model) {
             $model->addDocument(base_path('resources/assets/files/sample.doc'));
             $model->addDocument(base_path('resources/assets/files/sample.pdf'));
+
+            foreach(range(1, rand(1, 10)) as $id) {
+                Mural::addComment($model, Faker\Factory::create()->paragraph, 'default');
+                Votee::voteUp($model, \App\Entities\User::find($id));
+                Votee::voteDown($model, \App\Entities\User::find($id + 10));
+            }
         });
         $this->command->info('Finish Seed ProgramKerjaUsulan');
 
@@ -80,9 +105,16 @@ class DatabaseSeeder extends Seeder
         factory(\App\Entities\UjiPublik::class, 50)->create()->each(function ($model) {
             $model->addDocument(base_path('resources/assets/files/sample.doc'));
             $model->addDocument(base_path('resources/assets/files/sample.pdf'));
+
+            foreach(range(1, rand(1, 10)) as $id) {
+                Mural::addComment($model, Faker\Factory::create()->paragraph, 'default');
+                Votee::voteUp($model, \App\Entities\User::find($id));
+                Votee::voteDown($model, \App\Entities\User::find($id + 10));
+            }
         });
         $this->command->info('Finish Seed UjiPublik');
 
+        auth()->logout();
         Model::reguard();
     }
 }

@@ -44,7 +44,7 @@ class FaseTransformer extends TransformerAbstract
             'periode'          => $model->start_date->formatLocalized('%e %B %Y') . ' - ' . $model->end_date->formatLocalized('%e %B %Y'),
             'pic'              => $model->pic,
             'pagu'             => $model->pagu,
-            'komentar'         => $model->comments()->count(),
+            'komentar'         => $model->comment,
             'dukungan'         => $model->vote_up,
             'label'            => (new FaseType($model->type))->label(),
 

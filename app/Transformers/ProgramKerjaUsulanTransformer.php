@@ -13,7 +13,7 @@ class ProgramKerjaUsulanTransformer extends TransformerAbstract
         return [
             'id'                => (int)$model->id,
             'name'              => $model->name,
-            'komentar'          => $model->comments()->count(),
+            'komentar'          => $model->commment,
             'dukungan'          => $model->vote_up,
             'excerpt'           => str_limit($model->description),
             'creator_name'      => $model->creator->name,

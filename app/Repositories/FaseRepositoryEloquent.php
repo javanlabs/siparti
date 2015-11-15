@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Enum\FaseType;
 use App\Presenters\FasePresenter;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Criteria\ProgramKerjaSearchCriteria;
 
@@ -43,6 +44,7 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
      */
     public function boot()
     {
+        $this->pushCriteria(app(RequestCriteria::class));
         $this->pushCriteria(app(ProgramKerjaSearchCriteria::class));
     }
 

@@ -13,11 +13,11 @@
     </div>
     <div class="content">
         <i class="thumbs up icon"></i>
-        {{ $item->present('dukungan') }} dukungan
+        {{ $item->present('dukungan') }}
         &nbsp;
         &nbsp;
         <i class="comment icon"></i>
-        {{ $item->present('komentar') }} komentar
+        {{ $item->present('komentar') }}
 
         <span class="right floated">
             {!! $item->present('label') !!}
