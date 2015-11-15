@@ -11,7 +11,7 @@
         <i class="comment icon"></i>
         {{ $item->present('komentar') }}
 
-
+        <span class="right floated meta">{{ $item->present('created_for_human') }}</span>
     </div>
 
 </div>

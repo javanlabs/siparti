@@ -29,7 +29,7 @@ class UjiPublikTransformer extends TransformerAbstract
             'excerpt'  => str_limit($model->materi, 200),
             'dukungan' => $model->vote_up,
             'komentar' => $model->comment,
-
+            'created_for_human' => $model->created_at->formatLocalized("%d %b '%y"),
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
