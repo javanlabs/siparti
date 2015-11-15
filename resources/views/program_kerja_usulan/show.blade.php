@@ -26,8 +26,16 @@
                     </tbody>
                 </table>
 
-                {!! Votee::render($usulanProker, ['class' => 'fluid']) !!}
-                {!! Mural::render($usulanProker, 'default') !!}
+                <div class="ui segment very padded">
+                    <p>
+                        Bagaimana pendapat Anda tentang program kerja ini?<br>
+                        Berikan penilaian setuju atau tidak setuju, dan jangan lupa memberikan komentar yang membangun.
+                    </p>
+                    {!! Votee::render($usulanProker, ['class' => 'basic fluid']) !!}
+                </div>
+
+                {!! Mural::render($usulanProker, 'default', ['class' => 'very padded']) !!}
+
 
             </div>
             <div class="column six wide">
