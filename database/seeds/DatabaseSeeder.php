@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             $post->save();
         });
 
+        $this->command->info('Start Seed Satker, ProgramKerja, and Fase');
         factory(\App\Entities\Satker::class, 10)->create()->each(function ($satker) {
             factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id])->each(function ($proker
             ) {
@@ -66,16 +67,21 @@ class DatabaseSeeder extends Seeder
                 $proker->save();
             });
         });
+        $this->command->info('Finish Seed Satker, ProgramKerja, and Fase');
 
+        $this->command->info('Start Seed ProgramKerjaUsulan');
         factory(\App\Entities\ProgramKerjaUsulan::class, 50)->create()->each(function ($model) {
             $model->addDocument(base_path('resources/assets/files/sample.doc'));
             $model->addDocument(base_path('resources/assets/files/sample.pdf'));
         });
+        $this->command->info('Finish Seed ProgramKerjaUsulan');
 
+        $this->command->info('Start Seed UjiPublik');
         factory(\App\Entities\UjiPublik::class, 50)->create()->each(function ($model) {
             $model->addDocument(base_path('resources/assets/files/sample.doc'));
             $model->addDocument(base_path('resources/assets/files/sample.pdf'));
         });
+        $this->command->info('Finish Seed UjiPublik');
 
         Model::reguard();
     }
