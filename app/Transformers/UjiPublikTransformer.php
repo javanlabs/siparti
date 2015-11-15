@@ -21,11 +21,12 @@ class UjiPublikTransformer extends TransformerAbstract
     public function transform(UjiPublik $model)
     {
         return [
-            'id'    => (int)$model->id,
-            'name'  => $model->name,
-            'url'   => route('uji-publik.show', $model->id),
-            'tahun' => $model->created_at->format('Y'),
-            'materi' => $model->materi,
+            'id'      => (int)$model->id,
+            'name'    => $model->name,
+            'url'     => route('uji-publik.show', $model->id),
+            'tahun'   => $model->created_at->format('Y'),
+            'materi'  => $model->materi,
+            'excerpt' => str_limit($model->materi, 200),
             /* place your other model properties here */
 
             'created_at' => $model->created_at,

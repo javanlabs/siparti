@@ -9,27 +9,14 @@
         <button type="submit" class="ui button primary">Cari</button>
     </div>
 </form>
-<div class="ui segment attached fitted">
-    <table class="ui table bottom small padded">
-        <thead>
-        <tr>
-            <th>Nama</th>
-            <th>Tahun</th>
-        </tr>
-        </thead>
-        <tbody>
+<div class="ui segment attached">
+    <div class="ui cards three">
         @forelse($ujiPublik as $item)
-            <tr>
-                <td><a href="{{ $item->present('url') }}"><h5>{{ $item->present('name') }}</h5></a></td>
-                <td>{{ $item->present('tahun') }}</td>
-            </tr>
+            @include('uji_publik.card')
         @empty
-            <tr>
-                <td colspan="4" class="warning center aligned" style="font-size: 1.5rem;padding:40px;font-style: italic">Data tidak tersedia</td>
-            </tr>
+
         @endforelse
-        </tbody>
-    </table>
+    </div>
 </div>
 <div class="ui menu bottom attached">
     <div class="item borderless">
