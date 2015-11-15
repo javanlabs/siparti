@@ -2218,12 +2218,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/votee.git",
-                "reference": "6f7507c84a89b8573d39080950acd1312844cab4"
+                "reference": "c184a38e9a97a1ddac4236bc9a6153d34d7a8936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/votee/zipball/6f7507c84a89b8573d39080950acd1312844cab4",
-                "reference": "6f7507c84a89b8573d39080950acd1312844cab4",
+                "url": "https://api.github.com/repos/laravolt/votee/zipball/c184a38e9a97a1ddac4236bc9a6153d34d7a8936",
+                "reference": "c184a38e9a97a1ddac4236bc9a6153d34d7a8936",
                 "shasum": ""
             },
             "require": {
