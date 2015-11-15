@@ -1,4 +1,13 @@
+<div class="ui list horizontal link right floated" style="margin-top: 5px">
+    <div class="item"><strong>Urut berdasar:</strong></div>
+    <a href="{{ route('uji-publik.index', ['orderBy' => 'created_at', 'sortedBy' => 'desc']) }}" class="item">Terbaru</a>
+    <a href="{{ route('uji-publik.index', ['orderBy' => 'vote_up', 'sortedBy' => 'desc']) }}" class="item">Dukungan</a>
+    <a href="{{ route('uji-publik.index', ['orderBy' => 'comment', 'sortedBy' => 'desc']) }}" class="item">Komentar</a>
+</div>
+
 <form class="ui form top attached menu borderless">
+    <input type="hidden" name="orderBy" value="{{ request('orderBy', 'created_at') }}">
+    <input type="hidden" name="sortedBy" value="{{ request('sortedBy', 'desc') }}">
     <div class="item">
         <input type="text" name="nama" value="{{ request('nama') }}" placeholder="Nama...">
     </div>
