@@ -6,6 +6,9 @@
 
 
         <form class="ui form top attached segment padded">
+            <input type="hidden" name="orderBy" value="{{ request('orderBy', 'created_at') }}">
+            <input type="hidden" name="sortedBy" value="{{ request('sortedBy', 'desc') }}">
+            
             <div class="ui grid two column stackable">
                 <div class="column">
                     <div class="ui action input">
@@ -17,8 +20,8 @@
                     <div class="ui list horizontal link right floated" style="margin-top: 5px">
                         <div class="item"><strong>Urut berdasar:</strong></div>
                         <a href="{{ route('proker-usulan.index', ['orderBy' => 'created_at', 'sortedBy' => 'desc']) }}" class="item">Terbaru</a>
-                        <a href="{{ route('proker-usulan.index', ['orderBy' => 'vote_count', 'sortedBy' => 'desc']) }}" class="item">Dukungan</a>
-                        <a href="{{ route('proker-usulan.index', ['orderBy' => 'comment_count', 'sortedBy' => 'desc']) }}" class="item">Komentar</a>
+                        <a href="{{ route('proker-usulan.index', ['orderBy' => 'vote_up', 'sortedBy' => 'desc']) }}" class="item">Dukungan</a>
+                        <a href="{{ route('proker-usulan.index', ['orderBy' => 'comment', 'sortedBy' => 'desc']) }}" class="item">Komentar</a>
                     </div>
                 </div>
             </div>

@@ -38,6 +38,7 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
      */
     public function boot()
     {
+        $this->pushCriteria(app(RequestCriteria::class));
         $this->pushCriteria(app(ProgramKerjaUsulanRequestCriteria::class));
     }
 

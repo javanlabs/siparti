@@ -16,6 +16,10 @@
         {
             "type": "git",
             "url": "https://github.com/uyab/laravel-menu"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/uyab/eloquence"
         }
     ],
     "require": {
