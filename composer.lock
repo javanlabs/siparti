@@ -264,12 +264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ClassPreloader/ClassPreloader.git",
-                "reference": "9b10b913c2bdf90c3d2e0d726b454fb7f77c552a"
+                "reference": "4257542255b04ea4a7d844c61453987ba313daf6"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/4257542255b04ea4a7d844c61453987ba313daf6",
-                "reference": "9b10b913c2bdf90c3d2e0d726b454fb7f77c552a",
+                "reference": "4257542255b04ea4a7d844c61453987ba313daf6",
                 "shasum": ""
             },
             "require": {
@@ -310,7 +310,7 @@
                 "class",
                 "preload"
             ],
-            "time": "2015-11-09 22:51:51"
+            "time": "2015-11-13 14:44:11"
         },
         {
             "name": "danielstjules/stringy",
@@ -1121,12 +1121,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "4f11935f709ef5e279af9da062507e72bd356e1a"
+                "reference": "a21d3ccb7ea39a5256079adaa7f0901fde02a5b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4f11935f709ef5e279af9da062507e72bd356e1a",
-                "reference": "4f11935f709ef5e279af9da062507e72bd356e1a",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/a21d3ccb7ea39a5256079adaa7f0901fde02a5b0",
+                "reference": "a21d3ccb7ea39a5256079adaa7f0901fde02a5b0",
                 "shasum": ""
             },
             "require": {
@@ -1175,7 +1175,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2015-10-27 04:12:26"
+            "time": "2015-11-15 09:29:07"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1499,12 +1499,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "4b8b1cdc9332a7aa4afff5e5b3d7183e9d882550"
+                "reference": "6ab9d8623cfef969c4faf14d426e3943a2e502ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f28d6ab1e8cea71d09a90830c36900887b673d2c",
-                "reference": "4b8b1cdc9332a7aa4afff5e5b3d7183e9d882550",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6ab9d8623cfef969c4faf14d426e3943a2e502ba",
+                "reference": "6ab9d8623cfef969c4faf14d426e3943a2e502ba",
                 "shasum": ""
             },
             "require": {
@@ -1568,8 +1568,8 @@
             },
             "require-dev": {
                 "aws/aws-sdk-php": "~3.0",
-                "iron-io/iron_mq": "~2.0",
-                "mockery/mockery": "~0.9.1",
+                "iron-io/iron_mq": "~2.0|~4.0",
+                "mockery/mockery": "~0.9.2",
                 "pda/pheanstalk": "~3.0",
                 "phpunit/phpunit": "~4.0",
                 "predis/predis": "~1.0"
@@ -1579,7 +1579,7 @@
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (~2.4).",
                 "fzaninotto/faker": "Required to use the eloquent factory builder (~1.4).",
                 "guzzlehttp/guzzle": "Required to use the Mailgun and Mandrill mail drivers (~5.3|~6.0).",
-                "iron-io/iron_mq": "Required to use the iron queue driver (~2.0).",
+                "iron-io/iron_mq": "Required to use the iron queue driver (~2.0|~4.0).",
                 "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (~1.0).",
                 "league/flysystem-rackspace": "Required to use the Flysystem Rackspace driver (~1.0).",
                 "pda/pheanstalk": "Required to use the beanstalk queue driver (~3.0).",
@@ -1620,7 +1620,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-11-10 14:38:43"
+            "time": "2015-11-15 08:37:24"
         },
         {
             "name": "laravel/socialite",
@@ -1897,12 +1897,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/mural.git",
-                "reference": "f7c5a792f69b9a488f5b38ca6bd6c5d8d8d18767"
+                "reference": "68ab43d70171b810a65dd078dddb9db2d0b8ab79"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravolt/mural/zipball/68ab43d70171b810a65dd078dddb9db2d0b8ab79",
-                "reference": "f7c5a792f69b9a488f5b38ca6bd6c5d8d8d18767",
+                "reference": "68ab43d70171b810a65dd078dddb9db2d0b8ab79",
                 "shasum": ""
             },
             "require": {
@@ -1946,7 +1946,7 @@
                 "laravel",
                 "mural"
             ],
-            "time": "2015-10-27 10:06:01"
+            "time": "2015-11-12 06:29:10"
         },
         {
             "name": "laravolt/packer",
@@ -2108,12 +2108,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/support.git",
-                "reference": "e06f5df119608186d6050755475cd9e5103bafd9"
+                "reference": "784e32de91d0258e242a8fc49aa4bd4ddc4b545f"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravolt/support/zipball/784e32de91d0258e242a8fc49aa4bd4ddc4b545f",
-                "reference": "e06f5df119608186d6050755475cd9e5103bafd9",
+                "reference": "784e32de91d0258e242a8fc49aa4bd4ddc4b545f",
                 "shasum": ""
             },
             "require": {
@@ -2154,7 +2154,7 @@
                 "laravolt",
                 "support"
             ],
-            "time": "2015-11-05 00:35:01"
+            "time": "2015-11-11 22:55:48"
         },
         {
             "name": "laravolt/trail",
@@ -2581,12 +2581,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/maximebf/php-debugbar.git",
-                "reference": "ac9040b1fa1c7ac51c320a75a39ddcdcf9c36dc5"
+                "reference": "70cb7a301e676ba91c50ff5241b4cfa9cc32408e"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/70cb7a301e676ba91c50ff5241b4cfa9cc32408e",
-                "reference": "ac9040b1fa1c7ac51c320a75a39ddcdcf9c36dc5",
+                "reference": "70cb7a301e676ba91c50ff5241b4cfa9cc32408e",
                 "shasum": ""
             },
             "require": {
@@ -2629,7 +2629,7 @@
             "keywords": [
                 "debug"
             ],
-            "time": "2015-11-07 20:17:22"
+            "time": "2015-11-13 19:32:12"
         },
         {
             "name": "mitulgolakiya/laravel-api-generator",
@@ -3249,16 +3249,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.6.0",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "cab3aa3750d451c6e8d002433af583d88fd64862"
+                "reference": "0f04df0b23663799a8941fae13cd8e6299bde3ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/cab3aa3750d451c6e8d002433af583d88fd64862",
-                "reference": "cab3aa3750d451c6e8d002433af583d88fd64862",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/0f04df0b23663799a8941fae13cd8e6299bde3ed",
+                "reference": "0f04df0b23663799a8941fae13cd8e6299bde3ed",
                 "shasum": ""
             },
             "require": {
@@ -3317,7 +3317,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2015-11-08 22:24:35"
+            "time": "2015-11-12 16:18:56"
         },
         {
             "name": "sofa/eloquence",
@@ -4760,16 +4760,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "83af5dea37be9e0abaedd570442607892ff5f874"
+                "reference": "3b2260f79f21cf17d7934c57225a9b208a9e8947"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/homestead/zipball/3b2260f79f21cf17d7934c57225a9b208a9e8947",
-                "reference": "83af5dea37be9e0abaedd570442607892ff5f874",
+                "reference": "3b2260f79f21cf17d7934c57225a9b208a9e8947",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4",
+                "php": ">=5.5",
                 "symfony/console": "~2.0",
                 "symfony/process": "~2.0"
             },
@@ -4793,7 +4793,7 @@
                 }
             ],
             "description": "A virtual machine for web artisans.",
-            "time": "2015-11-06 15:24:08"
+            "time": "2015-11-12 17:18:02"
         },
         {
             "name": "mockery/mockery",
@@ -4896,16 +4896,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.4.0-alpha2",
+            "version": "2.4.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "febe6074a6e6d3dc25930926a027da6cfe994724"
+                "reference": "e82d151ae84b014cedb62cbf37ba3e7599ef21c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/febe6074a6e6d3dc25930926a027da6cfe994724",
-                "reference": "febe6074a6e6d3dc25930926a027da6cfe994724",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/e82d151ae84b014cedb62cbf37ba3e7599ef21c7",
+                "reference": "e82d151ae84b014cedb62cbf37ba3e7599ef21c7",
                 "shasum": ""
             },
             "require": {
@@ -4970,7 +4970,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2015-11-03 06:54:42"
+            "time": "2015-11-13 20:41:42"
         },
         {
             "name": "phpspec/prophecy",
