@@ -1,8 +1,8 @@
 <div class="ui attached menu inverted blue stackable" id="menu-navbar">
     <div class="ui container">
-        <div class="item">
+        <a href="{{ url('/') }}" class="item">
             <img src="{{ asset('img/logo-white.png') }}">
-        </div>
+        </a>
         <a href="{{ url('/') }}" class="item">
             {{ settings('app.name') }}
         </a>
