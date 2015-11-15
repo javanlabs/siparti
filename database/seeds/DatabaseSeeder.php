@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
 
         // root role
         $root = \Laravolt\Acl\Models\Role::create(['name' => 'root']);
+        $admin = \Laravolt\Acl\Models\Role::create(['name' => 'admin']);
+        $adminUjiPublik = \Laravolt\Acl\Models\Role::create(['name' => 'admin-uji-publik']);
 
         // root user
         $user = factory(\App\Entities\User::class)->create([
