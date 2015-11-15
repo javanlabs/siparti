@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsulanProgramKerja;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
+use Krucas\Notification\Facades\Notification;
 
 class ProgramKerjaUsulanController extends Controller
 {
@@ -43,12 +45,16 @@ class ProgramKerjaUsulanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param UsulanProgramKerja $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsulanProgramKerja $request)
     {
-        //
+        $usulanProgramKerja = $this->programKerjaUsulanRepository->create($request->only(['name', 'instansi_stakeholder', 'description']));
+        $this->programKerjaUsulanRepository->attachDocument($usulanProgramKerja, $request->file('file'));
+
+        Notification::success('Usulan program kerja berhasil disimpan.');
+        return redirect()->route('proker-usulan.index');
     }
 
     /**

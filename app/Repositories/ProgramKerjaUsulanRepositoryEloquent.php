@@ -7,6 +7,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Entities\ProgramKerjaUsulan;
 use App\Presenters\ProgramKerjaUsulanPresenter;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class ProgramKerjaUsulanRepositoryEloquent
@@ -16,6 +17,7 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
 {
 
     protected $skipPresenter = true;
+
     /**
      * Specify Model class name
      *
@@ -30,11 +32,36 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
     {
         return ProgramKerjaUsulanPresenter::class;
     }
+
     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
         $this->pushCriteria(app(ProgramKerjaUsulanRequestCriteria::class));
+    }
+
+    public function create(array $attributes)
+    {
+        $model = $this->model->newInstance($attributes);
+        $model->creator()->associate(auth()->user());
+        $model->save();
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+
+    public function attachDocument($model, $files)
+    {
+        $files = (array)$files;
+
+        foreach ($files as $file) {
+            if ($file instanceof UploadedFile) {
+                $model->addDocument($file);
+            }
+        }
+
+        return $model;
     }
 }

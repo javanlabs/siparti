@@ -7,23 +7,20 @@
                 <div class="ui segment very padded">
                     <h2 class="ui header text centered"><span>Usulkan</span> Program Kerja</h2>
 
-                    <form action="{{ route('proker-usulan.store') }}" class="ui form large" method="POST">
+                    <form action="{{ route('proker-usulan.store') }}" class="ui form large" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
+                        {!! SemanticForm::text('name', 'Nama Program Kerja') !!}
+                        {!! SemanticForm::text('instansi_stakeholder', 'Instansi Terkait') !!}
+                        {!! SemanticForm::textarea('description', 'Penjelasan Program Kerja') !!}
                         <div class="field">
-                            <label>Nama Program Kerja</label>
-                            <input type="text" name="name" value="">
+                            <label for="">Dokumen Terkait</label>
+                            <input type="file" name="file[]"><br>
+                            <input type="file" name="file[]"><br>
+                            <input type="file" name="file[]"><br>
+                            <input type="file" name="file[]"><br>
+                            <input type="file" name="file[]">
                         </div>
-                        <div class="field">
-                            <label>Instansi Terkait</label>
-                            <input type="text" name="instansi_stakeholder" value="">
-                        </div>
-
-                        <div class="field">
-                            <label>Deskripsi</label>
-                            <textarea name="description" id="" cols="30" rows="10"></textarea>
-                        </div>
-
-                        <button class="ui button primary">Simpan</button>
+                        {!! SemanticForm::submit('Simpan') !!}
                     </form>
                 </div>
             </div>
