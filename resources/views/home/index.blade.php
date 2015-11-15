@@ -9,7 +9,8 @@
                 <h3 class="body">Layanan partisipasi publik dalam membangun program kerja <br> Kominfo yang berkualitas.
                 </h3>
             </div>
-            <a href="" class="ui button large green">Ikut Berpartisipasi <i class="icon sign in right"></i></a>
+            <a href="{{ (auth()->check())?route('proker-usulan.create'): url('auth/login') }}" class="ui button large green">Ikut Berpartisipasi
+                <i class="icon sign in right"></i></a>
         </div>
     </section>
 
