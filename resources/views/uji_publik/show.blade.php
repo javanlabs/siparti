@@ -26,8 +26,16 @@
                     </tbody>
                 </table>
 
-                {!! Votee::render($ujiPublik, ['class' => 'fluid']) !!}
-                {!! Mural::render($ujiPublik, 'default') !!}
+                <div class="ui segment very padded">
+                    <p>
+                        Bagaimana pendapat Anda tentang program kerja ini?<br>
+                        Berikan penilaian setuju atau tidak setuju, dan jangan lupa memberikan komentar yang membangun.
+                    </p>
+                    {!! Votee::render($ujiPublik, ['class' => 'basic fluid']) !!}
+                </div>
+
+                {!! Mural::render($ujiPublik, 'default', ['class' => 'very padded']) !!}
+
 
             </div>
             <div class="column six wide">
