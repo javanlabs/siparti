@@ -73,4 +73,9 @@ class UjiPublikRepositoryEloquent extends BaseRepository implements UjiPublikRep
 
         return $model;
     }
+
+    public function getDocuments($model)
+    {
+        return $model->getMedia();
+    }
 }

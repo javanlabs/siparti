@@ -64,4 +64,10 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
 
         return $model;
     }
+
+    public function getDocuments($model)
+    {
+        return $model->getMedia();
+    }
+
 }

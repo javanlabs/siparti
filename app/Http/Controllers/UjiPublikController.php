@@ -72,8 +72,9 @@ class UjiPublikController extends Controller
     public function show($id)
     {
         $ujiPublik = $this->repository->find($id);
+        $documents = $this->repository->getDocuments($ujiPublik);
 
-        return view('uji_publik.show', compact('ujiPublik'));
+        return view('uji_publik.show', compact('ujiPublik', 'documents'));
     }
 
     /**

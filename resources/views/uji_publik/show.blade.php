@@ -10,6 +10,19 @@
                 <table class="ui definition table small">
                     <tbody>
                     <tr><td>Materi</td><td>{{ $ujiPublik->present('materi') }}</td></tr>
+                    <tr>
+                        <td>Dokumen</td>
+                        <td>
+                            <div class="ui list divided middle aligned relaxed">
+                                @foreach($documents as $item)
+                                    <div class="item">
+                                        <a href="{{ $item->getUrl() }}">{{ $item->file_name }}</a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </td>
+                    </tr>
+
                     </tbody>
                 </table>
 

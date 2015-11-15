@@ -65,7 +65,10 @@ class ProgramKerjaUsulanController extends Controller
      */
     public function show($id)
     {
-        //
+        $usulanProker = $this->programKerjaUsulanRepository->find($id);
+        $documents = $this->programKerjaUsulanRepository->getDocuments($usulanProker);
+
+        return view('program_kerja_usulan.show', compact('usulanProker', 'documents'));
     }
 
     /**
