@@ -18,7 +18,10 @@
         <a href="{{ route('uji-publik.index') }}" class="item">Uji Publik</a>
         @if(auth()->check())
         <div class="item">
-            <a href="{{ route('proker-usulan.create') }}" class="ui button primary"><i class="icon file text"></i> Usulkan Program Kerja</a>
+            <div class="ui buttons">
+                <a href="{{ route('proker-usulan.create') }}" class="ui button primary"><i class="icon file text"></i> Usulkan Program Kerja</a>
+                <a href="{{ route('uji-publik.create') }}" class="ui button teal"><i class="icon file text"></i> Uji Publik Baru</a>
+            </div>
         </div>
         @endif
         {{--<div class="item">--}}

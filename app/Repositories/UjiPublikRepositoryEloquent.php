@@ -6,6 +6,7 @@ use App\Criteria\UjiPUblikSearchCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Entities\UjiPublik;
 use App\Presenters\UjiPublikPresenter;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class UjiPublikRepositoryEloquent
@@ -49,4 +50,27 @@ class UjiPublikRepositoryEloquent extends BaseRepository implements UjiPublikRep
         return $years;
     }
 
+    public function create(array $attributes)
+    {
+        $model = $this->model->newInstance($attributes);
+        $model->creator()->associate(auth()->user());
+        $model->save();
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+
+    public function attachDocument($model, $files)
+    {
+        $files = (array)$files;
+
+        foreach ($files as $file) {
+            if ($file instanceof UploadedFile) {
+                $model->addDocument($file);
+            }
+        }
+
+        return $model;
+    }
 }

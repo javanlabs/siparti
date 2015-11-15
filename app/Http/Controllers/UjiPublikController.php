@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Krucas\Notification\Facades\Notification;
 
 class UjiPublikController extends Controller
 {
@@ -44,7 +45,7 @@ class UjiPublikController extends Controller
      */
     public function create()
     {
-        //
+        return view('uji_publik.create');
     }
 
     /**
@@ -55,7 +56,11 @@ class UjiPublikController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ujiPublik = $this->repository->create($request->only(['name', 'materi']));
+        $this->repository->attachDocument($ujiPublik, $request->file('file'));
+
+        Notification::success('Uji publik berhasil disimpan.');
+        return redirect()->route('uji-publik.index');
     }
 
     /**

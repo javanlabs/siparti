@@ -18,7 +18,12 @@ class UjiPublik extends Model implements Presentable, Commentable, HasMedia
 
     protected $table = 'uji_publik';
 
-    protected $fillable = [];
+    protected $fillable = ['name', 'materi'];
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
+    }
 
     public function scopeByYear($query, $year)
     {
