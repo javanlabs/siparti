@@ -28,14 +28,7 @@ class DatabaseSeeder extends Seeder
 
         auth()->login($user);
 
-        $users = factory(\App\Entities\User::class, 50)->create();
-
-        factory(\App\Entities\Post::class, 10)->make()->each(function ($post) use ($users) {
-            $author = $users->random();
-            $post->setResponsibleUser($author);
-            $post->author()->associate($author);
-            $post->save();
-        });
+        factory(\App\Entities\User::class, 50)->create();
 
         $this->command->info('Start Seed Satker, ProgramKerja, and Fase');
         factory(\App\Entities\Satker::class, 10)->create()->each(function ($satker) {
