@@ -1499,12 +1499,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "6ab9d8623cfef969c4faf14d426e3943a2e502ba"
+                "reference": "6c2feca20b11dfe71ef1b62a43f138b843b839ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6ab9d8623cfef969c4faf14d426e3943a2e502ba",
-                "reference": "6ab9d8623cfef969c4faf14d426e3943a2e502ba",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6c2feca20b11dfe71ef1b62a43f138b843b839ba",
+                "reference": "6c2feca20b11dfe71ef1b62a43f138b843b839ba",
                 "shasum": ""
             },
             "require": {
@@ -1620,7 +1620,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-11-15 08:37:24"
+            "time": "2015-11-15 21:51:59"
         },
         {
             "name": "laravel/socialite",
@@ -1780,7 +1780,7 @@
                 "laravel",
                 "laravolt"
             ],
-            "time": "2015-10-09 07:53:38"
+            "time": "2015-11-15 14:03:34"
         },
         {
             "name": "laravolt/avatar",
@@ -2000,12 +2000,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/password.git",
-                "reference": "171b8d1fe4594a961e5eeb5434cffb009a91e571"
+                "reference": "7beefeb6e7adde4a8e18879680b758faf80b4762"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/password/zipball/171b8d1fe4594a961e5eeb5434cffb009a91e571",
-                "reference": "171b8d1fe4594a961e5eeb5434cffb009a91e571",
+                "url": "https://api.github.com/repos/laravolt/password/zipball/7beefeb6e7adde4a8e18879680b758faf80b4762",
+                "reference": "7beefeb6e7adde4a8e18879680b758faf80b4762",
                 "shasum": ""
             },
             "require": {
@@ -2048,7 +2048,7 @@
                 "laravolt",
                 "password"
             ],
-            "time": "2015-10-20 10:17:26"
+            "time": "2015-11-16 04:53:26"
         },
         {
             "name": "laravolt/semantic-form",
@@ -2267,7 +2267,7 @@
                 "upvote",
                 "votee"
             ],
-            "time": "2015-10-27 10:13:55"
+            "time": "2015-11-15 13:23:22"
         },
         {
             "name": "lavary/laravel-menu",
@@ -3325,13 +3325,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/uyab/eloquence",
-                "reference": "3a65d49cff134b8512d284182e15905641d7d8ad"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jarektkaczyk/eloquence/zipball/3a65d49cff134b8512d284182e15905641d7d8ad",
-                "reference": "3a65d49cff134b8512d284182e15905641d7d8ad",
-                "shasum": ""
+                "reference": "723d62361858a0005018a2555fca39bd85baa13c"
             },
             "require": {
                 "illuminate/contracts": "~5.1",
@@ -3352,7 +3346,11 @@
                     "src/helpers.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Sofa\\Eloquence\\Tests\\": "tests"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -3373,7 +3371,11 @@
                 "mutable",
                 "searchable"
             ],
-            "time": "2015-10-29 18:50:31"
+            "support": {
+                "issues": "https://github.com/jarektkaczyk/eloquence/issues",
+                "source": "https://github.com/jarektkaczyk/eloquence"
+            },
+            "time": "2015-11-15 11:54:07"
         },
         {
             "name": "spatie/activitylog",
