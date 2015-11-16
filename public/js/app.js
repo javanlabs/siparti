@@ -57,3 +57,30 @@ $(function(){
         $($(this).data('target')).modal('show');
     });
 });
+
+$(document).ready(function() {
+  $(".comments-list").readmore({
+    collapsedHeight : 45,
+    moreLink : '<a href="#">&nbsp&nbsp&nbspLihat semua</a>',
+    lessLink : '<a href="#">&nbsp&nbsp&nbspTutup</a>'
+  });
+
+  $(".delete-button").click(function() {
+
+    var button = $(this);
+
+    $.confirm({
+      title: 'Hapus Komentar',
+      content: 'Apakah anda akan menghapus komentar ini ?',
+      columnClass: 'ui text container',
+      confirm: function(){
+          //button.siblings(".delete-form").find("input[type=submit]").click();
+          button.siblings(".delete-form").submit();
+      }
+
+        });
+
+    });
+
+
+});

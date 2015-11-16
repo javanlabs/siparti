@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
     Route::resource('roles', 'RoleController');
     Route::resource('auditTrail', 'AuditTrailController');
+    Route::resource('comments', 'CommentsController');
 
     Route::group(['namespace' => 'User'], function(){
         Route::resource('users', 'UserController');

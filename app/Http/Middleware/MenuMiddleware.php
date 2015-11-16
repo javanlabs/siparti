@@ -39,7 +39,11 @@ class MenuMiddleware
             $menu->add(trans('menus.admin.settings'), ['route' => ['admin.settings.index']])
                  ->data('permission', 'manage-settings')
                  ->prepend('<i class="icon options"></i>');
-        })->filter(function ($item) {
+            $menu->add(trans('Manage Comments'), ['route' => ['admin.comments.index']])
+                  ->data('permission', 'manage-comments')
+                  ->prepend('<i class="comments icon"></i>');
+
+            })->filter(function ($item) {
             return auth()->user()->can($item->data('permission'));
         });
     }

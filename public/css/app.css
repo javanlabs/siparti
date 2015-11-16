@@ -60,4 +60,8 @@ section.program-list {
 .ui.segment.fitted > table.ui.table {
   border: 0 none; }
 
+.nameColumn {
+  width: 200px;
+}
+
 /*# sourceMappingURL=app.css.map */
