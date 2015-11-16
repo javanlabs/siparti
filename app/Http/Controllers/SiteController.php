@@ -18,4 +18,8 @@ class SiteController extends Controller
         return view('site.tentang');
     }
 
+    public function getRss()
+    {
+        return 'rss';
+    }
 }
