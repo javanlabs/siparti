@@ -20,7 +20,7 @@ class CommentsController extends Controller
     {
         $this->commentsRepository = $commentsRepository;
 
-        //$this->authorize('manage-audit-trails');
+        $this->authorize('manage-comments');
     }
 
 

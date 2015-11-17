@@ -15,7 +15,7 @@
                     <div class="ui right aligned item">
                         <form action="">
                             <div class="ui transparent icon input">
-                                <input class="prompt" name="search" value="{{ request('search') }}" type="text" placeholder="@lang('audit_trail.search')">
+                                <input class="prompt" name="search" value="{{ request('search') }}" type="text" placeholder="Cari Komentar">
                                 <i class="search link icon"></i>
                             </div>
                         </form>
@@ -67,6 +67,24 @@
                 {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($comments))->render('attached bottom right') !!}
             </div>
         </section>
+    </div>
+
+    <div class="ui small test modal">
+      <div class="header">
+        Hapus Komentar
+      </div>
+    <div class="content">
+      <p>Apakah anda akan menghapus komentar ini ?</p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">
+        Tidak
+        </div>
+        <div class="ui positive right labeled icon button yess-button">
+          Ya
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
     </div>
 
 

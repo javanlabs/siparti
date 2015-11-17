@@ -39,7 +39,7 @@ class MenuMiddleware
             $menu->add(trans('menus.admin.settings'), ['route' => ['admin.settings.index']])
                  ->data('permission', 'manage-settings')
                  ->prepend('<i class="icon options"></i>');
-            $menu->add(trans('Manage Comments'), ['route' => ['admin.comments.index']])
+            $menu->add(trans('menus.admin.manage_comments'), ['route' => ['admin.comments.index']])
                   ->data('permission', 'manage-comments')
                   ->prepend('<i class="comments icon"></i>');
 
