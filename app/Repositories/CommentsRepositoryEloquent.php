@@ -41,5 +41,10 @@ class CommentsRepositoryEloquent extends BaseRepository implements CommentsRepos
         return $this->parserResult($results);
     }
 
+    public function delete($id)
+    {
+        return \Mural::remove($id);
+    }
+
 
 }

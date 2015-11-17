@@ -38,5 +38,9 @@ class EventServiceProvider extends ServiceProvider
         $events->listen('mural.comment.add', function($comment, $content, $author, $room){
             $content->increment('comment');
         });
+
+        $events->listen('mural.comment.remove', function($comment, $user){
+            $comment->commentable->decrement('comment');
+        });
     }
 }
