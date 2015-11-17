@@ -92,5 +92,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         Role::findOrFail($id)->delete();
-    }
+
+        \Notification::success('acl.roles.delete.success');
+        return redirect()->route('admin.roles.index');    }
 }
