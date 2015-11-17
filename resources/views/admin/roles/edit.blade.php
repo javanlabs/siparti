@@ -33,5 +33,16 @@
             {!! Form::close() !!}
 
         </div>
+
+        <div class="ui segment very padded red">
+            <h3 class="">Hapus Role</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto asperiores consectetur consequuntur dicta fugit illo laborum magnam maiores natus obcaecati possimus repellendus reprehenderit similique, veniam vitae voluptates voluptatum! Amet?</p>
+            {!! Form::open([
+                'method' => 'delete',
+                'route' => ['admin.roles.destroy', $role['id']]
+            ]) !!}
+            <button class="ui button red" type="submit" name="submit" value="1">@lang('button.delete')</button>
+            {!! Form::close() !!}
+        </div>
     </div>
 @endsection
