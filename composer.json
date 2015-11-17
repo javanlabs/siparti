@@ -55,6 +55,7 @@
             "database"
         ],
         "psr-4": {
+            "Siparti\\UjiPublik\\": "packages/siparti/uji-publik/src",
             "Laravolt\\Acl\\": "packages/laravolt/acl/src",
             "App\\": "app/"
         }
