@@ -29,10 +29,11 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $comments = $this->commentsRepository->paginate(20);
-        return view('admin.comments.index', compact('comments'));
+
+      $comments = $this->commentsRepository->paginate(20);
+      return view('admin.comments.index', compact('comments'));
     }
 
     /**
@@ -47,4 +48,27 @@ class CommentsController extends Controller
         return redirect()->back();
 
     }
+
+    /**
+     * Menghapus multiple comment
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteMultiple(Request $request)
+    {
+
+      $toBeDeletedIds = $request->get('deletedId');
+
+      foreach ($toBeDeletedIds as $id) {
+
+        $this->commentsRepository->delete((int)$id);
+
+      }
+
+      return redirect()->back();
+
+    }
+
+
 }

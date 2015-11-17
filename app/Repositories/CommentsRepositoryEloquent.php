@@ -5,7 +5,10 @@ namespace App\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\CommentsRepository;
-use Laravolt\Mural\Comment;
+use App\Entities\Comments;
+use App\Criteria\CommentsSearchCriteria;
+
+
 
 /**
  * Class CommentsRepositoryEloquent
@@ -20,7 +23,7 @@ class CommentsRepositoryEloquent extends BaseRepository implements CommentsRepos
      */
     public function model()
     {
-        return Comment::class;
+        return Comments::class;
     }
 
     /**
@@ -29,6 +32,8 @@ class CommentsRepositoryEloquent extends BaseRepository implements CommentsRepos
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(app(CommentsSearchCriteria::class));
+
     }
 
     public function paginate($limit = null, $columns = array('*'))
@@ -40,6 +45,7 @@ class CommentsRepositoryEloquent extends BaseRepository implements CommentsRepos
         $this->resetModel();
         return $this->parserResult($results);
     }
+
 
 
 }

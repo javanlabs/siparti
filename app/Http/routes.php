@@ -42,6 +42,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::resource('auditTrail', 'AuditTrailController');
     Route::resource('comments', 'CommentsController');
 
+    Route::post('comments/deletemultiple',
+      [
+        'uses' => 'CommentsController@deleteMultiple',
+        'as' => 'admin.comments.deleteMultiple'
+      ]);
+
+    Route::get('comments/cari/search', 'CommentsController@mencari');  
+
     Route::group(['namespace' => 'User'], function(){
         Route::resource('users', 'UserController');
         Route::resource('profile', 'ProfileController');
