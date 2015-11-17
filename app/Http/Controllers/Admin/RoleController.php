@@ -79,7 +79,8 @@ class RoleController extends Controller
 
         $role->permissions()->sync($request->get('permissions', []));
 
-        return redirect()->back();
+        \Notification::success('acl.roles.update.success');
+        return redirect()->route('admin.roles.index');
     }
 
     /**
