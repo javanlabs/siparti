@@ -18,6 +18,11 @@ Route::get('/', function(){
 Route::controller('components', 'ComponentController');
 
 Route::group(['namespace' => 'My', 'prefix' => 'my', 'middleware' => 'auth'], function(){
+
+    Route::get('/', function(){
+        return redirect('my/profile');
+    });
+
     Route::get('profile', 'ProfileController@edit');
     Route::put('profile', 'ProfileController@update');
     Route::get('email', 'EmailController@edit');
