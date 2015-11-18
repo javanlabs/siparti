@@ -25,7 +25,7 @@
         "laravolt/votee": "dev-master",
         "laravolt/packer": "dev-master",
         "laravolt/auth": "dev-master",
-        "laravolt/support": "dev-master",
+        "laravolt/support": "0.*",
         "laravolt/avatar": "dev-master",
         "laravolt/password": "dev-master",
         "laravolt/email": "dev-master",
