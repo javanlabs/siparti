@@ -7,7 +7,7 @@
         <div class="ui top attached menu">
             <div class="menu">
                 <div class="item borderless">
-                    <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($collection))->summary() !!}</small>
+                    <small>{!! sui_pagination($collection)->summary() !!}</small>
                 </div>
             </div>
             <div class="right menu">
@@ -39,7 +39,9 @@
                             <div class="ui mini icon basic buttons">
                                 <a href="{{ route('uji-publik.show', $item->id) }}" class="ui button"><i class="file icon"></i></a>
                                 <a href="{{ route('uji-publik.edit', $item->id) }}" class="ui button"><i class="edit icon"></i></a>
-                                <a href="" class="ui button"><i class="delete icon"></i></a>
+                                {!! SemanticForm::open()->action(route('uji-publik.destroy', $item->present('id')))->delete() !!}
+                                <button type="submit" class="ui button"><i class="delete icon"></i></button>
+                                {!! SemanticForm::close() !!}
                             </div>
                         </td>
                     </tr>
@@ -53,9 +55,9 @@
         </div>
         <div class="ui menu bottom attached">
             <div class="item borderless">
-                <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($collection))->pager() !!}</small>
+                <small>{!! sui_pagination($collection)->pager() !!}</small>
             </div>
-            {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($collection))->render('attached bottom right') !!}
+            {!! sui_pagination($collection)->render('attached bottom right') !!}
         </div>
 
     </div>
