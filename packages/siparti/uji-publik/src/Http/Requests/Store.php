@@ -1,4 +1,4 @@
-<?php namespace Sipart\Http\Requests;
+<?php namespace Siparti\UjiPublik\Http\Requests;
 
 use App\Http\Requests\Request;
 
@@ -21,7 +21,9 @@ class Store extends Request {
      */
     public function rules()
     {
-        return [];
+        return [
+            'name'  => 'required'
+        ];
     }
 
 }

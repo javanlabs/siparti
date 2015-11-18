@@ -1,8 +1,8 @@
 <?php namespace Siparti\UjiPublik\Http\Controllers;
 
 use App\Http\Controllers\Controller as BaseController;
-use Sipart\Http\Requests\Store;
-use Sipart\Http\Requests\Update;
+use Siparti\UjiPublik\Http\Requests\Store;
+use Siparti\UjiPublik\Http\Requests\Update;
 use Siparti\UjiPublik\Repositories\RepositoryInterface;
 
 class Controller extends BaseController

@@ -11,9 +11,7 @@ class Model extends BaseModel implements Presentable
 	public $table = "uji_publik";
 
 	public $fillable = [
-	    "id",
-		"created_at",
-		"updated_at"
+	    "name",
 	];
 
 }
