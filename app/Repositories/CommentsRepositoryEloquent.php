@@ -7,7 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\CommentsRepository;
 use App\Entities\Comments;
 use App\Criteria\CommentsSearchCriteria;
-
+use App\Presenters\CommentsPresenter;
 
 
 /**
@@ -16,6 +16,9 @@ use App\Criteria\CommentsSearchCriteria;
  */
 class CommentsRepositoryEloquent extends BaseRepository implements CommentsRepository
 {
+
+    protected $skipPresenter = true;
+
     /**
      * Specify Model class name
      *
@@ -24,6 +27,11 @@ class CommentsRepositoryEloquent extends BaseRepository implements CommentsRepos
     public function model()
     {
         return Comments::class;
+    }
+
+    public function presenter()
+    {
+        return CommentsPresenter::class;
     }
 
     /**

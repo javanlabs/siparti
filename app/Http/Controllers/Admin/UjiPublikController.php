@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\CommentsRepositoryEloquent;
+use App\Repositories\UjiPublikRepositoryEloquent;
 
 class UjiPublikController extends Controller
 {
@@ -16,7 +16,7 @@ class UjiPublikController extends Controller
     /**
      * AuditTrailController constructor.
      */
-    public function __construct(CommentsRepositoryEloquent $ujiPublikRepository)
+    public function __construct(UjiPublikRepositoryEloquent $ujiPublikRepository)
     {
         $this->ujiPublikRepository = $ujiPublikRepository;
 
@@ -34,6 +34,7 @@ class UjiPublikController extends Controller
 
       $ujiPublik = $this->ujiPublikRepository->paginate(20);
       return view('admin.ujiPublik.index', compact('ujiPublik'));
+      //dd($ujiPublik);
     }
 
     /**
@@ -50,7 +51,7 @@ class UjiPublikController extends Controller
     }
 
     /**
-     * Menghapus multiple comment
+     * Menghapus multiple uji publik
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

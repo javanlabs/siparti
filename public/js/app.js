@@ -64,7 +64,7 @@ $(document).ready(function() {
 
   function deleteComment(button) {
 
-      button.siblings(".delete-form").submit();
+      button.parents().find("#delete-form").submit();
   }
 
   $(".comments-list").readmore({

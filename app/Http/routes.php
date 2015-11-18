@@ -40,7 +40,28 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
     Route::resource('roles', 'RoleController');
     Route::resource('auditTrail', 'AuditTrailController');
+    Route::resource('programKerja', 'ProgramKerjaController');
+    Route::resource('programKerjaUsulan', 'ProgramKerjaUsulanController');
+    Route::resource('ujiPublik', 'UjiPublikController');
     Route::resource('comments', 'CommentsController');
+
+    Route::post('programKerjaUsulan/deletemultiple',
+      [
+        'uses' => 'ProgramKerjaUsulanController@deleteMultiple',
+        'as' => 'admin.programKerjaUsulan.deleteMultiple'
+      ]);
+
+    Route::post('programKerja/deletemultiple',
+      [
+        'uses' => 'ProgramKerjaController@deleteMultiple',
+        'as' => 'admin.programKerja.deleteMultiple'
+      ]);
+
+    Route::post('ujiPublik/deletemultiple',
+      [
+        'uses' => 'UjiPublikController@deleteMultiple',
+        'as' => 'admin.ujiPublik.deleteMultiple'
+      ]);
 
     Route::post('comments/deletemultiple',
       [
@@ -48,7 +69,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'as' => 'admin.comments.deleteMultiple'
       ]);
 
-    Route::get('comments/cari/search', 'CommentsController@mencari');  
 
     Route::group(['namespace' => 'User'], function(){
         Route::resource('users', 'UserController');

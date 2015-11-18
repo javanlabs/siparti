@@ -6,21 +6,21 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\UsulanProgramKerjaEloquent;
+use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 
-class UsulanProgramKerjaController extends Controller
+class ProgramKerjaUsulanController extends Controller
 {
 
-    protected $usulanProgramKerjaRepository;
+    protected $programKerjaUsulanRepository;
 
     /**
-     * UsulanProgramKerjaController constructor.
+     * ProgramKerjaUsulanController constructor.
      */
-    public function __construct(UsulanProgramKerjaEloquent $usulanProgramKerjaRepository)
+    public function __construct(ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository)
     {
-        $this->usulanProgramKerjaRepository = $usulanProgramKerjaRepository;
+        $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
 
-        $this->authorize('manage-usulan-program-kerja');
+        $this->authorize('manage-program-usulan-kerja');
     }
 
 
@@ -32,8 +32,8 @@ class UsulanProgramKerjaController extends Controller
     public function index(Request $request)
     {
 
-      $usulanProgramKerja = $this->usulanProgramKerjaRepository->paginate(20);
-      return view('admin.usulanProgramKerja.index', compact('usulanProgramKerja'));
+      $programKerjaUsulan = $this->programKerjaUsulanRepository->paginate(20);
+      return view('admin.programKerjaUsulan.index', compact('programKerjaUsulan'));
     }
 
     /**
@@ -44,13 +44,12 @@ class UsulanProgramKerjaController extends Controller
      */
     public function destroy($id)
     {
-        $this->usulanProgramKerjaRepository->delete($id);
+        $this->programKerjaUsulanRepository->delete($id);
         return redirect()->back();
-
     }
 
     /**
-     * Menghapus multiple usulanProgramKerja
+     * Menghapus multiple programKerjaUsulan
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -62,7 +61,7 @@ class UsulanProgramKerjaController extends Controller
 
       foreach ($toBeDeletedIds as $id) {
 
-        $this->commentsRepository->delete((int)$id);
+        $this->programKerjaUsulanRepository->delete((int)$id);
 
       }
 

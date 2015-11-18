@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\ProgramKerjaEloquent;
+use App\Repositories\FaseRepositoryEloquent;
 
 class ProgramKerjaController extends Controller
 {
@@ -14,9 +14,9 @@ class ProgramKerjaController extends Controller
     protected $programKerjaRepository;
 
     /**
-     * AuditTrailController constructor.
+     * ProgramKerjaController constructor.
      */
-    public function __construct(ProgramKerjaEloquent $programKerjaRepository)
+    public function __construct(FaseRepositoryEloquent $programKerjaRepository)
     {
         $this->programKerjaRepository = $programKerjaRepository;
 
@@ -33,6 +33,7 @@ class ProgramKerjaController extends Controller
     {
 
       $programKerja = $this->programKerjaRepository->paginate(20);
+      //dd($programKerja);
       return view('admin.programKerja.index', compact('programKerja'));
     }
 

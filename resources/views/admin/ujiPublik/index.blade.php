@@ -8,14 +8,14 @@
             <div class="ui top attached menu">
                 <div class="menu">
                     <div class="item borderless">
-                        <h4>Daftar Komentar</h4>
+                        <h4>Daftar Uji Publik</h4>
                     </div>
                 </div>
                 <div class="right menu">
                     <div class="ui right aligned item">
-                        <form method="GET" action="{{ route('admin.comments.index') }}">
+                        <form method="GET" action="{{ route('admin.ujiPublik.index') }}">
                             <div class="ui transparent icon input">
-                                <input class="prompt" name="searchQuery" value="{{ request('search') }}" type="text" placeholder="Cari Komentar">
+                                <input class="prompt" name="nama" value="{{ request('search') }}" type="text" placeholder="Cari Uji Publik">
                                 <i class="search link icon"></i>
                             </div>
                         </form>
@@ -27,24 +27,31 @@
                     <thead>
                     <tr>
                         <th ><button data-click-state="0" id="checkAll"><i class="check circle icon icon-button"></i></button></th>
-                        <th>Pembuat Komentar</th>
-                        <th>Komentar</th>
+                        <th>Nama</th>
+                        <th>Materi</th>
+                        <th>Dokumen</th>
                         <th>Dibuat pada tanggal</th>
                         <th>&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse($comments as $comment)
-
+                    @forelse($ujiPublik as $data)
                         <tr>
-
-                            <td><input class="deletedId" type="checkbox" value="{!! $comment->present('id') !!}" /></td>
-                            <td class="nameColumn"><img class="ui image avatar" src="{!! $comment->present('avatar') !!}" /> {!! $comment->present('author_name') !!} </td>
-                            <td class="comments-list">{!! $comment->present('content') !!}</td>
-                            <td>{!! $comment->present('created_at') !!}</td>
+                            <td><input class="deletedId" type="checkbox" value="{!! $data->present('id') !!}" /></td>
+                            <td class="nameColumn">{!! $data->present('name') !!}</td>
+                            <td class="comments-list">{!! $data->present('materi') !!}</td>
+                            <td>
+                                @foreach($data->getMedia() as $item)
+                                  <a href="{{ $item->getUrl() }}">{{ $item->file_name }}</a>
+                                @endforeach
+                              </ul>
+                            </td>
+                            <td>
+                              {!! $data->present('created_at') !!}
+                            </td>
                             <td class="right aligned">
 
-                              <form role="form" action="{{ route('admin.comments.destroy', ['id' => $comment->id]) }}" method="POST" id="delete-form">
+                              <form role="form" action="{{ route('admin.ujiPublik.destroy',  [ 'id' => $data->present('id') ]) }}" method="POST" id="delete-form">
                                 <input type="hidden" name="_method" value="DELETE">
                                 {{ csrf_field() }}
                               </form>
@@ -64,19 +71,19 @@
             </div>
             <div class="ui menu bottom attached">
                 <div class="item borderless">
-                    <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($comments))->summary() !!}</small>
+                    <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($ujiPublik))->summary() !!}</small>
                 </div>
-                {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($comments))->render('attached bottom right') !!}
+                {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($ujiPublik))->render('attached bottom right') !!}
             </div>
         </section>
     </div>
 
     <div class="ui small test modal deleteConfirm">
       <div class="header">
-        Hapus Komentar
+        Hapus Uji Publik
       </div>
     <div class="content">
-      <p>Apakah anda akan menghapus komentar ini ?</p>
+      <p>Apakah anda akan menghapus uji publik ini ?</p>
     </div>
     <div class="actions">
         <div class="ui negative button">
@@ -94,7 +101,7 @@
         Hapus Beberapa Komentar
       </div>
     <div class="content">
-      <p>Anda akan menghapus semua komentar yang telah dicentang ?</p>
+      <p>Anda akan menghapus semua uji publik yang telah dicentang ?</p>
     </div>
     <div class="actions">
         <div class="ui negative button">
@@ -107,7 +114,7 @@
       </div>
     </div>
 
-    <form method="post" action="{{ route('admin.comments.deleteMultiple') }}" role="form" id="multipleDeletedForm">
+    <form method="post" action="{{ route('admin.ujiPublik.deleteMultiple') }}" role="form" id="multipleDeletedForm">
       {{ csrf_field() }}
 
     </form>

@@ -20,7 +20,7 @@ class ProgramKerjaSearchCriteria implements CriteriaInterface
     public function apply($model, RepositoryInterface $repository)
     {
         if ($keyword = $this->request->get('nama')) {
-           $model = $model->search($keyword, ['programKerja.name']);
+           $model = $model->search($keyword, ['programKerja.name', 'description', 'satker.name']);
         }
 
         if ($keyword = $this->request->get('satker_id')) {

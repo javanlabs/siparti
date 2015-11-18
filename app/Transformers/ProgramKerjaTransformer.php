@@ -24,9 +24,11 @@ class ProgramKerjaTransformer extends TransformerAbstract
             'id'         => (int) $model->id,
             'name'      => $model->name,
             'satker'      => $model->satker_id,
+            'creator_name' => $model->creator->name,
+
             /* place your other model properties here */
 
-            'created_at' => $model->created_at,
+            'created_at' => $model->created_at->formatLocalized('%e %B %Y'),
             'updated_at' => $model->updated_at
         ];
     }

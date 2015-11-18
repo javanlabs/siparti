@@ -46,10 +46,12 @@ class FaseTransformer extends TransformerAbstract
             'pagu'             => $model->pagu,
             'komentar'         => $model->comment,
             'dukungan'         => $model->vote_up,
+            'penolakan'        => $model->vote_down,
             'label'            => (new FaseType($model->type))->label(),
+            'media'            => $model->getMedia(),
 
 
-            'created_at' => $model->created_at,
+            'created_at' => $model->created_at->formatLocalized('%e %B %Y'),
             'updated_at' => $model->updated_at
         ];
     }

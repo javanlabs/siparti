@@ -22,7 +22,7 @@ class ProgramKerjaUsulanRequestCriteria implements CriteriaInterface
         $model = $model->latest();
 
         if ($keyword = $this->request->get('nama')) {
-            $model = $model->search($keyword, ['name', 'description']);
+            $model = $model->search($keyword, ['name', 'description', 'creator.name', 'instansi_stakeholder']);
         }
 
         return $model;
