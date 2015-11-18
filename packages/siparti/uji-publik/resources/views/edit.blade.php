@@ -9,6 +9,6 @@
         {!! SemanticForm::text('name', 'Nama') !!}
         {!! SemanticForm::submit('Simpan') !!}
         {!! SemanticForm::close() !!}
-        
+
     </div>
 @endsection
