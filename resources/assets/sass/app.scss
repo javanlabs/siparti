@@ -74,9 +74,11 @@ section.page {
   .ui.header {
     font-weight: 700;
     text-align: center;
-    margin-bottom: 40px;
     span {
       color: $primary-color;
+    }
+    &h2 {
+      margin-bottom: 40px;
     }
   }
 }

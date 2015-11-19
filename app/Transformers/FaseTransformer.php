@@ -44,6 +44,8 @@ class FaseTransformer extends TransformerAbstract
             'periode'          => $model->start_date->formatLocalized('%e %B %Y') . ' - ' . $model->end_date->formatLocalized('%e %B %Y'),
             'pic'              => $model->pic,
             'pagu'             => $model->pagu,
+            'show_comment'     => (bool)in_array($model->comment_mode, ['show', 'lock']),
+            'lock_comment'     => (bool)($model->comment_mode == 'lock'),
             'komentar'         => $model->comment,
             'dukungan'         => $model->vote_up,
             'penolakan'        => $model->vote_down,

@@ -42,6 +42,7 @@ $factory->define(App\Entities\Satker::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Entities\Fase::class, function (Faker\Generator $faker) {
+    $commentModes = ['show', 'hide', 'lock'];
     return [
         'description'   => $faker->paragraphs(5, true),
         'scope' => $faker->paragraph(10),
@@ -52,7 +53,8 @@ $factory->define(App\Entities\Fase::class, function (Faker\Generator $faker) {
         'kendala' => $faker->sentence(),
         'pic' => $faker->name,
         'target' => $faker->sentence(),
-        'pagu' => $faker->numberBetween(1000000, 999999999)
+        'pagu' => $faker->numberBetween(1000000, 999999999),
+        'comment_mode' => $commentModes[array_rand($commentModes)],
     ];
 });
 

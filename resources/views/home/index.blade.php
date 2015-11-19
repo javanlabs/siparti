@@ -45,22 +45,24 @@
         </div>
     </section>
 
-    <section class="program-list ui container">
-        <div class="ui equal width grid stackable">
-            <div class="column">
-                <div class="ui blue inverted segment center aligned"><h4>Program Kerja Terbaru</h4></div>
+    <section class="program-list ui container page">
+        <div class="ui segment padded">
+            <div class="ui equal width grid stackable">
+                <div class="column">
+                    <h3 class="ui header">Program Kerja <span>Terbaru</span></h3>
 
-                @foreach($terbaru as $item)
-                    @include('program_kerja.card')
-                @endforeach
-                <a href="{{ route('proker.berjalan') }}" class="ui button fluid basic">Lihat Program Terbaru Lainnya</a>
-            </div>
-            <div class="column">
-                <div class="ui blue inverted segment center aligned"><h4>Program Kerja Terpopuler</h4></div>
-                @foreach($terbaru as $item)
-                    @include('program_kerja.card')
-                @endforeach
-                <a href="{{ route('proker.arsip') }}" class="ui button fluid basic">Lihat Program Populer Lainnya</a>
+                    @foreach($terbaru as $item)
+                        @include('program_kerja.card')
+                    @endforeach
+                    <a href="{{ route('proker.berjalan') }}" class="ui button fluid basic">Lihat Program Terbaru Lainnya</a>
+                </div>
+                <div class="column">
+                    <h3 class="ui header">Program Kerja <span>Terpopuler</span></h3>
+                    @foreach($terpopuler as $item)
+                        @include('program_kerja.card')
+                    @endforeach
+                    <a href="{{ route('proker.berjalan', ['orderBy' => 'vote_up', 'sortedBy' => 'desc']) }}" class="ui button fluid basic">Lihat Program Populer Lainnya</a>
+                </div>
             </div>
         </div>
     </section>

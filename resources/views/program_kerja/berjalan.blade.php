@@ -5,7 +5,7 @@
 
         <h2 class="ui header">Program Kerja <span>Sedang Berjalan</span></h2>
 
-        @include('program_kerja.table')
+        @include('program_kerja.table', ['route' => 'proker.berjalan'])
 
     </section>
 @endsection

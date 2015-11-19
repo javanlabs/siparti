@@ -1,8 +1,8 @@
 <div class="ui list horizontal link right floated" style="margin-top: 5px">
     <div class="item"><strong>Urut berdasar:</strong></div>
-    <a href="{{ route('proker.arsip', ['orderBy' => 'created_at', 'sortedBy' => 'desc']) }}" class="item">Terbaru</a>
-    <a href="{{ route('proker.arsip', ['orderBy' => 'vote_up', 'sortedBy' => 'desc']) }}" class="item">Dukungan</a>
-    <a href="{{ route('proker.arsip', ['orderBy' => 'comment', 'sortedBy' => 'desc']) }}" class="item">Komentar</a>
+    <a href="{{ route($route, ['orderBy' => 'created_at', 'sortedBy' => 'desc']) }}" class="item">Terbaru</a>
+    <a href="{{ route($route, ['orderBy' => 'vote_up', 'sortedBy' => 'desc']) }}" class="item">Dukungan</a>
+    <a href="{{ route($route, ['orderBy' => 'comment', 'sortedBy' => 'desc']) }}" class="item">Komentar</a>
 </div>
 
 <form class="ui form top attached menu borderless stackable">
