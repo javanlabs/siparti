@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c75173e558d8d4d635492339450bca85",
-    "content-hash": "f3463f3d1aa218273701b45d2b232d82",
+    "hash": "93847fb40d504db5f7b5caafb7f41d8e",
+    "content-hash": "e6e6ce63683840b8b34a8af944c7b97b",
     "packages": [
         {
             "name": "adamwathan/bootforms",
@@ -1503,7 +1503,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6c2feca20b11dfe71ef1b62a43f138b843b839ba",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/bc63ea2e6feee5ce5584adec66b0ecc34e7455eb",
                 "reference": "6c2feca20b11dfe71ef1b62a43f138b843b839ba",
                 "shasum": ""
             },
@@ -1736,7 +1736,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/auth/zipball/97aa2995e8c634430bd3b2bc2b9db3c9f560a3d3",
+                "url": "https://api.github.com/repos/laravolt/auth/zipball/0e1d05461f9d62ae31b89fe815a2467a5fd697b7",
                 "reference": "97aa2995e8c634430bd3b2bc2b9db3c9f560a3d3",
                 "shasum": ""
             },
@@ -1901,7 +1901,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/mural/zipball/68ab43d70171b810a65dd078dddb9db2d0b8ab79",
+                "url": "https://api.github.com/repos/laravolt/mural/zipball/8c5465a6e198acf9dc13d920c37dc9bfce2d7e14",
                 "reference": "68ab43d70171b810a65dd078dddb9db2d0b8ab79",
                 "shasum": ""
             },
@@ -2112,7 +2112,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/support/zipball/784e32de91d0258e242a8fc49aa4bd4ddc4b545f",
+                "url": "https://api.github.com/repos/laravolt/support/zipball/1f20be9a3d55aceac41efd323a0e26d76516bec5",
                 "reference": "784e32de91d0258e242a8fc49aa4bd4ddc4b545f",
                 "shasum": ""
             },
@@ -2267,7 +2267,7 @@
                 "upvote",
                 "votee"
             ],
-            "time": "2015-11-15 13:23:22"
+            "time": "2015-10-27 10:13:55"
         },
         {
             "name": "lavary/laravel-menu",
@@ -3320,6 +3320,57 @@
             "time": "2015-11-12 16:18:56"
         },
         {
+            "name": "roumen/feed",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RoumenDamianoff/laravel-feed.git",
+                "reference": "ff21e322e8ad512b5f8d44568843eab60a189cc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RoumenDamianoff/laravel-feed/zipball/ff21e322e8ad512b5f8d44568843eab60a189cc2",
+                "reference": "ff21e322e8ad512b5f8d44568843eab60a189cc2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "orchestra/testbench": "2.2.*",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Roumen\\Feed": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roumen Damianoff",
+                    "email": "roumen@dawebs.com",
+                    "homepage": "https://roumen.it",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple feed generator for Laravel.",
+            "homepage": "https://roumen.it/projects/laravel-feed",
+            "keywords": [
+                "atom",
+                "feed",
+                "generator",
+                "laravel",
+                "rss"
+            ],
+            "time": "2015-11-03 13:21:36"
+        },
+        {
             "name": "sofa/eloquence",
             "version": "5.1.x-dev",
             "source": {
@@ -3806,7 +3857,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/7fc7b396907eb49d3a64028678a49586f6f2e7f9",
+                "url": "https://api.github.com/repos/symfony/console/zipball/16bb1cb86df43c90931df65f529e7ebd79636750",
                 "reference": "7fc7b396907eb49d3a64028678a49586f6f2e7f9",
                 "shasum": ""
             },
@@ -4139,7 +4190,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/a77de50e508b2c1eeac5f2f552f135fff25e7019",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/31361409b4aa6a1694fc376b790d98b0f14e0281",
                 "reference": "a77de50e508b2c1eeac5f2f552f135fff25e7019",
                 "shasum": ""
             },
@@ -4276,7 +4327,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/4b557e0d32e20a16938ead0aec06e4615d84668f",
+                "url": "https://api.github.com/repos/symfony/process/zipball/99d1aae042a06b5fbe2e622cd56e18c001ed1299",
                 "reference": "4b557e0d32e20a16938ead0aec06e4615d84668f",
                 "shasum": ""
             },
@@ -4325,7 +4376,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/8b7a460910d756914a36b2a9a3e5a9292682b4d6",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/7450f6196711b124fb8b04a12286d01a0401ddfe",
                 "reference": "8b7a460910d756914a36b2a9a3e5a9292682b4d6",
                 "shasum": ""
             },
@@ -4398,7 +4449,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/eee4ee643bdb4753c31026762f163d6628ee286f",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/e4ecb9c3ba1304eaf24de15c2d7a428101c1982f",
                 "reference": "eee4ee643bdb4753c31026762f163d6628ee286f",
                 "shasum": ""
             },
@@ -4461,7 +4512,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/c45956dcc15f0687339f2ccdb885aaf27e5ee4d2",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/72bcb27411780eaee9469729aace73c0d46fb2b8",
                 "reference": "c45956dcc15f0687339f2ccdb885aaf27e5ee4d2",
                 "shasum": ""
             },
@@ -4671,7 +4722,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/cd5fb1c262e1734366e77688b011a0f0422ce06d",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/008e69f17a1286c29b8a60082119b7d6eee69082",
                 "reference": "cd5fb1c262e1734366e77688b011a0f0422ce06d",
                 "shasum": ""
             },
@@ -4766,7 +4817,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/3b2260f79f21cf17d7934c57225a9b208a9e8947",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/055a340232dfa0a9dca116795153dcf474f7c206",
                 "reference": "3b2260f79f21cf17d7934c57225a9b208a9e8947",
                 "shasum": ""
             },
@@ -5284,7 +5335,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f9251d0910483fcbe22ee7a47ed604e43070770",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d82e69c1b34337eae1628c5e2e3b01d2082c4aa9",
                 "reference": "6f9251d0910483fcbe22ee7a47ed604e43070770",
                 "shasum": ""
             },
@@ -5784,7 +5835,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/3f79752644a5eb87d56a8caafac072f0ecf5d278",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e594d90fba4e4cddc146bdd3907126b1d74d7316",
                 "reference": "3f79752644a5eb87d56a8caafac072f0ecf5d278",
                 "shasum": ""
             },
@@ -5841,6 +5892,7 @@
         "laravolt/trail": 20,
         "mitulgolakiya/laravel-api-generator": 20,
         "adamwathan/bootforms": 20,
+        "roumen/feed": 20,
         "laravel/homestead": 20
     },
     "prefer-stable": false,

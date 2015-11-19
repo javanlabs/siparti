@@ -150,6 +150,7 @@ return [
         'Krucas\Notification\NotificationServiceProvider',
         Laravel\Socialite\SocialiteServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
+        'Roumen\Feed\FeedServiceProvider',
 
         /*
          * Application Service Providers...
@@ -229,6 +230,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Avatar'    => Laravolt\Avatar\Facade::class,
         'SemanticForm'    => Laravolt\SemanticForm\Facade::class,
+        'Feed' => 'Roumen\Feed\Facades\Feed'
     ],
 
 ];

@@ -5,9 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Repositories\FaseRepositoryEloquent;
+use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
+use App\Repositories\UjiPublikRepositoryEloquent;
+use Feed;
+use Route;
 
 class SiteController extends Controller
 {
+
+    protected $ujiPublikRepository;
+    protected $programKerjaUsulanRepository;
+    protected $programKerjaRepository;
+
+    public function __construct(
+        ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository,
+        FaseRepositoryEloquent $programKerjaRepository,
+        UjiPublikRepositoryEloquent $ujiPublikRepository
+    ) {
+
+        $this->programKerjaRepository = $programKerjaRepository;
+        
+        $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
+        
+        $this->ujiPublikRepository = $ujiPublikRepository;
+    }
+
     public function getKontak()
     {
         return view('site.kontak');
@@ -20,6 +43,95 @@ class SiteController extends Controller
 
     public function getRss()
     {
-        return 'rss';
+
+        $ujiPubliks = $this->ujiPublikRepository->scopeQuery(function($query){
+            return $query->orderBy('created_at','desc');
+        })->all();
+
+        $programKerjaUsulans = $this->programKerjaRepository->scopeQuery(function($query){
+            return $query->orderBy('created_at','desc');
+        })->all();
+
+        $programKerjas = $this->programKerjaRepository->scopeQuery(function($query){
+            return $query->orderBy('created_at','desc');
+        })->all();
+
+        $container = [];
+
+        foreach($ujiPubliks as $data) {
+
+            $container[] = 
+            [
+                'title'         => $data->present('name'),
+                'creator'       => $data->present('creator_name'),
+                'url'           => $data->present('url'),
+                'deskripsi'     => $data->present('materi'),
+                'created_at'    => $data->present('created_at'),
+                'pubDate'       => $data->present('created_for_human'),
+
+            ];
+        }
+
+        foreach($programKerjaUsulans as $data) {
+
+            $container[] = 
+            [
+                'title'         => $data->present('name'),
+                'creator'       => $data->present('creator_name'),
+                'url'           => $data->present('url'),
+                'deskripsi'     => $data->present('description'),
+                'created_at'    => $data->present('created_at'),
+                'pubDate'       => $data->present('created_for_human'),
+
+            ];
+        }
+
+        foreach($programKerjas as $data) {
+
+            $container[] = 
+            [
+                'title'         => $data->present('name'),
+                'creator'       => $data->present('creator_name'),
+                'url'           => $data->present('url'),
+                'deskripsi'     => $data->present('description'),
+                'created_at'    => $data->present('created_at'),
+                'pubDate'       => $data->present('created_for_human'),
+
+            ];
+        }
+        
+        $feed = Feed::make();
+        $feed->setCache(60, 'openKominfo');
+        $feed->title = 'Open Kominfo';
+        $feed->description = 'Lorem ipsum dolor sit amte constectur';
+        $feed->link = action('SiteController@getRss');
+        $feed->setDateFormat('datetime'); 
+        $feed->pubdate = $container[0]['created_at'];
+        $feed->lang = 'en';
+        $feed->setShortening(true);
+        $feed->setTextLimit(100);
+
+        $sorted = [];
+
+        foreach ($container as $key => $row)
+        {
+            $sorted[$key] = $row['created_at'];
+        }
+
+        array_multisort($sorted, SORT_DESC, $container);
+
+        foreach($container as $data)
+        {
+            $feed->add(
+                $data['title'],
+                $data['creator'],
+                $data['url'],
+                $data['created_at'],
+                $data['deskripsi']
+            );    
+        }
+
+        return $feed->render('atom', 60, 'openKominfo');
+
     }
 }

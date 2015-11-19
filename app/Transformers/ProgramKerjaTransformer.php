@@ -21,10 +21,10 @@ class ProgramKerjaTransformer extends TransformerAbstract
     public function transform(ProgramKerja $model)
     {
         return [
-            'id'         => (int) $model->id,
-            'name'      => $model->name,
-            'satker'      => $model->satker_id,
-            'creator_name' => $model->creator->name,
+            'id'            => (int) $model->id,
+            'name'          => $model->name,
+            'satker'        => $model->satker_id,
+            'creator_name'  => $model->creator->name,
 
             /* place your other model properties here */
 

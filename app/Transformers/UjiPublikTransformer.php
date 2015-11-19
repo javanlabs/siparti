@@ -31,7 +31,8 @@ class UjiPublikTransformer extends TransformerAbstract
             'komentar' => $model->comment,
             'created_for_human' => $model->created_at->formatLocalized("%d %b '%y"),
             'created_at' => $model->created_at->formatLocalized('%e %B %Y'),
-            'updated_at' => $model->updated_at
+            'updated_at' => $model->updated_at,
+            'creator_name' => $model->creator->name
         ];
     }
 }
