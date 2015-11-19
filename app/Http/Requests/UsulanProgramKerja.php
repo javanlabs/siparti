@@ -25,7 +25,6 @@ class UsulanProgramKerja extends Request
     {
         return [
             'name'                 => 'required',
-            'instansi_stakeholder' => 'required',
             'description'          => 'required',
         ];
     }

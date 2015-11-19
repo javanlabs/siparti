@@ -20,7 +20,7 @@ class ProgramKerjaUsulan extends Model implements Presentable, Commentable, HasM
 
     protected $with = ['voteCounter'];
 
-    protected $fillable = ['name', 'instansi_stakeholder', 'description'];
+    protected $fillable = ['name', 'manfaat', 'lokasi', 'target', 'instansi_stakeholder', 'description'];
 
     public function creator()
     {

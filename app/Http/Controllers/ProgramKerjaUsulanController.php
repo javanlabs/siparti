@@ -50,7 +50,7 @@ class ProgramKerjaUsulanController extends Controller
      */
     public function store(UsulanProgramKerja $request)
     {
-        $usulanProgramKerja = $this->programKerjaUsulanRepository->create($request->only(['name', 'instansi_stakeholder', 'description']));
+        $usulanProgramKerja = $this->programKerjaUsulanRepository->create($request->only(['name', 'manfaat', 'lokasi', 'target', 'description']));
         $this->programKerjaUsulanRepository->attachDocument($usulanProgramKerja, $request->file('file'));
 
         Notification::success('Usulan program kerja berhasil disimpan.');

@@ -13,6 +13,10 @@ class ProgramKerjaUsulanTransformer extends TransformerAbstract
         return [
             'id'                => (int)$model->id,
             'name'              => $model->name,
+            'manfaat'           => $model->manfaat,
+            'lokasi'            => $model->lokasi,
+            'target'            => $model->target,
+            'description'       => $model->description,
             'komentar'          => $model->comment,
             'dukungan'          => $model->vote_up,
             'excerpt'           => str_limit($model->description),
