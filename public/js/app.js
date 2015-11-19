@@ -64,7 +64,7 @@ $(document).ready(function() {
 
   function deleteComment(button) {
 
-      button.siblings(".delete-form").submit();
+      button.parents().find("#delete-form").submit();
   }
 
   $(".comments-list").readmore({
@@ -76,7 +76,7 @@ $(document).ready(function() {
 
   $(".delete-button").click(function() {
 
-        $('.small.modal')
+        $('.small.modal.deleteConfirm')
   			   .modal('show')
 		    ;
 
@@ -87,5 +87,88 @@ $(document).ready(function() {
 
       deleteComment(button);
   });
+
+  /*
+      Delete multiple comments
+  */
+
+  $(".deletedId").change(function() {
+
+    var that;
+
+    that = $(this);
+
+    if ($(this).prop("checked") == true) {
+
+      var element = '<input hidden name="deletedId[]" class="toBeDeleted" type="text" value="' + $(this).val() + '">';
+
+      $("#multipleDeletedForm").prepend(element);
+
+    } else {
+
+      $(".toBeDeleted").each(function(i, obj) {
+
+        if ($(obj).val() == that.val() ) {
+          $(obj).remove();
+        }
+
+      });
+    }
+  });
+
+  //--------------------------------------------
+
+  /*
+    Membuka konfirmasi modal penghapusan
+    beberapa komentar / multiple comments
+  */
+
+  $("#deleteMultiple").click(function() {
+
+      $('.small.modal.multipleDeleteConfirm')
+         .modal('show')
+      ;
+
+  });
+
+  $(".yess2-button").click(function() {
+      $("#multipleDeletedForm").submit();
+  });
+
+  //--------------------------------------------
+
+  /*
+    Melakukan check pada semua komentar
+    ataupun uncheck pada semua komentar
+  */
+
+  $("#checkAll").click(function() {
+
+      if ($(this).attr('data-click-state') == 0) {
+        $(this).attr('data-click-state', 1);
+        $(".icon-button").remove();
+        $(this).prepend('<i class="remove circle icon icon-button">');
+
+        $(".deletedId").each(function(i, obj) {
+            if ($(obj).prop("checked") == false) {
+              $(obj).click();
+            }
+        });
+
+      } else {
+
+        $(this).attr('data-click-state', 0);
+        $(".icon-button").remove();
+        $(this).prepend('<i class="check circle icon icon-button">');
+
+        $(".deletedId").each(function(i, obj) {
+            if ($(obj).prop("checked") == true) {
+              $(obj).click();
+            }
+        });
+      }
+  });
+
+  //----------------------------------------------------
 
 });

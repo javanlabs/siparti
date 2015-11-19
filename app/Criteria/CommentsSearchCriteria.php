@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Prettus\Repository\Contracts\RepositoryInterface;
 use Prettus\Repository\Contracts\CriteriaInterface;
 
-class ProgramKerjaUsulanRequestCriteria implements CriteriaInterface
+class CommentsSearchCriteria implements CriteriaInterface
 {
     /**
      * @var \Illuminate\Http\Request
@@ -19,10 +19,10 @@ class ProgramKerjaUsulanRequestCriteria implements CriteriaInterface
 
     public function apply($model, RepositoryInterface $repository)
     {
-        $model = $model->latest();
+        $query = $this->request->input('searchQuery');
 
-        if ($keyword = $this->request->get('nama')) {
-            $model = $model->search($keyword, ['name', 'description', 'creator.name', 'instansi_stakeholder']);
+        if ($query) {
+            $model = $model->search($query);
         }
 
         return $model;

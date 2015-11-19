@@ -6,21 +6,21 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\CommentsRepositoryEloquent;
+use App\Repositories\UjiPublikRepositoryEloquent;
 
-class CommentsController extends Controller
+class UjiPublikController extends Controller
 {
 
-    protected $commentsRepository;
+    protected $ujiPublikRepository;
 
     /**
      * AuditTrailController constructor.
      */
-    public function __construct(CommentsRepositoryEloquent $commentsRepository)
+    public function __construct(UjiPublikRepositoryEloquent $ujiPublikRepository)
     {
-        $this->commentsRepository = $commentsRepository;
+        $this->ujiPublikRepository = $ujiPublikRepository;
 
-        $this->authorize('manage-comments');
+        $this->authorize('manage-uji-public');
     }
 
 
@@ -32,8 +32,9 @@ class CommentsController extends Controller
     public function index(Request $request)
     {
 
-      $comments = $this->commentsRepository->paginate(20);
-      return view('admin.comments.index', compact('comments'));
+      $ujiPublik = $this->ujiPublikRepository->paginate(20);
+      return view('admin.ujiPublik.index', compact('ujiPublik'));
+      //dd($ujiPublik);
     }
 
     /**
@@ -44,13 +45,13 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        $this->commentsRepository->delete($id);
+        $this->ujiPublikRepository->delete($id);
         return redirect()->back();
 
     }
 
     /**
-     * Menghapus multiple comment
+     * Menghapus multiple uji publik
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -62,7 +63,7 @@ class CommentsController extends Controller
 
       foreach ($toBeDeletedIds as $id) {
 
-        $this->commentsRepository->delete((int)$id);
+        $this->ujiPublikRepository->delete((int)$id);
 
       }
 

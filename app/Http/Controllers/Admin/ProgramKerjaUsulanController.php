@@ -6,21 +6,21 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\CommentsRepositoryEloquent;
+use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 
-class CommentsController extends Controller
+class ProgramKerjaUsulanController extends Controller
 {
 
-    protected $commentsRepository;
+    protected $programKerjaUsulanRepository;
 
     /**
-     * AuditTrailController constructor.
+     * ProgramKerjaUsulanController constructor.
      */
-    public function __construct(CommentsRepositoryEloquent $commentsRepository)
+    public function __construct(ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository)
     {
-        $this->commentsRepository = $commentsRepository;
+        $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
 
-        $this->authorize('manage-comments');
+        $this->authorize('manage-program-usulan-kerja');
     }
 
 
@@ -32,8 +32,8 @@ class CommentsController extends Controller
     public function index(Request $request)
     {
 
-      $comments = $this->commentsRepository->paginate(20);
-      return view('admin.comments.index', compact('comments'));
+      $programKerjaUsulan = $this->programKerjaUsulanRepository->paginate(20);
+      return view('admin.programKerjaUsulan.index', compact('programKerjaUsulan'));
     }
 
     /**
@@ -44,13 +44,12 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        $this->commentsRepository->delete($id);
+        $this->programKerjaUsulanRepository->delete($id);
         return redirect()->back();
-
     }
 
     /**
-     * Menghapus multiple comment
+     * Menghapus multiple programKerjaUsulan
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -62,12 +61,11 @@ class CommentsController extends Controller
 
       foreach ($toBeDeletedIds as $id) {
 
-        $this->commentsRepository->delete((int)$id);
+        $this->programKerjaUsulanRepository->delete((int)$id);
 
       }
 
       return redirect()->back();
-
     }
 
 

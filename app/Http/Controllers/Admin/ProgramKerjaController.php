@@ -6,21 +6,21 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\CommentsRepositoryEloquent;
+use App\Repositories\FaseRepositoryEloquent;
 
-class CommentsController extends Controller
+class ProgramKerjaController extends Controller
 {
 
-    protected $commentsRepository;
+    protected $programKerjaRepository;
 
     /**
-     * AuditTrailController constructor.
+     * ProgramKerjaController constructor.
      */
-    public function __construct(CommentsRepositoryEloquent $commentsRepository)
+    public function __construct(FaseRepositoryEloquent $programKerjaRepository)
     {
-        $this->commentsRepository = $commentsRepository;
+        $this->programKerjaRepository = $programKerjaRepository;
 
-        $this->authorize('manage-comments');
+        $this->authorize('manage-program-kerja');
     }
 
 
@@ -32,8 +32,9 @@ class CommentsController extends Controller
     public function index(Request $request)
     {
 
-      $comments = $this->commentsRepository->paginate(20);
-      return view('admin.comments.index', compact('comments'));
+      $programKerja = $this->programKerjaRepository->paginate(20);
+      //dd($programKerja);
+      return view('admin.programKerja.index', compact('programKerja'));
     }
 
     /**
@@ -44,7 +45,7 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        $this->commentsRepository->delete($id);
+        $this->programKerjaRepository->delete($id);
         return redirect()->back();
 
     }
@@ -62,7 +63,7 @@ class CommentsController extends Controller
 
       foreach ($toBeDeletedIds as $id) {
 
-        $this->commentsRepository->delete((int)$id);
+        $this->programKerjaRepository->delete((int)$id);
 
       }
 

@@ -39,6 +39,15 @@ class MenuMiddleware
             $menu->add(trans('menus.admin.settings'), ['route' => ['admin.settings.index']])
                  ->data('permission', 'manage-settings')
                  ->prepend('<i class="icon options"></i>');
+            $menu->add(trans('menus.admin.manage_program_kerja'), ['route' => ['admin.programKerja.index']])
+                  ->data('permission', 'manage-program-kerja')
+                  ->prepend('<i class="configure icon"></i>');
+            $menu->add(trans('menus.admin.manage_program_kerja_usulan'), ['route' => ['admin.programKerjaUsulan.index']])
+                  ->data('permission', 'manage-program-kerja-usulan')
+                  ->prepend('<i class="announcement icon"></i>');
+            $menu->add(trans('menus.admin.uji_publik'), ['route' => ['admin.ujiPublik.index']])
+                  ->data('permission', 'manage-uji-public')
+                  ->prepend('<i class="book icon"></i>');
             $menu->add(trans('menus.admin.manage_comments'), ['route' => ['admin.comments.index']])
                   ->data('permission', 'manage-comments')
                   ->prepend('<i class="comments icon"></i>');

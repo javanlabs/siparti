@@ -50,7 +50,8 @@
         "doctrine/dbal": "^2.5",
         "adamwathan/bootforms": "dev-master",
         "laravolt/semantic-form": "^0.1.0",
-        "spatie/laravel-medialibrary": "^3.10"
+        "spatie/laravel-medialibrary": "^3.10",
+        "sofa/eloquence": "~5.1@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
