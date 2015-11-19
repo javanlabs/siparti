@@ -10,7 +10,9 @@
                     <form action="{{ route('proker-usulan.store') }}" class="ui form large" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {!! SemanticForm::text('name', 'Nama Program Kerja') !!}
-                        {!! SemanticForm::text('instansi_stakeholder', 'Instansi Terkait') !!}
+                        {!! SemanticForm::text('manfaat', 'Manfaat') !!}
+                        {!! SemanticForm::text('lokasi', 'Lokasi Pelaksanaan') !!}
+                        {!! SemanticForm::text('target', 'Target (jumlah/kuantitas), bukan uang') !!}
                         {!! SemanticForm::textarea('description', 'Penjelasan Program Kerja') !!}
                         <div class="field">
                             <label for="">Dokumen Terkait</label>

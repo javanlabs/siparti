@@ -6,7 +6,7 @@
                 <div class="ui top attached menu">
                     <div class="menu">
                         <div class="item borderless">
-                            <h4>@lang('users.title')</h4>
+                            <h4>@lang('users.users')</h4>
                         </div>
                     </div>
                     <div class="right menu">

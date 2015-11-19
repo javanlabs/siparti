@@ -79,7 +79,8 @@ class RoleController extends Controller
 
         $role->permissions()->sync($request->get('permissions', []));
 
-        return redirect()->back();
+        \Notification::success('acl.roles.update.success');
+        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -91,5 +92,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         Role::findOrFail($id)->delete();
-    }
+
+        \Notification::success('acl.roles.delete.success');
+        return redirect()->route('admin.roles.index');    }
 }

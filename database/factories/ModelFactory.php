@@ -71,6 +71,9 @@ $factory->define(App\Entities\ProgramKerja::class, function (Faker\Generator $fa
 $factory->define(App\Entities\ProgramKerjaUsulan::class, function (Faker\Generator $faker) {
     return [
         'name'   => $faker->sentence(rand(20, 255)),
+        'manfaat'   => $faker->paragraphs(3, true),
+        'lokasi'   => $faker->city,
+        'target'   => $faker->text(),
         'description' => $faker->paragraphs(10, true),
         'creator_id' => factory(\App\Entities\User::class)->create()->id,
         'instansi_stakeholder' => $faker->company

@@ -9,7 +9,22 @@
 
                 <table class="ui definition table small">
                     <tbody>
-                    <tr><td>Deskripsi</td><td>{{ $usulanProker->present('description') }}</td></tr>
+                    <tr>
+                        <td style="width: 200px">Deskripsi</td>
+                        <td>{{ $usulanProker->present('description') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Manfaat</td>
+                        <td>{{ $usulanProker->present('manfaat') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Lokasi Pelaksanaan</td>
+                        <td>{{ $usulanProker->present('lokasi') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Target</td>
+                        <td>{{ $usulanProker->present('target') }}</td>
+                    </tr>
                     <tr>
                         <td>Dokumen</td>
                         <td>

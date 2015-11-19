@@ -4,6 +4,7 @@ namespace Laravolt\Acl;
 
 use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Laravolt\Acl\Commands\SyncPermission;
 use Laravolt\Acl\Contracts\HasRoleAndPermission;
 use Laravolt\Acl\Models\Permission;
 
@@ -49,6 +50,8 @@ class ServiceProvider extends BaseServiceProvider
         $this->registerMigrations();
         $this->registerSeeds();
         $this->registerConfigurations();
+
+        $this->registerCommands();
     }
 
     protected function registerAcl($gate)
@@ -107,6 +110,16 @@ class ServiceProvider extends BaseServiceProvider
         $this->publishes([
             $this->packagePath('config/config.php') => config_path('acl.php'),
         ], 'config');
+    }
+
+    protected function registerCommands()
+    {
+        $this->app->singleton('command.laravolt.acl.sync-permission', function($app) {
+
+            return new SyncPermission($app['config']);
+        });
+
+        $this->commands('command.laravolt.acl.sync-permission');
     }
 
     /**
