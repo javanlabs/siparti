@@ -4,9 +4,10 @@
     <section class="ui container page">
 
         <div class="ui grid">
-            <div class="column ten wide">
+            <div class="column sixteen wide">
                 <h2 class="">{!! $programKerja->present('name') !!}</h2>
-
+            </div>
+            <div class="column ten wide">
                 <table class="ui definition table small">
                     <tbody>
                     <tr><td style="width: 150px">Fase Sekarang</td><td>{!! $programKerja->present('label') !!}</td></tr>
@@ -52,7 +53,22 @@
 
             </div>
             <div class="column six wide">
-
+                <div class="ui segments">
+                    <div class="ui segment"><h3>Program Kerja Terkait</h3></div>
+                    <div class="ui segment">
+                        @foreach($related as $item)
+                            @include('program_kerja.card')
+                        @endforeach
+                    </div>
+                </div>
+                <div class="ui segments">
+                    <div class="ui segment"><h3>Program Kerja Terpopuler</h3></div>
+                    <div class="ui segment">
+                        @foreach($terpopuler as $item)
+                            @include('program_kerja.card')
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
 
