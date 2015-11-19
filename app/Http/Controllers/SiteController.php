@@ -103,11 +103,11 @@ class SiteController extends Controller
         $feed = Feed::make();
         $feed->setCache(60, 'openKominfo');
         $feed->title = 'Open Kominfo';
-        $feed->description = 'Lorem ipsum dolor sit amte constectur';
+        $feed->description = 'Layanan partisipasi publik dalam membangun program kerja Kominfo yang berkualitas';
         $feed->link = action('SiteController@getRss');
         $feed->setDateFormat('datetime'); 
         $feed->pubdate = $container[0]['created_at'];
-        $feed->lang = 'en';
+        $feed->lang = 'id';
         $feed->setShortening(true);
         $feed->setTextLimit(100);
 
@@ -130,6 +130,8 @@ class SiteController extends Controller
                 $data['deskripsi']
             );    
         }
+
+
 
         return $feed->render('atom', 60, 'openKominfo');
 
