@@ -33,7 +33,7 @@
         "laravolt/votee": "dev-master",
         "laravolt/packer": "dev-master",
         "laravolt/auth": "dev-master",
-        "laravolt/support": "dev-master",
+        "laravolt/support": "0.*",
         "laravolt/avatar": "dev-master",
         "laravolt/password": "dev-master",
         "laravolt/email": "dev-master",
@@ -66,6 +66,7 @@
             "database"
         ],
         "psr-4": {
+            "Siparti\\UjiPublik\\": "packages/siparti/uji-publik/src",
             "Laravolt\\Acl\\": "packages/laravolt/acl/src",
             "App\\": "app/"
         }

@@ -158,6 +158,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Siparti\UjiPublik\ServiceProvider::class,
         Laravolt\SemanticForm\ServiceProvider::class,
         Laravolt\Trail\ServiceProvider::class,
         Laravolt\Acl\ServiceProvider::class,
