@@ -49,7 +49,9 @@
                     {!! Votee::render($programKerja, ['class' => 'basic fluid']) !!}
                 </div>
 
-                {!! Mural::render($programKerja, 'default', ['class' => 'very padded']) !!}
+                @if($programKerja->present('show_comment'))
+                {!! Mural::render($programKerja, 'default', ['class' => 'very padded', 'readonly' => $programKerja->present('lock_comment')]) !!}
+                @endif
 
             </div>
             <div class="column six wide">
