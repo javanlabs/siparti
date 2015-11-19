@@ -6,7 +6,7 @@ use Prettus\Repository\Contracts\RepositoryInterface as BaseRepositoryInterface;
 
 /**
  * Interface RepositoryInterface
- * @package namespace App\Repositories;
+ * @package namespace Siparti\UjiPublik\Repositories;
  */
 interface RepositoryInterface extends BaseRepositoryInterface
 {
