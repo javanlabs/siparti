@@ -57,7 +57,7 @@
             </div>
             <div class="column">
                 <div class="ui blue inverted segment center aligned"><h4>Program Kerja Terpopuler</h4></div>
-                @foreach($terbaru as $item)
+                @foreach($terpopuler as $item)
                     @include('program_kerja.card')
                 @endforeach
                 <a href="{{ route('proker.arsip') }}" class="ui button fluid basic">Lihat Program Populer Lainnya</a>
