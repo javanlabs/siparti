@@ -195,11 +195,11 @@ $(document).ready(function() {
 	  minHeight: 300,
 	  imageUpload: 'http://localhost:8000/image/upload',
 	  plugins : ['imageManager']
-	  
   });
 
-  
+  $(".redactor-editor").text("");	
   var descriptionText = $(".descriptionText").text();
+  
 
   $(".textRedactor").redactor('insert.html', descriptionText);
 	  
