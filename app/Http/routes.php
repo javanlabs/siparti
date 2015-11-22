@@ -13,6 +13,8 @@
 
 Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home']);
 
+Route::post('/image/upload', 'ImageController@upload');
+
 Route::controller('components', 'ComponentController');
 
 Route::get('program-kerja/arsip', ['as' => 'proker.arsip', 'uses' => 'ProgramKerjaController@arsip']);

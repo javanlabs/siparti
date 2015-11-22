@@ -9,11 +9,12 @@
 
                     <form action="{{ route('proker-usulan.store') }}" class="ui form large" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
+                        
                         {!! SemanticForm::text('name', 'Nama Program Kerja') !!}
-                        {!! SemanticForm::text('manfaat', 'Manfaat') !!}
+                        {!! SemanticForm::text('scope', 'Manfaat') !!}
                         {!! SemanticForm::text('lokasi', 'Lokasi Pelaksanaan') !!}
                         {!! SemanticForm::text('target', 'Target (jumlah/kuantitas), bukan uang') !!}
-                        {!! SemanticForm::textarea('description', 'Penjelasan Program Kerja') !!}
+                        {!! SemanticForm::textarea('description', 'Penjelasan Program Kerja', ['class' => 'textRedactor']) !!}
                         <div class="field">
                             <label for="">Dokumen Terkait</label>
                             <input type="file" name="file[]"><br>

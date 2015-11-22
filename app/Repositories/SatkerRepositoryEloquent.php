@@ -5,6 +5,7 @@ namespace App\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\SatkerRepository;
+use App\Presenters\SatkerPresenter;
 use App\Entities\Satker;
 
 /**
@@ -13,6 +14,9 @@ use App\Entities\Satker;
  */
 class SatkerRepositoryEloquent extends BaseRepository implements SatkerRepository
 {
+    
+    protected $skipPresenter = true;
+    
     /**
      * Specify Model class name
      *
@@ -21,6 +25,14 @@ class SatkerRepositoryEloquent extends BaseRepository implements SatkerRepositor
     public function model()
     {
         return Satker::class;
+    }
+    
+    /*
+     * set presenter class
+     */
+    public function presenter()
+    {
+        return SatkerPresenter::class;
     }
 
     /**

@@ -38,7 +38,7 @@ class FaseTransformer extends TransformerAbstract
             'excerpt'          => str_limit($model->description, 150),
             'scope'            => $model->scope,
             'target'           => $model->target,
-            'process'          => $model->process,
+            'progress'          => $model->progress,
             'kendala'          => $model->kendala,
             'instansi_terkait' => $model->instansi_terkait,
             'periode'          => $model->start_date->formatLocalized('%e %B %Y') . ' - ' . $model->end_date->formatLocalized('%e %B %Y'),
@@ -51,6 +51,10 @@ class FaseTransformer extends TransformerAbstract
             'penolakan'        => $model->vote_down,
             'label'            => (new FaseType($model->type))->label(),
             'media'            => $model->getMedia(),
+            'proker_id'        => $model->proker_id,
+            'satker_id'        => $model->satker_id,
+            'start_date'       => date("Y-m-d", strtotime($model->start_date)),
+            'end_date'         => date("Y-m-d", strtotime($model->end_date)),     
 
 
             'created_at' => $model->created_at->formatLocalized('%e %B %Y'),

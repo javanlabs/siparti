@@ -59,13 +59,21 @@ $(function(){
 });
 
 $(document).ready(function() {
+	
+	
+	$.ajaxSetup({
+	    headers: {
+	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	    }
+	});
 
-  var button;
 
-  function deleteComment(button) {
+	var button;
 
-      button.parents().find("#delete-form").submit();
-  }
+	function deleteComment(button) {
+
+		button.parents().find("#delete-form").submit();
+	}
 
   $(".comments-list").readmore({
     collapsedHeight : 45,
@@ -170,5 +178,29 @@ $(document).ready(function() {
   });
 
   //----------------------------------------------------
+  
+  $('.ui.search')
+  	.search({
+  		source: content,
+  		searchFields: ['id', 'title'],
+  		fields : {categoryResult: 'id'}
+    
+  });
+  
+  $('.ui.search').change(function() {
+	 console.log($(this).val()); 
+  });
+  
+  $(".textRedactor").redactor({
+	  minHeight: 300,
+	  imageUpload: 'http://localhost:8000/image/upload',
+	  plugins : ['imageManager']
+	  
+  });
 
+  
+  var descriptionText = $(".descriptionText").text();
+
+  $(".textRedactor").redactor('insert.html', descriptionText);
+	  
 });

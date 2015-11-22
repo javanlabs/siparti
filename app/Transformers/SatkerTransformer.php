@@ -3,7 +3,7 @@
 namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use App\Entities\SatkerPresenter;
+use App\Entities\Satker;
 
 /**
  * Class SatkerTransformer
@@ -18,10 +18,11 @@ class SatkerTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform(SatkerPresenter $model)
+    public function transform(Satker $model)
     {
         return [
             'id'         => (int) $model->id,
+            'name'       => $model->name,   
 
             /* place your other model properties here */
 

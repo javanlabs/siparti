@@ -19,7 +19,7 @@ class Fase extends Model implements Presentable, Commentable, HasMedia
 
     protected $table = 'fase';
 
-    protected $fillable = ['description', 'scope', 'instansi_terkait', 'start_date', 'end_date', 'progress', 'kendala', 'type', 'pic', 'target', 'pagu'];
+    protected $fillable = ['description', 'proker_id', 'satker_id', 'scope', 'instansi_terkait', 'start_date', 'end_date', 'progress', 'kendala', 'type', 'pic', 'target', 'pagu'];
 
     protected $dates = ['start_date', 'end_date'];
 
@@ -89,6 +89,6 @@ class Fase extends Model implements Presentable, Commentable, HasMedia
 
     public function addDocument($file)
     {
-        return $this->addMedia($file)->preservingOriginal()->toCollection();
+        $this->addMedia($file)->preservingOriginal()->toCollection();
     }
 }
