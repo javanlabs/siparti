@@ -134,11 +134,23 @@ $(document).ready(function() {
   */
 
   $("#deleteMultiple").click(function() {
-
-      $('.small.modal.multipleDeleteConfirm')
-         .modal('show')
-      ;
-
+	  
+	  var count = 0;
+	  
+	  $('.deletedId').each(function(i, obj) {
+		  
+		 if ($(obj).prop("checked") == true) {
+			 count++
+		 } 
+	  
+	  });
+	  
+	  if (count == 0) {
+		  alert("Untuk menghapus, mohon untuk mencentang entitas yang akan dihapus");
+	  } else {
+		  $('.small.modal.multipleDeleteConfirm')
+	         .modal('show');
+	  }
   });
 
   $(".yess2-button").click(function() {
