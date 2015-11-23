@@ -32,7 +32,6 @@
                         <th>Fase Sekarang</th>
                         <th>Instansi Terkait</th>
                         <th>Satker</th>
-                        <th>Deskripsi</th>
                         <th><i class="comments icon"></i></th>
                         <th><i class="thumbs up icon"></i></th>
                         <th><i class="thumbs down icon"></i></th>
@@ -50,7 +49,6 @@
                             <td class="nameColumn">{!! $data->present('label') !!}</td>
                             <td>{!! $data->present('instansi_terkait') !!}</td>
                             <td>{!! $data->present('satker') !!}</td>
-                            <td  class="comments-list">{!! $data->present('description') !!}</td>
                             <td>{!! $data->present('komentar') !!}</td>
                             <td>{!! $data->present('dukungan') !!}</td>
                             <td>{!! $data->present('penolakan') !!}</td>
@@ -78,6 +76,13 @@
                         </tr>
                     @endforelse
                   </tbody>
+                  <tfoot>
+                    	<tr>
+                    		<td>
+                    			<button class="negative ui button" id="deleteMultiple">X</button>
+                    		</td>
+                    	</tr>
+                    </tfoot>
                 </table>
             </div>
             <div class="ui menu bottom attached">
@@ -130,7 +135,6 @@
 
     </form>
 
-    <button id="deleteMultiple">Delete Multiple</button>
 
 
 @endsection

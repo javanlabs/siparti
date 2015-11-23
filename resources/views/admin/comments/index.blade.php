@@ -60,6 +60,13 @@
                         </tr>
                     @endforelse
                   </tbody>
+                  <tfoot>
+                    	<tr>
+                    		<td>
+                    			<button class="negative ui button" id="deleteMultiple">X</button>
+                    		</td>
+                    	</tr>
+                    </tfoot>
                 </table>
             </div>
             <div class="ui menu bottom attached">
@@ -111,8 +118,5 @@
       {{ csrf_field() }}
 
     </form>
-
-    <button id="deleteMultiple">Delete Multiple</button>
-
 
 @endsection

@@ -137,6 +137,8 @@ $(document).ready(function() {
 	  
 	  var count = 0;
 	  
+	  // check apakah ada entity yang dicentang
+	  
 	  $('.deletedId').each(function(i, obj) {
 		  
 		 if ($(obj).prop("checked") == true) {
@@ -197,16 +199,6 @@ $(document).ready(function() {
 	  minHeight: 300,
 	  imageUpload: 'http://localhost:8000/image/upload',
 	  plugins : ['imageManager'],
-	  callbacks : {
-		  uploadStart: function() {
-			  $.ajaxSetup({
-				    beforeSend: function(xhr) {
-				        xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'))
-				    }
-				});
-		  }
-	  }
-	 
   });
   
   // Menghapus duplikasi texts ketika refresh di redactor
