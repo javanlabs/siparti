@@ -4,6 +4,12 @@ $.ajaxSetup({
     }
 });
 
+$.ajaxSetup({
+    beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'))
+    }
+});
+
 $(function(){
     $('.ui.dropdown').dropdown();
     $('.ui.checkbox').checkbox();
@@ -61,11 +67,7 @@ $(function(){
 $(document).ready(function() {
 	
 	
-	$.ajaxSetup({
-	    headers: {
-	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-	    }
-	});
+	
 
 
 	var button;
@@ -179,25 +181,23 @@ $(document).ready(function() {
 
   //----------------------------------------------------
   
-  $('.ui.search')
-  	.search({
-  		source: content,
-  		searchFields: ['id', 'title'],
-  		fields : {categoryResult: 'id'}
-    
-  });
-  
-  $('.ui.search').change(function() {
-	 console.log($(this).val()); 
-  });
-  
   $(".textRedactor").redactor({
 	  minHeight: 300,
 	  imageUpload: 'http://localhost:8000/image/upload',
-	  plugins : ['imageManager']
+	  plugins : ['imageManager'],
+	  callbacks : {
+		  uploadStart: function() {
+			  $.ajaxSetup({
+				    beforeSend: function(xhr) {
+				        xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'))
+				    }
+				});
+		  }
+	  }
+	 
   });
 
-  $(".redactor-editor").text("");	
+  //$(".redactor-editor").text("");	
   var descriptionText = $(".descriptionText").text();
   
 

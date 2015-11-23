@@ -18,14 +18,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/redactor.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/BeatPicker.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-confirm.min.css') }}">
 
     @yield('style-head')
 
     <script src="{{ asset('lib/jquery.min.js') }}"></script>
     <script src="{{ asset('lib/semantic-ui/semantic.min.js') }}"></script>
     <script src="{{ asset('js/readmore.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-confirm.min.js') }}"></script>
     <script src="{{ asset('js/BeatPicker.min.js') }}"></script>
 	<script src="{{ asset('js/redactor.min.js') }}"></script>
 	<script src="{{ asset('js/imagemanager.js') }}"></script>

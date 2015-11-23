@@ -2,9 +2,10 @@
 @section('content')
 
     <div class="ui container">
-
+		<a href="{{ route('admin.programKerja.create') }}" class="ui primary button">Buat Progran Kerja</a>
         <section class="section-audit-trails">
-
+		 <br />
+		
             <div class="ui top attached menu">
                 <div class="menu">
                     <div class="item borderless">
@@ -15,7 +16,7 @@
                     <div class="ui right aligned item">
                         <form method="GET" action="{{ route('admin.programKerja.index') }}">
                             <div class="ui transparent icon input">
-                                <input class="prompt" name="nama" value="{{ request('search') }}" type="text" placeholder="Cari Uji Publik">
+                                <input class="prompt" name="nama" value="{{ request('search') }}" type="text" placeholder="Cari Program Kerja">
                                 <i class="search link icon"></i>
                             </div>
                         </form>

@@ -8,6 +8,7 @@ Homestead.json
 /.settings
 .buildpath
 .project
+/public/gambar
 
 _ide_helper.php
 
