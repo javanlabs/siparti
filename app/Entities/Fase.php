@@ -19,7 +19,7 @@ class Fase extends Model implements Presentable, Commentable, HasMedia
 
     protected $table = 'fase';
 
-    protected $fillable = ['description', 'proker_id', 'satker_id', 'scope', 'instansi_terkait', 'start_date', 'end_date', 'progress', 'kendala', 'type', 'pic', 'target', 'pagu'];
+    protected $fillable = ['comment_mode', 'description', 'proker_id', 'satker_id', 'scope', 'instansi_terkait', 'start_date', 'end_date', 'progress', 'kendala', 'type', 'pic', 'target', 'pagu'];
 
     protected $dates = ['start_date', 'end_date'];
 

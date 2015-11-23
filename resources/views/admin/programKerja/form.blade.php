@@ -11,7 +11,7 @@
 					@else
 					<h2 class="ui header text centered"><span>Edit</span> Program Kerja</h2>
 					@endif
-                    <form action="{{ $route }}" class="ui form large" method="POST" enctype="multipart/form-data">
+                    <form class="ui form" action="{{ $route }}" class="ui form large" method="POST" enctype="multipart/form-data">
                     @if ($action == "create")    
                         {{ csrf_field() }}
                         
@@ -90,7 +90,30 @@
                             <input type="file" name="file[]">
                         </div>
                         
-                       	{!! SemanticForm::submit('Simpan') !!}
+                        <div class="inline fields">
+    						<label>Mode Komentar</label>
+                        	<div class="field">
+      							<div class="ui radio checkbox">
+        							<input name="comment_mode" value="show" checked="checked" type="radio">
+        							<label>Tampilkan</label>
+      							</div>
+    						</div>
+    						<div class="field">
+      							<div class="ui radio checkbox">
+        							<input name="comment_mode" value="hide" type="radio">
+        							<label>Sembunyikan</label>
+      							</div>
+    						</div>
+    						<div class="field">
+      							<div class="ui radio checkbox">
+        							<input name="comment_mode" value="lock" type="radio">
+        							<label>Kunci</label>
+      							</div>
+    						</div>
+  						</div>
+                        
+                       
+                      	{!! SemanticForm::submit('Simpan') !!}
                     @else
                     	{{ csrf_field() }}
                         <input type="hidden" name="_method" value="PUT">
@@ -229,6 +252,40 @@
                             <input type="file" name="file[]"><br>
                             <input type="file" name="file[]">
                         </div>
+                         
+                         <div class="inline fields">
+    						<label>Mode Komentar</label>
+                        	<div class="field">
+      							<div class="ui radio checkbox">
+        							<input name="comment_mode" value="show" 
+        							@if ($fase->present('comment_mode') == "show")
+        								checked="checked"
+        							@endif
+        							type="radio">
+        							<label>Tampilkan</label>
+      							</div>
+    						</div>
+    						<div class="field">
+      							<div class="ui radio checkbox">
+        							<input name="comment_mode" value="hide" 
+        							@if ($fase->present('comment_mode') == "hide")
+        								checked="checked"
+        							@endif
+        							type="radio">
+        							<label>Sembunyikan</label>
+      							</div>
+    						</div>
+    						<div class="field">
+      							<div class="ui radio checkbox">
+        							<input name="comment_mode" value="lock" 
+        							@if ($fase->present('comment_mode') == "lock")
+        								checked="checked"
+        							@endif
+        							type="radio">
+        							<label>Kunci</label>
+      							</div>
+    						</div>
+  						</div>
                         
                        	{!! SemanticForm::submit('Simpan') !!}
                        	

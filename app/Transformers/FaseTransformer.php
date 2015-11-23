@@ -55,7 +55,7 @@ class FaseTransformer extends TransformerAbstract
             'satker_id'        => $model->satker_id,
             'start_date'       => date("Y-m-d", strtotime($model->start_date)),
             'end_date'         => date("Y-m-d", strtotime($model->end_date)),     
-
+            'comment_mode'     => $model->comment_mode, 
 
             'created_at' => $model->created_at->formatLocalized('%e %B %Y'),
             'updated_at' => $model->updated_at
