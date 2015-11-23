@@ -197,7 +197,7 @@ $(document).ready(function() {
   
   $(".textRedactor").redactor({
 	  minHeight: 300,
-	  imageUpload: 'http://localhost:8000/image/upload',
+	  imageUpload: 'image/upload',
 	  plugins : ['imageManager'],
   });
   
