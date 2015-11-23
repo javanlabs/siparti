@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
+use Notification;
+
 
 class ProgramKerjaUsulanController extends Controller
 {
@@ -66,6 +68,28 @@ class ProgramKerjaUsulanController extends Controller
       }
 
       return redirect()->back();
+    }
+    
+    /*
+     *  Menampilkan form edit
+     */
+    public function edit(Request $request, $id)
+    {
+        $programKerjaUsulan = $this->programKerjaUsulanRepository->find($id);
+        
+        return view('admin.programKerjaUsulan.form', compact('programKerjaUsulan'));
+    }
+    
+    /*
+     * Update data
+     */
+    public function update(Request $request, $id)
+    {
+        $this->programKerjaUsulanRepository->update($request->all(), $id);
+        
+        Notification::success('Data berhasil dirubah');
+        
+        return redirect()->back();
     }
 
 

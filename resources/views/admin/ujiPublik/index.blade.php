@@ -55,7 +55,9 @@
                                 <input type="hidden" name="_method" value="DELETE">
                                 {{ csrf_field() }}
                               </form>
-
+								
+							  <a class="ui green button basic mini" href="{{ route('admin.ujiPublik.edit', [ 'id' => $data->present('id') ]) }}">Edit</a>
+							  	  	
                               <button class="ui red button basic mini delete-button">Delete</button>
                             </td>
 

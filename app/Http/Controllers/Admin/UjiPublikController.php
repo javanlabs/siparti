@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\UjiPublikRepositoryEloquent;
+use Notification;
 
 class UjiPublikController extends Controller
 {
@@ -69,6 +70,28 @@ class UjiPublikController extends Controller
 
       return redirect()->back();
 
+    }
+    
+    /*
+     * Menampilkan form edit
+     */
+    public function edit(Request $request, $id)
+    {
+        $ujiPublik = $this->ujiPublikRepository->find($id); 
+        
+        return view('admin.ujiPublik.form', compact('ujiPublik'));
+    }
+    
+    /*
+     *  Update data
+     */
+    public function update(Request $request, $id)
+    {
+        $this->ujiPublikRepository->update($request->all(), $id);
+        
+        Notification::success('Data berhasil dirubah');
+        
+        return redirect()->back();
     }
 
 

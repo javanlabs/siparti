@@ -43,23 +43,9 @@
                         <tr>
                             <td><input class="deletedId" type="checkbox" value="{!! $data->present('id') !!}" /></td>
                             <td class="nameColumn"><img class="ui image avatar" src="{!! $data->present('creator_avatar') !!}">{!! $data->present('creator_name') !!}</td>
-                            <td>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                {!! $data->present('name') !!}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="comments-list">
-                                                <h4>Description</h4>
-                                                {!! $data->present('deskripsi') !!}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
+                            <td class="comments-list">
+                                {!! $data->present('name') !!}
+                           	</td>
                             <td>{!! $data->present('instansi_terkait') !!}</td>    
                             <td>
                                 @foreach($data->getMedia() as $item)
@@ -76,7 +62,9 @@
                                 <input type="hidden" name="_method" value="DELETE">
                                 {{ csrf_field() }}
                               </form>
-
+							  
+							  <a class="ui green button basic mini" href="{{ route('admin.programKerjaUsulan.edit', [ 'id' => $data->present('id') ]) }}">Edit</a>
+							  		
                               <button class="ui red button basic mini delete-button">Delete</button>
                             </td>
 
@@ -87,10 +75,20 @@
                             <td colspan="4" class="warning center aligned" style="font-size: 1.5rem;padding:40px;font-style: italic">Data tidak tersedia</td>
                         </tr>
                     @endforelse
-                  </tbody>
+                    </tbody>
+                    <tfoot>
+                    	<tr>
+                    		<td>
+                    			<button class="negative ui button" id="deleteMultiple">X</button>
+                    		</td>
+                    	</tr>
+                    </tfoot>
                 </table>
             </div>
             <div class="ui menu bottom attached">
+            	<div class="item borderless">
+            	</div>
+            	
                 <div class="item borderless">
                     <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerjaUsulan))->summary() !!}</small>
                 </div>
@@ -140,7 +138,6 @@
 
     </form>
 
-    <button id="deleteMultiple">Delete Multiple</button>
 
 
 @endsection

@@ -35,7 +35,6 @@ class UjiPublikController extends Controller
         $ujiPublik = $this->repository->paginate();
         $year = $this->repository->yearOptions('-- Semua Tahun --');
 
-        //dd($ujiPublik);
         return view('uji_publik.index', compact('ujiPublik', 'year'));
     }
 

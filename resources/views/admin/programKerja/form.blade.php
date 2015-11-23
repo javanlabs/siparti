@@ -209,8 +209,8 @@
                                                	
                        <!-- Table file lampiran -->      	
                         
-                        <div>
-                        	<h4>Lampiran</h4>
+                        <div class="field" >
+                        	<label>Lampiran</label>
                         	
                         	{{--*/ $i = 0 /*--}}
                         		<table class="ui celled table">
@@ -243,7 +243,6 @@
                         
                        <!-- /Table file lampiran -->      	
                         
-                        <br />
                         <div class="field">
                             <label for="">Dokumen Terkait</label>
                             <input type="file" name="file[]"><br>
