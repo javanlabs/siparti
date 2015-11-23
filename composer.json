@@ -51,7 +51,6 @@
         "adamwathan/bootforms": "dev-master",
         "laravolt/semantic-form": "^0.1.0",
         "spatie/laravel-medialibrary": "^3.10",
-        "sofa/eloquence": "~5.1@dev",
         "roumen/feed": "dev-master"
     },
     "require-dev": {

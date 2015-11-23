@@ -1125,7 +1125,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/a21d3ccb7ea39a5256079adaa7f0901fde02a5b0",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/14c8c76919e28ea74ef1ecf267d6ff22c45270d8",
                 "reference": "a21d3ccb7ea39a5256079adaa7f0901fde02a5b0",
                 "shasum": ""
             },
@@ -1503,7 +1503,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/bc63ea2e6feee5ce5584adec66b0ecc34e7455eb",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/de142d2e73bd2911dc3f039ab291247338962001",
                 "reference": "6c2feca20b11dfe71ef1b62a43f138b843b839ba",
                 "shasum": ""
             },
@@ -1732,12 +1732,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/auth.git",
-                "reference": "97aa2995e8c634430bd3b2bc2b9db3c9f560a3d3"
+                "reference": "0e1d05461f9d62ae31b89fe815a2467a5fd697b7"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravolt/auth/zipball/0e1d05461f9d62ae31b89fe815a2467a5fd697b7",
-                "reference": "97aa2995e8c634430bd3b2bc2b9db3c9f560a3d3",
+                "reference": "0e1d05461f9d62ae31b89fe815a2467a5fd697b7",
                 "shasum": ""
             },
             "require": {
@@ -1780,7 +1780,7 @@
                 "laravel",
                 "laravolt"
             ],
-            "time": "2015-11-15 14:03:34"
+            "time": "2015-11-16 07:28:20"
         },
         {
             "name": "laravolt/avatar",
@@ -2895,7 +2895,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/33602889c1dbf9087d6b715aa90e95e2a3fc058e",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/b2f26d30ee50ce46e172bc7e7cd45b90ef7c36b8",
                 "reference": "33602889c1dbf9087d6b715aa90e95e2a3fc058e",
                 "shasum": ""
             },
@@ -4190,7 +4190,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/31361409b4aa6a1694fc376b790d98b0f14e0281",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/e83a3d105ddaf5a113e803c904fdec552d1f1c35",
                 "reference": "a77de50e508b2c1eeac5f2f552f135fff25e7019",
                 "shasum": ""
             },
@@ -4327,7 +4327,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/99d1aae042a06b5fbe2e622cd56e18c001ed1299",
+                "url": "https://api.github.com/repos/symfony/process/zipball/f6290983c8725d0afa29bdc3e5295879de3e58f5",
                 "reference": "4b557e0d32e20a16938ead0aec06e4615d84668f",
                 "shasum": ""
             },
