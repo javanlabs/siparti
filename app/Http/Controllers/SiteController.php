@@ -10,6 +10,7 @@ use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 use App\Repositories\UjiPublikRepositoryEloquent;
 use Feed;
 use Route;
+use Cache;
 
 class SiteController extends Controller
 {
@@ -43,65 +44,86 @@ class SiteController extends Controller
 
     public function getRss()
     {
+        
+        if (Cache::has('sorted')) {
+            
+            $container = Cache::get('sorted');
+        
+        } else {
+            
+            $ujiPubliks = $this->ujiPublikRepository->scopeQuery(function($query){
+                return $query->orderBy('created_at','desc');
+            })->all();
+            
+            $programKerjaUsulans = $this->programKerjaRepository->scopeQuery(function($query){
+                return $query->orderBy('created_at','desc');
+            })->all();
+            
+            $programKerjas = $this->programKerjaRepository->scopeQuery(function($query){
+                return $query->orderBy('created_at','desc');
+            })->all();
+            
+            $container = [];
+            
+            foreach($ujiPubliks as $data) {
+            
+                $container[] =
+                [
+                        'title'         => $data->present('name'),
+                        'creator'       => $data->present('creator_name'),
+                        'url'           => $data->present('url'),
+                        'deskripsi'     => $data->present('materi'),
+                        'created_at'    => $data->present('created_at'),
+                        'pubDate'       => $data->present('created_for_human'),
+            
+                ];
+            }
+            
+            foreach($programKerjaUsulans as $data) {
+            
+                $container[] =
+                [
+                        'title'         => $data->present('name'),
+                        'creator'       => $data->present('creator_name'),
+                        'url'           => $data->present('url'),
+                        'deskripsi'     => $data->present('description'),
+                        'created_at'    => $data->present('created_at'),
+                        'pubDate'       => $data->present('created_for_human'),
+            
+                ];
+            }
+            
+            foreach($programKerjas as $data) {
+            
+                $container[] =
+                [
+                        'title'         => $data->present('name'),
+                        'creator'       => $data->present('creator_name'),
+                        'url'           => $data->present('url'),
+                        'deskripsi'     => $data->present('description'),
+                        'created_at'    => $data->present('created_at'),
+                        'pubDate'       => $data->present('created_for_human'),
+            
+                ];
+            }
+            
 
-        $ujiPubliks = $this->ujiPublikRepository->scopeQuery(function($query){
-            return $query->orderBy('created_at','desc');
-        })->all();
-
-        $programKerjaUsulans = $this->programKerjaRepository->scopeQuery(function($query){
-            return $query->orderBy('created_at','desc');
-        })->all();
-
-        $programKerjas = $this->programKerjaRepository->scopeQuery(function($query){
-            return $query->orderBy('created_at','desc');
-        })->all();
-
-        $container = [];
-
-        foreach($ujiPubliks as $data) {
-
-            $container[] = 
-            [
-                'title'         => $data->present('name'),
-                'creator'       => $data->present('creator_name'),
-                'url'           => $data->present('url'),
-                'deskripsi'     => $data->present('materi'),
-                'created_at'    => $data->present('created_at'),
-                'pubDate'       => $data->present('created_for_human'),
-
-            ];
-        }
-
-        foreach($programKerjaUsulans as $data) {
-
-            $container[] = 
-            [
-                'title'         => $data->present('name'),
-                'creator'       => $data->present('creator_name'),
-                'url'           => $data->present('url'),
-                'deskripsi'     => $data->present('description'),
-                'created_at'    => $data->present('created_at'),
-                'pubDate'       => $data->present('created_for_human'),
-
-            ];
-        }
-
-        foreach($programKerjas as $data) {
-
-            $container[] = 
-            [
-                'title'         => $data->present('name'),
-                'creator'       => $data->present('creator_name'),
-                'url'           => $data->present('url'),
-                'deskripsi'     => $data->present('description'),
-                'created_at'    => $data->present('created_at'),
-                'pubDate'       => $data->present('created_for_human'),
-
-            ];
+            $sorted = [];
+            
+            foreach ($container as $key => $row)
+            {
+                $sorted[$key] = $row['created_at'];
+            }
+            
+            array_multisort($sorted, SORT_DESC, $container);
+            
+            Cache::put('sorted', $container, 60);
         }
         
+        /* endif */
+        
         $feed = Feed::make();
-        $feed->setCache(60, 'openKominfo');
+        $feed->setCache(1440, 'openKominfo');
         $feed->title = 'Open Kominfo';
         $feed->description = 'Layanan partisipasi publik dalam membangun program kerja Kominfo yang berkualitas';
         $feed->link = action('SiteController@getRss');
@@ -110,15 +132,6 @@ class SiteController extends Controller
         $feed->lang = 'id';
         $feed->setShortening(true);
         $feed->setTextLimit(100);
-
-        $sorted = [];
-
-        foreach ($container as $key => $row)
-        {
-            $sorted[$key] = $row['created_at'];
-        }
-
-        array_multisort($sorted, SORT_DESC, $container);
 
         foreach($container as $data)
         {
@@ -133,7 +146,7 @@ class SiteController extends Controller
 
 
 
-        return $feed->render('atom', 60, 'openKominfo');
+        return $feed->render('atom', 1440, 'openKominfo');
 
     }
 }
