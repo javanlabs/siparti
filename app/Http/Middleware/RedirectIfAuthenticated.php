@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use App\Events\UserFailedLoggedInEvent;
 use Event;
+use route;
 
 class RedirectIfAuthenticated
 {
@@ -49,7 +50,7 @@ class RedirectIfAuthenticated
         
         if (isset($headers['location'][0])) {
             
-            if ($headers['location'][0] == "http://localhost:8000/auth/login") {
+            if ($headers['location'][0] == route('auth.login')) {
                 
                 Event::fire(new UserFailedLoggedInEvent($request));
             }

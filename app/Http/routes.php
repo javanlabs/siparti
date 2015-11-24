@@ -82,13 +82,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'as' => 'admin.comments.deleteMultiple'
       ]);
     
-    Route::post('comments/deletemultiple',
-           [
-              'uses' => 'LogController@deleteMultiple',
-               'as' => 'admin.logs.deleteMultiple'
-           ]);
-
-
     Route::group(['namespace' => 'User'], function(){
         Route::resource('users', 'UserController');
         Route::resource('profile', 'ProfileController');
