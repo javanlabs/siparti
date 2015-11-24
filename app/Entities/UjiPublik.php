@@ -3,8 +3,10 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravolt\Mural\CommentableTrait;
 use Laravolt\Mural\Contracts\Commentable;
+use Laravolt\Trail\Traits\HasRevisionsTrait;
 use Laravolt\Votee\Traits\Voteable;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
@@ -14,11 +16,16 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 class UjiPublik extends Model implements Presentable, Commentable, HasMedia
 {
-    use PresentableTrait, Eloquence, CommentableTrait, Voteable, HasMediaTrait;
+    use PresentableTrait, Eloquence, CommentableTrait, Voteable, HasMediaTrait, HasRevisionsTrait, SoftDeletes;
 
     protected $table = 'uji_publik';
 
     protected $fillable = ['name', 'materi'];
+
+    function __toString()
+    {
+        return $this->name;
+    }
 
     public function creator()
     {

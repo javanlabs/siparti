@@ -3,8 +3,10 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravolt\Mural\CommentableTrait;
 use Laravolt\Mural\Contracts\Commentable;
+use Laravolt\Trail\Traits\HasRevisionsTrait;
 use Laravolt\Votee\Traits\Voteable;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
@@ -14,13 +16,18 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 class ProgramKerjaUsulan extends Model implements Presentable, Commentable, HasMedia
 {
-    use PresentableTrait, CommentableTrait, Voteable, Eloquence, HasMediaTrait;
+    use PresentableTrait, CommentableTrait, Voteable, Eloquence, HasMediaTrait, HasRevisionsTrait, SoftDeletes;
 
     protected $table = 'usulan';
 
     protected $with = ['voteCounter'];
 
     protected $fillable = ['name', 'manfaat', 'lokasi', 'target', 'instansi_stakeholder', 'description'];
+
+    function __toString()
+    {
+        return $this->name;
+    }
 
     public function creator()
     {

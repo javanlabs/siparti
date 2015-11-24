@@ -4,8 +4,10 @@ namespace App\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravolt\Mural\CommentableTrait;
 use Laravolt\Mural\Contracts\Commentable;
+use Laravolt\Trail\Traits\HasRevisionsTrait;
 use Laravolt\Votee\Traits\Voteable;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
@@ -15,7 +17,7 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 class Fase extends Model implements Presentable, Commentable, HasMedia
 {
-    use PresentableTrait, CommentableTrait, Voteable, Eloquence, HasMediaTrait;
+    use PresentableTrait, CommentableTrait, Voteable, Eloquence, HasMediaTrait, HasRevisionsTrait, SoftDeletes;
 
     protected $table = 'fase';
 
@@ -24,6 +26,11 @@ class Fase extends Model implements Presentable, Commentable, HasMedia
     protected $dates = ['start_date', 'end_date'];
 
     protected $with = ['programKerja', 'satker'];
+
+    function __toString()
+    {
+        return $this->programKerja->name;
+    }
 
     public function programKerja()
     {
