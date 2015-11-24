@@ -1,4 +1,11 @@
 @extends('admin.layouts.base')
+@section('style-head')
+	@include('admin.layouts.style')
+@endsection
+
+@section('script-head')
+		@include('admin.layouts.script')
+@endsection
 @section('content')
 
     <div class="ui container">
@@ -56,9 +63,9 @@
                                 {{ csrf_field() }}
                               </form>
 								
-							  <a class="ui green button basic mini" href="{{ route('admin.ujiPublik.edit', [ 'id' => $data->present('id') ]) }}">Edit</a>
+							  <a class="ui green button basic mini" href="{{ route('admin.ujiPublik.edit', [ 'id' => $data->present('id') ]) }}"><i class="large edit icon"></i></a>
 							  	  	
-                              <button class="ui red button basic mini delete-button">Delete</button>
+                              <button class="ui red button basic mini delete-button"><i class="large remove icon"></i></button>
                             </td>
 
                         </tr>

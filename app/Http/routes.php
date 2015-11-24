@@ -56,6 +56,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::resource('programKerjaUsulan', 'ProgramKerjaUsulanController');
     Route::resource('ujiPublik', 'UjiPublikController');
     Route::resource('comments', 'CommentsController');
+    Route::resource('logs', 'LogController');
 
     Route::post('programKerjaUsulan/deletemultiple',
       [
@@ -80,8 +81,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'uses' => 'CommentsController@deleteMultiple',
         'as' => 'admin.comments.deleteMultiple'
       ]);
-
-
+    
     Route::group(['namespace' => 'User'], function(){
         Route::resource('users', 'UserController');
         Route::resource('profile', 'ProfileController');

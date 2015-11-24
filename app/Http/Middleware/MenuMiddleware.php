@@ -51,6 +51,9 @@ class MenuMiddleware
             $menu->add(trans('menus.admin.manage_comments'), ['route' => ['admin.comments.index']])
                   ->data('permission', 'manage-comments')
                   ->prepend('<i class="comments icon"></i>');
+            $menu->add(trans('menus.admin.manage_log'), ['route' => ['admin.logs.index']])
+                  ->data('permission', 'manage-log')
+                  ->prepend('<i class="sidebar icon"></i>');
 
             })->filter(function ($item) {
             return auth()->user()->can($item->data('permission'));

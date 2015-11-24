@@ -1,4 +1,13 @@
 @extends('admin.layouts.base')
+
+@section('style-head')
+	@include('admin.layouts.style')
+@endsection
+
+@section('script-head')
+		@include('admin.layouts.script')
+@endsection
+
 @section('content')
 
     <div class="ui container">
@@ -59,13 +68,14 @@
                             </td>
 
                             <td class="right aligned">
-								<a class="ui green button basic mini" href="{{ Route('admin.programKerja.edit', ['id' => $data->present('id')]) }}">Edit</a>	
+								<a class="ui green button basic mini" href="{{ Route('admin.programKerja.edit', ['id' => $data->present('id')]) }}"><i class="large edit icon"></i></a>	
+                              	
                               	<form role="form" action="{{ route('admin.programKerja.destroy',  [ 'id' => $data->present('id') ]) }}" method="POST" id="delete-form">
                                 	<input type="hidden" name="_method" value="DELETE">
                                 	{{ csrf_field() }}
                               	</form>
 
-                              	<button class="ui red button basic mini delete-button"><i class="remove icon"></i></button>
+                              	<button class="ui red button basic mini delete-button"><i class="large remove icon"></i></button>
                             </td>
 
                         </tr>

@@ -1,4 +1,11 @@
 @extends('admin.layouts.base')
+@section('style-head')
+	@include('admin.layouts.style')
+@endsection
+
+@section('script-head')
+		@include('admin.layouts.script')
+@endsection
 @section('content')
 
 	<div class="ui container">
