@@ -4,12 +4,6 @@ $.ajaxSetup({
     }
 });
 
-$.ajaxSetup({
-    beforeSend: function(xhr) {
-        xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'))
-    }
-});
-
 $(function(){
     $('.ui.dropdown').dropdown();
     $('.ui.checkbox').checkbox();
@@ -66,10 +60,6 @@ $(function(){
 
 $(document).ready(function() {
 	
-	
-	
-
-
 	var button;
 
 	function deleteComment(button) {
@@ -211,5 +201,7 @@ $(document).ready(function() {
   var descriptionText = $(".descriptionText").text();
   
   $(".textRedactor").redactor('insert.html', descriptionText);
+  
+  
 	  
 });

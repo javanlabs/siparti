@@ -7,7 +7,7 @@
             <div class="ten wide column">
                 <div class="ui segment very padded">
                 	<h2 class="ui header text centered"><span>Edit</span> Audit Trails</h2>
-                    <form class="ui form" action="{{ $route }}" class="ui form large" method="POST" enctype="multipart/form-data">
+                    <form class="ui form" action="{{ route('admin.') }}" class="ui form large" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         
                       	<div class="field">

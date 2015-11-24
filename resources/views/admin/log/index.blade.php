@@ -1,23 +1,25 @@
 @extends('admin.layouts.base')
 @section('content')
 
-    <div class="ui container">
-		<a href="{{ route('admin.programKerja.create') }}" class="ui primary button">Buat Progran Kerja</a>
+	<div class="ui container">
         <section class="section-audit-trails">
 		 <br />
 		
             <div class="ui top attached menu">
                 <div class="menu">
                     <div class="item borderless">
-                        <h4>Daftar Program Kerja</h4>
+                        <h4>Logging History</h4>
                     </div>
                 </div>
                 <div class="right menu">
                     <div class="ui right aligned item">
-                        <form method="GET" action="{{ route('admin.programKerja.index') }}">
+                        <form id="searchForm" method="GET" action="{{ route('admin.logs.index') }}">
                             <div class="ui transparent icon input">
-                                <input class="prompt" name="nama" value="{{ request('search') }}" type="text" placeholder="Cari Program Kerja">
-                                <i class="search link icon"></i>
+                                <input class="dateInput" name="search" data-beatpicker-module="icon, clear" 
+                                data-beatpicker="true" value="{{ request('search') }}" type="text" placeholder="Cari Log">
+                                <input type="hidden" name="searchField" value="created_at" />
+                                <button type="submit"><i class="search link icon"></i>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -28,40 +30,28 @@
                     <thead>
                     <tr>
                         <th ><button data-click-state="0" id="checkAll"><i class="check circle icon icon-button"></i></button></th>
-                        <th>Nama Progran Kerja</th>
-                        <th>Fase Sekarang</th>
-                        <th>Instansi Terkait</th>
-                        <th>Satker</th>
-                        <th><i class="comments icon"></i></th>
-                        <th><i class="thumbs up icon"></i></th>
-                        <th><i class="thumbs down icon"></i></th>
-                        <th>Dokumen</th>
-
-
-                        <th>&nbsp;</th>
+                        <th>Tanggal</th>
+                        <th>Ip address</th>
+                        <th>User</th>
+                        <th>Email address</th>
+                        <th>Activity</th>
+             			<th>&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse($programKerja as $data)
+                    @forelse($logs as $data)
                         <tr>
                             <td><input class="deletedId" type="checkbox" value="{!! $data->present('id') !!}" /></td>
+                            <td>{!! $data->present('date_for_human') !!}</td>
+                            <td>{!! $data->present('ip_address') !!}</td>
                             <td>{!! $data->present('name') !!}</td>
-                            <td class="nameColumn">{!! $data->present('label') !!}</td>
-                            <td>{!! $data->present('instansi_terkait') !!}</td>
-                            <td>{!! $data->present('satker') !!}</td>
-                            <td>{!! $data->present('komentar') !!}</td>
-                            <td>{!! $data->present('dukungan') !!}</td>
-                            <td>{!! $data->present('penolakan') !!}</td>
-                            <td>
-                                @foreach($data->present('media') as $item)
-                                    <a href="{{ $item->getUrl() }}">{{ $item->file_name }}</a>
-                                @endforeach
-                            </td>
-
-                            <td class="right aligned">
-								<a class="ui green button basic mini" href="{{ Route('admin.programKerja.edit', ['id' => $data->present('id')]) }}"><i class="large edit icon"></i></a>	
+                            <td>{!! $data->present('email') !!}</td>
+                            
+                            	
+                            <td>{!! $data->present('activity') !!}</td>
+                       		<td class="right aligned">
                               	
-                              	<form role="form" action="{{ route('admin.programKerja.destroy',  [ 'id' => $data->present('id') ]) }}" method="POST" id="delete-form">
+                              	<form role="form" action="{{ route('admin.logs.destroy',  [ 'id' => $data->present('id') ]) }}" method="POST" id="delete-form">
                                 	<input type="hidden" name="_method" value="DELETE">
                                 	{{ csrf_field() }}
                               	</form>
@@ -88,19 +78,19 @@
             </div>
             <div class="ui menu bottom attached">
                 <div class="item borderless">
-                    <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->summary() !!}</small>
+                    <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($logs))->summary() !!}</small>
                 </div>
-                {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->render('attached bottom right') !!}
+                {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($logs))->render('attached bottom right') !!}
             </div>
         </section>
     </div>
 
     <div class="ui small test modal deleteConfirm">
       <div class="header">
-        Hapus Program Kerja
+        Hapus Log
       </div>
     <div class="content">
-      <p>Apakah anda akan menghapus program kerja ini ?</p>
+      <p>Apakah anda akan menghapus log ini ?</p>
     </div>
     <div class="actions">
         <div class="ui negative button">
@@ -115,10 +105,10 @@
 
     <div class="ui small test modal multipleDeleteConfirm">
       <div class="header">
-        Hapus Beberapa Program Kerja
+        Hapus Log
       </div>
     <div class="content">
-      <p>Anda akan menghapus semua program kerja yang telah dicentang ?</p>
+      <p>Anda akan menghapus semua log yang telah dicentang ?</p>
     </div>
     <div class="actions">
         <div class="ui negative button">
@@ -131,7 +121,7 @@
       </div>
     </div>
 
-    <form method="post" action="{{ route('admin.programKerja.deleteMultiple') }}" role="form" id="multipleDeletedForm">
+    <form method="post" action="{{ route('admin.logs.deleteMultiple') }}" role="form" id="multipleDeletedForm">
       {{ csrf_field() }}
 
     </form>
