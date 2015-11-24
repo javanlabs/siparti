@@ -18,7 +18,7 @@ class CreateFaseTable extends Migration
 			$table->increments('id');
 			$table->enum('type', \App\Enum\FaseType::keys());
 			$table->unsignedInteger('proker_id');
-			$table->unsignedInteger('satker_id');
+			$table->unsignedInteger('satker_id')->nullable();
 			$table->text('description');
 			$table->text('scope');
 			$table->text('target');

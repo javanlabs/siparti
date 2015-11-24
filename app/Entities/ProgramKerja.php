@@ -24,6 +24,11 @@ class ProgramKerja extends Model implements Presentable
         return $this->belongsTo(Fase::class, 'current_fase_id');
     }
 
+    public function usulan()
+    {
+        return $this->belongsToMany(ProgramKerjaUsulan::class, 'program_kerja_usulan', 'program_kerja_id', 'usulan_id');
+    }
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
