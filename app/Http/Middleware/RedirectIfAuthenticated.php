@@ -50,7 +50,7 @@ class RedirectIfAuthenticated
         
         if (isset($headers['location'][0])) {
             
-            if ($headers['location'][0] == route('auth.login')) {
+            if ($headers['location'][0] == url('auth/login')) {
                 
                 Event::fire(new UserFailedLoggedInEvent($request));
             }
