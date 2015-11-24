@@ -3,16 +3,23 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravolt\Trail\Traits\HasRevisionsTrait;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
 
 class ProgramKerja extends Model implements Presentable
 {
-    use PresentableTrait;
+    use PresentableTrait, HasRevisionsTrait, SoftDeletes;
 
     protected $table = 'program_kerja';
 
     protected $fillable = ['name'];
+
+    function __toString()
+    {
+        return $this->name;
+    }
 
     public function fase()
     {
