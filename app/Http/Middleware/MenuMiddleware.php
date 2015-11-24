@@ -45,6 +45,9 @@ class MenuMiddleware
             $menu->add(trans('menus.admin.manage_program_kerja_usulan'), ['route' => ['admin.programKerjaUsulan.index']])
                   ->data('permission', 'manage-program-kerja-usulan')
                   ->prepend('<i class="announcement icon"></i>');
+            $menu->add(trans('menus.admin.satuan_kerja'), ['route' => ['admin.satuanKerja.index']])
+                  ->data('permission', 'manage-satuan-kerja')
+                  ->prepend('<i class="sitemap icon"></i>');
             $menu->add(trans('menus.admin.uji_publik'), ['route' => ['admin.ujiPublik.index']])
                   ->data('permission', 'manage-uji-public')
                   ->prepend('<i class="book icon"></i>');

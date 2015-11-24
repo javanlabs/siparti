@@ -15,6 +15,6 @@ class Satker extends Model implements Transformable, Presentable
 
     protected $table = 'satker';
 
-    protected $fillable = [];
+    protected $fillable = ['name'];
 
 }

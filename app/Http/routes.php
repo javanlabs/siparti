@@ -54,6 +54,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::resource('auditTrail', 'AuditTrailController');
     Route::resource('programKerja', 'ProgramKerjaController');
     Route::resource('programKerjaUsulan', 'ProgramKerjaUsulanController');
+    Route::resource('satuanKerja', 'SatuanKerjaController');
     Route::resource('ujiPublik', 'UjiPublikController');
     Route::resource('comments', 'CommentsController');
     Route::resource('logs', 'LogController');

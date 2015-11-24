@@ -9,6 +9,7 @@ return [
         'manage_comments' => 'Komentar',
         'manage_program_kerja' => 'Program Kerja',
         'manage_program_kerja_usulan' => 'Program Kerja Usulan',
+        'satuan_kerja' => 'Satuan Kerja',
         'uji_publik' => 'Uji Publik',
         'manage_log' => 'Logging'        
     ],
