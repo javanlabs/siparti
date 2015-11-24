@@ -16,7 +16,7 @@ class CreateProgramKerjaTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->unsignedInteger('creator_id');
-            $table->unsignedInteger('current_fase_id');
+            $table->unsignedInteger('current_fase_id')->nullable();
             $table->unsignedInteger('satker_id');
 
             $table->softDeletes();

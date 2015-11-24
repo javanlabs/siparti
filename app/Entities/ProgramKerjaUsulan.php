@@ -16,7 +16,7 @@ class ProgramKerjaUsulan extends Model implements Presentable, Commentable, HasM
 {
     use PresentableTrait, CommentableTrait, Voteable, Eloquence, HasMediaTrait;
 
-    protected $table = 'program_kerja_usulan';
+    protected $table = 'usulan';
 
     protected $with = ['voteCounter'];
 
@@ -25,6 +25,11 @@ class ProgramKerjaUsulan extends Model implements Presentable, Commentable, HasM
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    public function programKerja()
+    {
+        return $this->belongsToMany(ProgramKerja::class, 'program_kerja_usulan', 'usulan_id', 'program_kerja_id')->withTimestamps();
     }
 
     public function getCommentableTitleAttribute()

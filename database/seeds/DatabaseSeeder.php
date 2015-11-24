@@ -12,6 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \Illuminate\Support\Facades\File::cleanDirectory(config('filesystems.disks.media.root'));
+        \Illuminate\Support\Facades\File::cleanDirectory(config('filesystems.disks.document.root'));
+
         Model::unguard();
 
         // root role
@@ -32,8 +35,8 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info('Start Seed Satker, ProgramKerja, and Fase');
         factory(\App\Entities\Satker::class, 10)->create()->each(function ($satker) {
-            $proker = factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id]);
 
+            $proker = factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id]);
             $proker->each(function ($proker) {
                 $fase = factory(\App\Entities\Fase::class)->create([
                     'type'      => \App\Enum\FaseType::PERENCANAAN,
@@ -91,6 +94,26 @@ class DatabaseSeeder extends Seeder
                 Votee::voteUp($model, \App\Entities\User::find($id));
                 Votee::voteDown($model, \App\Entities\User::find($id + 10));
             }
+
+            // realiasasi usulan menjadi program kerja
+            $proker = factory(\App\Entities\ProgramKerja::class)->create();
+            $fase = factory(\App\Entities\Fase::class)->create([
+                'type'      => \App\Enum\FaseType::PERENCANAAN,
+                'proker_id' => $proker->id
+            ]);
+            $fase->addDocument(base_path('resources/assets/files/sample.doc'));
+            $fase->addDocument(base_path('resources/assets/files/sample.pdf'));
+
+            foreach(range(1, rand(1, 10)) as $id) {
+                Mural::addComment($fase, Faker\Factory::create()->paragraph, 'default');
+                Votee::voteUp($fase, \App\Entities\User::find($id));
+                Votee::voteDown($fase, \App\Entities\User::find($id + 10));
+            }
+            $proker->current_fase_id = $fase->id;
+            $proker->save();
+
+            $proker->usulan()->attach($model);
+
         });
         $this->command->info('Finish Seed ProgramKerjaUsulan');
 
