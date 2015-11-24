@@ -13,6 +13,7 @@ return [
     ],
     'member' => [
         'settings' => 'Akun Saya',
+        'my_program_kerja_usulan' => 'Usulan Program Kerja',
         'logout'   => 'Keluar',
     ]
 ];

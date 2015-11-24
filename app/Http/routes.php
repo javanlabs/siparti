@@ -32,7 +32,7 @@ Route::group(['namespace' => 'My', 'prefix' => 'my', 'middleware' => 'auth'], fu
     Route::get('/', function(){
         return redirect('my/profile');
     });
-
+    Route::get('usulan', 'ProgramKerjaUsulanController@index');
     Route::get('profile', 'ProfileController@edit');
     Route::put('profile', 'ProfileController@update');
     Route::get('email', 'EmailController@edit');

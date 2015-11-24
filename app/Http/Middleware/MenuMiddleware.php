@@ -62,6 +62,7 @@ class MenuMiddleware
         Menu::make('member', function ($menu) {
             $menu->add(trans('menus.member.settings'), url('my/profile'));
             $menu->divide();
+            $menu->add(trans('menus.member.my_program_kerja_usulan'), url('my/usulan'));
             $menu->add(trans('menus.member.logout'), url('auth/logout'));
         });
 
