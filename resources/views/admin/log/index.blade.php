@@ -1,4 +1,13 @@
 @extends('admin.layouts.base')
+
+@section('style-head')
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/BeatPicker.min.css') }}">
+@endsection
+
+@section('script-head')
+	<script src="{{ asset('js/BeatPicker.min.js') }}"></script>
+@endsection
+
 @section('content')
 
 	<div class="ui container">
