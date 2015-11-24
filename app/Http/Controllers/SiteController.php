@@ -45,9 +45,9 @@ class SiteController extends Controller
     public function getRss()
     {
         
-        if (Cache::has('sorted')) {
+        if (Cache::has('rss.sorted')) {
             
-            $container = Cache::get('sorted');
+            $container = Cache::get('rss.sorted');
         
         } else {
             
@@ -117,13 +117,13 @@ class SiteController extends Controller
             
             array_multisort($sorted, SORT_DESC, $container);
             
-            Cache::put('sorted', $container, 60);
+            Cache::put('rss.sorted', $container, 1440);
         }
         
         /* endif */
         
         $feed = Feed::make();
-        $feed->setCache(1440, 'openKominfo');
+        $feed->setCache(0, 'openKominfo');
         $feed->title = 'Open Kominfo';
         $feed->description = 'Layanan partisipasi publik dalam membangun program kerja Kominfo yang berkualitas';
         $feed->link = action('SiteController@getRss');
@@ -146,7 +146,7 @@ class SiteController extends Controller
 
 
 
-        return $feed->render('atom', 1440, 'openKominfo');
+        return $feed->render('atom', 0, 'openKominfo');
 
     }
 }

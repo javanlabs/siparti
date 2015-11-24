@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Laravolt\Votee\Votee;
+use Activity;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -14,11 +15,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'App\Events\UserFailedLoggedInEvent' => [
+            'App\Listeners\UserFailedLogginLogger',
         ],
     ];
-
+    
     /**
      * Register any other events for your application.
      *
@@ -42,5 +43,14 @@ class EventServiceProvider extends ServiceProvider
         $events->listen('mural.comment.remove', function($comment, $user){
             $comment->commentable->decrement('comment');
         });
+        
+        $events->listen('auth.logout', function ($user) {
+            Activity::log('logged out');
+        });
+        
+        $events->listen('auth.login', function($user, $remember) {
+            Activity::log('logged in');
+        });
     }
+    
 }
