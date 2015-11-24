@@ -43,13 +43,8 @@
                             <td>{!! $data->present('ip_address') !!}</td>
                             <td>{!! $data->present('name') !!}</td>
                             <td>{!! $data->present('email') !!}</td>
-                            
-                            	
-                            <td>{!! $data->present('activity') !!}</td>
-                       		
-
-                        </tr>
-
+                        	<td>{!! $data->present('activity') !!}</td>
+                     	</tr>
                     @empty
                         <tr>
                             <td colspan="4" class="warning center aligned" style="font-size: 1.5rem;padding:40px;font-style: italic">Data tidak tersedia</td>

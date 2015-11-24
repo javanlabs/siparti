@@ -1,4 +1,17 @@
 @extends('admin.layouts.base')
+
+@section('style-head')
+	
+	@include('admin.layouts.style')
+
+@endsection
+
+@section('script-head')
+		
+		@include('admin.layouts.script')
+
+@endsection
+
 @section('content')
 
     <div class="ui container">
@@ -49,7 +62,7 @@
                                 {{ csrf_field() }}
                               </form>
 
-                              <button class="ui red button basic mini delete-button">Delete</button>
+                              <button class="ui red button basic mini delete-button"><i class="large remove icon"></i></button>
                             </td>
 
                         </tr>
