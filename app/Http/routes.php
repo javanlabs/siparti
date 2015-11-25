@@ -52,11 +52,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
     Route::resource('roles', 'RoleController');
     Route::resource('auditTrail', 'AuditTrailController');
-    Route::resource('programKerja', 'ProgramKerjaController');
+    Route::resource('faseProgramKerja', 'FaseProgramKerjaController');
     Route::resource('programKerjaUsulan', 'ProgramKerjaUsulanController');
     Route::resource('ujiPublik', 'UjiPublikController');
     Route::resource('comments', 'CommentsController');
     Route::resource('logs', 'LogController');
+    Route::resource('programKerja', 'ProgramKerjaController');
 
     Route::post('programKerjaUsulan/deletemultiple',
       [

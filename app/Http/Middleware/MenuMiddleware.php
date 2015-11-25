@@ -40,8 +40,11 @@ class MenuMiddleware
                  ->data('permission', 'manage-settings')
                  ->prepend('<i class="icon options"></i>');
             $menu->add(trans('menus.admin.manage_program_kerja'), ['route' => ['admin.programKerja.index']])
-                  ->data('permission', 'manage-program-kerja')
-                  ->prepend('<i class="configure icon"></i>');
+                 ->data('permission', 'manage-settings')
+                 ->prepend('<i class="icon configure"></i>');
+            $menu->add(trans('menus.admin.manage_fase_program_kerja'), ['route' => ['admin.faseProgramKerja.index']])
+                  ->data('permission', 'manage-fase-program-kerja')
+                  ->prepend('<i class="wait icon"></i>');
             $menu->add(trans('menus.admin.manage_program_kerja_usulan'), ['route' => ['admin.programKerjaUsulan.index']])
                   ->data('permission', 'manage-program-kerja-usulan')
                   ->prepend('<i class="announcement icon"></i>');

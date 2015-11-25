@@ -23,8 +23,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $terbaru = $this->repository->terbaru(3);
-        $terpopuler = $this->repository->terpopuler(3);
+        $terbaru = $this->repository->all();
+        $terpopuler = $this->repository->all();
 
         return view('home.index', compact('terbaru', 'terpopuler'));
     }

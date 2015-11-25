@@ -6,15 +6,19 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Repositories\FaseRepositoryEloquent;
 use App\Repositories\SatkerRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
+use App\Entities\Fase;
+use App\Http\Requests\StoreFaseRequest;
 use Notification;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
-class ProgramKerjaController extends Controller
+class FaseProgramKerjaController extends Controller
 {
 
-    
+    protected $faseRepository;
     
     protected $satkerRepository;
     
@@ -24,10 +28,12 @@ class ProgramKerjaController extends Controller
      * ProgramKerjaController constructor.
      */
     public function __construct(
+            FaseRepositoryEloquent $faseRepository, 
             SatkerRepositoryEloquent $satkerRepository, 
             ProgramKerjaRepositoryEloquent $programKerjaRepository
     )
     {
+        $this->faseRepository = $faseRepository;
         
         $this->satkerRepository = $satkerRepository;
         
@@ -47,9 +53,9 @@ class ProgramKerjaController extends Controller
     public function index(Request $request)
     {
     
-      $programKerja = $this->programKerjaRepository->paginate(20);
+      $programKerja = $this->faseRepository->paginate(20);
       
-      return view('admin.programKerja.index', compact('programKerja'));
+      return view('admin.faseProgramKerja.index', compact('programKerja'));
     }
 
     /*
@@ -66,7 +72,7 @@ class ProgramKerjaController extends Controller
         
         $programKerja = $this->programKerjaRepository->all();
         
-        return view('admin.programKerja.form', compact('satkers', 'programKerja', 'action', 'route'));
+        return view('admin.faseProgramKerja.form', compact('satkers', 'programKerja', 'action', 'route', 'type'));
     }
 
     /*
@@ -76,7 +82,7 @@ class ProgramKerjaController extends Controller
     public function store(StoreFaseRequest $request)
     {
         
-        $fase = $this->programKerjaRepository->create($request->all());
+        $fase = $this->faseRepository->create($request->all());
         
         Notification::success('Fase Program kerja berhasil disimpan.');
         
@@ -91,13 +97,15 @@ class ProgramKerjaController extends Controller
     {
         $action = "edit";
         
+        $programKerja = $this->programKerjaRepository->all();
+        
         $satkers = $this->satkerRepository->all();
         
-        $programKerja = $this->programKerjaRepository->find($id);
+        $fase = $this->faseRepository->find($id);
         
         $route = Route('admin.faseProgramKerja.update', ['id' => $id]);
         
-        return view('admin.programKerja.form', compact('programKerja', 'fase', 'satkers', 'action', 'route'));
+        return view('admin.faseProgramKerja.form', compact('programKerja', 'fase', 'satkers', 'action', 'route'));
     }
     
     /*
@@ -105,7 +113,7 @@ class ProgramKerjaController extends Controller
      */
     public function update(StoreFaseRequest $request, $id)
     {
-        $this->programKerjaRepository->update($request->all(), $id);
+        $this->faseRepository->update($request->all(), $id);
         
         Notification::success('Data berhasil dirubah');
         
@@ -120,7 +128,7 @@ class ProgramKerjaController extends Controller
      */
     public function destroy($id)
     {
-        $this->programKerjaRepository->delete($id);
+        $this->faseRepository->delete($id);
         return redirect()->back();
 
     }
@@ -138,7 +146,7 @@ class ProgramKerjaController extends Controller
 
       foreach ($toBeDeletedIds as $id) {
 
-        $this->programKerjaRepository->delete((int)$id);
+        $this->faseRepository->delete((int)$id);
 
       }
 
