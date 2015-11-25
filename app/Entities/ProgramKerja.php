@@ -52,8 +52,8 @@ class ProgramKerja extends Model implements Presentable
 
             return "NULL";
         
-        } else
-        {
+        } else {
+            
             return $this->faseSekarang->type;
         } 
     }
