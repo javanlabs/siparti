@@ -16,13 +16,14 @@
                 switch ($val) {
 
                     case "baru" :
-                        $("#choice1").show();
-                        $("#choice2").hide();
+                        $("input[name=satuanKerjaBaru]").prop('disabled', false);
+                        $("input.search").prop('disabled', true);
                         break;
                     case "pilih" :
-                        $("#choice1").hide();
-                        $("#choice2").show();
+                        $("input[name=satuanKerjaBaru]").prop('disabled', true);
+                        $("input.search").prop('disabled', false);
                         break;        
+               
                 }
             }
 
@@ -65,47 +66,50 @@
                    
                         {{ csrf_field() }}
                         
-                        {!! SemanticForm::text('name', 'Nama Program Kerja') !!}                            
+                        <div class="field">
+                            <label>Nama Program Kerja</label>
+                            <input type="text" name="name" />
+                        </div>
 
                         <div class="field">
 
                             <label>Satuan Kerja</label>
-                            
-                            <div class="inline fields">
-                                <div class="field">
-                                    <div class="ui radio checkbox">
-                                        <input name="satkerChoice" type="radio" value="baru">
-                                        <label>Buat Baru</label>
+
+                            <div class="ui grid">
+                                <div class="two column row">
+                                    <div class="column">
+                                         <div class="field" id="choice2">
+                                            <div class="ui radio checkbox">
+                                                <input checked="checked" name="satkerChoice" value="pilih" type="radio" >
+                                                <label>Pilih Satuan Kerja</label>
+                                            </div>
+                                            <label></label>
+                                            <div class="ui fluid search selection dropdown">
+                                                <input name="satker_id" type="hidden">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">Pilih Satuan Kerja</div>
+                                                <div class="menu">
+                                                    @foreach($satkers as $data)
+                                                        <div class="item" data-value="{!! $data->present('id') !!}">{!! $data->present('name') !!}</div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div> 
                                     </div>
-                                </div>
-                                <div class="field">
+
+                                    <div class="column">
                                     <div class="ui radio checkbox">
-                                        <input checked="checked" name="satkerChoice" value="pilih" type="radio" >
-                                        <label>Pilih Satuan Kerja</label>
+                                            <input name="satkerChoice" type="radio" value="baru">
+                                            <label>Buat Baru</label>
+                                        </div>
+                                        <div id="choice1">
+                                            <input type="text" name="satuanKerjaBaru" placeholder="Buat Satuan Kerja Baru" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div id="choice1">
-                                {!! SemanticForm::text('satuanKerjaBaru', 'Satuan Kerja Baru') !!}                            
-                            </div>
-                            
-                            <div class="field" id="choice2">
-
-                                <label>Pilih Satuan Kerja</label>
-                                <div class="ui fluid search selection dropdown">
-                                    <input name="satker_id" type="hidden">
-                                    <i class="dropdown icon"></i>
-                                <div class="default text">Satuan Kerja</div>
-                                    <div class="menu">
-                                        @foreach($satkers as $data)
-                                                <div class="item" data-value="{!! $data->present('id') !!}">{!! $data->present('name') !!}</div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>    
                         </div>
-                        
+                        <br />
                         {!! SemanticForm::submit('Simpan') !!}
 
                     @else
@@ -124,40 +128,40 @@
                         <div class="field">
 
                             <label>Satuan Kerja</label>
-                            
-                            <div class="inline fields">
-                                <div class="field">
-                                    <div class="ui radio checkbox">
-                                        <input name="satkerChoice" type="radio" value="baru">
-                                        <label>Buat Baru</label>
+
+                            <div class="ui grid">
+                                <div class="two column row">
+                                    <div class="column">
+                                         <div class="field" id="choice2">
+                                            <div class="ui radio checkbox">
+                                                <input checked="checked" name="satkerChoice" value="pilih" type="radio" >
+                                                <label>Pilih Satuan Kerja</label>
+                                            </div>
+                                            <label></label>
+                                            <div class="ui fluid search selection dropdown">
+                                                <input name="satker_id" type="hidden" value="{{ $programKerja->present('satker') }}">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">Pilih Satuan Kerja</div>
+                                                <div class="menu">
+                                                    @foreach($satkers as $data)
+                                                        <div class="item" data-value="{!! $data->present('id') !!}">{!! $data->present('name') !!}</div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div> 
                                     </div>
-                                </div>
-                                <div class="field">
+
+                                    <div class="column">
                                     <div class="ui radio checkbox">
-                                        <input checked="checked" name="satkerChoice" value="pilih" type="radio" >
-                                        <label>Pilih Satuan Kerja</label>
+                                            <input name="satkerChoice" type="radio" value="baru">
+                                            <label>Buat Baru</label>
+                                        </div>
+                                        <div id="choice1">
+                                            <input type="text" name="satuanKerjaBaru" placeholder="Buat Satuan Kerja Baru" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div id="choice1">
-                                {!! SemanticForm::text('satuanKerjaBaru', 'Satuan Kerja Baru') !!}                            
-                            </div>
-                            
-                            <div class="field" id="choice2">
-
-                                <label>Pilih Satuan Kerja</label>
-                                <div class="ui fluid search selection dropdown">
-                                    <input name="satker_id" type="hidden" value="{{ $programKerja->present('satker') }}">
-                                    <i class="dropdown icon"></i>
-                                <div class="default text">Satuan Kerja</div>
-                                    <div class="menu">
-                                        @foreach($satkers as $data)
-                                                <div class="item" data-value="{!! $data->present('id') !!}">{!! $data->present('name') !!}</div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>    
                         </div>
 
                         <div class="field">
