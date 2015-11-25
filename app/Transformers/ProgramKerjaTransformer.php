@@ -28,7 +28,7 @@ class ProgramKerjaTransformer extends TransformerAbstract
             'satker'            => $model->satker_id,
             'creator_name'      => $model->creator->name,
             'fase_sekarang'     => $model->getCurrentFase(),
-            'satker_name'       => $model->satker->name,
+            'satker_name'       => ($model->satker)?$model->satker->name:'',
             'date_for_human'    => date("d F Y",strtotime($model->created_at)),
 
             /* place your other model properties here */
