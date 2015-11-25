@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\StoreProgramKerjaRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\SatkerRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
 use Notification;
-
+use Auth;
 
 class ProgramKerjaController extends Controller
 {
@@ -60,23 +61,43 @@ class ProgramKerjaController extends Controller
         
         $action = "create";
         
-        $route = Route('admin.faseProgramKerja.store');
+        $route = Route('admin.programKerja.store');
         
         $satkers = $this->satkerRepository->all();
         
-        $programKerja = $this->programKerjaRepository->all();
-        
-        return view('admin.programKerja.form', compact('satkers', 'programKerja', 'action', 'route'));
+        return view('admin.programKerja.form', compact('satkers', 'action', 'route'));
     }
 
     /*
     *
-    *   Record fase baru
+    *   Record program kerja baru
     */
-    public function store(StoreFaseRequest $request)
+    public function store(StoreProgramKerjaRequest $request)
     {
+        $attributes = [];
+
+        if ($request->input('satkerChoice') == "baru") {
+
+            $satkerName = ['name' => $request->input('satuanKerjaBaru')];
+
+            $satker = $this->satkerRepository->create($satkerName);
+
+            $attributes = [
+                'name'          => $request->input('name'),
+                'satker_id'     => $satker->id,
+                'creator_id'    => Auth::user()->id
+            ];
         
-        $fase = $this->programKerjaRepository->create($request->all());
+        } else {
+
+            $attributes = [
+                'name'          => $request->input('name'),
+                'satker_id'     => $request->input('satker_id'),
+                'creator_id'    => Auth::user()->id
+            ];
+        } 
+
+        $this->programKerjaRepository->create($attributes);
         
         Notification::success('Fase Program kerja berhasil disimpan.');
         
@@ -95,17 +116,40 @@ class ProgramKerjaController extends Controller
         
         $programKerja = $this->programKerjaRepository->find($id);
         
-        $route = Route('admin.faseProgramKerja.update', ['id' => $id]);
+        $route = Route('admin.programKerja.update', ['id' => $id]);
         
-        return view('admin.programKerja.form', compact('programKerja', 'fase', 'satkers', 'action', 'route'));
+        return view('admin.programKerja.form', compact('programKerja', 'satkers', 'action', 'route'));
     }
     
     /*
      * Melakukan update data
      */
-    public function update(StoreFaseRequest $request, $id)
+    public function update(StoreProgramKerjaRequest $request, $id)
     {
-        $this->programKerjaRepository->update($request->all(), $id);
+        $attributes = [];
+
+        if ($request->input('satkerChoice') == "baru") {
+
+            $satkerName = ['name' => $request->input('satuanKerjaBaru')];
+
+            $satker = $this->satkerRepository->create($satkerName);
+
+            $attributes = [
+                'name'          => $request->input('name'),
+                'satker_id'     => $satker->id,
+                'creator_id'    => Auth::user()->id
+            ];
+        
+        } else {
+
+            $attributes = [
+                'name'          => $request->input('name'),
+                'satker_id'     => $request->input('satker_id'),
+                'creator_id'    => Auth::user()->id
+            ];
+        } 
+
+        $this->programKerjaRepository->update($attributes, $id);
         
         Notification::success('Data berhasil dirubah');
         

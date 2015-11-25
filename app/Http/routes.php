@@ -32,7 +32,7 @@ Route::group(['namespace' => 'My', 'prefix' => 'my', 'middleware' => 'auth'], fu
     Route::get('/', function(){
         return redirect('my/profile');
     });
-
+    Route::get('usulan', 'ProgramKerjaUsulanController@index');
     Route::get('profile', 'ProfileController@edit');
     Route::put('profile', 'ProfileController@update');
     Route::get('email', 'EmailController@edit');
@@ -52,12 +52,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
     Route::resource('roles', 'RoleController');
     Route::resource('auditTrail', 'AuditTrailController');
+    Route::resource('programKerja', 'ProgramKerjaController');
     Route::resource('faseProgramKerja', 'FaseProgramKerjaController');
     Route::resource('programKerjaUsulan', 'ProgramKerjaUsulanController');
+    Route::resource('satuanKerja', 'SatuanKerjaController');
     Route::resource('ujiPublik', 'UjiPublikController');
     Route::resource('comments', 'CommentsController');
     Route::resource('logs', 'LogController');
-    Route::resource('programKerja', 'ProgramKerjaController');
 
     Route::post('programKerjaUsulan/deletemultiple',
       [
@@ -75,6 +76,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
       [
         'uses' => 'UjiPublikController@deleteMultiple',
         'as' => 'admin.ujiPublik.deleteMultiple'
+      ]);
+
+
+    Route::post('faseProgramKerja/deletemultiple',
+      [
+        'uses' => 'FaseProgramKerjaController@deleteMultiple',
+        'as' => 'admin.faseProgramKerja.deleteMultiple'
       ]);
 
     Route::post('comments/deletemultiple',

@@ -40,14 +40,17 @@ class MenuMiddleware
                  ->data('permission', 'manage-settings')
                  ->prepend('<i class="icon options"></i>');
             $menu->add(trans('menus.admin.manage_program_kerja'), ['route' => ['admin.programKerja.index']])
-                 ->data('permission', 'manage-settings')
-                 ->prepend('<i class="icon configure"></i>');
+                  ->data('permission', 'manage-program-kerja')
+                  ->prepend('<i class="configure icon"></i>');
             $menu->add(trans('menus.admin.manage_fase_program_kerja'), ['route' => ['admin.faseProgramKerja.index']])
                   ->data('permission', 'manage-fase-program-kerja')
-                  ->prepend('<i class="wait icon"></i>');
+                  ->prepend('<i class="wait icon"></i>');      
             $menu->add(trans('menus.admin.manage_program_kerja_usulan'), ['route' => ['admin.programKerjaUsulan.index']])
                   ->data('permission', 'manage-program-kerja-usulan')
                   ->prepend('<i class="announcement icon"></i>');
+            $menu->add(trans('menus.admin.satuan_kerja'), ['route' => ['admin.satuanKerja.index']])
+                  ->data('permission', 'manage-satuan-kerja')
+                  ->prepend('<i class="sitemap icon"></i>');
             $menu->add(trans('menus.admin.uji_publik'), ['route' => ['admin.ujiPublik.index']])
                   ->data('permission', 'manage-uji-public')
                   ->prepend('<i class="book icon"></i>');
@@ -68,6 +71,7 @@ class MenuMiddleware
         Menu::make('member', function ($menu) {
             $menu->add(trans('menus.member.settings'), url('my/profile'));
             $menu->divide();
+            $menu->add(trans('menus.member.my_program_kerja_usulan'), url('my/usulan'));
             $menu->add(trans('menus.member.logout'), url('auth/logout'));
         });
 

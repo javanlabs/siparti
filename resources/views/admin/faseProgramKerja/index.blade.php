@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="ui container">
-		<a href="{{ route('admin.programKerja.create') }}" class="ui primary button">Buat Fase Progran Kerja</a>
+		<a href="{{ route('admin.faseProgramKerja.create') }}" class="ui primary button">Buat Fase Progran Kerja</a>
         <section class="section-audit-trails">
 		 <br />
 		
@@ -23,7 +23,7 @@
                 </div>
                 <div class="right menu">
                     <div class="ui right aligned item">
-                        <form method="GET" action="{{ route('admin.programKerja.index') }}">
+                        <form method="GET" action="{{ route('admin.faseProgramKerja.index') }}">
                             <div class="ui transparent icon input">
                                 <input class="prompt" name="nama" value="{{ request('search') }}" type="text" placeholder="Cari Fase Program Kerja">
                                 <i class="search link icon"></i>
@@ -140,7 +140,7 @@
       </div>
     </div>
 
-    <form method="post" action="{{ route('admin.programKerja.deleteMultiple') }}" role="form" id="multipleDeletedForm">
+    <form method="post" action="{{ route('admin.faseProgramKerja.deleteMultiple') }}" role="form" id="multipleDeletedForm">
       {{ csrf_field() }}
 
     </form>
