@@ -38,7 +38,7 @@ class FaseTransformer extends TransformerAbstract
             'excerpt'          => str_limit($model->description, 150),
             'scope'            => $model->scope,
             'target'           => $model->target,
-            'progress'          => $model->progress,
+            'progress'         => $model->progress,
             'kendala'          => $model->kendala,
             'instansi_terkait' => $model->instansi_terkait,
             'periode'          => $model->start_date->formatLocalized('%e %B %Y') . ' - ' . $model->end_date->formatLocalized('%e %B %Y'),
@@ -66,4 +66,5 @@ class FaseTransformer extends TransformerAbstract
     {
         return $this->item($fase->programKerja, new ProgramKerjaTransformer());
     }
+
 }

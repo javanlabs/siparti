@@ -6,7 +6,10 @@ use App\Presenters\ProgramKerjaPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\ProgramKerjaRepository;
+use Prettus\Repository\Events\RepositoryEntityCreated;
+use Prettus\Repository\Events\RepositoryEntityDeleted;
 use App\Entities\ProgramKerja;
+use Auth;
 
 /**
  * Class ProgramKerjaRepositoryEloquent

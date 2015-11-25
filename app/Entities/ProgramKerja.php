@@ -14,7 +14,7 @@ class ProgramKerja extends Model implements Presentable
 
     protected $table = 'program_kerja';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'satker_id', 'creator_id'];
 
     function __toString()
     {
@@ -44,5 +44,17 @@ class ProgramKerja extends Model implements Presentable
     public function satker()
     {
         return $this->belongsTo(Satker::class, 'satker_id');
+    }
+
+    public function getCurrentFase()
+    {
+        if (is_null($this->current_fase_id)) {
+
+            return "NULL";
+        
+        } else
+        {
+            return $this->faseSekarang->type;
+        } 
     }
 }

@@ -53,6 +53,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::resource('roles', 'RoleController');
     Route::resource('auditTrail', 'AuditTrailController');
     Route::resource('programKerja', 'ProgramKerjaController');
+    Route::resource('faseProgramKerja', 'FaseProgramKerjaController');
     Route::resource('programKerjaUsulan', 'ProgramKerjaUsulanController');
     Route::resource('satuanKerja', 'SatuanKerjaController');
     Route::resource('ujiPublik', 'UjiPublikController');
@@ -75,6 +76,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
       [
         'uses' => 'UjiPublikController@deleteMultiple',
         'as' => 'admin.ujiPublik.deleteMultiple'
+      ]);
+
+
+    Route::post('faseProgramKerja/deletemultiple',
+      [
+        'uses' => 'FaseProgramKerjaController@deleteMultiple',
+        'as' => 'admin.faseProgramKerja.deleteMultiple'
       ]);
 
     Route::post('comments/deletemultiple',
