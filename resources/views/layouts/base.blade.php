@@ -16,12 +16,14 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{{ asset('lib/semantic-ui/semantic.css') }}">
   	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/ShareSocial.css') }}">
 
     @yield('style-head')
 
     <script src="{{ asset('lib/jquery.min.js') }}"></script>
     <script src="{{ asset('lib/semantic-ui/semantic.min.js') }}"></script>
    	<script src="{{ asset('js/app.js') }}"></script>
+    <script src="http://share.donreach.com/buttons.js"></script>
 
     @yield('script-head')
 </head>
