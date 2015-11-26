@@ -7,15 +7,11 @@ body {
   background-color: $background-color;
   &.admin {
     background-color: #fff;
-
-    .content {
-      min-height: 500px;
-    }
   }
 }
 
-#layout-frontend {
-  //flex: 1;
+#layout-frontend, #layout-admin {
+  min-height: 500px;
 }
 
 .menu#menu-navbar {

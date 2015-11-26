@@ -6,7 +6,8 @@ body.admin {
   background-color: #fff;
 }
 
-body.admin .content {
+#layout-frontend,
+#layout-admin {
   min-height: 500px;
 }
 
