@@ -92,10 +92,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
       ]);
     
     // Route untuk ajax add dan delete relasi antara program kerja usulan dan program kerja 
+    Route::post('programKerja/deleteRelation', 'ProgramKerjaController@deleteRelation');
+    Route::post('programKerja/addRelation', 'ProgramKerjaController@addRelation');
+
+    // Route untuk ajax add dan delete relasi antara program kerja usulan dan program kerja 
     Route::post('programKerjaUsulan/deleteRelation', 'ProgramKerjaUsulanController@deleteRelation');
     Route::post('programKerjaUsulan/addRelation', 'ProgramKerjaUsulanController@addRelation');
 
-    
+   
+
     Route::get('programKerja/basedUsulan/create', [
             'uses'  => 'ProgramKerjaController@createProkerBasedUsulan',
             'as'    => 'admin.programKerja.createBasedUsulan'
