@@ -258,6 +258,5 @@
         </div>
     </section>
     </div>
-    <button id="sendAjax">Send</button>
 @endsection
 
