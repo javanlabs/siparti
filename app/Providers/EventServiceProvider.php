@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Laravolt\Votee\Votee;
-use Activity;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +17,7 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserFailedLoggedInEvent' => [
             'App\Listeners\UserFailedLogginLogger',
         ],
+
     ];
     
     /**
@@ -44,13 +44,10 @@ class EventServiceProvider extends ServiceProvider
             $comment->commentable->decrement('comment');
         });
         
-        $events->listen('auth.logout', function ($user) {
-            Activity::log('logged out');
-        });
+        $events->listen('auth.logout', 'App\Listeners\UserLogoutLogger@handle');
         
-        $events->listen('auth.login', function($user, $remember) {
-            Activity::log('logged in');
-        });
+        $events->listen('auth.login', 'App\Listeners\UserLoginLogger@handle');
+        
     }
     
 }
