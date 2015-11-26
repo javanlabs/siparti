@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Laravolt\Trail\Models\Revision;
 
-class AuditTrailController extends Controller
+class AuditTrailController extends AdminController
 {
     /**
      * AuditTrailController constructor.

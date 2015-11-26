@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Repositories\CommentsRepositoryEloquent;
 
-class CommentsController extends Controller
+class CommentsController extends AdminController
 {
 
     protected $commentsRepository;

@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
 use App\Repositories\ProgramKerjaDanUsulanRelationRepositoryEloquent;
 use Notification;
 use App\Entities\ProgramKerjaDanUsulanRelation;
 
-class ProgramKerjaUsulanController extends Controller
+class ProgramKerjaUsulanController extends AdminController
 {
 
     protected $programKerjaUsulanRepository;
@@ -32,7 +31,7 @@ class ProgramKerjaUsulanController extends Controller
 
         $this->programKerjaRepository = $programKerjaRepository;
 
-        $this->programKerjaRelationRepository = $programKerjaRelationRepository; 
+        $this->programKerjaRelationRepository = $programKerjaRelationRepository;
 
         $this->authorize('manage-program-usulan-kerja');
     }
@@ -81,7 +80,7 @@ class ProgramKerjaUsulanController extends Controller
 
         return redirect()->back();
     }
-    
+
     /*
      *  Menampilkan form edit
      */
@@ -89,32 +88,32 @@ class ProgramKerjaUsulanController extends Controller
     {
 
         $relatedProgramKerjaId = ProgramKerjaDanUsulanRelation::where('usulan_id', $id)->get();
-        
+
         $idArray = [];
 
         foreach($relatedProgramKerjaId as $data) {
 
             $idArray[] = $data->program_kerja_id;
         }
-        
+
         $relatedProgramKerja = $this->programKerjaRepository->findWhereIn('id', $idArray);
 
         $programKerja = $this->programKerjaRepository->all();
-        
+
         $programKerjaUsulan = $this->programKerjaUsulanRepository->find($id);
-        
+
         return view('admin.programKerjaUsulan.form', compact('programKerjaUsulan', 'programKerja', 'relatedProgramKerja'));
     }
-    
+
     /*
      * Update data
      */
     public function update(Request $request, $id)
     {
         $this->programKerjaUsulanRepository->update($request->all(), $id);
-        
+
         Notification::success('Data berhasil dirubah');
-        
+
         return redirect()->back();
     }
 
@@ -126,10 +125,10 @@ class ProgramKerjaUsulanController extends Controller
 
         $usulanId = $request->input('usulan_id');
         $programKerjaId = $request->input('program_kerja_id');
-        
+
         ProgramKerjaDanUsulanRelation::where('usulan_id', $usulanId)->where('program_kerja_id', $programKerjaId)->delete();
 
-        return json_encode(['message' => 'success']); 
+        return json_encode(['message' => 'success']);
 
     }
 
@@ -141,10 +140,10 @@ class ProgramKerjaUsulanController extends Controller
 
         $usulanId = $request->input('usulan_id');
         $programKerjaId = $request->input('program_kerja_id');
-        
+
         $this->programKerjaRelationRepository->create(['program_kerja_id' => $programKerjaId, 'usulan_id' => $usulanId]);
 
-        return json_encode(['message' => 'success']); 
+        return json_encode(['message' => 'success']);
     }
 
 }

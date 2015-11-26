@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\StoreProgramKerjaRequest;
-use App\Http\Controllers\Controller;
 use App\Repositories\SatkerRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
@@ -14,12 +13,12 @@ use App\Repositories\ProgramKerjaDanUsulanRelationRepositoryEloquent;
 use Notification;
 use Auth;
 
-class ProgramKerjaController extends Controller
+class ProgramKerjaController extends AdminController
 {
     protected $satkerRepository;
-    
+
     protected $programKerjaRepository;
-    
+
     protected $programKerjaUsulanRepository;
 
     protected $programKerjaDanUsulanRelationRepository;
@@ -28,24 +27,24 @@ class ProgramKerjaController extends Controller
      * ProgramKerjaController constructor.
      */
     public function __construct(
-            SatkerRepositoryEloquent $satkerRepository, 
+            SatkerRepositoryEloquent $satkerRepository,
             ProgramKerjaRepositoryEloquent $programKerjaRepository,
             ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository,
             ProgramKerjaDanUsulanRelationRepositoryEloquent $programKerjaDanUsulanRelationRepository
     )
     {
-        
+
         $this->satkerRepository = $satkerRepository;
-        
+
         $this->programKerjaRepository = $programKerjaRepository;
-        
+
         $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
 
         $this->programKerjaDanUsulanRelationRepository = $programKerjaDanUsulanRelationRepository;
 
         $this->authorize('manage-fase-program-kerja');
-        
-        
+
+
     }
 
 
@@ -56,24 +55,24 @@ class ProgramKerjaController extends Controller
      */
     public function index(Request $request)
     {
-    
+
       $programKerja = $this->programKerjaRepository->paginate(20);
-      
+
       return view('admin.programKerja.index', compact('programKerja'));
     }
 
     /*
-    *   Menampilakn form create 
+    *   Menampilakn form create
     */
     public function create(Request $request)
     {
-        
+
         $action = "create";
-        
+
         $route = Route('admin.programKerja.store');
-        
+
         $satkers = $this->satkerRepository->all();
-        
+
         return view('admin.programKerja.form', compact('satkers', 'action', 'route'));
     }
 
@@ -97,7 +96,7 @@ class ProgramKerjaController extends Controller
                 'satker_id'     => $satker->id,
                 'creator_id'    => Auth::user()->id
             ];
-        
+
         } else {
 
             $attributes = [
@@ -105,43 +104,43 @@ class ProgramKerjaController extends Controller
                 'satker_id'     => $request->input('satker_id'),
                 'creator_id'    => Auth::user()->id
             ];
-        } 
+        }
 
         $this->programKerjaRepository->create($attributes);
-        
+
         Notification::success('Fase Program kerja berhasil disimpan.');
-        
+
         return redirect()->back();
-        
+
     }
-    
+
     /*
      * Menampilkan form edit
      */
     public function edit($id)
     {
         $action = "edit";
-        
+
         $satkers = $this->satkerRepository->all();
-        
+
         $programKerja = $this->programKerjaRepository->find($id);
-        
+
         $route = Route('admin.programKerja.update', ['id' => $id]);
-        
+
         return view('admin.programKerja.form', compact('programKerja', 'satkers', 'action', 'route'));
     }
-    
+
     /*
      * Melakukan update data
      */
     public function update(StoreProgramKerjaRequest $request, $id)
     {
-        $attributes = $this->getAttributes($request);    
+        $attributes = $this->getAttributes($request);
 
         $this->programKerjaRepository->update($attributes, $id);
-        
+
         Notification::success('Data berhasil dirubah');
-        
+
         return redirect()->back();
     }
 
@@ -194,7 +193,7 @@ class ProgramKerjaController extends Controller
                 'satker_id'     => $satker->id,
                 'creator_id'    => Auth::user()->id
             ];
-        
+
         } else {
 
             $attributes = [
@@ -204,13 +203,13 @@ class ProgramKerjaController extends Controller
             ];
         }
 
-        return $attributes; 
+        return $attributes;
     }
 
     /**
     *  Menampilkan form buat program kerja baru berdasar program kerja usulan
-    *  
-    *  @param int $usulan_id 
+    *
+    *  @param int $usulan_id
     *  @return \Illuminate\Http\Response
     */
     public function createProkerBasedUsulan(Request $request)
@@ -227,14 +226,14 @@ class ProgramKerjaController extends Controller
 
     /**
     *  Menyimpan data program kerja berdasar usulan
-    *   
+    *
     *  @return \Illuminate\Http\Response
     */
     public function storeProkerBasedUsulan(StoreProgramKerjaRequest $request)
     {
         $attributes = $this->getAttributes($request);
 
-        $usulan_id = $request->input('usulan_id'); 
+        $usulan_id = $request->input('usulan_id');
 
         $programKerja = $this->programKerjaRepository->create($attributes);
 

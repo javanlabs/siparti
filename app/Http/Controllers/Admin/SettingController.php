@@ -6,9 +6,8 @@ use Efriandika\LaravelSettings\Facades\Settings;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
-class SettingController extends Controller
+class SettingController extends AdminController
 {
     /**
      * SettingController constructor.
