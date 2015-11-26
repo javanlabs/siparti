@@ -3,18 +3,43 @@
 @section('content')
     <section class="welcome">
         <div class="ui container center aligned">
-            <div class="headline">
-                <h2 class="title">Selamat Datang di <span class="highlight">{{ settings('app.name') }}</span></h2>
+            <div class="ui grid stackable">
+                <div class="column ten wide">
 
-                <h3 class="body">Layanan partisipasi publik dalam membangun program kerja <br> Kominfo yang berkualitas.
-                </h3>
+                    <div class="headline">
+                        <h2 class="title">Selamat Datang di <span class="highlight">{{ settings('app.name') }}</span>
+                        </h2>
+
+                        <h3 class="body">Layanan partisipasi publik dalam membangun program kerja
+                            <br> Kominfo yang berkualitas.</h3>
+                    </div>
+                    {{--<a href="{{ (auth()->check())?route('proker-usulan.create'): url('auth/login') }}" class="ui button large green">--}}
+                        {{--Ikut Berpartisipasi<i class="icon sign in right"></i>--}}
+                    {{--</a>--}}
+
+                </div>
+                <div class="column six wide">
+                    <form action="" class="ui form segment very padded">
+                        <h3 class="ui header">Punya Usulan Program Kerja?</h3>
+                        <div class="ui divider hidden"></div>
+                        <div class="field">
+                            <input type="text" placeholder="Nama Program Kerja">
+                        </div>
+                        <div class="field">
+                            <textarea name="" id="" cols="30" rows="10" placeholder="Penjelasan"></textarea>
+                        </div>
+                        <button type="submit" class="ui button green fluid">Usulkan Program Kerja</button>
+                    </form>
+                </div>
             </div>
-            <a href="{{ (auth()->check())?route('proker-usulan.create'): url('auth/login') }}" class="ui button large green">Ikut Berpartisipasi
-                <i class="icon sign in right"></i></a>
+
         </div>
     </section>
 
-    <section class="program-category ui container center aligned">
+    <section class="program-category ui container center aligned page">
+
+        <h2 class="ui header"><span>Telusuri</span> Lebih Banyak</h2>
+
         <div class="ui equal width grid stackable">
             <div class="row">
                 <a class="column" href="{{ route('proker.arsip') }}">
@@ -29,7 +54,7 @@
                 </a>
 
                 <a class="column" href="{{ route('proker.berjalan') }}">
-                    <div class="ui inverted segment blue very padded compact"  style="margin: 0 auto">
+                    <div class="ui inverted segment blue very padded compact" style="margin: 0 auto">
                         <img src="{{ asset('img/icon-proker.png') }}" alt="Program Kerja Berjalan">
                     </div>
 
