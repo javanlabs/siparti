@@ -63,10 +63,12 @@ class ProgramKerjaController extends Controller
     {
         $programKerja = $this->faseRepository->find($id);
         $related = $this->faseRepository->getRelated($programKerja);
+        $histories = $this->faseRepository->getSiblings($programKerja);
+        $relatedUsulan = $this->programKerjaUsulanRepository->getRelated($programKerja);
         $documents = $this->faseRepository->getDocuments($programKerja);
         $terpopuler = $this->faseRepository->terpopuler(3);
 
-        return view('program_kerja.show', compact('programKerja', 'related', 'documents', 'terpopuler'));
+        return view('program_kerja.show', compact('programKerja', 'related', 'histories', 'relatedUsulan', 'documents', 'terpopuler'));
     }
 
     public function tambahUsulan()

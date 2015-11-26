@@ -19,14 +19,15 @@
 
                 </div>
                 <div class="column six wide">
-                    <form action="" class="ui form segment very padded">
+                    <form action="{{ route('proker-usulan.store') }}" class="ui form segment very padded" method="POST" enctype="multipart/form-data">
                         <h3 class="ui header">Punya Usulan Program Kerja?</h3>
                         <div class="ui divider hidden"></div>
+                        {{ csrf_field() }}
                         <div class="field">
-                            <input type="text" placeholder="Nama Program Kerja">
+                            <input name="name" type="text" placeholder="Nama Program Kerja">
                         </div>
                         <div class="field">
-                            <textarea name="" id="" cols="30" rows="10" placeholder="Penjelasan"></textarea>
+                            <textarea name="description" cols="30" rows="10" placeholder="Penjelasan"></textarea>
                         </div>
                         <button type="submit" class="ui button green fluid">Usulkan Program Kerja</button>
                     </form>

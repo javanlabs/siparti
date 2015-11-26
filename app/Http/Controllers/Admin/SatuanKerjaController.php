@@ -8,12 +8,11 @@ use App\Http\Requests;
 use App\Repositories\SatkerRepositoryEloquent;
 use App\Http\Requests\StoreSatkerRequest;
 use Notification;
-use App\Http\Controllers\Controller;
 
-class SatuanKerjaController extends Controller
+class SatuanKerjaController extends AdminController
 {
     protected $satkerRepository;
-    
+
     public function __construct(SatkerRepositoryEloquent $satkerRepository)
     {
 
@@ -38,9 +37,9 @@ class SatuanKerjaController extends Controller
     public function create()
     {
         $action = "create";
-        
+
         $route = Route('admin.satuanKerja.store');
-        
+
         return view('admin.satuanKerja.form', compact('action', 'route'));
     }
 
@@ -55,7 +54,7 @@ class SatuanKerjaController extends Controller
         $this->satkerRepository->create( $request->all() );
 
         Notification::success('Program kerja berhasil disimpan.');
-        
+
         return redirect()->route('admin.satuanKerja.index');
     }
 
@@ -68,11 +67,11 @@ class SatuanKerjaController extends Controller
     public function edit($id)
     {
         $action = "edit";
-        
+
         $satker = $this->satkerRepository->find($id);
-        
+
         $route = Route('admin.satuanKerja.update', ['id' => $id]);
-        
+
         return view('admin.satuanKerja.form', compact('satker', 'action', 'route'));
     }
 
@@ -86,9 +85,9 @@ class SatuanKerjaController extends Controller
     public function update(StoreSatkerRequest $request, $id)
     {
         $this->satkerRepository->update($request->all(), $id);
-        
+
         Notification::success('Data berhasil diubah');
-        
+
         return redirect()->route('admin.satuanKerja.index');
     }
 

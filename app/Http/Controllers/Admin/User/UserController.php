@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin\User;
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateAccount;
 use App\Repositories\UserRepositoryEloquent;
 use Illuminate\Support\Facades\Mail;
@@ -11,7 +11,7 @@ use Krucas\Notification\Facades\Notification;
 use App\Repositories\TimezoneRepositoryArray;
 
 
-class UserController extends Controller
+class UserController extends AdminController
 {
     /**
      * @var UserRepositoryEloquent
@@ -34,6 +34,8 @@ class UserController extends Controller
         $this->timezone = $timezone;
 
         $this->authorize('manage-users');
+
+        parent::__construct();
     }
 
 

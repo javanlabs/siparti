@@ -5,13 +5,13 @@ $navbar-bgcolor: #293D82;
 
 body {
   background-color: $background-color;
-  //display: flex;
-  //min-height: 100vh;
-  //flex-direction: column;
+  &.admin {
+    background-color: #fff;
+  }
 }
 
-#layout-frontend {
-  //flex: 1;
+#layout-frontend, #layout-admin {
+  min-height: 500px;
 }
 
 .menu#menu-navbar {

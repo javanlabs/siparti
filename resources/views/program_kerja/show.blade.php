@@ -7,8 +7,8 @@
 
         <div class="ui celled grid relaxed" style="background: #ffffff">
             <div class="row">
-                <div class="ten wide column">
-                    <table class="ui definition table small">
+                <div class="ten wide column" style="padding: 0">
+                    <table class="ui definition table small" style="border-top: 0 none;border-left: 0 none;border-right: 0 none; border-radius: 0">
                         <tbody>
                         <tr><td style="width: 150px">Fase Sekarang</td><td>{!! $programKerja->present('label') !!}</td></tr>
                         <tr><td>Periode</td><td>{{ $programKerja->present('periode') }}</td></tr>
@@ -43,9 +43,7 @@
                     </table>
                 </div>
                 <div class="six wide column" style="background: #fafafa">
-                    <div class="ui divider hidden"></div>
                     <h3 class="ui header">Timeline</h3>
-                    <div class="ui divider hidden"></div>
                     <div class="ui divider hidden"></div>
                     @include('program_kerja.timeline')
                 </div>

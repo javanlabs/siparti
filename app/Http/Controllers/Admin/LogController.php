@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Repositories\ActivityRepositoryEloquent;
 
-class LogController extends Controller
+class LogController extends AdminController
 {
 
     protected $activityRepository;
@@ -33,7 +32,7 @@ class LogController extends Controller
     {
 
       $logs = $this->activityRepository->paginate(20);
-      
+
       return view('admin.log.index', compact('logs'));
     }
 
