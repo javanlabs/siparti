@@ -100,87 +100,92 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
         return $this->parserResult($fase->related);
     }
 
+    public function getSiblings($fase)
+    {
+        return $this->parserResult($fase->siblings());
+    }
+
     public function getDocuments($fase)
     {
         return $fase->getMedia();
     }
-    
+
     public function attachDocuments(Fase $model, $files)
     {
-       
+
        foreach ($files as $file) {
             if ($file instanceof UploadedFile) {
                 $model->addMedia($file)->toCollection('media');
             }
         }
     }
-    
+
     public function create(array $attributes)
     {
 
         $model = $this->model->newInstance($attributes);
-        
+
         $model->save();
-        
+
         foreach ($attributes['file'] as $data) {
-            
+
             if ($data instanceof UploadedFile) {
-                
+
                 $model->addMedia($data)->preservingOriginal()->toCollection('media');
             }
         }
-        
-        
+
+
         $this->resetModel();
-        
+
         event(new RepositoryEntityCreated($this, $model));
-        
+
         return $this->parserResult($model);
     }
-    
+
     public function update(array $attributes, $id)
     {
         $this->applyScope();
-        
+
         if ( !is_null($this->validator) ) {
             $this->validator->with($attributes)
             ->setId($id)
             ->passesOrFail( ValidatorInterface::RULE_UPDATE );
         }
-        
+
         $_skipPresenter = $this->skipPresenter;
-        
+
         $this->skipPresenter(true);
-        
+
         $model = $this->model->findOrFail($id);
         $model->fill($attributes);
         $model->save();
-        
+
         if (isset($attributes['deletedMedia'])) {
-            
+
             $media = $model->getMedia();
-            
+
             foreach( $attributes['deletedMedia'] as $id) {
-                
-                $media[$id]->delete();    
+
+                $media[$id]->delete();
             }
         }
-        
+
         foreach ($attributes['file'] as $data) {
-        
+
             if ($data instanceof UploadedFile) {
-        
+
                 $model->addMedia($data)->preservingOriginal()->toCollection('media');
             }
         }
-        
-        
+
+
         $this->skipPresenter($_skipPresenter);
         $this->resetModel();
-        
+
         event(new RepositoryEntityUpdated($this, $model));
-        
+
         return $this->parserResult($model);
     }
-    
+
 }

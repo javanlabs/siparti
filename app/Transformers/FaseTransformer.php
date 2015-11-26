@@ -53,9 +53,9 @@ class FaseTransformer extends TransformerAbstract
             'media'            => $model->getMedia(),
             'proker_id'        => $model->proker_id,
             'satker_id'        => $model->satker_id,
-            'start_date'       => date("Y-m-d", strtotime($model->start_date)),
-            'end_date'         => date("Y-m-d", strtotime($model->end_date)),     
-            'comment_mode'     => $model->comment_mode, 
+            'start_date'       => $model->start_date->formatLocalized('%e %B %Y'),
+            'end_date'         => $model->end_date->formatLocalized('%e %B %Y'),
+            'comment_mode'     => $model->comment_mode,
 
             'created_at' => $model->created_at->formatLocalized('%e %B %Y'),
             'updated_at' => $model->updated_at
