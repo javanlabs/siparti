@@ -13,6 +13,7 @@ use Prettus\Repository\Traits\PresentableTrait;
 use Sofa\Eloquence\Eloquence;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use App\Entities\ProgramKerja;
 
 class ProgramKerjaUsulan extends Model implements Presentable, Commentable, HasMedia
 {
