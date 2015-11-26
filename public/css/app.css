@@ -98,3 +98,22 @@ section.program-list {
 .ui.segment.fitted > table.ui.table {
   border: 0 none;
 }
+
+.ui.feed.timeline {
+  padding-left: 20px;
+}
+
+.ui.feed.timeline .event {
+  border-left: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.ui.feed.timeline .event > .label {
+  margin-left: -7px;
+  margin-top: 3px;
+}
+
+.ui.feed.timeline .event > .label .ui.label {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+}

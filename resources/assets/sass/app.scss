@@ -100,3 +100,19 @@ section.program-list {
 .ui.segment.fitted > table.ui.table {
   border: 0 none;
 }
+
+.ui.feed.timeline {
+  padding-left: 20px;
+  .event {
+    border-left: 1px solid #eee;
+    padding-bottom: 10px;
+    > .label {
+      margin-left:-7px;
+      margin-top: 3px;
+      .ui.label {
+        background-color: #ddd;
+        border: 1px solid #ccc;
+      }
+    }
+  }
+}
