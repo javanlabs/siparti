@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 use Krucas\Notification\Facades\Notification;
-
+use Auth;
 class ProgramKerjaUsulanController extends Controller
 {
 
@@ -50,11 +50,21 @@ class ProgramKerjaUsulanController extends Controller
      */
     public function store(UsulanProgramKerja $request)
     {
-        $usulanProgramKerja = $this->programKerjaUsulanRepository->create($request->only(['name', 'manfaat', 'lokasi', 'target', 'description']));
-        $this->programKerjaUsulanRepository->attachDocument($usulanProgramKerja, $request->file('file'));
+        $user = Auth::user();
+        if($user){
+            $usulanProgramKerja = $this->programKerjaUsulanRepository->create($request->only(['name', 'manfaat', 'lokasi', 'target', 'description']));
+            $this->programKerjaUsulanRepository->attachDocument($usulanProgramKerja, $request->file('file'));
 
-        Notification::success('Usulan program kerja berhasil disimpan.');
-        return redirect()->route('proker-usulan.index');
+            Notification::success('Usulan program kerja berhasil disimpan.');
+
+            return redirect()->route('proker-usulan.index');
+        }
+        else{
+            
+            return redirect()->guest('auth/login');
+
+        }
+        
     }
 
     /**

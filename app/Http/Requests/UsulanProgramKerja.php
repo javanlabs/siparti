@@ -13,7 +13,7 @@ class UsulanProgramKerja extends Request
      */
     public function authorize()
     {
-        return auth()->check();
+        return true;
     }
 
     /**
