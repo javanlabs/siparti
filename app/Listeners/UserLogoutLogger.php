@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Events\UserFailedLoggedInEvent;
 use Activity;
 
-class UserLoginLogger
+class UserLogoutLogger
 {
    
     public function handle()
