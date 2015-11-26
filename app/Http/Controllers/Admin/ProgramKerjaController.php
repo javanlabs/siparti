@@ -9,24 +9,29 @@ use App\Http\Requests\StoreProgramKerjaRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\SatkerRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
+use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
+use App\Repositories\ProgramKerjaDanUsulanRelationRepositoryEloquent;
 use Notification;
 use Auth;
 
 class ProgramKerjaController extends Controller
 {
-
-    
-    
     protected $satkerRepository;
     
     protected $programKerjaRepository;
     
+    protected $programKerjaUsulanRepository;
+
+    protected $programKerjaDanUsulanRelationRepository;
+
     /**
      * ProgramKerjaController constructor.
      */
     public function __construct(
             SatkerRepositoryEloquent $satkerRepository, 
-            ProgramKerjaRepositoryEloquent $programKerjaRepository
+            ProgramKerjaRepositoryEloquent $programKerjaRepository,
+            ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository,
+            ProgramKerjaDanUsulanRelationRepositoryEloquent $programKerjaDanUsulanRelationRepository
     )
     {
         
@@ -34,6 +39,10 @@ class ProgramKerjaController extends Controller
         
         $this->programKerjaRepository = $programKerjaRepository;
         
+        $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
+
+        $this->programKerjaDanUsulanRelationRepository = $programKerjaDanUsulanRelationRepository;
+
         $this->authorize('manage-fase-program-kerja');
         
         
@@ -77,6 +86,7 @@ class ProgramKerjaController extends Controller
         $attributes = [];
 
         if ($request->input('satkerChoice') == "baru") {
+
 
             $satkerName = ['name' => $request->input('satuanKerjaBaru')];
 
@@ -126,28 +136,7 @@ class ProgramKerjaController extends Controller
      */
     public function update(StoreProgramKerjaRequest $request, $id)
     {
-        $attributes = [];
-
-        if ($request->input('satkerChoice') == "baru") {
-
-            $satkerName = ['name' => $request->input('satuanKerjaBaru')];
-
-            $satker = $this->satkerRepository->create($satkerName);
-
-            $attributes = [
-                'name'          => $request->input('name'),
-                'satker_id'     => $satker->id,
-                'creator_id'    => Auth::user()->id
-            ];
-        
-        } else {
-
-            $attributes = [
-                'name'          => $request->input('name'),
-                'satker_id'     => $request->input('satker_id'),
-                'creator_id'    => Auth::user()->id
-            ];
-        } 
+        $attributes = $this->getAttributes($request);    
 
         $this->programKerjaRepository->update($attributes, $id);
         
@@ -188,6 +177,74 @@ class ProgramKerjaController extends Controller
 
       return redirect()->back();
 
+    }
+
+    public function getAttributes(Request $request)
+    {
+        $attributes = [];
+
+        if ($request->input('satkerChoice') == "baru") {
+
+            $satkerName = ['name' => $request->input('satuanKerjaBaru')];
+
+            $satker = $this->satkerRepository->create($satkerName);
+
+            $attributes = [
+                'name'          => $request->input('name'),
+                'satker_id'     => $satker->id,
+                'creator_id'    => Auth::user()->id
+            ];
+        
+        } else {
+
+            $attributes = [
+                'name'          => $request->input('name'),
+                'satker_id'     => $request->input('satker_id'),
+                'creator_id'    => Auth::user()->id
+            ];
+        }
+
+        return $attributes; 
+    }
+
+    /**
+    *  Menampilkan form buat program kerja baru berdasar program kerja usulan
+    *  
+    *  @param int $usulan_id 
+    *  @return \Illuminate\Http\Response
+    */
+    public function createProkerBasedUsulan(Request $request)
+    {
+
+        $usulan_id = $request->query('usulan_id');
+
+        $satkers = $this->satkerRepository->all();
+
+        $programKerjaUsulan = $this->programKerjaUsulanRepository->find($usulan_id);
+
+        return view('admin.programKerja.formBasedUsulan', compact('programKerjaUsulan', 'satkers'));
+    }
+
+    /**
+    *  Menyimpan data program kerja berdasar usulan
+    *   
+    *  @return \Illuminate\Http\Response
+    */
+    public function storeProkerBasedUsulan(StoreProgramKerjaRequest $request)
+    {
+        $attributes = $this->getAttributes($request);
+
+        $usulan_id = $request->input('usulan_id'); 
+
+        $programKerja = $this->programKerjaRepository->create($attributes);
+
+        $relationData = ['usulan_id' => $usulan_id, 'program_kerja_id' => $programKerja->id];
+
+        $this->programKerjaDanUsulanRelationRepository->create($relationData);
+
+        Notification::success('Program Kerja Berhasil Dibuat');
+
+        return redirect()->back();
     }
 
 

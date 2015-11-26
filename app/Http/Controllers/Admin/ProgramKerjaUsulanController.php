@@ -147,5 +147,4 @@ class ProgramKerjaUsulanController extends Controller
         return json_encode(['message' => 'success']); 
     }
 
-
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravolt\Trail\Traits\HasRevisionsTrait;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
+use App\Entities\ProgramKerjaDanUsulanRelation;
 
 class ProgramKerja extends Model implements Presentable
 {
@@ -50,10 +51,10 @@ class ProgramKerja extends Model implements Presentable
     {
         if (is_null($this->current_fase_id)) {
 
-            return "NULL";
+            return "null";
         
         } else {
-            
+
             return $this->faseSekarang->type;
         } 
     }

@@ -55,7 +55,7 @@
         <div class="ui grid">
             <div class="column ten wide">
                 <div class="ui segment very padded">
-                @include('elements.share')
+                @include('elements.share', ['title' => $programKerja->present('name')])
                     <p>
                         Bagaimana pendapat Anda tentang program kerja ini?<br>
                         Berikan penilaian setuju atau tidak setuju, dan jangan lupa memberikan komentar yang membangun.

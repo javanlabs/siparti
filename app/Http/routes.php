@@ -93,6 +93,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::post('programKerjaUsulan/deleteRelation', 'ProgramKerjaUsulanController@deleteRelation');
     Route::post('programKerjaUsulan/addRelation', 'ProgramKerjaUsulanController@addRelation');
 
+    
+    Route::get('programKerja/basedUsulan/create', [
+            'uses'  => 'ProgramKerjaController@createProkerBasedUsulan',
+            'as'    => 'admin.programKerja.createBasedUsulan'
+    ]);
+
+    Route::post('programKerja/basedUsulan/store', [
+            'uses'  => 'ProgramKerjaController@storeProkerBasedUsulan',
+            'as'    =>  'admin.programKerja.storeBasedUsulan'
+    ]);
 
     Route::group(['namespace' => 'User'], function(){
         Route::resource('users', 'UserController');
