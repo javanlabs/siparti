@@ -28,6 +28,7 @@ class ProgramKerjaUsulanTransformer extends TransformerAbstract
             'created_for_human' => $model->created_at->formatLocalized("%d %b '%y"),
             'url'               => route('proker-usulan.show', $model->id),
             'media'             => $model->getMedia(),
+            'programKerja'      => $model->programKerja,
 
             'created_at' => $model->created_at->formatLocalized('%e %B %Y'),
             'updated_at' => $model->updated_at
