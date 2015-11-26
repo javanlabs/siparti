@@ -46,8 +46,11 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
     public function create(array $attributes)
     {
         $model = $this->model->newInstance($attributes);
+
         $model->creator()->associate(auth()->user());
+        
         $model->save();
+        
         $this->resetModel();
 
         return $this->parserResult($model);
