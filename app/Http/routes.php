@@ -91,6 +91,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'as' => 'admin.comments.deleteMultiple'
       ]);
     
+    // Route untuk ajax add dan delete relasi antara program kerja usulan dan program kerja 
+    Route::post('programKerjaUsulan/deleteRelation', 'ProgramKerjaUsulanController@deleteRelation');
+    Route::post('programKerjaUsulan/addRelation', 'ProgramKerjaUsulanController@addRelation');
+
+
     Route::group(['namespace' => 'User'], function(){
         Route::resource('users', 'UserController');
         Route::resource('profile', 'ProfileController');

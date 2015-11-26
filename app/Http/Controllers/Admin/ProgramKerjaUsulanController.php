@@ -7,20 +7,32 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
+use App\Repositories\ProgramKerjaRepositoryEloquent;
+use App\Repositories\ProgramKerjaDanUsulanRelationRepositoryEloquent;
 use Notification;
-
+use App\Entities\ProgramKerjaDanUsulanRelation;
 
 class ProgramKerjaUsulanController extends Controller
 {
 
     protected $programKerjaUsulanRepository;
+    protected $programKerjaRepository;
+    protected $programKerjaRelationRepository;
 
     /**
      * ProgramKerjaUsulanController constructor.
      */
-    public function __construct(ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository)
+    public function __construct(
+        ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository,
+        ProgramKerjaRepositoryEloquent $programKerjaRepository,
+        ProgramKerjaDanUsulanRelationRepositoryEloquent $programKerjaRelationRepository
+    )
     {
         $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
+
+        $this->programKerjaRepository = $programKerjaRepository;
+
+        $this->programKerjaRelationRepository = $programKerjaRelationRepository; 
 
         $this->authorize('manage-program-usulan-kerja');
     }
@@ -59,15 +71,15 @@ class ProgramKerjaUsulanController extends Controller
     public function deleteMultiple(Request $request)
     {
 
-      $toBeDeletedIds = $request->get('deletedId');
+        $toBeDeletedIds = $request->get('deletedId');
 
-      foreach ($toBeDeletedIds as $id) {
+        foreach ($toBeDeletedIds as $id) {
 
-        $this->programKerjaUsulanRepository->delete((int)$id);
+            $this->programKerjaUsulanRepository->delete((int)$id);
 
-      }
+        }
 
-      return redirect()->back();
+        return redirect()->back();
     }
     
     /*
@@ -75,9 +87,23 @@ class ProgramKerjaUsulanController extends Controller
      */
     public function edit(Request $request, $id)
     {
+
+        $relatedProgramKerjaId = ProgramKerjaDanUsulanRelation::where('usulan_id', $id)->get();
+        
+        $idArray = [];
+
+        foreach($relatedProgramKerjaId as $data) {
+
+            $idArray[] = $data->program_kerja_id;
+        }
+        
+        $relatedProgramKerja = $this->programKerjaRepository->findWhereIn('id', $idArray);
+
+        $programKerja = $this->programKerjaRepository->all();
+        
         $programKerjaUsulan = $this->programKerjaUsulanRepository->find($id);
         
-        return view('admin.programKerjaUsulan.form', compact('programKerjaUsulan'));
+        return view('admin.programKerjaUsulan.form', compact('programKerjaUsulan', 'programKerja', 'relatedProgramKerja'));
     }
     
     /*
@@ -90,6 +116,35 @@ class ProgramKerjaUsulanController extends Controller
         Notification::success('Data berhasil dirubah');
         
         return redirect()->back();
+    }
+
+    /*
+    *   Delete relation Ajax
+    */
+    public function deleteRelation(Request $request)
+    {
+
+        $usulanId = $request->input('usulan_id');
+        $programKerjaId = $request->input('program_kerja_id');
+        
+        ProgramKerjaDanUsulanRelation::where('usulan_id', $usulanId)->where('program_kerja_id', $programKerjaId)->delete();
+
+        return json_encode(['message' => 'success']); 
+
+    }
+
+    /*
+    *   Add Relation
+    */
+    public function addRelation(Request $request)
+    {
+
+        $usulanId = $request->input('usulan_id');
+        $programKerjaId = $request->input('program_kerja_id');
+        
+        $this->programKerjaRelationRepository->create(['program_kerja_id' => $programKerjaId, 'usulan_id' => $usulanId]);
+
+        return json_encode(['message' => 'success']); 
     }
 
 
