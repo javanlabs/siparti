@@ -1,3 +1,5 @@
+<script src="http://share.donreach.com/buttons.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/ShareSocial.css') }}">
 <script>
 $(document).ready(function () {
     // Get current URL from canonical tag
@@ -25,14 +27,12 @@ $(document).ready(function () {
     });
 });
 </script>
-@if (isset($programKerja))    
-    {!! $title = $programKerja->present('name') !!} 
-@endif      
-@if (isset($usulanProker))    
-    {!! $title = $usulanProker->present('name') !!} 
-@endif 
-@if (isset($ujiPublik))   
-    {!! $title = $ujiPublik->present('name') !!} 
+@if (isset($programKerja)) 
+    <?php $title = $programKerja->present('name')  ?>
+@elseif (isset($usulanProker)) 
+    <?php $title = $usulanProker->present('name') ?>
+@elseif (isset($ujiPublik)) 
+    <?php $title = $ujiPublik->present('name') ?>
 @endif 
 <div class="don-share" data-title="{{ $title }}"  data-image="" data-style="icons" data-bubbles="none">
 
