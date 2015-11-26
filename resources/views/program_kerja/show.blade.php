@@ -1,20 +1,6 @@
 @extends('layouts.frontend')
 
 @section('content')
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script>
-$(document).ready(function() {
-	(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1495074717480968";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-
-	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-});
-</script>
     <section class="ui container page">
         <div class="ui grid">
             <div class="column sixteen wide">
@@ -55,21 +41,7 @@ $(document).ready(function() {
                     </tbody>
                 </table>
                 <div class="ui segment very padded">
-                <ul>
-                	<li style="display: inline;">
-                		<div class="fb-share-button" data-href="http://localhost:8000/proker/43" data-layout="button_count"></div>
-                	</li>
-                	<li style="display: inline;">
-                		<div>
-                			<a href="https://twitter.com/share" class="twitter-share-button"{count}>Tweet</a>
-                		</div>
-                	</li>
-                	<li style="display: inline;">
-                		<g:plus action="share"></g:plus>
-                		
-                	</li>
-                	
-                </ul>
+                @include('elements.share')
                     <p>
                         Bagaimana pendapat Anda tentang program kerja ini?<br>
                         Berikan penilaian setuju atau tidak setuju, dan jangan lupa memberikan komentar yang membangun.
