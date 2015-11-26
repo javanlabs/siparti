@@ -49,7 +49,7 @@
                   data    : {usulan_id : $("#usulanId").val(), program_kerja_id : $val},
               
               })
-              .done(function() {
+              .done(function(data) {
 
                   $("#programKerjaContainer").prepend($element);
 
@@ -57,11 +57,11 @@
 
                     if ($(obj).text() == $txt) {
 
-                        $(obj).remove();
-                    }
+                      $(obj).remove();
+                    
+                    }  
 
-                  lockAddButton() ;
-  
+                    lockAddButton();
               })
               .fail(function() {
 
@@ -69,7 +69,7 @@
               });
           });
 
-              lockAddButton() ;
+              lockAddButton();
           });      
 
           $("#programKerjaContainer").on('click', '.hapus', function() {
@@ -91,15 +91,14 @@
                   data    : {usulan_id : $("#usulanId").val(), program_kerja_id : $value},
               
               })
-              .done(function() {
+              .done(function(data) {
 
-
-                  $("select").prepend($optionElem);
+                      $("select").prepend($optionElem);
                   
-                  $button.parent().parent().remove();
+                      $button.parent().parent().remove();
 
-                  lockAddButton();
-  
+                      lockAddButton();
+                  
               })
               .fail(function() {
 
@@ -230,9 +229,9 @@
               
               <?php $arrayName = []; ?>
               
-              @foreach ($relatedProgramKerja as $data)
-                  {!! $arrayId[] = $data->present('id') !!}
-                  {!! $arrayName[] = $data->present('name') !!}  
+              @foreach ($programKerjaUsulan->present('programKerja') as $data)
+                  {!! $arrayId[] = $data->id !!}
+                  {!! $arrayName[] = $data->name !!}  
               @endforeach
 
               @foreach ($programKerja as $data)
@@ -251,7 +250,7 @@
 
 					<div id="programKerjaContainer" class="ui middle aligned divided list relaxed">
 						
-            @foreach($relatedProgramKerja as $data)
+            @foreach($programKerjaUsulan->present('programKerja') as $data)
               
               <div class="item">
                 <div class="right floated content">

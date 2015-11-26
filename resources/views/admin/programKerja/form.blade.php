@@ -6,22 +6,118 @@
 @section('script-head')
         @include('admin.layouts.script')
 
-         <script>
+        <script>
+        function lockAddButton() 
+        {
+            $optionsCount = $("select#optionProgramKerja").find("option").length;
+
+            if ($optionsCount) {
+
+                $("#addProgramKerja").prop("disabled", false)
+          
+            } else {
+
+                $("#addProgramKerja").prop("disabled", true)
+            }
+        }
 
         $(document).ready(function() {
 
-            function checkRadio() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    'Upgrade' : "HTTP/1.1"
+                }
+            });
+
+            lockAddButton();
+
+            $("#addProgramKerja").click(function() {
+              
+
+              var $txt = $("#optionProgramKerja option:selected").text();
+
+              var $val = $("#optionProgramKerja option:selected").val();
+
+              var $element = '<div class="item"><div class="right floated content"><div data-text="' + $txt +'" data-val="' + $val + '" class="ui button mini hapus">Hapus</div></div><div class="content">' + $txt + '</div></div>';
+
+              $.ajax({
+
+                  url     : "/admin/programKerja/addRelation",
+                  type    : "POST",
+                  data    : {usulan_id : $val, program_kerja_id : $("#usulanId").val() },
+              
+              })
+              .done(function(data) {
+
+                  $("#programKerjaContainer").prepend($element);
+
+                  $('option').each(function(i, obj) {
+
+                    if ($(obj).text() == $txt) {
+
+                      $(obj).remove();
+                    
+                    }  
+
+                    lockAddButton();
+              })
+              .fail(function() {
+
+                  alert("Data tidak bisa ditambahkan, periksa koneksi internet");
+              });
+          });
+
+              lockAddButton();
+          });      
+
+          $("#programKerjaContainer").on('click', '.hapus', function() {
+
+                  var $button = $(this);
+
+                  var count = 0;
+
+                  var $text = $(this).attr('data-text');
+
+                  var $value = $(this).attr('data-val');
+
+                  var $optionElem = '<option value="' + $value +'">' + $text +'</option>';
+
+              $.ajax({
+
+                  url     : "/admin/programKerja/deleteRelation",
+                  type    : "POST",
+                  data    : {usulan_id : $value, program_kerja_id : $("#usulanId").val()},
+              
+              })
+              .done(function(data) {
+
+                      $("select").prepend($optionElem);
+                  
+                      $button.parent().parent().remove();
+
+                      lockAddButton();
+                  
+              })
+              .fail(function() {
+
+                  alert("Data tidak bisa dihapus, periksa koneksi internet");
+              });
+          });
+
+          function checkRadio() {
                 var $val = $("input[type=radio]:checked").val();
                 
                 switch ($val) {
 
                     case "baru" :
                         $("input[name=satuanKerjaBaru]").prop('disabled', false);
-                        $("input.search").prop('disabled', true);
+                        $("#choice2").find("div.ui.fluid.search.selection.dropdown").attr('class', 'disabled ui fluid search selection dropdown');
+
                         break;
                     case "pilih" :
                         $("input[name=satuanKerjaBaru]").prop('disabled', true);
-                        $("input.search").prop('disabled', false);
+                        $("#choice2").find("div.ui.fluid.search.selection.dropdown.disabled").attr('class', 'ui fluid search selection dropdown');
                         break;        
                
                 }
@@ -30,16 +126,14 @@
             checkRadio();
             
             $("input[type=radio]").change(function() {
-
-                $('input[name=satker_id]').val("");
-                $('input[name=satuanKerjaBaru]').val("");
-
                 checkRadio();
             });
-        });
-            
 
-        </script>
+          
+      });
+     
+    </script>
+
 @endsection
 @section('content')
 
@@ -55,8 +149,10 @@
                     @else
 
                         <h2 class="ui header text centered"><span>Edit</span> Program Kerja</h2>
+                        <input type="hidden" id="usulanId" value="{{ $programKerja->present('id') }}" />
 
                     @endif
+
 
                         <form class="ui form" action="{{ $route }}" class="ui form large" method="POST" enctype="multipart/form-data">
 
@@ -80,12 +176,26 @@
                                     <div class="column">
                                          <div class="field" id="choice2">
                                             <div class="ui radio checkbox">
-                                                <input checked="checked" name="satkerChoice" value="pilih" type="radio" >
+                                                <input 
+
+                                                @if(Input::old('satkerChoice') == "pilih")
+
+                                                  checked="checked" 
+
+                                                @elseif(Input::old('satkerChoice') == "baru")
+
+                                                @else
+
+                                                  checked="checked" 
+
+                                                @endif
+
+                                                name="satkerChoice" value="pilih" type="radio" >
                                                 <label>Pilih Satuan Kerja</label>
                                             </div>
                                             <label></label>
                                             <div class="ui fluid search selection dropdown">
-                                                <input name="satker_id" type="hidden">
+                                                <input name="satker_id" type="hidden" value="{{ Input::old('satker_id') }}">
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Pilih Satuan Kerja</div>
                                                 <div class="menu">
@@ -99,16 +209,46 @@
 
                                     <div class="column">
                                     <div class="ui radio checkbox">
-                                            <input name="satkerChoice" type="radio" value="baru">
+                                            <input 
+
+                                            @if(Input::old('satkerChoice') == "baru")
+
+                                                checked="checked"
+
+                                            @endif
+
+                                            name="satkerChoice" type="radio" value="baru">
                                             <label>Buat Baru</label>
                                         </div>
                                         <div id="choice1">
-                                            <input type="text" name="satuanKerjaBaru" placeholder="Buat Satuan Kerja Baru" />
+                                            <input type="text" name="satuanKerjaBaru" value="{{ Input::old('satuanKerjaBaru') }}" placeholder="Buat Satuan Kerja Baru" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        @if ($action == "create")
+                        
+                        <div class="field">
+                            <label>Relasi Usulan Program Kerja</label>
+                                
+                                <select name="usulanId[]" multiple="multiple" class="ui fluid search dropdown">
+
+                                    <option value="">Pilih Program Usulan Kerja</option>
+
+                                @foreach($usulan as $data)
+
+                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
+
+                                @endforeach 
+
+                            </select>
+
+                        </div>
+                        
+                        @endif
+
                         <br />
                         {!! SemanticForm::submit('Simpan') !!}
 
@@ -164,10 +304,14 @@
                             </div>
                         </div>
 
+                        @if($action == "edit")  
+                        
                         <div class="field">
                             {{ $programKerja->present('current_fase') }}
                         </div>
                         
+                        @endif
+
                         {!! SemanticForm::submit('Simpan') !!}
                         
                        
@@ -178,54 +322,13 @@
                     
                 </div>
             </div>
-            <div class="six wide column">
-               <div class="ui segment">
-                    <h3 class="ui header">Program Kerja Terkait</h3>
-                    
-                    <div class="ui form">
-                        <div class="fields inline">
-                            <select id="optionProgramKerja" class="ui dropdown fluid search selection">
 
-                                <?php $arrayId = []; ?>
-              
-                                <?php $arrayName = []; ?>
-              
-                                @foreach ($usulan as $data)
-                                    {!! $arrayId[] = $data->present('id') !!}
-                                    {!! $arrayName[] = $data->present('name') !!}  
-                                @endforeach
+            @if ($action == "edit")
 
-                                @foreach ($usulan as $data)
-                                    @if (!in_array($data->present('id'), $arrayId) and !in_array($data->present('name'), $arrayName))
-                                    <option value="{{ $data->present('id') }}">{{ $data->present('name') }}</option>
-                                    @endif
-                                @endforeach
+                @include('admin.programKerja.usulanSelector')
 
-                            </select>
-                            &nbsp;
-                            <button id="addProgramKerja" class="ui button icon green"><i class="icon plus"></i></button>
-                        </div>
-                    </div>
+            @endif
 
-                    <div class="ui divider"></div>
-
-                    <div id="programKerjaContainer" class="ui middle aligned divided list relaxed">
-                        
-                        @foreach($usulan as $data)
-              
-                        <div class="item">
-                            <div class="right floated content">
-                                <div data-text="{{ $data->name }}" data-val="{{ $data->id }}" class="ui button mini hapus">Hapus</div>
-                            </div>
-                            <div class="content">{{ $data->name }}</div>
-                        </div>
-            
-                        @endforeach
-                    
-                    </div>
-
-                </div>
-            </div>
         </div>
     </section>      
 </div>

@@ -6,9 +6,10 @@
 @section('script-head')
         @include('admin.layouts.script')
 
-         <script>
+    <script>
 
         $(document).ready(function() {
+                                    $("input.search").prop('disabled', true);
 
             function checkRadio() {
                 var $val = $("input[type=radio]:checked").val();
@@ -17,11 +18,14 @@
 
                     case "baru" :
                         $("input[name=satuanKerjaBaru]").prop('disabled', false);
-                        $("input.search").prop('disabled', true);
+                        $("#choice2").find("div.ui.fluid.search.selection.dropdown").attr('class', 'disabled ui fluid search selection dropdown');
+                        
                         break;
+                    
                     case "pilih" :
                         $("input[name=satuanKerjaBaru]").prop('disabled', true);
-                        $("input.search").prop('disabled', false);
+                        $("#choice2").find("div.ui.fluid.search.selection.dropdown.disabled").attr('class', 'ui fluid search selection dropdown');
+
                         break;        
                
                 }
@@ -30,16 +34,12 @@
             checkRadio();
             
             $("input[type=radio]").change(function() {
-
-                $('input[name=satker_id]').val("");
-                $('input[name=satuanKerjaBaru]').val("");
-
                 checkRadio();
             });
         });
             
 
-        </script>
+    </script>
 @endsection
 @section('content')
 
@@ -74,12 +74,26 @@
                                         <div class="column">
                                             <div class="field" id="choice2">
                                                 <div class="ui radio checkbox">
-                                                    <input checked="checked" name="satkerChoice" value="pilih" type="radio" >
+                                                    <input 
+
+                                                    @if(Input::old('satkerChoice') == "pilih")
+
+                                                        checked="checked" 
+
+                                                    @elseif(Input::old('satkerChoice') == "baru")
+
+                                                    @else
+
+                                                        checked="checked" 
+
+                                                    @endif
+                                                    
+                                                    name="satkerChoice" value="pilih" type="radio" >
                                                     <label>Pilih Satuan Kerja</label>
                                                 </div>
                                                 <label></label>
                                                     <div class="ui fluid search selection dropdown">
-                                                        <input name="satker_id" type="hidden">
+                                                        <input name="satker_id" type="hidden" value="{{ Input::old('satker_id') }}">
                                                         <i class="dropdown icon"></i>
                                                         <div class="default text">Pilih Satuan Kerja</div>
                                                         <div class="menu">
@@ -93,11 +107,19 @@
 
                                         <div class="column">
                                             <div class="ui radio checkbox">
-                                                <input name="satkerChoice" type="radio" value="baru">
-                                                <label>Buat Baru</label>
+                                                <input name="satkerChoice" 
+
+                                                    @if(Input::old('satkerChoice') == "baru")
+
+                                                        checked="checked" 
+
+                                                    @endif
+
+                                                type="radio" value="baru">
                                             </div>
+                                                <label>Buat Baru</label>
                                                 <div id="choice1">
-                                                <input type="text" name="satuanKerjaBaru" placeholder="Buat Satuan Kerja Baru" />
+                                                <input type="text" name="satuanKerjaBaru" value="{{ Input::old('satuanKerjaBaru') }}" placeholder="Buat Satuan Kerja Baru" />
                                             </div>
                                         </div>
                                     
