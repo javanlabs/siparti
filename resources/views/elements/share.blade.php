@@ -27,13 +27,7 @@ $(document).ready(function () {
     });
 });
 </script>
-@if (isset($programKerja)) 
-    <?php $title = $programKerja->present('name')  ?>
-@elseif (isset($usulanProker)) 
-    <?php $title = $usulanProker->present('name') ?>
-@elseif (isset($ujiPublik)) 
-    <?php $title = $ujiPublik->present('name') ?>
-@endif 
+
 <div class="don-share" data-title="{{ $title }}"  data-image="" data-style="icons" data-bubbles="none">
 
     <div class='share-btn' data-service="facebook">
