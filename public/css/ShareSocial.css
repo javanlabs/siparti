@@ -1,0 +1,22 @@
+.share-btn {
+    float: left;
+    margin:60px 10px 0;
+    position: relative;
+}
+.share-btn .count {
+    border: 1px solid #ccc;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    border-radius: 4px;
+    padding: 0 5px;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background: #fff;
+    bottom:100%;
+    left:0;
+    right:0;
+    margin-bottom:10px;
+}
