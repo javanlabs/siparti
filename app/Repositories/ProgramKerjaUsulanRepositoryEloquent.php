@@ -119,6 +119,6 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
 
     public function getRelated($programKerja)
     {
-        return $programKerja->programKerja->usulan;
+        return $this->parserResult($programKerja->programKerja->usulan()->orderBy('created_at')->get());
     }
 }
