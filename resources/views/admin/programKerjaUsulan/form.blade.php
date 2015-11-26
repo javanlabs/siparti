@@ -5,10 +5,120 @@
 
 @section('script-head')
 		@include('admin.layouts.script')
+
+    <script>
+
+      
+      function lockAddButton() 
+      {
+          $optionsCount = $("select#optionProgramKerja").find("option").length;
+
+          if ($optionsCount) {
+
+              $("#addProgramKerja").prop("disabled", false)
+          
+          } else {
+
+              $("#addProgramKerja").prop("disabled", true)
+          }
+      }
+
+      $(document).ready(function() {
+
+          $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+
+          lockAddButton();
+
+          $("#addProgramKerja").click(function() {
+              
+
+              var $txt = $("#optionProgramKerja option:selected").text();
+
+              var $val = $("#optionProgramKerja option:selected").val();
+
+              var $element = '<div class="item"><div class="right floated content"><div data-text="' + $txt +'" data-val="' + $val + '" class="ui button mini hapus">Hapus</div></div><div class="content">' + $txt + '</div></div>';
+
+              $.ajax({
+
+                  url     : "/admin/programKerjaUsulan/addRelation",
+                  type    : "POST",
+                  data    : {usulan_id : $("#usulanId").val(), program_kerja_id : $val},
+              
+              })
+              .done(function() {
+
+                  $("#programKerjaContainer").prepend($element);
+
+                  $('option').each(function(i, obj) {
+
+                    if ($(obj).text() == $txt) {
+
+                        $(obj).remove();
+                    }
+
+                  lockAddButton() ;
+  
+              })
+              .fail(function() {
+
+                  alert("Data tidak bisa ditambahkan, periksa koneksi internet");
+              });
+          });
+
+              lockAddButton() ;
+          });      
+
+          $("#programKerjaContainer").on('click', '.hapus', function() {
+
+                  var $button = $(this);
+
+                  var count = 0;
+
+                  var $text = $(this).attr('data-text');
+
+                  var $value = $(this).attr('data-val');
+
+                  var $optionElem = '<option value="' + $value +'">' + $text +'</option>';
+
+              $.ajax({
+
+                  url     : "/admin/programKerjaUsulan/deleteRelation",
+                  type    : "POST",
+                  data    : {usulan_id : $("#usulanId").val(), program_kerja_id : $value},
+              
+              })
+              .done(function() {
+
+
+                  $("select").prepend($optionElem);
+                  
+                  $button.parent().parent().remove();
+
+                  lockAddButton();
+  
+              })
+              .fail(function() {
+
+                  alert("Data tidak bisa dihapus, periksa koneksi internet");
+              });
+          });
+
+          
+      });
+     
+    </script>
+
 @endsection
 @section('content')
 
 	<div class="ui container">
+  
+  <input type="hidden" id="usulanId" value="{{ $programKerjaUsulan->present('id') }}" />
+
 	<section class="ui container page" id="page-program-kerja-usulan-create">
         <div class="ui grid">
             <div class="ten wide column">
@@ -109,34 +219,38 @@
 					<h3 class="ui header">Program Kerja Terkait</h3>
 					<div class="ui form">
 						<div class="fields inline">
-							<select class="ui dropdown fluid search selection">
-								<option value="1">Proker 1</option>
-								<option value="2">Proker 2</option>
+							<select id="optionProgramKerja" class="ui dropdown fluid search selection">
+
+              <?php $arrayId = []; ?>
+              
+              <?php $arrayName = []; ?>
+              
+              @foreach ($relatedProgramKerja as $data)
+                  {!! $arrayId[] = $data->present('id') !!}
+                  {!! $arrayName[] = $data->present('name') !!}  
+              @endforeach
+              @foreach ($programKerja as $data)
+                  @if (!in_array($data->present('id'), $arrayId) and !in_array($data->present('name'), $arrayName))
+                        <option value="{{ $data->present('id') }}">{{ $data->present('name') }}</option>
+                  @endif
+              @endforeach
 							</select>
 							&nbsp;
-							<button type="submit" class="ui button icon green"><i class="icon plus"></i></button>
+							<button id="addProgramKerja" class="ui button icon green"><i class="icon plus"></i></button>
 						</div>
 					</div>
 
 					<div class="ui divider"></div>
 
-					<div class="ui middle aligned divided list relaxed">
-						<div class="item">
-							<div class="right floated content">
-								<div class="ui button mini">Hapus</div>
-							</div>
-							<div class="content">
-								lorem
-							</div>
-						</div>
-						<div class="item">
-							<div class="right floated content">
-								<div class="ui button mini">Hapus</div>
-							</div>
-							<div class="content">
-								Program Kerja 4
-							</div>
-						</div>
+					<div id="programKerjaContainer" class="ui middle aligned divided list relaxed">
+						@foreach($relatedProgramKerja as $data)
+              <div class="item">
+                <div class="right floated content">
+                  <div data-text="{{ $data->name }}" data-val="{{ $data->id }}" class="ui button mini hapus">Hapus</div>
+                </div>
+                <div class="content">{{ $data->name }}</div>
+              </div>
+            @endforeach
 					</div>
 
 				</div>
@@ -144,6 +258,6 @@
         </div>
     </section>
     </div>
-
+    <button id="sendAjax">Send</button>
 @endsection
 
