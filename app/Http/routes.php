@@ -45,9 +45,7 @@ Route::group(['namespace' => 'My', 'prefix' => 'my', 'middleware' => 'auth'], fu
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function(){
 
-    Route::get('/', function(){
-        return view('admin.index');
-    });
+    Route::get('/', 'DashboardController@index');
 
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
     Route::resource('roles', 'RoleController');
@@ -90,8 +88,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         'uses' => 'CommentsController@deleteMultiple',
         'as' => 'admin.comments.deleteMultiple'
       ]);
-    
-    // Route untuk ajax add dan delete relasi antara program kerja usulan dan program kerja 
+
+    // Route untuk ajax add dan delete relasi antara program kerja usulan dan program kerja
     Route::post('programKerjaUsulan/deleteRelation', 'ProgramKerjaUsulanController@deleteRelation');
     Route::post('programKerjaUsulan/addRelation', 'ProgramKerjaUsulanController@addRelation');
 

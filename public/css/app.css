@@ -2,6 +2,14 @@ body {
   background-color: #EBEEF5;
 }
 
+body.admin {
+  background-color: #fff;
+}
+
+body.admin .content {
+  min-height: 500px;
+}
+
 .menu#menu-navbar {
   background-color: #293D82;
 }

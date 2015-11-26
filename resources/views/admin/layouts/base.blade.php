@@ -11,7 +11,7 @@
         @include('admin.elements.header')
         @include('elements.flash')
 
-        <div id="layout-admin">
+        <div id="layout-admin" class="content">
             <div class="ui divider hidden"></div>
             @yield('content')
         </div>
