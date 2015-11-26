@@ -10,7 +10,6 @@ use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
 use App\Repositories\ProgramKerjaDanUsulanRelationRepositoryEloquent;
 use Notification;
-use App\Entities\ProgramKerjaDanUsulanRelation;
 
 class ProgramKerjaUsulanController extends Controller
 {
@@ -24,15 +23,12 @@ class ProgramKerjaUsulanController extends Controller
      */
     public function __construct(
         ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository,
-        ProgramKerjaRepositoryEloquent $programKerjaRepository,
-        ProgramKerjaDanUsulanRelationRepositoryEloquent $programKerjaRelationRepository
+        ProgramKerjaRepositoryEloquent $programKerjaRepository
     )
     {
         $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
 
         $this->programKerjaRepository = $programKerjaRepository;
-
-        $this->programKerjaRelationRepository = $programKerjaRelationRepository; 
 
         $this->authorize('manage-program-usulan-kerja');
     }
@@ -88,16 +84,16 @@ class ProgramKerjaUsulanController extends Controller
     public function edit(Request $request, $id)
     {
 
-        $relatedProgramKerjaId = ProgramKerjaDanUsulanRelation::where('usulan_id', $id)->get();
+        //$relatedProgramKerjaId = ProgramKerjaDanUsulanRelation::where('usulan_id', $id)->get();
         
-        $idArray = [];
+        //$idArray = [];
 
-        foreach($relatedProgramKerjaId as $data) {
+        //foreach($relatedProgramKerjaId as $data) {
 
-            $idArray[] = $data->program_kerja_id;
-        }
+            //$idArray[] = $data->program_kerja_id;
+        //}
         
-        $relatedProgramKerja = $this->programKerjaRepository->findWhereIn('id', $idArray);
+        //$relatedProgramKerja = $this->programKerjaRepository->findWhereIn('id', $idArray);
 
         $programKerja = $this->programKerjaRepository->all();
         

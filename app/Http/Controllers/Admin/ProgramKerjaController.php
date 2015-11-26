@@ -11,8 +11,10 @@ use App\Repositories\SatkerRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 use App\Repositories\ProgramKerjaDanUsulanRelationRepositoryEloquent;
+use App\Entities\ProgramKerjaDanUsulanRelation;
 use Notification;
 use Auth;
+use Validator;
 
 class ProgramKerjaController extends Controller
 {
@@ -22,7 +24,6 @@ class ProgramKerjaController extends Controller
     
     protected $programKerjaUsulanRepository;
 
-    protected $programKerjaDanUsulanRelationRepository;
 
     /**
      * ProgramKerjaController constructor.
@@ -30,8 +31,7 @@ class ProgramKerjaController extends Controller
     public function __construct(
             SatkerRepositoryEloquent $satkerRepository, 
             ProgramKerjaRepositoryEloquent $programKerjaRepository,
-            ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository,
-            ProgramKerjaDanUsulanRelationRepositoryEloquent $programKerjaDanUsulanRelationRepository
+            ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository
     )
     {
         
@@ -40,8 +40,6 @@ class ProgramKerjaController extends Controller
         $this->programKerjaRepository = $programKerjaRepository;
         
         $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
-
-        $this->programKerjaDanUsulanRelationRepository = $programKerjaDanUsulanRelationRepository;
 
         $this->authorize('manage-fase-program-kerja');
         
@@ -69,12 +67,14 @@ class ProgramKerjaController extends Controller
     {
         
         $action = "create";
-        
+
+        $usulan = $this->programKerjaUsulanRepository->all();
+
         $route = Route('admin.programKerja.store');
         
         $satkers = $this->satkerRepository->all();
         
-        return view('admin.programKerja.form', compact('satkers', 'action', 'route'));
+        return view('admin.programKerja.form', compact('satkers', 'action', 'route', 'usulan'));
     }
 
     /*
@@ -83,33 +83,30 @@ class ProgramKerjaController extends Controller
     */
     public function store(StoreProgramKerjaRequest $request)
     {
-        $attributes = [];
+        /*
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:posts|max:255',
+        ]);
 
-        if ($request->input('satkerChoice') == "baru") {
+        if ($validator->fails()) {
+            return redirect(route('admin.programKerja.create'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        */
 
+        $attributes = $this->getAttributes($request);
 
-            $satkerName = ['name' => $request->input('satuanKerjaBaru')];
+        $programKerja = $this->programKerjaRepository->create($attributes);
 
-            $satker = $this->satkerRepository->create($satkerName);
+        if($request->input('usulanId')) {
 
-            $attributes = [
-                'name'          => $request->input('name'),
-                'satker_id'     => $satker->id,
-                'creator_id'    => Auth::user()->id
-            ];
+            $usulanIds = $request->input('usulanId');
+
+            $programKerja->usulan()->attach($usulanIds);
+        }
         
-        } else {
-
-            $attributes = [
-                'name'          => $request->input('name'),
-                'satker_id'     => $request->input('satker_id'),
-                'creator_id'    => Auth::user()->id
-            ];
-        } 
-
-        $this->programKerjaRepository->create($attributes);
-        
-        Notification::success('Fase Program kerja berhasil disimpan.');
+        Notification::success('Program kerja berhasil disimpan');
         
         return redirect()->back();
         
@@ -121,14 +118,16 @@ class ProgramKerjaController extends Controller
     public function edit($id)
     {
         $action = "edit";
+
+        $usulan = $this->programKerjaUsulanRepository->all();
         
         $satkers = $this->satkerRepository->all();
-        
+
         $programKerja = $this->programKerjaRepository->find($id);
         
         $route = Route('admin.programKerja.update', ['id' => $id]);
-        
-        return view('admin.programKerja.form', compact('programKerja', 'satkers', 'action', 'route'));
+
+        return view('admin.programKerja.form', compact('usulan', 'relatedUsulan', 'programKerja', 'satkers', 'action', 'route'));
     }
     
     /*
@@ -236,15 +235,60 @@ class ProgramKerjaController extends Controller
 
         $usulan_id = $request->input('usulan_id'); 
 
-        $programKerja = $this->programKerjaRepository->create($attributes);
+        $model = $this->programKerjaRepository->create($attributes);
 
-        $relationData = ['usulan_id' => $usulan_id, 'program_kerja_id' => $programKerja->id];
-
-        $this->programKerjaDanUsulanRelationRepository->create($relationData);
+        $model->usulan()->attach($usulan_id);
 
         Notification::success('Program Kerja Berhasil Dibuat');
 
         return redirect()->back();
+    }
+
+    /*
+    *   Handle ajax request, delete relation with program kerja usulan
+    */
+    public function deleteRelation(Request $request)
+    {
+
+        $usulanId = $request->input('usulan_id');
+        
+        $programKerjaId = $request->input('program_kerja_id');
+        
+        $model = $this->programKerjaRepository->find($programKerjaId);
+
+        $model->usulan()->detach($usulanId);
+
+        return json_encode(['message' => 'success']); 
+
+    }
+
+    /*
+    *   handle ajax requesy, Add Relation qith program kerja usulan
+    */
+    public function addRelation(Request $request)
+    {
+
+        $usulanId = $request->input('usulan_id');
+
+        $programKerjaId = $request->input('program_kerja_id');
+        
+        $model = $this->programKerjaRepository->find($programKerjaId);
+
+        $model->usulan()->attach($usulanId);
+
+        return json_encode(['message' => 'success']); 
+    }
+
+    private function extractId($array)
+    {
+        $idArray = [];
+
+        foreach($array as $data) {
+
+            $idArray[] = $data->usulan_id;
+        }
+
+        return $idArray;
     }
 
 
