@@ -115,7 +115,12 @@
 @endsection
 @section('content')
 
-	<div class="ui container">
+<div class="ui container">
+
+  <div class="ui container">
+    <a class="ui button primary" href="{{ route('admin.programKerja.createBasedUsulan', ['usulan_id' => $programKerjaUsulan->present('id')] ) }}">Buat Program Kerja Berdasar Usulan ini</a>
+  </div>
+
   
   <input type="hidden" id="usulanId" value="{{ $programKerjaUsulan->present('id') }}" />
 
@@ -229,11 +234,13 @@
                   {!! $arrayId[] = $data->present('id') !!}
                   {!! $arrayName[] = $data->present('name') !!}  
               @endforeach
+
               @foreach ($programKerja as $data)
                   @if (!in_array($data->present('id'), $arrayId) and !in_array($data->present('name'), $arrayName))
                         <option value="{{ $data->present('id') }}">{{ $data->present('name') }}</option>
                   @endif
               @endforeach
+
 							</select>
 							&nbsp;
 							<button id="addProgramKerja" class="ui button icon green"><i class="icon plus"></i></button>
@@ -243,20 +250,24 @@
 					<div class="ui divider"></div>
 
 					<div id="programKerjaContainer" class="ui middle aligned divided list relaxed">
-						@foreach($relatedProgramKerja as $data)
+						
+            @foreach($relatedProgramKerja as $data)
+              
               <div class="item">
                 <div class="right floated content">
                   <div data-text="{{ $data->name }}" data-val="{{ $data->id }}" class="ui button mini hapus">Hapus</div>
                 </div>
                 <div class="content">{{ $data->name }}</div>
               </div>
+            
             @endforeach
-					</div>
+					
+          </div>
 
 				</div>
 			</div>
-        </div>
-    </section>
     </div>
+  </section>
+</div>
 @endsection
 
