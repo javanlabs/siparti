@@ -24,10 +24,7 @@ class StoreProgramKerjaRequest extends Request
     public function rules()
     {
         return [
-            'name'              => 'required|string',
-            'satuanKerjaBaru'   => 'required_without_all:satker_id|string',
-            'satker_id'         => 'required_without_all:satuanKerjaBaru',
-            'satkerChoice'      => 'required'
+            'name'  => 'required|string',
         ];
     }
 }
