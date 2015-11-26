@@ -1,8 +1,6 @@
 @extends('layouts.frontend')
 
 @section('content')
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
     <section class="ui container page">
         <div class="ui grid">
             <div class="column sixteen wide">
