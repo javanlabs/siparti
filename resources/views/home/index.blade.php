@@ -19,7 +19,7 @@
 
                 </div>
                 <div class="column six wide">
-                    <form action="{{ route('proker-usulan.store') }}" class="ui form segment very padded" method="POST" enctype="multipart/form-data">
+                    <form action="{{ (auth()->check())?route('proker-usulan.store'):url('site/quick-form') }}" class="ui form segment very padded" method="POST" enctype="multipart/form-data">
                         <h3 class="ui header">Punya Usulan Program Kerja?</h3>
                         <div class="ui divider hidden"></div>
                         {{ csrf_field() }}

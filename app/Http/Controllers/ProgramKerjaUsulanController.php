@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
+use Illuminate\Support\Facades\Cookie;
 use Krucas\Notification\Facades\Notification;
 use Auth;
 class ProgramKerjaUsulanController extends Controller
@@ -37,9 +38,14 @@ class ProgramKerjaUsulanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('program_kerja_usulan.create');
+        $data = ['name' => '', 'description' => ''];
+        if($quickFormData = $request->cookies->get('quick-form')) {
+            $data = $quickFormData;
+        }
+
+        return view('program_kerja_usulan.create', $data);
     }
 
     /**
@@ -57,14 +63,14 @@ class ProgramKerjaUsulanController extends Controller
 
             Notification::success('Usulan program kerja berhasil disimpan.');
 
-            return redirect()->route('proker-usulan.index');
+            return redirect()->route('proker-usulan.index')->withCookie(Cookie::forget('quick-form'));
         }
         else{
-            
+
             return redirect()->guest('auth/login');
 
         }
-        
+
     }
 
     /**
