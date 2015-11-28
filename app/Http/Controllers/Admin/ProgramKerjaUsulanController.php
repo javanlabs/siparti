@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
-use App\Repositories\ProgramKerjaDanUsulanRelationRepositoryEloquent;
 use Notification;
 
 class ProgramKerjaUsulanController extends AdminController
