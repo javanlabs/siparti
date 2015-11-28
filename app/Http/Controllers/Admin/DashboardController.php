@@ -73,7 +73,11 @@ class DashboardController extends AdminController
 
         $voteDownData =  $this->getVoteCount("App\Entities\Votee", 'updated_at', $yearNow, -1);
 
-        return view('admin.dashboard.index', compact('avaibleYears', 'popularData', 'allCountData', 'yearNow', 'faseData', 'usulanData', 'ujiPublikData', 'commentsData', 'voteUpData', 'voteDownData'));
+        $max1 = $this->getMaxValue($faseData, $usulanData, $ujiPublikData);
+
+        $max2 = $this->getMaxValue($commentsData, $voteUpData, $voteDownData);
+
+        return view('admin.dashboard.index', compact('max1', 'max2', 'avaibleYears', 'popularData', 'allCountData', 'yearNow', 'faseData', 'usulanData', 'ujiPublikData', 'commentsData', 'voteUpData', 'voteDownData'));
     }
 
     /*
@@ -315,5 +319,15 @@ class DashboardController extends AdminController
         }
         
         return $yearsArray;
+    }
+
+    public function getMaxValue($array1, $array2, $array3)
+    {
+
+        $mergedArray = array_merge($array1, $array2, $array3);
+
+        sort($mergedArray);
+
+        return $mergedArray[count($mergedArray) - 1];
     }
 }
