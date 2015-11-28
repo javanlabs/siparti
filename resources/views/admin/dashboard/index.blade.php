@@ -36,8 +36,9 @@
 
 @section('script-head')
     <script src="{{ asset('js/Chart.js')}}"></script>
-    <script>
 
+    <script>
+        
         var $comments = [
 
             @foreach($commentsData as $data)
@@ -67,7 +68,7 @@
         
             datasets : [
                 {
-                    fillColor : "rgba(171,9,9,0.5)",
+                    fillColor : "rgba(33,133,208, 0.5)",
                     label: "Komentar",
                     strokeColor : "rgba(171,9,9,0.8)",
                     highlightFill: "rgba(171,9,9,0.75)",
@@ -132,31 +133,28 @@
         
             datasets : [
                 {
-                    fillColor : "rgba(117,219,27, 0.5)",
+                    fillColor : "rgba(33,133,208, 0.5)",
                     label: "Fase Program Kerja", 
-                    strokeColor : "rgba(117,219,27,0.8)",
-                    highlightFill: "rgba(117,219,27,0.75)",
-                    highlightStroke: "rgba(117,219,27,1)",
+                    strokeColor : "rgba(33,133,208,0.8)",
+                    highlightFill: "rgba(33,133,208,0.75)",
+                    highlightStroke: "rgba(33,133,208,1)",
                     data : $faseData,
-                    color : "#97E454"
                 },
                 {
-                    fillColor : "rgba(171,9,9,0.5)",
+                    fillColor : "rgba(151,228,84, 0.5)",
                     label: "Uji Publik", 
-                    strokeColor : "rgba(171,9,9,0.75)",
-                    highlightFill : "rgba(171,9,9,0.8)",
-                    highlightStroke : "rgba(171,9,9,0.1)",
+                    strokeColor : "rgba(151,228,84, 0.8)",
+                    highlightFill : "rgba(151,228,84, 0.75)",
+                    highlightStroke : "rgba(151,228,84, 1)",
                     data : $ujiPublikData,
-                    color: "rgba(171,9,9,0.5)"
                 },
                 {
-                    fillColor : "rgba(59,120,231, 0.5)",
+                    fillColor : "rgba(251,189,8, 0.5)",
                     label: "Usulan Program Kerja",
-                    strokeColor : "rgba(59,120,231, 0.8)",
-                    highlightFill : "rgba(59,120,231, 0.75)",
-                    highlightStroke : "rgba(59,120,231, 1)",
+                    strokeColor : "rgba(251,189,8, 0.8)",
+                    highlightFill : "rgba(251,189,8, 0.75)",
+                    highlightStroke : "rgba(251,189,8, 1)",
                     data : $usulanData,
-                    
                 }
             ]
 
@@ -170,13 +168,20 @@
 
             window.myBar = new Chart(ctx).Bar(barChartData, {
                 tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>kb",
-                responsive : true
+                responsive : true,
+                scaleOverride: true,
+                scaleSteps: 1,
+                scaleStepWidth: {{ $max1 }} + 20
             });
 
             window.myLine = new Chart(ctx2).Line(lineChartData, {
                 tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>kb",
                 responsive: true,
-                pointDot : true
+                pointDot : true,
+                scaleSteps: 1,
+                scaleOverride: true,
+                maintainAspectRatio: true,
+                scaleStepWidth: {{ $max2 }} + 20
             });
 
             document.getElementById('js-legend').innerHTML = myBar.generateLegend();
