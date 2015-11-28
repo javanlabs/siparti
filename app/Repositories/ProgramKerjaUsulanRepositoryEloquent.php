@@ -43,6 +43,13 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
         $this->pushCriteria(app(ProgramKerjaUsulanRequestCriteria::class));
     }
 
+    public function terpopuler($limit)
+    {
+        $results = $this->model->mostVoted()->limit($limit)->get();
+
+        return $this->parserResult($results);
+    }
+
     public function create(array $attributes)
     {
         $model = $this->model->newInstance($attributes);
