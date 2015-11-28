@@ -328,6 +328,12 @@ class DashboardController extends AdminController
 
         sort($mergedArray);
 
-        return $mergedArray[count($mergedArray) - 1];
+        $max = $mergedArray[count($mergedArray) - 1];
+
+        $addNumber = $max % 10;
+
+        $eventNumber = $max + (10 - $addNumber);
+
+        return $eventNumber; 
     }
 }
