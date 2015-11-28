@@ -33,7 +33,8 @@ class UjiPublikTransformer extends TransformerAbstract
             'created_at' => $model->created_at->formatLocalized('%e %B %Y'),
             'updated_at' => $model->updated_at,
             'creator_name' => $model->creator->name,
-            'media'        => $model->getMedia()     
+            'media'        => $model->getMedia(),
+            'url'          => route('uji-publik.show', $model->id),      
         ];
     }
 }
