@@ -7,7 +7,7 @@
     <div id="main-content">
         <a href="{{ url('/') }}">
             <h2 class="ui header center aligned">
-                {{ config('site.title') }}
+                {{ settings('app.name') }}
             </h2>
         </a>
 
