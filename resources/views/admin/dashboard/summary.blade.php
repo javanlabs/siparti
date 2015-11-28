@@ -7,7 +7,7 @@
         <div class="ui segment inverted blue center aligned">
             <div class="ui statistic inverted">
                 <div class="value">
-                    50
+                    {{ $allCountData[3] }}
                 </div>
                 <div class="label">
                     Program Kerja
@@ -19,7 +19,7 @@
         <div class="ui segment inverted blue center aligned">
             <div class="ui statistic inverted">
                 <div class="value">
-                    150
+                    {{ $allCountData[1] }}
                 </div>
                 <div class="label">
                     Fase
@@ -31,7 +31,7 @@
         <div class="ui segment inverted blue center aligned">
             <div class="ui statistic inverted">
                 <div class="value">
-                    45
+                    {{ $allCountData[0] }}
                 </div>
                 <div class="label">
                     Uji Publik
@@ -43,7 +43,7 @@
         <div class="ui segment inverted blue center aligned">
             <div class="ui statistic inverted">
                 <div class="value">
-                    33
+                    {{ $allCountData[2] }}
                 </div>
                 <div class="label">
                     Usulan Masyarakat
