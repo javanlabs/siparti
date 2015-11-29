@@ -108,9 +108,12 @@ class ProgramKerjaUsulanController extends AdminController
     {
 
         $usulanId = $request->input('usulan_id');
+
         $programKerjaId = $request->input('program_kerja_id');
 
-        ProgramKerjaDanUsulanRelation::where('usulan_id', $usulanId)->where('program_kerja_id', $programKerjaId)->delete();
+        $model = $this->programKerjaUsulanRepository->find($usulanId);
+
+        $model->programKerja()->detach($programKerjaId);
 
         return json_encode(['message' => 'success']);
 
@@ -123,9 +126,12 @@ class ProgramKerjaUsulanController extends AdminController
     {
 
         $usulanId = $request->input('usulan_id');
+
         $programKerjaId = $request->input('program_kerja_id');
 
-        $this->programKerjaRelationRepository->create(['program_kerja_id' => $programKerjaId, 'usulan_id' => $usulanId]);
+        $model = $this->programKerjaUsulanRepository->find($usulan_id);
+
+        $model->programKerja()->attach($programKerjaId);
 
         return json_encode(['message' => 'success']);
     }
