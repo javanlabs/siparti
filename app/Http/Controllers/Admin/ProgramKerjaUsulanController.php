@@ -129,7 +129,7 @@ class ProgramKerjaUsulanController extends AdminController
 
         $programKerjaId = $request->input('program_kerja_id');
 
-        $model = $this->programKerjaUsulanRepository->find($usulan_id);
+        $model = $this->programKerjaUsulanRepository->find($usulanId);
 
         $model->programKerja()->attach($programKerjaId);
 
