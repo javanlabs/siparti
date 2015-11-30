@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "93847fb40d504db5f7b5caafb7f41d8e",
-    "content-hash": "e6e6ce63683840b8b34a8af944c7b97b",
+    "hash": "0782cfc111a336439c513ab78a440b38",
+    "content-hash": "8e4766cf671770e6889b234a16015c6f",
     "packages": [
         {
             "name": "adamwathan/bootforms",
@@ -17,7 +17,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/adamwathan/bootforms/zipball/3af9cf96c0d16c16e6627241b1e7f946c2acd2e9",
+                "url": "https://api.github.com/repos/adamwathan/bootforms/zipball/0e84e1add2a6ab93f0a6844169d615f5f6b9466e",
                 "reference": "3af9cf96c0d16c16e6627241b1e7f946c2acd2e9",
                 "shasum": ""
             },
@@ -688,7 +688,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/c83a43c34878ce5427202bf1d4d92edfae11ac33",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2241ee4b3aaed07194fc44e103050dda618e93c8",
                 "reference": "c83a43c34878ce5427202bf1d4d92edfae11ac33",
                 "shasum": ""
             },
@@ -1503,7 +1503,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/de142d2e73bd2911dc3f039ab291247338962001",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/da75f40d86a24c91e01aa4ac98983197a72ad99d",
                 "reference": "6c2feca20b11dfe71ef1b62a43f138b843b839ba",
                 "shasum": ""
             },
@@ -1632,7 +1632,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/321786a69d2cd70de249e6db384859b1d6024438",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/590ac7dd52f4aafae2d22f34cb26eb8e0d066528",
                 "reference": "321786a69d2cd70de249e6db384859b1d6024438",
                 "shasum": ""
             },
@@ -1686,7 +1686,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/5ad8377968ba3b4da91fc60ca98b2eef4df380fc",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/f62269629b2a1093039733517bd7e75b3f98dffb",
                 "reference": "5ad8377968ba3b4da91fc60ca98b2eef4df380fc",
                 "shasum": ""
             },
@@ -1736,7 +1736,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/auth/zipball/0e1d05461f9d62ae31b89fe815a2467a5fd697b7",
+                "url": "https://api.github.com/repos/laravolt/auth/zipball/7cea0c92632eb4de433d13f796afdacab0138bd6",
                 "reference": "0e1d05461f9d62ae31b89fe815a2467a5fd697b7",
                 "shasum": ""
             },
@@ -2585,7 +2585,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/70cb7a301e676ba91c50ff5241b4cfa9cc32408e",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/621384bbddce8645c143425f83e048217b0ca921",
                 "reference": "70cb7a301e676ba91c50ff5241b4cfa9cc32408e",
                 "shasum": ""
             },
@@ -3371,6 +3371,59 @@
             "time": "2015-11-03 13:21:36"
         },
         {
+            "name": "rtconner/laravel-tagging",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rtconner/laravel-tagging.git",
+                "reference": "283220d4ab02c8bea04c0e2ec191f0e4ac937841"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rtconner/laravel-tagging/zipball/283220d4ab02c8bea04c0e2ec191f0e4ac937841",
+                "reference": "283220d4ab02c8bea04c0e2ec191f0e4ac937841",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.1",
+                "illuminate/support": "~5.1",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Conner\\Tagging\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Conner",
+                    "email": "rtconner@smarter.bz"
+                }
+            ],
+            "description": "Use PHP traits to extend Laravel Eloquent Models to allow Tags. Models can be marked as Taggable.",
+            "homepage": "https://smartersoftware.net/packages/laravel-tagging-taggable",
+            "keywords": [
+                "Taggable",
+                "eloquent",
+                "laravel",
+                "laravel5",
+                "tag",
+                "tagged",
+                "tagging",
+                "tags"
+            ],
+            "time": "2015-11-28 22:33:16"
+        },
+        {
             "name": "sofa/eloquence",
             "version": "5.1.x-dev",
             "source": {
@@ -3805,7 +3858,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/class-loader/zipball/0dcd6ee72b76f730c12484eb489f2171029201e5",
+                "url": "https://api.github.com/repos/symfony/class-loader/zipball/51f83451bf0ddfc696e47e4642d6cd10fcfce160",
                 "reference": "0dcd6ee72b76f730c12484eb489f2171029201e5",
                 "shasum": ""
             },
@@ -3969,7 +4022,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/0dbc119596f4afc82d9b2eb2a7e6a4af1ee763fa",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/e131370c3c657697433320d115d8d999ee408542",
                 "reference": "0dbc119596f4afc82d9b2eb2a7e6a4af1ee763fa",
                 "shasum": ""
             },
@@ -4190,7 +4243,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/e83a3d105ddaf5a113e803c904fdec552d1f1c35",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/1eb97773e54c04bf397594d107a273d48b7dfb06",
                 "reference": "a77de50e508b2c1eeac5f2f552f135fff25e7019",
                 "shasum": ""
             },
@@ -4245,7 +4298,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/469d250b5f1021cb02d13c344f6318eeab2722a0",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/0a1c03e20392881f06150364ac651af3187749da",
                 "reference": "469d250b5f1021cb02d13c344f6318eeab2722a0",
                 "shasum": ""
             },
@@ -4327,7 +4380,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/f6290983c8725d0afa29bdc3e5295879de3e58f5",
+                "url": "https://api.github.com/repos/symfony/process/zipball/dec440b0a5c1dab2f41de1fbb7d48d28fd0e4d12",
                 "reference": "4b557e0d32e20a16938ead0aec06e4615d84668f",
                 "shasum": ""
             },
@@ -4376,7 +4429,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/7450f6196711b124fb8b04a12286d01a0401ddfe",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/a90a5e41f3783301ed79b2936e966d2ef9763127",
                 "reference": "8b7a460910d756914a36b2a9a3e5a9292682b4d6",
                 "shasum": ""
             },
@@ -4722,7 +4775,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/008e69f17a1286c29b8a60082119b7d6eee69082",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/47df6ab21ce82fe7021ebbc00cff901f76b5029b",
                 "reference": "cd5fb1c262e1734366e77688b011a0f0422ce06d",
                 "shasum": ""
             },
@@ -4817,7 +4870,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/055a340232dfa0a9dca116795153dcf474f7c206",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/323f852189f09a2b2448f4a3e421decb804257a4",
                 "reference": "3b2260f79f21cf17d7934c57225a9b208a9e8947",
                 "shasum": ""
             },
@@ -5035,7 +5088,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/4f9b1eaf0a7da77c362f8d91cbc68ab1f4718d62",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/826f28f4cd17b31e4d42aa21729e52f88d91bc39",
                 "reference": "4f9b1eaf0a7da77c362f8d91cbc68ab1f4718d62",
                 "shasum": ""
             },
@@ -5835,7 +5888,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/e594d90fba4e4cddc146bdd3907126b1d74d7316",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/2d263d781161890cc26a24b28db3766ae0fe9349",
                 "reference": "3f79752644a5eb87d56a8caafac072f0ecf5d278",
                 "shasum": ""
             },
