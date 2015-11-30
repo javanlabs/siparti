@@ -14,14 +14,14 @@ use App\Presenters\ActivityPresenter;
  */
 class ActivityRepositoryEloquent extends BaseRepository implements ActivityRepository
 {
-    
+
     protected $skipPresenter = true;
-    
+
     protected $fieldSearchable = [
-            'created_at' => 'like',
-            'text' => 'like',
+        'created_at' => 'like',
+        'text'       => 'like',
     ];
-    
+
     /**
      * Specify Model class name
      *
@@ -31,7 +31,7 @@ class ActivityRepositoryEloquent extends BaseRepository implements ActivityRepos
     {
         return Activity::class;
     }
-    
+
     public function presenter()
     {
         return ActivityPresenter::class;
@@ -43,5 +43,8 @@ class ActivityRepositoryEloquent extends BaseRepository implements ActivityRepos
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+        $this->scopeQuery(function ($query) {
+            return $query->with('user')->latest();
+        });
     }
 }
