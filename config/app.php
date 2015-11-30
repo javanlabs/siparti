@@ -151,6 +151,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
         'Roumen\Feed\FeedServiceProvider',
+        'Conner\Tagging\Providers\TaggingServiceProvider',
 
         /*
          * Application Service Providers...
@@ -170,6 +171,7 @@ return [
         Mitul\Generator\GeneratorServiceProvider::class,
         Sofa\Eloquence\ServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
+
     ],
 
     /*
