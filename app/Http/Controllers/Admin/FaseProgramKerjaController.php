@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Entities\Fase;
 use App\Http\Controllers\Controller;
 use App\Repositories\FaseRepositoryEloquent;
 use App\Repositories\SatkerRepositoryEloquent;
@@ -64,13 +65,15 @@ class FaseProgramKerjaController extends AdminController
 
         $action = "create";
 
+        $avaibleTags = Fase::existingTags();
+
         $route = Route('admin.faseProgramKerja.store');
 
         $satkers = $this->satkerRepository->all();
 
         $programKerja = $this->programKerjaRepository->all();
 
-        return view('admin.faseProgramKerja.form', compact('satkers', 'programKerja', 'action', 'route', 'type'));
+        return view('admin.faseProgramKerja.form', compact('avaibleTags', 'satkers', 'programKerja', 'action', 'route', 'type'));
     }
 
     /*
@@ -151,6 +154,4 @@ class FaseProgramKerjaController extends AdminController
       return redirect()->back();
 
     }
-
-
 }

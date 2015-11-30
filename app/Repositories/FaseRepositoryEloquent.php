@@ -122,10 +122,20 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
 
     public function create(array $attributes)
     {
-
+        
         $model = $this->model->newInstance($attributes);
 
         $model->save();
+
+        if($attributes['tags']) {
+
+            $tags = explode(",", $attributes['tags']);
+
+            foreach ($tags as $tag) {
+
+                $model->tag($tag);
+            }
+        }
 
         foreach ($attributes['file'] as $data) {
 
@@ -160,6 +170,16 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
         $model = $this->model->findOrFail($id);
         $model->fill($attributes);
         $model->save();
+        
+        $tags = explode(",", $this->sanitize($attributes['tags']));
+
+        $model->untag();
+
+        foreach($tags as $tag) {
+
+            $model->tag($tag);
+            
+        }
 
         if (isset($attributes['deletedMedia'])) {
 
@@ -186,6 +206,16 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
         event(new RepositoryEntityUpdated($this, $model));
 
         return $this->parserResult($model);
+    }
+
+    private function sanitize($str)
+    {
+        
+        $sanitized = preg_replace('/\s\s+/', ' ', $str);
+
+        $sanitized = str_replace(" ", "", $sanitized);
+
+        return $sanitized;
     }
 
 }
