@@ -129,7 +129,7 @@ class DashboardController extends AdminController
 
             $result = $this->parseResult($container);
 
-            Cache::put($cacheKey, $result, 720);
+            Cache::put($cacheKey, $result, 60);
         }
 
         return $result;
@@ -233,7 +233,7 @@ class DashboardController extends AdminController
 
             $faseCount = $faseData->count();
             
-            Cache::put('fase.count', $faseCount, 720);
+            Cache::put('fase.count', $faseCount, 60);
         }
         
         if (Cache::has('usulan.count')) {
@@ -246,7 +246,7 @@ class DashboardController extends AdminController
 
             $usulanCount = $usulanData->count();
             
-            Cache::put('usulan.count', $faseCount, 720);
+            Cache::put('usulan.count', $faseCount, 60);
         }
 
         if (Cache::has('programKerja.count')) {
@@ -259,7 +259,7 @@ class DashboardController extends AdminController
 
             $programKerjaCount = $programKerjaData->count();
             
-            Cache::put('programKerja.count', $programKerjaCount, 720);
+            Cache::put('programKerja.count', $programKerjaCount, 60);
         }
 
 
@@ -273,7 +273,7 @@ class DashboardController extends AdminController
 
             $ujiPublikCount = $ujiPublikData->count();
             
-            Cache::put('ujiPublik.count', $ujiPublikCount, 720);
+            Cache::put('ujiPublik.count', $ujiPublikCount, 60);
         }
 
         $allCountData = [$ujiPublikCount, $faseCount, $usulanCount, $programKerjaCount];
