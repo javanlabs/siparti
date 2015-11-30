@@ -34,8 +34,10 @@ class DashboardController extends AdminController
         ProgramKerjaRepositoryEloquent $programKerjaRepository,
         ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository,
         UjiPublikRepositoryEloquent $ujiPublikRepository
-    )
-    {
+    ) {
+
+        parent::__construct();
+
         $this->faseRepository = $faseRepository;
 
         $this->programKerjaRepository = $programKerjaRepository;
@@ -62,22 +64,24 @@ class DashboardController extends AdminController
         $yearNow = (string)$request->query('year', date('Y'));
 
         $faseData = $this->getDataCount("App\Entities\Fase", 'created_at', $yearNow);
-        
+
         $commentsData = $this->getDataCount("App\Entities\Comments", 'updated_at', $yearNow);
-        
+
         $usulanData = $this->getDataCount("App\Entities\ProgramKerjaUsulan", 'created_at', $yearNow);
-        
+
         $ujiPublikData = $this->getDataCount("App\Entities\UjiPublik", 'created_at', $yearNow);
 
-        $voteUpData =  $this->getVoteCount("App\Entities\Votee", 'updated_at', $yearNow, 1);
+        $voteUpData = $this->getVoteCount("App\Entities\Votee", 'updated_at', $yearNow, 1);
 
-        $voteDownData =  $this->getVoteCount("App\Entities\Votee", 'updated_at', $yearNow, -1);
+        $voteDownData = $this->getVoteCount("App\Entities\Votee", 'updated_at', $yearNow, -1);
 
         $max1 = $this->getMaxValue($faseData, $usulanData, $ujiPublikData);
 
         $max2 = $this->getMaxValue($commentsData, $voteUpData, $voteDownData);
 
-        return view('admin.dashboard.index', compact('max1', 'max2', 'avaibleYears', 'popularData', 'allCountData', 'yearNow', 'faseData', 'usulanData', 'ujiPublikData', 'commentsData', 'voteUpData', 'voteDownData'));
+        return view('admin.dashboard.index',
+            compact('max1', 'max2', 'avaibleYears', 'popularData', 'allCountData', 'yearNow', 'faseData', 'usulanData',
+                'ujiPublikData', 'commentsData', 'voteUpData', 'voteDownData'));
     }
 
     /*
@@ -113,18 +117,18 @@ class DashboardController extends AdminController
     public function getDataCount($entity, $column, $year)
     {
 
-        $cacheKey = $entity . $year ."." . "count"; 
+        $cacheKey = $entity . $year . "." . "count";
 
         if (Cache::has($cacheKey)) {
 
             $result = Cache::get($cacheKey);
-        
+
         } else {
 
             $arrayMonths = $this->getArrayOfMonths($entity, $column, $year);
 
-            $monthsEveryYear[$year] = $arrayMonths; 
-        
+            $monthsEveryYear[$year] = $arrayMonths;
+
             $container = $this->getContainer($arrayMonths, $column, $entity, $year);
 
             $result = $this->parseResult($container);
@@ -143,74 +147,74 @@ class DashboardController extends AdminController
 
         if (is_null($value)) {
 
-            foreach($arrayMonth as $month) {
+            foreach ($arrayMonth as $month) {
 
 
                 $result = $class::where(DB::raw('MONTH(' . $column . ')'), '=', $month)
-                                        ->where(DB::raw('YEAR(' . $column . ')'), '=', $year)->get();
-                
+                                ->where(DB::raw('YEAR(' . $column . ')'), '=', $year)->get();
+
                 $count = count($result);
 
                 $container[$month] = $count;
-            
-        }
-                
+
+            }
+
         } else {
 
-            foreach($arrayMonth as $month) {
+            foreach ($arrayMonth as $month) {
 
                 $result = $class::where(DB::raw('MONTH(' . $column . ')'), '=', $month)
-                                        ->where(DB::raw('YEAR(' . $column . ')'), '=', $year)
-                                        ->where('value', '=', $value)->get();
-                
+                                ->where(DB::raw('YEAR(' . $column . ')'), '=', $year)
+                                ->where('value', '=', $value)->get();
+
                 $count = count($result);
 
                 $container[$month] = $count;
-            
+
             }
         }
 
-       return $container;
+        return $container;
     }
 
     /*
-    *   
-    *  
+    *
+    *
     */
     public function getVoteCount($entity, $column, $year, $voteValue)
     {
-       
+
         $arrayMonths = $this->getArrayOfMonths($entity, $column, $year);
 
-        $monthsEveryYear[$year] = $arrayMonths; 
-        
+        $monthsEveryYear[$year] = $arrayMonths;
+
         $container = $this->getContainer($arrayMonths, $column, $entity, $year, $voteValue);
-        
-        $result = $this->parseResult($container);    
-        
+
+        $result = $this->parseResult($container);
+
         return $result;
     }
 
 
     /*
     *   example $container => [1 => 100, 3  => 300, 6 => 800]
-    *   
-    *   setiap anggota array mewakili nilai setiap bulan dari tahun   
-    *   return [1,1,1,1,1,1,1,1,1,1,1,1] <- 12  
+    *
+    *   setiap anggota array mewakili nilai setiap bulan dari tahun
+    *   return [1,1,1,1,1,1,1,1,1,1,1,1] <- 12
     */
 
     public function parseResult($container)
     {
-        $monthsArray = [1,2,3,4,5,6,7,8,9,10,11,12];
+        $monthsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
         $resultArray = [];
 
-        foreach($monthsArray as $month) {
+        foreach ($monthsArray as $month) {
 
             if (array_key_exists($month, $container)) {
 
                 $resultArray[$month] = $container[$month];
-            
+
             } else {
 
                 $resultArray[$month] = 0;
@@ -232,10 +236,10 @@ class DashboardController extends AdminController
             $faseData = $this->faseRepository->all();
 
             $faseCount = $faseData->count();
-            
+
             Cache::put('fase.count', $faseCount, 60);
         }
-        
+
         if (Cache::has('usulan.count')) {
 
             $usulanCount = Cache::get('usulan.count');
@@ -245,7 +249,7 @@ class DashboardController extends AdminController
             $usulanData = $this->programKerjaUsulanRepository->all();
 
             $usulanCount = $usulanData->count();
-            
+
             Cache::put('usulan.count', $faseCount, 60);
         }
 
@@ -258,7 +262,7 @@ class DashboardController extends AdminController
             $programKerjaData = $this->programKerjaRepository->all();
 
             $programKerjaCount = $programKerjaData->count();
-            
+
             Cache::put('programKerja.count', $programKerjaCount, 60);
         }
 
@@ -272,20 +276,20 @@ class DashboardController extends AdminController
             $ujiPublikData = $this->ujiPublikRepository->all();
 
             $ujiPublikCount = $ujiPublikData->count();
-            
+
             Cache::put('ujiPublik.count', $ujiPublikCount, 60);
         }
 
         $allCountData = [$ujiPublikCount, $faseCount, $usulanCount, $programKerjaCount];
 
-        return $allCountData; 
+        return $allCountData;
     }
 
     public function getPopuler()
     {
-        
+
         $popularUjiPublik = $this->ujiPublikRepository->terpopuler(5);
-        
+
         $popularUsulan = $this->programKerjaUsulanRepository->terpopuler(5);
 
         $popularFase = $this->faseRepository->terpopuler(5);
@@ -301,14 +305,14 @@ class DashboardController extends AdminController
         if (Cache::has('avaibleYears')) {
 
             $yearsArray = Cache::get('avaibleYears');
-        
+
         } else {
 
             $yearsArray = [];
 
             $years = $this->programKerjaRepository->all('created_at');
 
-            foreach($years as $year) {
+            foreach ($years as $year) {
 
                 $yearsArray[] = date('Y', strtotime($year->created_at));
             }
@@ -317,7 +321,7 @@ class DashboardController extends AdminController
 
             Cache::put('avaibleYears', $yearsArray, 720);
         }
-        
+
         return $yearsArray;
     }
 
@@ -334,6 +338,6 @@ class DashboardController extends AdminController
 
         $eventNumber = $max + (10 - $addNumber);
 
-        return $eventNumber; 
+        return $eventNumber;
     }
 }

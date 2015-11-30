@@ -1,6 +1,3 @@
-<div class="ui horizontal divider header section">
-    <h2>Data Tahun {{ $yearNow }}</h2>
-</div>
 <h3 class="ui horizontal divider header section">
     Content
 </h3>
@@ -14,5 +11,5 @@
             <div id="js-legend" class="chart-legend"></div>
         </div>
     </div>
-    
+
 
