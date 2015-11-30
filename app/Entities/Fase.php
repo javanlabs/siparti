@@ -14,10 +14,11 @@ use Prettus\Repository\Traits\PresentableTrait;
 use Sofa\Eloquence\Eloquence;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Conner\Tagging\Taggable;
 
 class Fase extends Model implements Presentable, Commentable, HasMedia
 {
-    use PresentableTrait, CommentableTrait, Voteable, Eloquence, HasMediaTrait, HasRevisionsTrait, SoftDeletes;
+    use PresentableTrait, CommentableTrait, Voteable, Eloquence, HasMediaTrait, HasRevisionsTrait, SoftDeletes, Taggable;
 
     protected $table = 'fase';
 

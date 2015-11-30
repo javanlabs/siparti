@@ -36,7 +36,8 @@ class StoreFaseRequest extends Request
             'end_date'          => 'required',    
             'description'       => 'required',
             'pagu'              => 'required',
-            'pic'               => 'required'    
+            'pic'               => 'required',
+            'tags'              => 'required',    
             
                 
         ];

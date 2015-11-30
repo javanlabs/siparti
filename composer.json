@@ -51,7 +51,8 @@
         "adamwathan/bootforms": "dev-master",
         "laravolt/semantic-form": "^0.1.0",
         "spatie/laravel-medialibrary": "^3.10",
-        "roumen/feed": "dev-master"
+        "roumen/feed": "dev-master",
+        "rtconner/laravel-tagging": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
