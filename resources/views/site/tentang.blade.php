@@ -6,9 +6,7 @@
         <div class="ui centered grid">
             <div class="ten wide column">
                 <div class="ui segment very padded">
-                    <p>{{ settings('app.name') }} adalah sebuah program dari Kementerian Komunikasi dan Informasi Republik Indonesia untuk memberikan transparansi kepada publik tentang program kerja dari Departemen Komunikasi dan Informasi, baik yang sedang berjalan maupun yang sedang dalam perencanaan.</p>
-                    <p>Dengan adanya transparansi ini diiharapkan publik dapat memberikan masukan atau usulan terkait program kerja yang sedang berjalan maupun sedang dalam perencanaan tersebut.</p>
-                </div>
+                    <p>{{ settings('app.name') }}</p>{!! settings('app.tentang') !!}
             </div>
         </div>
     </section>
