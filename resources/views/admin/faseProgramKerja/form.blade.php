@@ -5,6 +5,7 @@
 
 @section('script-head')
 		@include('admin.layouts.script')
+    <script src="{{ asset('/js/kominfo.redactor.js') }}"></script>
 
     <script>
     

@@ -5,10 +5,9 @@
 
 @section('script-head')
 		@include('admin.layouts.script')
-
+    <script src="{{ asset('/js/kominfo.redactor.js') }}"></script>
     <script>
 
-      
       function lockAddButton() 
       {
           $optionsCount = $("select#optionProgramKerja").find("option").length;
@@ -164,35 +163,37 @@
                         </div>
 
                         <div class="field">
-                        	<label>Lampiran</label>
+                            <label>Lampiran</label>
 
-                        	{{--*/ $i = 0 /*--}}
+                        	  {{--*/ $i = 0 /*--}}
                         		<table class="ui celled table">
-  									<thead>
-    									<tr>
-    										<th>Nama File</th>
-    										<th>Hapus</th>
-    									</tr>
-  									</thead>
-  									<tbody>
+  									            <thead>
+    									              <tr>
+    										                <th>Nama File</th>
+    										                <th>Hapus</th>
+    									              </tr>
+  									            </thead>
+  									            
+                                <tbody>
 
-  											@forelse ($programKerjaUsulan->present('media') as $data)
-  											<tr>
-                        					<td>
-                        						<a href="{{ $data->getUrl() }} ">{{ $data->name }}</a>
-                        					</td>
-                        					<td>
-                        						<input type="checkbox" name="deletedMedia[]" value="{{ $i }}" />
-                        					</td>
-                        					</tr>
-                   				{{--*/ $i++ /*--}}
-                        					@empty
-            									<tr>
-                									<td colspan="4" class="warning center aligned" style="font-size: 1.5rem;padding:40px;font-style: italic">Tidak ada lampiran</td>
-            									</tr>
-                        					@endforelse
-   										</tbody>
-   								</table>
+  											        @forelse ($programKerjaUsulan->present('media') as $data)
+  											        <tr>
+                        				    <td>
+                        						    <a href="{{ $data->getUrl() }} ">{{ $data->name }}</a>
+                        					  </td>
+                        					  <td>
+                        						    <input type="checkbox" name="deletedMedia[]" value="{{ $i }}" />
+                        					  </td>
+                        				</tr>
+                   				      {{--*/ $i++ /*--}}
+                        				@empty
+            									  <tr>
+                									 <td colspan="4" class="warning center aligned" style="font-size: 1.5rem;padding:40px;font-style: italic">Tidak ada lampiran</td>
+            									  </tr>
+                        				@endforelse
+   										          
+                                </tbody>
+   								          </table>
                         </div>
 
                         <div class="field">
@@ -208,60 +209,59 @@
                         	 {!! SemanticForm::submit('Simpan') !!}
                         </div>
 
- 						 <div class="descriptionText" style="display: none;">
+ 						            <div class="descriptionText" style="display: none;">
                        		{{ $programKerjaUsulan->present('description') }}
                        	</div>
 
 
                     </form>
-
-
                 </div>
             </div>
-			<div class="six wide column">
-				<div class="ui segment">
-					<h3 class="ui header">Program Kerja Terkait</h3>
-					<div class="ui form">
-						<div class="fields inline">
-							<select id="optionProgramKerja" class="ui dropdown fluid search selection">
+			
+            <div class="six wide column">
+				        <div class="ui segment">
+					      <h3 class="ui header">Program Kerja Terkait</h3>
+					      <div class="ui form">
+						        <div class="fields inline">
+							          <select id="optionProgramKerja" class="ui dropdown fluid search selection">
 
-              <?php $arrayId = []; ?>
+                        <?php $arrayId = []; ?>
               
-              <?php $arrayName = []; ?>
+                        <?php $arrayName = []; ?>
               
-              @foreach ($programKerjaUsulan->present('programKerja') as $data)
-                  {!! $arrayId[] = $data->id !!}
-                  {!! $arrayName[] = $data->name !!}  
-              @endforeach
+                        @foreach ($programKerjaUsulan->present('programKerja') as $data)
+                            {!! $arrayId[] = $data->id !!}
+                            {!! $arrayName[] = $data->name !!}  
+                        @endforeach
 
-              @foreach ($programKerja as $data)
-                  @if (!in_array($data->present('id'), $arrayId) and !in_array($data->present('name'), $arrayName))
-                        <option value="{{ $data->present('id') }}">{{ $data->present('name') }}</option>
-                  @endif
-              @endforeach
+                        @foreach ($programKerja as $data)
+                            @if (!in_array($data->present('id'), $arrayId) and !in_array($data->present('name'), $arrayName))
+                                <option value="{{ $data->present('id') }}">{{ $data->present('name') }}</option>
+                            @endif
+                        @endforeach
 
-							</select>
-							&nbsp;
-							<button id="addProgramKerja" class="ui button icon green"><i class="icon plus"></i></button>
-						</div>
-					</div>
+							          </select>
+							          &nbsp;
+							          <button id="addProgramKerja" class="ui button icon green"><i class="icon plus"></i></button>
+						        </div>
+					      </div>
 
-					<div class="ui divider"></div>
+					      <div class="ui divider"></div>
 
-					<div id="programKerjaContainer" class="ui middle aligned divided list relaxed">
+					      <div id="programKerjaContainer" class="ui middle aligned divided list relaxed">
 						
-            @foreach($programKerjaUsulan->present('programKerja') as $data)
+                @foreach($programKerjaUsulan->present('programKerja') as $data)
               
-              <div class="item">
-                <div class="right floated content">
-                  <div data-text="{{ $data->name }}" data-val="{{ $data->id }}" class="ui button mini hapus">Hapus</div>
-                </div>
-                <div class="content">{{ $data->name }}</div>
-              </div>
+                    <div class="item">
+                        <div class="right floated content">
+                            <div data-text="{{ $data->name }}" data-val="{{ $data->id }}" class="ui button mini hapus">Hapus</div>
+                        </div>
+                        <div class="content">{{ $data->name }}</div>
+                    </div>
             
-            @endforeach
+                @endforeach
 					
-          </div>
+                </div>
 
 				</div>
 			</div>
