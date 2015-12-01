@@ -125,23 +125,4 @@ $(document).ready(function() {
 
   //----------------------------------------------------
   
-  $(".textRedactor").redactor({
-	  minHeight: 300,
-	  imageUpload: '/image/upload',
-	  plugins : ['imageManager'],
-  });
-  
-  // Menghapus duplikasi texts ketika refresh di redactor
-  
-  $(".redactor-editor").text("");	
-  
-  // Saat melakukan edit, redactor load teks dari div 
-  // dengan class descriptionText
-  
-  var descriptionText = $(".descriptionText").text();
-  
-  $(".textRedactor").redactor('insert.html', descriptionText);
-  
-  
-	  
 });
