@@ -404,7 +404,7 @@ class DashboardController extends AdminController
 
         $addNumber = $max % 10;
 
-        $eventNumber = $max + (10 - $addNumber);
+        $evenNumber = $max + (10 - $addNumber);
 
         return $evenNumber;
     }
