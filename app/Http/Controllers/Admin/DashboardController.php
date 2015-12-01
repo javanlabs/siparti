@@ -167,7 +167,7 @@ class DashboardController extends AdminController
                                 ->where(DB::raw('YEAR(' . $column . ')'), '=', $year)
                                 ->where('value', '=', $value)->get();
 
-                $count = count($result);
+                $count = $result->count();
 
                 $container[$month] = $count;
 
