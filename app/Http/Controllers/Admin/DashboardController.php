@@ -149,7 +149,7 @@ class DashboardController extends AdminController
                 $result = $class::where(DB::raw('MONTH(' . $column . ')'), '=', $month)
                                         ->where(DB::raw('YEAR(' . $column . ')'), '=', $year)->get();
                 
-                $count = count($result);
+                $count = $result->count();
 
                 $container[$month] = $count;
             
@@ -284,13 +284,82 @@ class DashboardController extends AdminController
     public function getPopuler()
     {
         
-        $popularUjiPublik = $this->ujiPublikRepository->terpopuler(5);
+        if(Cache::has('popular.ujiPublik')) {
+
+            $container1 = Cache::get('popular.ujiPublik');
         
-        $popularUsulan = $this->programKerjaUsulanRepository->terpopuler(5);
+        } else {
 
-        $popularFase = $this->faseRepository->terpopuler(5);
+            $container1 = [];
 
-        $data = [$popularUsulan, $popularUjiPublik, $popularFase];
+            $popularUjiPublik = $this->ujiPublikRepository->terpopuler(5);
+
+            foreach($popularUjiPublik as $data) {
+
+                $container1[] = [ 
+                    'url' => $data->present('url'), 
+                    'name' => $data->present('name'), 
+                    'creator_name' => $data->present('creator_name')
+                ];
+                
+            }
+
+            Cache::put('popular.ujiPublik', $container1, 60);
+
+        }
+
+        if(Cache::has('popular.usulan')) {
+
+            $container2 = Cache::get('popular.usulan');
+        
+        } else {
+
+            $container2 = [];
+
+            $popularUsulan = $this->programKerjaUsulanRepository->terpopuler(5);
+
+            foreach($popularUsulan as $data) {
+
+                $container2[] = [
+                    'url' => $data->present('url'), 
+                    'name' => $data->present('name'), 
+                    'creator_name' => $data->present('creator_name')
+                ];
+               
+            }
+
+            Cache::put('popular.usulan', $container2, 60);
+
+        } 
+
+        if(Cache::has('popular.fase')) {
+
+            $container3 = Cache::get('popular.fase');
+        
+        } else {
+
+            $container3 = [];
+
+            $popularFase = $this->faseRepository->terpopuler(5);
+
+            foreach($popularFase as $data) {
+
+                $container3[] = [
+                    'url' =>  $data->present('url'), 
+                    'name' => $data->present('name'), 
+                    'status' => $data->present('status')
+                ];
+                
+            }
+
+            Cache::put('popular.fase', $container3, 60);
+        }  
+        
+        $data = [
+            'popularUsulan' => $container2, 
+            'popularUjiPublik' => $container1, 
+            'popularFase' => $container3
+        ];
 
         return $data;
     }
