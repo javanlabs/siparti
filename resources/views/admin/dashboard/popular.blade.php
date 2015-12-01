@@ -12,7 +12,7 @@
             
             <div class="item">
                 <div class="header"><a href="{{ $data['url'] }}">{{ $data['name'] }}</a></div>
-                <span class="ui label mini green basic">{{ $data['status'] }}</span>
+                {!! $data['status'] !!}
             </div>
 
             @endforeach
