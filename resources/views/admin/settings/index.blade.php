@@ -1,4 +1,16 @@
 @extends('admin.layouts.base')
+
+@section('style-head')
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/redactor.css') }}">
+
+@endsection
+
+@section('script-head')
+        <script src="{{ asset('js/redactor.min.js')}}"></script>
+        <script src="{{ asset('js/kominfo.redactor.js')}}"></script>
+@endsection
+
 @section('content')
     <div class="ui container">
         <div class="ui segment very padded">
@@ -34,8 +46,23 @@
                     <input type="text" name="url_twitter" value="{{ settings('app.url_twitter') }}">
                 </div>
 
+                <div class="field">
+                    <label>Tentang</label>
+                    
+                    <textarea name="tentang" class="textRedactor" rows="50"></textarea>
+                </div>
+
+                
+                <div class="descriptionText" style="display: none;">
+                    {{ settings('app.tentang') }}
+                </div>
+                
                 <button class="ui button primary">Simpan</button>
             </form>
         </div>
+         
+            
     </div>
+
+   
 @endsection
