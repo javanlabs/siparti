@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use DB;
 use Cache;
+use App\Enum\FaseType;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Entities\Fase;
@@ -295,14 +296,17 @@ class DashboardController extends AdminController
 
             $container1 = [];
 
-            $popularUjiPublik = $this->ujiPublikRepository->terpopuler(5);
+            $popularUjiPublik = UjiPublik::with('creator')
+                                            ->orderBy('vote_up', "DESC")
+                                            ->limit(5)
+                                            ->get();
 
             foreach($popularUjiPublik as $data) {
 
                 $container1[] = [ 
-                    'url' => $data->present('url'), 
-                    'name' => $data->present('name'), 
-                    'creator_name' => $data->present('creator_name')
+                    'url' => route('uji-publik.show', ['id' => $data->id]), 
+                    'name' => $data->name, 
+                    'creator_name' => $data->creator->name
                 ];
                 
             }
@@ -319,14 +323,17 @@ class DashboardController extends AdminController
 
             $container2 = [];
 
-            $popularUsulan = $this->programKerjaUsulanRepository->terpopuler(5);
+            $popularUsulan = ProgramKerjaUsulan::with('creator')
+                                                ->orderBy('vote_up', "DESC")
+                                                ->limit(5)
+                                                ->get();
 
             foreach($popularUsulan as $data) {
 
                 $container2[] = [
-                    'url' => $data->present('url'), 
-                    'name' => $data->present('name'), 
-                    'creator_name' => $data->present('creator_name')
+                    'url' => route("proker-usulan.show", ['id' => $data->id]), 
+                    'name' => $data->name, 
+                    'creator_name' => $data->creator->name
                 ];
                
             }
@@ -343,18 +350,20 @@ class DashboardController extends AdminController
 
             $container3 = [];
 
-            $popularFase = $this->faseRepository->terpopuler(5);
+            $popularFase = Fase::with('programKerja')
+                                ->orderBy('vote_up', "DESC")
+                                ->limit(5)
+                                ->get();
 
             foreach($popularFase as $data) {
 
                 $container3[] = [
-                    'url' =>  $data->present('url'), 
-                    'name' => $data->present('name'), 
-                    'status' => $data->present('status')
+                    'url' =>  route("proker.show", ['id' => $data->id]), 
+                    'name' => $data->programKerja->name, 
+                    'status' => (new FaseType($data->type))->label(),
                 ];
                 
             }
-
             Cache::put('popular.fase', $container3, 60);
         }  
         
