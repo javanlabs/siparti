@@ -10,8 +10,9 @@
                         <h2 class="title">Selamat Datang di <span class="highlight">{{ settings('app.name') }}</span>
                         </h2>
 
-                        <h3 class="body">Layanan partisipasi publik dalam membangun program kerja
-                            <br> Kominfo yang berkualitas.</h3>
+                        <div id="welcomeMessage">
+                            {!! settings('app.welcome') !!}
+                        </div>
                     </div>
                     {{--<a href="{{ (auth()->check())?route('proker-usulan.create'): url('auth/login') }}" class="ui button large green">--}}
                         {{--Ikut Berpartisipasi<i class="icon sign in right"></i>--}}
