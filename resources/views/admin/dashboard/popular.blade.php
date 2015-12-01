@@ -11,25 +11,25 @@
             @foreach($popularData['popularFase'] as $data)
             
             <div class="item">
-                <div class="header"><a href="{{ $data['url'] }}">{{ $data['name'] }}</div>
+                <div class="header"><a href="{{ $data['url'] }}">{{ $data['name'] }}</a></div>
                 <span class="ui label mini green basic">{{ $data['status'] }}</span>
             </div>
-            
+
             @endforeach
-            
+
         </div>
     </div>
     <div class="column">
         <div class="ui header block">Uji Publik</div>
         <div class="ui ordered list">
-            
+
             @foreach($popularData['pupularUjiPublik'] as $data)
                 <div class="item">
                     <div class="header"><a href="{{ $data['url'] }}">{{ $data['name'] }}</a></div>
                     {{ $data['creator_name'] }}
                 </div>
             @endforeach
-        
+
         </div>
     </div>
     <div class="column">
@@ -37,13 +37,14 @@
         <div class="ui ordered list">
 
             @foreach($popularData['popularUsulan'] as $data)
+            
             <div class="item">
                 <div class="header"><a href="{{ $data['url'] }}">{{ $data['name'] }}</a></div>
                 oleh {{ $data['creator_name'] }}
             </div>  
+
             @endforeach
-            
-           
+
         </div>
     </div>
 </div>

@@ -22,17 +22,13 @@ class ActivityTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
-            
+
             'ip_address' => $model->ip_address,
             'activity'  =>  $model->text,
-            'user_id'   => $model->user_id,    
+            'user_id'   => $model->user_id,
             'name'      => $model->getUserName(),
             'email'     => $model->getUserEmail(),
-                
-            /* place your other model properties here */
-            
-            'date_for_human' => date("d F Y",strtotime($model->created_at)),
-            'created_at' => $model->created_at,
+            'created_at' => $model->created_at->formatLocalized("%d %b %Y %H:%M:%S"),
             'updated_at' => $model->updated_at
         ];
     }

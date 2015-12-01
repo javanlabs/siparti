@@ -20,6 +20,8 @@ class LogController extends AdminController
         $this->activityRepository = $activityRepository;
 
         $this->authorize('manage-log');
+
+        parent::__construct();
     }
 
 
