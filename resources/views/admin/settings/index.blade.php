@@ -7,8 +7,53 @@
 @endsection
 
 @section('script-head')
+        
         <script src="{{ asset('js/redactor.min.js')}}"></script>
-        <script src="{{ asset('js/kominfo.redactor.js')}}"></script>
+
+        <script>
+             
+
+             $(document).ready(function() {
+
+                $("#textRedactor").redactor({
+                    minHeight: 300,
+                    imageUpload: '/image/upload',
+                    plugins : ['imageManager'],
+                    buttons: ['html', 'bold', 'italic', 'deleted', 'link', 'unorderedlist', 'orderedlist', 
+                    'outdent', 'indent', 'image', 'link', 'alignment', 'horizontalrule'],
+                    modalClosedCallback : function()
+                    {
+
+                        $("html, body").animate({ scrollTop: 1000 }, 1); 
+                    }
+                });
+  
+                $("#welcomeRedactor").redactor({
+                    minHeight: 300,
+                    imageUpload: '/image/upload',
+                    plugins : ['imageManager'],
+                    buttons: ['formatting', 'html', 'bold', 'italic', 'deleted', 'link', 'unorderedlist', 'orderedlist', 
+                    'outdent', 'indent', 'image', 'link', 'alignment', 'horizontalrule'],
+                    modalClosedCallback: function()
+                    {
+                        $("html, body").animate({ scrollTop: 600 }, 1); 
+                    },
+                });
+                
+                var textWelcome = $("#welcomeText").text();
+                
+                var textTentang = $("#descriptionText").text();
+        
+                $(".redactor-editor").text("");   
+                
+                $("#textRedactor").redactor('code.set', textTentang);
+                $("#welcomeRedactor").redactor('code.set', textWelcome);
+
+            });
+        
+        </script>
+
+
 @endsection
 
 @section('content')
@@ -46,16 +91,28 @@
                     <input type="text" name="url_twitter" value="{{ settings('app.url_twitter') }}">
                 </div>
 
+
                 <div class="field">
-                    <label>Tentang</label>
-                    
-                    <textarea name="tentang" class="textRedactor" rows="50"></textarea>
+                    <label>Welcome Message</label>
+                    &nbsp;
+                    <textarea name="welcome" id="welcomeRedactor" rows="50"></textarea>
                 </div>
 
+                <div class="field">
+                    <label>Tentang</label>
+                    &nbsp;
+                    <textarea name="tentang" id="textRedactor" rows="50"></textarea>
+                </div>
+
+                 <div id="welcomeText" style="display: none;">
+                    {{ settings('app.welcome') }}
+                </div>
                 
-                <div class="descriptionText" style="display: none;">
+                <div id="descriptionText" style="display: none;">
                     {{ settings('app.tentang') }}
                 </div>
+
+               
                 
                 <button class="ui button primary">Simpan</button>
             </form>

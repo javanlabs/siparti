@@ -5,7 +5,7 @@
 
 @section('script-head')
 		@include('admin.layouts.script')
-    <script src="{{ asset('/js/kominfo.redactor.js') }}"></script>
+
     <script>
 
       function lockAddButton() 
@@ -23,6 +23,26 @@
       }
 
       $(document).ready(function() {
+
+          $("#textRedactor").redactor({
+                minHeight: 300,
+                imageUpload: '/image/upload',
+                plugins : ['imageManager'],
+                buttons: ['html', 'bold', 'italic', 'deleted', 'link', 'unorderedlist', 'orderedlist', 
+                'outdent', 'indent', 'image', 'link', 'alignment', 'horizontalrule'],
+                
+                modalClosedCallback : function()
+                {
+
+                    $("html, body").animate({ scrollTop: 230 }, 1); 
+                }
+          });
+                
+          var textTentang = $("#descriptionText").text();
+        
+          $(".redactor-editor").text("");   
+                
+          $("#textRedactor").redactor('code.set', textTentang);
 
           $.ajaxSetup({
               headers: {
@@ -139,7 +159,7 @@
 
                       	<div class="field">
                       		<label>Deskripsi</label>
-                      		<textarea name="description" class="textRedactor"></textarea>
+                      		<textarea name="description" id="textRedactor"></textarea>
                       	</div>
 
                         <div class="field">
@@ -153,7 +173,7 @@
                         </div>
 
                         <div class="field">
-                        	<label>Lokasit</label>
+                        	<label>Lokasi</label>
                         	<input name="lokasi" type="text" value="{{ $programKerjaUsulan->present('lokasi') }}"  />
                         </div>
 
@@ -209,7 +229,7 @@
                         	 {!! SemanticForm::submit('Simpan') !!}
                         </div>
 
- 						            <div class="descriptionText" style="display: none;">
+ 						            <div id="descriptionText" style="display: none;">
                        		{{ $programKerjaUsulan->present('description') }}
                        	</div>
 

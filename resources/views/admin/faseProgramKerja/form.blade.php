@@ -5,16 +5,36 @@
 
 @section('script-head')
 		@include('admin.layouts.script')
-    <script src="{{ asset('/js/kominfo.redactor.js') }}"></script>
+    <script src="{{ asset('js/redactor.min.js')}}"></script>
 
     <script>
-    
-    $(document).ready(function() {
-         $('.tagMultiple.ui.fluid.multiple.search.selection.dropdown')
-          .dropdown({
-              allowAdditions: true
-        });
-    });
+          $(document).ready(function() {
+
+            $("#textRedactor").redactor({
+                minHeight: 300,
+                imageUpload: '/image/upload',
+                plugins : ['imageManager'],
+                buttons: ['html', 'bold', 'italic', 'deleted', 'link', 'unorderedlist', 'orderedlist', 
+                'outdent', 'indent', 'image', 'link', 'alignment', 'horizontalrule'],
+                
+                modalClosedCallback : function()
+                {
+
+                    $("html, body").animate({ scrollTop: 900 }, 1); 
+                }
+            });
+                
+            var textTentang = $("#descriptionText").text();
+        
+            $(".redactor-editor").text("");   
+                
+            $("#textRedactor").redactor('code.set', textTentang);
+
+            $('.tagMultiple.ui.fluid.multiple.search.selection.dropdown')
+              .dropdown({
+                  allowAdditions: true
+              });
+          });
        
     </script>
     
@@ -99,7 +119,7 @@
                         
                         <div class="field">
                         	<label>Penjelasan Program Kerja</label>
-                        	<textarea rows="50" class="textRedactor" name="description"></textarea>
+                        	<textarea rows="50" id="textRedactor" name="description"></textarea>
                         </div>
 
                         {!! SemanticForm::text('pic', 'Pic') !!}
@@ -248,7 +268,7 @@
                         
                         <div class="field">
                         	  <label>Penjelasan Program Kerja</label>
-                        	  <textarea rows="50" class="textRedactor" name="description">
+                        	  <textarea rows="50" id="textRedactor" name="description">
                         		
                         	  </textarea>
                         </div>
@@ -386,7 +406,7 @@
                         
                        	{!! SemanticForm::submit('Simpan') !!}
                        	
-                       	<div class="descriptionText" style="display: none;">
+                       	<div id="descriptionText" style="display: none;">
                        		{{ $fase->present('description') }}
                        	</div>
 
