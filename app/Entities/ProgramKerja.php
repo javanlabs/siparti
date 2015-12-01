@@ -8,6 +8,7 @@ use Laravolt\Trail\Traits\HasRevisionsTrait;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
 use App\Entities\ProgramKerjaDanUsulanRelation;
+use App\Enum\FaseType;
 
 class ProgramKerja extends Model implements Presentable
 {
@@ -55,7 +56,7 @@ class ProgramKerja extends Model implements Presentable
         
         } else {
 
-            return $this->faseSekarang->type;
+            return (new FaseType($this->faseSekarang->type))->label();
         } 
     }
 }
