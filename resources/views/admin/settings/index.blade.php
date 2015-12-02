@@ -21,10 +21,17 @@
                     plugins : ['imageManager'],
                     buttons: ['html', 'bold', 'italic', 'deleted', 'link', 'unorderedlist', 'orderedlist', 
                     'outdent', 'indent', 'image', 'link', 'alignment', 'horizontalrule'],
+                    
                     modalClosedCallback : function()
                     {
 
                         $("html, body").animate({ scrollTop: 1000 }, 1); 
+                    },
+                    
+                    imageUploadErrorCallback: function()
+                    {
+
+                        alert("Tidak bisa upload gambar, periksa koneksi internet")
                     }
                 });
   
@@ -34,10 +41,17 @@
                     plugins : ['imageManager'],
                     buttons: ['formatting', 'html', 'bold', 'italic', 'deleted', 'link', 'unorderedlist', 'orderedlist', 
                     'outdent', 'indent', 'image', 'link', 'alignment', 'horizontalrule'],
+                    
                     modalClosedCallback: function()
                     {
                         $("html, body").animate({ scrollTop: 600 }, 1); 
                     },
+                    
+                    imageUploadErrorCallback: function()
+                    {
+
+                        alert("Tidak bisa upload gambar, periksa koneksi internet")
+                    }
                 });
                 
                 var textWelcome = $("#welcomeText").text();

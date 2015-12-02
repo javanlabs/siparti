@@ -21,6 +21,12 @@
                 {
 
                     $("html, body").animate({ scrollTop: 900 }, 1); 
+                },
+
+                imageUploadErrorCallback: function()
+                {
+
+                  alert("Tidak bisa upload gambar, periksa koneksi internet")
                 }
             });
                 
