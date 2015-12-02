@@ -6,6 +6,7 @@ return [
         'roles'       => 'Hak Akses',
         'audit_trail' => 'Audit Trail',
         'settings'    => 'Pengaturan Sistem',
+        'category'    => 'Kategori',
         'manage_comments' => 'Komentar',
         'manage_program_kerja' => 'Program Kerja',
         'manage_program_kerja_usulan' => 'Program Kerja Usulan',

@@ -49,6 +49,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 
     Route::resource('settings', 'SettingController', ['only' => ['index', 'store']]);
     Route::resource('roles', 'RoleController');
+    Route::resource('category', 'CategoryController');
     Route::resource('auditTrail', 'AuditTrailController');
     Route::resource('programKerja', 'ProgramKerjaController');
     Route::resource('faseProgramKerja', 'FaseProgramKerjaController');

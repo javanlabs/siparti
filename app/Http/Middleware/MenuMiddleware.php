@@ -39,6 +39,9 @@ class MenuMiddleware
             $menu->add(trans('menus.admin.settings'), ['route' => ['admin.settings.index']])
                  ->data('permission', 'manage-settings')
                  ->prepend('<i class="icon options"></i>');
+            $menu->add(trans('menus.admin.category'), ['route' => ['admin.category.index']])
+                 ->data('permission', 'manage-settings')
+                 ->prepend('<i class="icon list"></i>');
             $menu->add(trans('menus.admin.manage_program_kerja'), ['route' => ['admin.programKerja.index']])
                   ->data('permission', 'manage-program-kerja')
                   ->prepend('<i class="configure icon"></i>');
