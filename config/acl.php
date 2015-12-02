@@ -3,10 +3,5 @@
  * Set specific configuration variables here
  */
 return [
-    'permissions' => [
-        'manage-users',
-        'manage-settings',
-        'manage-audit-trails',
-        'manage-groups',
-    ]
+    'permission_enum' => \App\Enum\Permission::class
 ];

@@ -3,9 +3,5 @@
  * Set specific configuration variables here
  */
 return [
-    'permissions' => [
-        'manage-users',
-        'manage-settings',
-        'manage-groups',
-    ]
+    'permission_enum' => \Laravolt\Acl\Enum\Permission::class
 ];

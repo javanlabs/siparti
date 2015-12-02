@@ -8,7 +8,7 @@ class Role extends Model
 {
     protected $table = 'acl_roles';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description'];
 
     public function permissions()
     {
@@ -40,7 +40,21 @@ class Role extends Model
 
     public function syncPermission(array $permissions)
     {
-        return $this->permissions()->sync($permissions);
+
+        // if string, find corelated id
+        $ids = collect($permissions)->map(function ($item) {
+            if (is_string($item)) {
+                return Permission::whereName($item)->pluck('id');
+            }
+
+            return $item;
+        });
+
+        $ids = $ids->filter(function ($id) {
+            return $id > 0;
+        });
+
+        return $this->permissions()->sync($ids->toArray());
     }
 
 }
