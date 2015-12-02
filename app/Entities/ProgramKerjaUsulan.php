@@ -23,7 +23,7 @@ class ProgramKerjaUsulan extends Model implements Presentable, Commentable, HasM
 
     protected $with = ['voteCounter'];
 
-    protected $fillable = ['name', 'manfaat', 'lokasi', 'target', 'instansi_stakeholder', 'description'];
+    protected $fillable = ['name', 'manfaat', 'category_id', 'lokasi', 'target', 'instansi_stakeholder', 'description'];
 
     function __toString()
     {
@@ -33,6 +33,11 @@ class ProgramKerjaUsulan extends Model implements Presentable, Commentable, HasM
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function programKerja()
@@ -45,6 +50,24 @@ class ProgramKerjaUsulan extends Model implements Presentable, Commentable, HasM
         return $this->name;
     }
 
+    public function scopeByCategory($query, $id)
+    {   
+        /*to find out, is the $id parent or child */
+        $category = Category::find($id);
+        if ($category->parent_id==0) {
+            $queryTemp = "or parent_id=$id";
+        }
+        else{
+            $queryTemp = '';
+        }
+
+        /*query for searching usulan by category*/
+        if ($id) {
+            $query->whereRaw(" usulan.category_id in (SELECT id FROM category WHERE id=$id $queryTemp)");
+        }
+        return $query;
+    }
+    
     public function getCommentablePermalinkAttribute()
     {
         return $this->present('url');

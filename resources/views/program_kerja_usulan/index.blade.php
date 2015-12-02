@@ -12,7 +12,12 @@
             <div class="ui grid two column stackable">
                 <div class="column">
                     <div class="ui action input">
+                        <div class="item">
                         <input type="text" name="nama" value="{{ request('nama') }}" placeholder="Cari Usulan Program Kerja...">
+                        </div>
+                        <div class="item">
+                            {!!  Form::select('category_id', $category, request('category_id'), ['class' => 'ui dropdown']) !!}
+                        </div>
                         <button type="submit" class="ui button primary">Cari</button>
                     </div>
                 </div>
