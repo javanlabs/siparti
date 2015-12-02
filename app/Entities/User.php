@@ -19,7 +19,6 @@ use Laravolt\Password\CanChangePasswordContract;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
 use Avatar;
-use App\Entities\Activity;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
@@ -106,10 +105,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->name;
     }
-    
+
     public function getActivities()
     {
         return $this->hasMany(Activity::class);
     }
-
 }
