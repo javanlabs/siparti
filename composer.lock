@@ -1732,12 +1732,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/auth.git",
-                "reference": "0e1d05461f9d62ae31b89fe815a2467a5fd697b7"
+                "reference": "1b1a7b8a933da55415fff1b2a2c774d3271e2a53"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravolt/auth/zipball/7cea0c92632eb4de433d13f796afdacab0138bd6",
-                "reference": "0e1d05461f9d62ae31b89fe815a2467a5fd697b7",
+                "reference": "1b1a7b8a933da55415fff1b2a2c774d3271e2a53",
                 "shasum": ""
             },
             "require": {
