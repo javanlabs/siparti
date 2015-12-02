@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enum\Permission;
 use Closure;
 use Menu;
 
@@ -28,40 +29,41 @@ class MenuMiddleware
     {
         Menu::make('admin', function ($menu) {
             $menu->add(trans('menus.admin.users'), ['route' => ['admin.users.index']])
-                 ->data('permission', 'manage-users')
+                 ->data('permission', Permission::MANAGE_USER)
                  ->prepend('<i class="icon user"></i>');
             $menu->add(trans('menus.admin.roles'), ['route' => ['admin.roles.index']])
-                 ->data('permission', 'manage-roles')
+                 ->data('permission', Permission::MANAGE_ROLE)
                  ->prepend('<i class="icon unlock alternate"></i>');
             $menu->add(trans('menus.admin.audit_trail'), ['route' => ['admin.auditTrail.index']])
-                 ->data('permission', 'manage-audit-trails')
+                 ->data('permission', Permission::VIEW_AUDIT_TRAIL)
                  ->prepend('<i class="icon history"></i>');
             $menu->add(trans('menus.admin.settings'), ['route' => ['admin.settings.index']])
-                 ->data('permission', 'manage-settings')
+                 ->data('permission', Permission::MANAGE_SETTING)
                  ->prepend('<i class="icon options"></i>');
             $menu->add(trans('menus.admin.manage_program_kerja'), ['route' => ['admin.programKerja.index']])
-                  ->data('permission', 'manage-program-kerja')
-                  ->prepend('<i class="configure icon"></i>');
+                 ->data('permission', Permission::MANAGE_PROGRAM_KERJA)
+                 ->prepend('<i class="configure icon"></i>');
             $menu->add(trans('menus.admin.manage_fase_program_kerja'), ['route' => ['admin.faseProgramKerja.index']])
-                  ->data('permission', 'manage-fase-program-kerja')
-                  ->prepend('<i class="wait icon"></i>');      
-            $menu->add(trans('menus.admin.manage_program_kerja_usulan'), ['route' => ['admin.programKerjaUsulan.index']])
-                  ->data('permission', 'manage-program-kerja-usulan')
-                  ->prepend('<i class="announcement icon"></i>');
+                 ->data('permission', Permission::MANAGE_PROGRAM_KERJA)
+                 ->prepend('<i class="wait icon"></i>');
+            $menu->add(trans('menus.admin.manage_program_kerja_usulan'),
+                ['route' => ['admin.programKerjaUsulan.index']])
+                 ->data('permission', Permission::MANAGE_USULAN)
+                 ->prepend('<i class="announcement icon"></i>');
             $menu->add(trans('menus.admin.satuan_kerja'), ['route' => ['admin.satuanKerja.index']])
-                  ->data('permission', 'manage-satuan-kerja')
-                  ->prepend('<i class="sitemap icon"></i>');
+                 ->data('permission', Permission::MANAGE_SATUAN_KERJA)
+                 ->prepend('<i class="sitemap icon"></i>');
             $menu->add(trans('menus.admin.uji_publik'), ['route' => ['admin.ujiPublik.index']])
-                  ->data('permission', 'manage-uji-public')
-                  ->prepend('<i class="book icon"></i>');
+                 ->data('permission', Permission::MANAGE_UJI_PUBLIK)
+                 ->prepend('<i class="book icon"></i>');
             $menu->add(trans('menus.admin.manage_comments'), ['route' => ['admin.comments.index']])
-                  ->data('permission', 'manage-comments')
-                  ->prepend('<i class="comments icon"></i>');
+                 ->data('permission', Permission::MANAGE_COMMENT)
+                 ->prepend('<i class="comments icon"></i>');
             $menu->add(trans('menus.admin.manage_log'), ['route' => ['admin.logs.index']])
-                  ->data('permission', 'manage-log')
-                  ->prepend('<i class="sidebar icon"></i>');
+                 ->data('permission', Permission::VIEW_LOG)
+                 ->prepend('<i class="sidebar icon"></i>');
 
-            })->filter(function ($item) {
+        })->filter(function ($item) {
             return auth()->user()->can($item->data('permission'));
         });
     }

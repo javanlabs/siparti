@@ -18,6 +18,7 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
         'password'          => bcrypt('password'),
         'password_last_set' => new Carbon\Carbon(),
         'remember_token'    => str_random(10),
+        'status'            => \App\Enum\UserStatus::ACTIVE,
     ];
 });
 

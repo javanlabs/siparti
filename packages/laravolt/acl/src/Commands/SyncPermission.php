@@ -55,8 +55,8 @@ class SyncPermission extends Command
         $permissions = $enumClass::toArray();
 
         $items = collect();
-        foreach ($permissions as $name) {
-            $permission = Permission::firstOrNew(['name' => $name]);
+        foreach ($permissions as $name => $id) {
+            $permission = Permission::firstOrNew(['id' => $id, 'name' => $name]);
             $status = 'No Change';
 
             if (!$permission->exists) {

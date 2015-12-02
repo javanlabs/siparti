@@ -43,23 +43,22 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function boot(Gate $gate)
     {
-        if (!$this->app->runningInConsole()) {
-            $this->registerAcl($gate);
-        }
 
         $this->registerMigrations();
         $this->registerSeeds();
         $this->registerConfigurations();
+
+        if (!$this->app->runningInConsole()) {
+            $this->registerAcl($gate);
+        }
 
         $this->registerCommands();
     }
 
     protected function registerAcl($gate)
     {
-        $gate->before(function ($user, $ability) {
-            if ($user->hasRole('root')) {
-                return true;
-            }
+        $gate->before(function ($user) {
+            return call_user_func(config('acl.is_admin'), $user);
         });
 
         $permissions = Permission::all();
@@ -114,7 +113,7 @@ class ServiceProvider extends BaseServiceProvider
 
     protected function registerCommands()
     {
-        $this->app->singleton('command.laravolt.acl.sync-permission', function($app) {
+        $this->app->singleton('command.laravolt.acl.sync-permission', function ($app) {
 
             return new SyncPermission($app['config']);
         });
