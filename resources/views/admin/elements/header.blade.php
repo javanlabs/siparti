@@ -9,7 +9,7 @@
             Konten
             <i class="angle down icon"></i>
         </a>
-        <div class="ui flowing popup popup-menu-admin vertical menu" id="popup-content">
+        <div class="ui flowing popup popup-menu-admin vertical menu" id="popup-content" style="width: 250px">
             @foreach(Menu::get('admin-content')->roots() as $item)
             <a class="item" href="{{ $item->url() }}">{!!  $item->title !!}</a>
             @endforeach
