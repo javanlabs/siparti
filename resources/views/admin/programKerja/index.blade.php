@@ -13,24 +13,14 @@
     <div class="ui container">
         <section class="section-audit-trails">
 
-            <div class="ui menu top attached small">
+            <div class="ui menu top attached">
                 <div class="item borderless">
-                    <strong>Program Kerja</strong>
+                    <h4>Program Kerja</h4>
                 </div>
                 <div class="item borderless">
                     <a href="{{ route('admin.programKerja.create') }}" class="ui button"><i class="icon plus"></i> Tambah</a>
                 </div>
-                <div class="menu right">
-                    <a href="" class="item"><i class="icon file pdf outline red"></i></a>
-                    <a href="" class="item"><i class="icon file excel outline green"></i></a>
-                </div>
-            </div>
-            <div class="ui menu attached">
-                <div class="menu">
-                    <div class="item borderless">
-                        <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->summary() !!}</small>
-                    </div>
-                </div>
+
                 <div class="right menu">
                     <div class="ui right aligned item">
                         <form method="GET" action="{{ route('admin.programKerja.index') }}">
@@ -41,9 +31,28 @@
                         </form>
                     </div>
                 </div>
+
+                {{--@if(!$programKerja->isEmpty())--}}
+                {{--<div class="menu right">--}}
+                    {{--<a href="" class="item"><i class="icon file pdf outline red"></i></a>--}}
+                    {{--<a href="" class="item"><i class="icon file excel outline green"></i></a>--}}
+                {{--</div>--}}
+                {{--@endif--}}
+
             </div>
+
+            @if(!$programKerja->isEmpty())
+            <div class="ui menu attached">
+                <div class="menu">
+                    <div class="item borderless">
+                        <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->summary() !!}</small>
+                    </div>
+                </div>
+            </div>
+            @endif
+
             <div class="ui segment attached fitted">
-                <table class="ui very compact table bottom small sortable">
+                <table class="ui very compact table bottom small">
                     <thead>
                     <tr>
                         <th width="50px">
@@ -53,9 +62,9 @@
                         </th>
                         <th>Nama Progran Kerja</th>
                         <th>Fase Sekarang</th>
-                        <th>Pembuat</th>
                         <th>Satker</th>
-                        <th>Dibuat Pada</th>
+                        <th>Ditambahkan Oleh</th>
+                        <th>Ditambahkan Pada</th>
 
 
                         <th>&nbsp;</th>
@@ -71,8 +80,8 @@
                             </td>
                             <td>{{ $data->present('name') }}</td>
                             <td>{!! $data->present('fase_sekarang') !!}</td>
-                            <td>{{ $data->present('creator_name') }}</td>
                             <td>{{ $data->present('satker_name') }}</td>
+                            <td>{{ $data->present('creator_name') }}</td>
                             <td>{{ $data->present('date_for_human') }}</td>
 
                             <td class="right aligned">
@@ -98,15 +107,17 @@
                 </table>
             </div>
             <div class="ui menu bottom attached">
+                @if(!$programKerja->isEmpty())
                 <div class="item borderless">
 
                     <form role="form" data-type="delete-multiple" action="{{ route('admin.programKerja.destroy', ':ids') }}" method="POST" onsubmit="return confirm('Anda yakin?')">
                         <input type="hidden" name="_method" value="DELETE">
                         {{ csrf_field() }}
-                        <button type="submit" class="mini ui button">Hapus Terpilih</button>
+                        <button type="submit" class="mini ui button basic">Hapus Terpilih</button>
                     </form>
                 </div>
                 {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->render('attached bottom right') !!}
+                @endif
             </div>
         </section>
     </div>
