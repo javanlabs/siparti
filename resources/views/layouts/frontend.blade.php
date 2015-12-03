@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('body')
+
     @include('elements.header')
     @include('elements.flash')
 

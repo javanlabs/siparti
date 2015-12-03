@@ -5,16 +5,17 @@ use MyCLabs\Enum\Enum;
 
 class Permission extends Enum
 {
-    const MANAGE_USER = 1;
-    const MANAGE_ROLE = 2;
-    const MANAGE_SETTING = 3;
-    const VIEW_AUDIT_TRAIL = 4;
-    const MANAGE_PROGRAM_KERJA = 5;
-    const MANAGE_UJI_PUBLIK = 6;
-    const MANAGE_USULAN = 7;
-    const MANAGE_SATUAN_KERJA = 8;
-    const MANAGE_COMMENT = 9;
-    const VIEW_LOG = 10;
-    const VIEW_DASHBOARD = 11;
-    const MANAGE_CATEGORY = 12;
+    const ACCESS_BACKEND = 'access-backend';
+    const MANAGE_USER = 'manage-user';
+    const MANAGE_ROLE = 'manage-role';
+    const MANAGE_SETTING = 'manage-setting';
+    const VIEW_AUDIT_TRAIL = 'view-audit-trail';
+    const MANAGE_PROGRAM_KERJA = 'manage-program-kerja';
+    const MANAGE_UJI_PUBLIK = 'manage-uji-publik';
+    const MANAGE_USULAN = 'manage-usulan';
+    const MANAGE_SATUAN_KERJA = 'manage-satuan-kerja';
+    const MANAGE_COMMENT = 'manage-comment';
+    const VIEW_LOG = 'view-log';
+    const VIEW_DASHBOARD = 'view-dashboard';
+    const MANAGE_CATEGORY = 'manage-category';
 }

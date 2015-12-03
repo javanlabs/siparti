@@ -42,11 +42,14 @@ class Install extends Command
         $this->info('Refresh migration');
         $this->call('migrate:refresh');
 
+        $this->info('Seed permission data');
+        $this->call('acl:sync-permission');
+
         $this->info('Create root account');
         User::create([
             'name'     => 'root',
-            'email'    => $this->ask('Email'),
-            'password' => $this->secret('Password'),
+            'email'    => $this->ask('Email', 'root@siparti.com'),
+            'password' => bcrypt($this->ask('Password', 'password')),
             'status'   => UserStatus::ACTIVE,
         ]);
     }
