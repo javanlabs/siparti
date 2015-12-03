@@ -22,7 +22,6 @@ $(function(){
             .popup({
                 popup     : $(this).data('target'),
                 hoverable : true,
-                position  : 'bottom left',
                 delay     : {
                     show: 100,
                     hide: 100
