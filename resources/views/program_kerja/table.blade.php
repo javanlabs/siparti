@@ -5,25 +5,20 @@
     <a href="{{ route($route, ['orderBy' => 'comment', 'sortedBy' => 'desc']) }}" class="item">Komentar</a>
 </div>
 
-<form class="ui form top attached menu borderless stackable">
-    <input type="hidden" name="orderBy" value="{{ request('orderBy', 'created_at') }}">
-    <input type="hidden" name="sortedBy" value="{{ request('sortedBy', 'desc') }}">
+
+<form class="ui top attached menu borderless">
     <div class="item">
-        <input type="text" name="nama" value="{{ request('nama') }}" placeholder="Nama...">
-    </div>
-    <div class="item">
-        {!!  Form::select('satker_id', $satker, request('satker_id'), ['class' => 'ui dropdown']) !!}
-    </div>
-    <div class="item">
-        {!!  Form::select('fase', $fase, request('fase'), ['class' => 'ui dropdown']) !!}
-    </div>
-    <div class="item">
-        {!!  Form::select('tahun', $year, request('tahun'), ['class' => 'ui dropdown']) !!}
-    </div>
-    <div class="item">
-        <button type="submit" class="ui button primary">Cari</button>
+        <div class="ui action input">
+          <input type="text" name="nama" value="{{ request('nama') }}" placeholder="Nama...">
+          {!!  Form::select('category_id', $category, request('category_id'), ['class' => 'ui compact selection dropdown']) !!}
+          {!!  Form::select('satker_id', $satker, request('satker_id'), ['class' => 'ui compact selection dropdown']) !!}
+          {!!  Form::select('fase', $fase, request('fase'), ['class' => 'ui compact selection dropdown']) !!}
+          {!!  Form::select('tahun', $year, request('tahun'), ['class' => 'ui compact selection dropdown']) !!}
+          <button type="submit" class="ui button primary" tabindex="0">Cari</button>
+        </div>
     </div>
 </form>
+
 <div class="ui segment attached padded">
     <div class="cards ui three doubling stackable">
         @foreach($programKerja as $item)
