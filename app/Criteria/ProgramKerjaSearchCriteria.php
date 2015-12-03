@@ -35,6 +35,12 @@ class ProgramKerjaSearchCriteria implements CriteriaInterface
             $model = $model->byYear($keyword);
         }
 
+        if ($keyword = $this->request->get('category_id')) {
+            $model = $model->byCategory($keyword);
+        }
+
+       
+
         return $model;
     }
 }

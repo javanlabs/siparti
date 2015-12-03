@@ -6,6 +6,7 @@ use App\Repositories\FaseRepositoryEloquent;
 use App\Http\Requests;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 use App\Repositories\SatkerRepositoryEloquent;
+use App\Repositories\CategoryRepositoryEloquent;
 
 class ProgramKerjaController extends Controller
 {
@@ -16,6 +17,8 @@ class ProgramKerjaController extends Controller
 
     protected $programKerjaUsulanRepository;
 
+    protected $categoryRepository;
+
 
     /**
      * FaseController constructor.
@@ -24,11 +27,13 @@ class ProgramKerjaController extends Controller
     public function __construct(
         FaseRepositoryEloquent $faseRepository,
         SatkerRepositoryEloquent $satkerRepository,
-        ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository
+        ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository,
+        CategoryRepositoryEloquent $categoryRepository
     ) {
         $this->faseRepository = $faseRepository;
         $this->satkerRepository = $satkerRepository;
         $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function getIndex()
@@ -41,10 +46,10 @@ class ProgramKerjaController extends Controller
         $fase = $this->faseRepository->lists();
         $satker = $this->satkerRepository->lists();
         $year = $this->faseRepository->yearOptions('-- Semua Tahun --');
-
+        $category = $this->categoryRepository->lists();
         $programKerja = $this->faseRepository->paginateArsip();
 
-        return view('program_kerja.arsip', compact('programKerja', 'satker', 'fase', 'year'));
+        return view('program_kerja.arsip', compact('programKerja', 'satker', 'fase', 'year', 'category'));
     }
 
     public function berjalan()
@@ -52,10 +57,10 @@ class ProgramKerjaController extends Controller
         $fase = $this->faseRepository->lists();
         $satker = $this->satkerRepository->lists();
         $year = $this->faseRepository->yearOptions('-- Semua Tahun --');
-
+        $category = $this->categoryRepository->lists();
         $programKerja = $this->faseRepository->paginateBerjalan();
 
-        return view('program_kerja.berjalan', compact('programKerja', 'satker', 'fase', 'year'));
+        return view('program_kerja.berjalan', compact('programKerja', 'satker', 'fase', 'year', 'category'));
 
     }
 

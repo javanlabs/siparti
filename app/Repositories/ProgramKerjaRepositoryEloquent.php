@@ -8,6 +8,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\ProgramKerjaRepository;
 use Prettus\Repository\Events\RepositoryEntityCreated;
 use Prettus\Repository\Events\RepositoryEntityDeleted;
+use App\Criteria\ProgramKerjaSearchCriteria;
 use App\Entities\ProgramKerja;
 use Auth;
 
@@ -40,6 +41,7 @@ class ProgramKerjaRepositoryEloquent extends BaseRepository implements ProgramKe
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(app(ProgramKerjaSearchCriteria::class));
     }
 
 }

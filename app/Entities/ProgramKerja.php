@@ -48,6 +48,11 @@ class ProgramKerja extends Model implements Presentable
         return $this->belongsTo(Satker::class, 'satker_id');
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
     public function getCurrentFase()
     {
         if (is_null($this->current_fase_id)) {

@@ -90,6 +90,27 @@ class Fase extends Model implements Presentable, Commentable, HasMedia
         return $query;
     }
 
+    public function scopeByCategory($query, $id)
+    {
+        /*to find out, is $id parent or child */
+        $category = Category::find($id);
+        if ($category->parent_id==0) {
+            $queryTemp = "or parent_id=$id";
+        }
+        else{
+            $queryTemp = '';
+        }
+       
+        /*query for searching fase by category*/
+        if ($id) {
+            $query->whereRaw("proker_id in (select id from program_kerja where category_id in 
+                            (select id from category where id=$id $queryTemp)
+                            )");
+        }
+
+        return $query;
+    }
+
     public function getCommentableTitleAttribute()
     {
         return $this->present('name');

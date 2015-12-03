@@ -26,6 +26,7 @@ class ProgramKerjaTransformer extends TransformerAbstract
             'id'                => (int) $model->id,
             'name'              => $model->name,
             'satker'            => $model->satker_id,
+            'category_id'          => $model->category_id,
             'creator_name'      => $model->creator->name,
             'fase_sekarang'     => $model->getCurrentFase(),
             'satker_name'       => ($model->satker)?$model->satker->name:'',
