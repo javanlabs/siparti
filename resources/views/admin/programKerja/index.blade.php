@@ -11,14 +11,24 @@
 @section('content')
 
     <div class="ui container">
-        <a href="{{ route('admin.programKerja.create') }}" class="ui primary button">Buat Progran Kerja</a>
         <section class="section-audit-trails">
-         <br />
-        
-            <div class="ui top attached menu">
+
+            <div class="ui menu top attached small">
+                <div class="item borderless">
+                    <strong>Program Kerja</strong>
+                </div>
+                <div class="item borderless">
+                    <a href="{{ route('admin.programKerja.create') }}" class="ui button"><i class="icon plus"></i> Tambah</a>
+                </div>
+                <div class="menu right">
+                    <a href="" class="item"><i class="icon file pdf outline red"></i></a>
+                    <a href="" class="item"><i class="icon file excel outline green"></i></a>
+                </div>
+            </div>
+            <div class="ui menu attached">
                 <div class="menu">
                     <div class="item borderless">
-                        <h4>Daftar Program Kerja</h4>
+                        <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->summary() !!}</small>
                     </div>
                 </div>
                 <div class="right menu">
@@ -36,7 +46,11 @@
                 <table class="ui very compact table bottom small sortable">
                     <thead>
                     <tr>
-                        <th ><button data-click-state="0" id="checkAll"><i class="check circle icon icon-button"></i></button></th>
+                        <th width="50px">
+                            <div class="ui checkbox" data-toggle="checkall" data-selector=".checkbox[data-type='check-all-child']">
+                                <input type="checkbox">
+                            </div>
+                        </th>
                         <th>Nama Progran Kerja</th>
                         <th>Fase Sekarang</th>
                         <th>Pembuat</th>
@@ -47,49 +61,50 @@
                         <th>&nbsp;</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="collection">
                     @forelse($programKerja as $data)
                         <tr>
-                            <td><input class="deletedId" type="checkbox" value="{{ $data->present('id') }}" /></td>
+                            <td>
+                                <div class="ui checkbox" data-type="check-all-child">
+                                    <input type="checkbox" name="ids[]" value="{{ $data->id }}">
+                                </div>
+                            </td>
                             <td>{{ $data->present('name') }}</td>
                             <td>{!! $data->present('fase_sekarang') !!}</td>
                             <td>{{ $data->present('creator_name') }}</td>
                             <td>{{ $data->present('satker_name') }}</td>
                             <td>{{ $data->present('date_for_human') }}</td>
 
-                            
-
                             <td class="right aligned">
-                                <a class="ui green button basic mini" href="{{ Route('admin.programKerja.edit', ['id' => $data->present('id')]) }}"><i class="large edit icon"></i></a> 
-                                
-                                <form role="form" action="{{ route('admin.programKerja.destroy',  [ 'id' => $data->present('id') ]) }}" method="POST" id="delete-form">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    {{ csrf_field() }}
-                                </form>
+                                <div class="ui icon buttons mini basic">
+                                    <a class="ui button" href="{{ Route('admin.programKerja.edit', ['id' => $data->present('id')]) }}"><i class="edit icon"></i></a>
 
-                                <button class="ui red button basic mini delete-button"><i class="large remove icon"></i></button>
+                                    <form role="form" action="{{ route('admin.programKerja.destroy',  $data->id) }}" method="POST" onsubmit="return confirm('Anda yakin?')">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="ui button"><i class="delete icon"></i></button>
+                                    </form>
+                                </div>
                             </td>
 
                         </tr>
 
                     @empty
                         <tr>
-                            <td colspan="4" class="warning center aligned" style="font-size: 1.5rem;padding:40px;font-style: italic">Data tidak tersedia</td>
+                            <td colspan="7" class="warning center aligned" style="font-size: 1.5rem;padding:40px;font-style: italic">Data tidak tersedia</td>
                         </tr>
                     @endforelse
                   </tbody>
-                  <tfoot>
-                        <tr>
-                            <td>
-                                <button class="negative ui button" id="deleteMultiple">X</button>
-                            </td>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <div class="ui menu bottom attached">
                 <div class="item borderless">
-                    <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->summary() !!}</small>
+
+                    <form role="form" data-type="delete-multiple" action="{{ route('admin.programKerja.destroy', ':ids') }}" method="POST" onsubmit="return confirm('Anda yakin?')">
+                        <input type="hidden" name="_method" value="DELETE">
+                        {{ csrf_field() }}
+                        <button type="submit" class="mini ui button">Hapus Terpilih</button>
+                    </form>
                 </div>
                 {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->render('attached bottom right') !!}
             </div>

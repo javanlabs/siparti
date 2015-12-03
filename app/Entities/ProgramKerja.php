@@ -57,11 +57,10 @@ class ProgramKerja extends Model implements Presentable
     {
         if (is_null($this->current_fase_id)) {
 
-            return "null";
-        
-        } else {
+            return null;
 
-            return (new FaseType($this->faseSekarang->type))->label();
-        } 
+        }
+
+        return (new FaseType($this->faseSekarang->type))->label();
     }
 }
