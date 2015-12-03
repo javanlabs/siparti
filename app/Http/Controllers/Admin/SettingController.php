@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\Permission;
 use Efriandika\LaravelSettings\Facades\Settings;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class SettingController extends AdminController
      */
     public function __construct()
     {
-        $this->authorize('manage-settings');
+        parent::__construct();
+        $this->authorize(Permission::MANAGE_SETTING);
     }
 
 

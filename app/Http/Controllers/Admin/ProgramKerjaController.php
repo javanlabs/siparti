@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\Permission;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -40,9 +41,9 @@ class ProgramKerjaController extends AdminController
 
         $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
 
-        $this->authorize('manage-fase-program-kerja');
+        $this->authorize(Permission::MANAGE_PROGRAM_KERJA);
 
-
+        parent::__construct();
     }
 
 
@@ -72,7 +73,7 @@ class ProgramKerjaController extends AdminController
         $route = Route('admin.programKerja.store');
 
         $satkers = $this->satkerRepository->all();
-        
+
         return view('admin.programKerja.form', compact('satkers', 'action', 'route', 'usulan'));
 
     }
@@ -83,7 +84,7 @@ class ProgramKerjaController extends AdminController
     */
     public function store(StoreProgramKerjaRequest $request)
     {
-       
+
         $attributes = $this->getAttributes($request);
 
         $programKerja = $this->programKerjaRepository->create($attributes);
@@ -94,9 +95,9 @@ class ProgramKerjaController extends AdminController
 
             $programKerja->usulan()->attach($usulanIds);
         }
-        
+
         Notification::success('Program kerja berhasil disimpan');
-        
+
         return redirect()->back();
 
     }
@@ -109,7 +110,7 @@ class ProgramKerjaController extends AdminController
         $action = "edit";
 
         $usulan = $this->programKerjaUsulanRepository->all();
-        
+
         $satkers = $this->satkerRepository->all();
 
         $programKerja = $this->programKerjaRepository->find($id);
@@ -240,14 +241,14 @@ class ProgramKerjaController extends AdminController
     {
 
         $usulanId = $request->input('usulan_id');
-        
+
         $programKerjaId = $request->input('program_kerja_id');
-        
+
         $model = $this->programKerjaRepository->find($programKerjaId);
 
         $model->usulan()->detach($usulanId);
 
-        return json_encode(['message' => 'success']); 
+        return json_encode(['message' => 'success']);
 
     }
 
@@ -260,12 +261,12 @@ class ProgramKerjaController extends AdminController
         $usulanId = $request->input('usulan_id');
 
         $programKerjaId = $request->input('program_kerja_id');
-        
+
         $model = $this->programKerjaRepository->find($programKerjaId);
 
         $model->usulan()->attach($usulanId);
 
-        return json_encode(['message' => 'success']); 
+        return json_encode(['message' => 'success']);
     }
 
     private function extractId($array)

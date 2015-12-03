@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\Permission;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,7 +21,9 @@ class UjiPublikController extends AdminController
     {
         $this->ujiPublikRepository = $ujiPublikRepository;
 
-        $this->authorize('manage-uji-public');
+        $this->authorize(Permission::MANAGE_UJI_PUBLIK);
+
+        parent::__construct();
     }
 
 

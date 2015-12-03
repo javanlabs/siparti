@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\Permission;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -38,9 +39,9 @@ class FaseProgramKerjaController extends AdminController
 
         $this->programKerjaRepository = $programKerjaRepository;
 
-        $this->authorize('manage-fase-program-kerja');
+        $this->authorize(Permission::MANAGE_PROGRAM_KERJA);
 
-
+        parent::__construct();
     }
 
 

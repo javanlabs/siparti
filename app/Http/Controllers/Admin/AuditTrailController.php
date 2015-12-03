@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\Permission;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,7 +15,8 @@ class AuditTrailController extends AdminController
      */
     public function __construct()
     {
-        $this->authorize('manage-audit-trails');
+        $this->authorize(Permission::VIEW_AUDIT_TRAIL);
+        parent::__construct();
     }
 
 

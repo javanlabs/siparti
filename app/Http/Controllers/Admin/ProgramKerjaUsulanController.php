@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\Permission;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,7 +29,9 @@ class ProgramKerjaUsulanController extends AdminController
 
         $this->programKerjaRepository = $programKerjaRepository;
 
-        $this->authorize('manage-program-usulan-kerja');
+        $this->authorize(Permission::MANAGE_USULAN);
+
+        parent::__construct();
     }
 
 

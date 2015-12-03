@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\User;
 
+use App\Enum\Permission;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Requests;
 use App\Http\Requests\User\CreateAccount;
@@ -33,7 +34,7 @@ class UserController extends AdminController
         $this->repository = $repository;
         $this->timezone = $timezone;
 
-        $this->authorize('manage-users');
+        $this->authorize(Permission::MANAGE_USER);
 
         parent::__construct();
     }

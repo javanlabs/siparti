@@ -11,6 +11,16 @@ use Laravolt\Acl\Models\Role;
 class RoleController extends AdminController
 {
     /**
+     * RoleController constructor.
+     */
+    public function __construct()
+    {
+        $this->authorize(\App\Enum\Permission::MANAGE_ROLE);
+        parent::__construct();
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

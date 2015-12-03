@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\Permission;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -19,7 +20,9 @@ class CommentsController extends AdminController
     {
         $this->commentsRepository = $commentsRepository;
 
-        $this->authorize('manage-comments');
+        $this->authorize(Permission::MANAGE_COMMENT);
+
+        parent::__construct();
     }
 
 
