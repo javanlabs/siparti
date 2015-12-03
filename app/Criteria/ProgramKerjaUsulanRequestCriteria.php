@@ -25,6 +25,10 @@ class ProgramKerjaUsulanRequestCriteria implements CriteriaInterface
             $model = $model->search($keyword, ['name', 'description', 'creator.name', 'instansi_stakeholder']);
         }
 
+        if ($keyword = $this->request->get('category_id')) {
+            $model = $model->byCategory($keyword);
+        }
+
         return $model;
     }
 }

@@ -33,10 +33,33 @@ class DatabaseSeeder extends Seeder
 
         factory(\App\Entities\User::class, 50)->create();
 
+         $this->command->info('Start Seed Category');
+            
+            $cat = factory(App\Entities\Category::class)->create([
+                'id'    =>  '1',
+                'name'      => 'Pendidikan',
+                'status' => 'ACTIVE'
+            ]);
+            factory(App\Entities\Category::class)->create([
+                'name'      => 'Pendidikan Tinggi',
+                'status' => 'ACTIVE',
+                'parent_id'      => $cat->id,
+            ]);
+            factory(App\Entities\Category::class)->create([
+                'name'      => 'Pendidikan Dasar',
+                'status' => 'ACTIVE',
+                'parent_id'      => $cat->id,
+            ]);
+            factory(App\Entities\Category::class, 2)->create();
+        $this->command->info('Finish Seed Category');
+        
         $this->command->info('Start Seed Satker, ProgramKerja, and Fase');
         factory(\App\Entities\Satker::class, 10)->create()->each(function ($satker) {
-
-            $proker = factory(\App\Entities\ProgramKerja::class, 10)->create(['satker_id' => $satker->id]);
+                
+            $proker = factory(\App\Entities\ProgramKerja::class, 10)->create([
+                'satker_id' => $satker->id,
+                'category_id' => rand(1, 5)
+                ]);
             $proker->each(function ($proker) {
                 $fase = factory(\App\Entities\Fase::class)->create([
                     'type'      => \App\Enum\FaseType::PERENCANAAN,
@@ -117,18 +140,20 @@ class DatabaseSeeder extends Seeder
         });
         $this->command->info('Finish Seed ProgramKerjaUsulan');
 
-        $this->command->info('Start Seed UjiPublik');
-        factory(\App\Entities\UjiPublik::class, 50)->create()->each(function ($model) {
-            $model->addDocument(base_path('resources/assets/files/sample.doc'));
-            $model->addDocument(base_path('resources/assets/files/sample.pdf'));
+        // $this->command->info('Start Seed UjiPublik');
+        // factory(\App\Entities\UjiPublik::class, 50)->create()->each(function ($model) {
+        //     $model->addDocument(base_path('resources/assets/files/sample.doc'));
+        //     $model->addDocument(base_path('resources/assets/files/sample.pdf'));
 
-            foreach(range(1, rand(1, 10)) as $id) {
-                Mural::addComment($model, Faker\Factory::create()->paragraph, 'default');
-                Votee::voteUp($model, \App\Entities\User::find($id));
-                Votee::voteDown($model, \App\Entities\User::find($id + 10));
-            }
-        });
-        $this->command->info('Finish Seed UjiPublik');
+        //     foreach(range(1, rand(1, 10)) as $id) {
+        //         Mural::addComment($model, Faker\Factory::create()->paragraph, 'default');
+        //         Votee::voteUp($model, \App\Entities\User::find($id));
+        //         Votee::voteDown($model, \App\Entities\User::find($id + 10));
+        //     }
+        // });
+        // $this->command->info('Finish Seed UjiPublik');
+
+       
 
         auth()->logout();
         Model::reguard();

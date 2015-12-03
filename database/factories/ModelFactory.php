@@ -67,7 +67,7 @@ $factory->defineAs(App\Entities\Fase::class, 'berjalan', function (Faker\Generat
 $factory->define(App\Entities\ProgramKerja::class, function (Faker\Generator $faker) {
     return [
         'name'   => $faker->sentence(),
-        'creator_id' => factory(\App\Entities\User::class)->create()->id
+        'creator_id' => factory(\App\Entities\User::class)->create()->id        
     ];
 });
 
@@ -79,6 +79,7 @@ $factory->define(App\Entities\ProgramKerjaUsulan::class, function (Faker\Generat
         'target'   => $faker->text(),
         'description' => $faker->paragraphs(10, true),
         'creator_id' => factory(\App\Entities\User::class)->create()->id,
+        'category_id' => rand(1, 5),
         'instansi_stakeholder' => $faker->company
     ];
 });
@@ -88,5 +89,11 @@ $factory->define(App\Entities\UjiPublik::class, function (Faker\Generator $faker
         'name'   => $faker->sentence(),
         'creator_id' => factory(\App\Entities\User::class)->create()->id,
         'materi' => $faker->paragraph(),
+    ];
+});
+
+$factory->define(App\Entities\Category::class, function (Faker\Generator $faker) {
+    return [
+        'name'   => $faker->word()
     ];
 });

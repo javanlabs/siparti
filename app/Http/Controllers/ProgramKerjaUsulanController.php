@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
+use App\Repositories\CategoryRepositoryEloquent;
 use Illuminate\Support\Facades\Cookie;
 use Krucas\Notification\Facades\Notification;
 use Auth;
@@ -15,10 +16,14 @@ class ProgramKerjaUsulanController extends Controller
 
     protected $programKerjaUsulanRepository;
 
+    protected $categoryRepository;
 
-    public function __construct(ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository)
+
+    public function __construct(ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository,
+        CategoryRepositoryEloquent $categoryRepository)
     {
         $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -29,8 +34,8 @@ class ProgramKerjaUsulanController extends Controller
     public function index()
     {
         $usulan = $this->programKerjaUsulanRepository->paginate(18);
-
-        return view('program_kerja_usulan.index', compact('usulan'));
+        $category = $this->categoryRepository->lists();
+        return view('program_kerja_usulan.index', compact('usulan', 'category'));
     }
 
     /**
