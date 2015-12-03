@@ -20,7 +20,7 @@ class CommentsController extends AdminController
     {
         $this->commentsRepository = $commentsRepository;
 
-        $this->authorize(Permission::MANAGE_COMMENT);
+        $this->authorize(Permission::MANAGE_COMMENT()->getKey());
 
         parent::__construct();
     }

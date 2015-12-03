@@ -59,7 +59,7 @@ trait HasRoleAndPermission
         }
 
         if (is_integer($permission)) {
-            $permission = Role::find($permission);
+            $permission = Permission::find($permission);
         }
 
         if (!$permission instanceof Permission) {

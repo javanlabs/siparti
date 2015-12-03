@@ -15,7 +15,7 @@ class RoleController extends AdminController
      */
     public function __construct()
     {
-        $this->authorize(\App\Enum\Permission::MANAGE_ROLE);
+        $this->authorize(\App\Enum\Permission::MANAGE_ROLE()->getKey());
         parent::__construct();
     }
 

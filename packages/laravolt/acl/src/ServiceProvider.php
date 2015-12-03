@@ -48,9 +48,9 @@ class ServiceProvider extends BaseServiceProvider
         $this->registerSeeds();
         $this->registerConfigurations();
 
-        if (!$this->app->runningInConsole()) {
+        //if (!$this->app->runningInConsole()) {
             $this->registerAcl($gate);
-        }
+        //}
 
         $this->registerCommands();
     }
@@ -58,7 +58,10 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerAcl($gate)
     {
         $gate->before(function ($user) {
-            return call_user_func(config('acl.is_admin'), $user);
+            $isAdmin = call_user_func(config('acl.is_admin'), $user);
+            if ($isAdmin) {
+                return true;
+            }
         });
 
         $permissions = Permission::all();

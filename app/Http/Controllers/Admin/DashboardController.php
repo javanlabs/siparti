@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Entities\User;
+use App\Enum\Permission;
 use DB;
 use Cache;
 use App\Enum\FaseType;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Entities\Fase;
-use App\Entities\Comments;
 use App\Entities\UjiPublik;
 use App\Entities\ProgramKerjaUsulan;
-use App\Entities\Votee;
 use App\Repositories\FaseRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
@@ -38,6 +38,8 @@ class DashboardController extends AdminController
     ) {
 
         parent::__construct();
+
+        $this->authorize(Permission::VIEW_DASHBOARD()->getKey());
 
         $this->faseRepository = $faseRepository;
 
@@ -149,10 +151,10 @@ class DashboardController extends AdminController
         if (is_null($value)) {
 
             foreach ($arrayMonth as $month) {
-                
+
                 $result = $class::where(DB::raw('MONTH(' . $column . ')'), '=', $month)
                                         ->where(DB::raw('YEAR(' . $column . ')'), '=', $year)->get();
-                
+
                 $count = $result->count();
 
                 $container[$month] = $count;
@@ -287,11 +289,11 @@ class DashboardController extends AdminController
 
     public function getPopuler()
     {
-        
+
         if(Cache::has('popular.ujiPublik')) {
 
             $container1 = Cache::get('popular.ujiPublik');
-        
+
         } else {
 
             $container1 = [];
@@ -303,12 +305,12 @@ class DashboardController extends AdminController
 
             foreach($popularUjiPublik as $data) {
 
-                $container1[] = [ 
-                    'url' => route('uji-publik.show', ['id' => $data->id]), 
-                    'name' => $data->name, 
+                $container1[] = [
+                    'url' => route('uji-publik.show', ['id' => $data->id]),
+                    'name' => $data->name,
                     'creator_name' => $data->creator->name
                 ];
-                
+
             }
 
             Cache::put('popular.ujiPublik', $container1, 60);
@@ -318,7 +320,7 @@ class DashboardController extends AdminController
         if(Cache::has('popular.usulan')) {
 
             $container2 = Cache::get('popular.usulan');
-        
+
         } else {
 
             $container2 = [];
@@ -331,21 +333,21 @@ class DashboardController extends AdminController
             foreach($popularUsulan as $data) {
 
                 $container2[] = [
-                    'url' => route("proker-usulan.show", ['id' => $data->id]), 
-                    'name' => $data->name, 
+                    'url' => route("proker-usulan.show", ['id' => $data->id]),
+                    'name' => $data->name,
                     'creator_name' => $data->creator->name
                 ];
-               
+
             }
 
             Cache::put('popular.usulan', $container2, 60);
 
-        } 
+        }
 
         if(Cache::has('popular.fase')) {
 
             $container3 = Cache::get('popular.fase');
-        
+
         } else {
 
             $container3 = [];
@@ -358,18 +360,18 @@ class DashboardController extends AdminController
             foreach($popularFase as $data) {
 
                 $container3[] = [
-                    'url' =>  route("proker.show", ['id' => $data->id]), 
-                    'name' => $data->programKerja->name, 
+                    'url' =>  route("proker.show", ['id' => $data->id]),
+                    'name' => $data->programKerja->name,
                     'status' => (new FaseType($data->type))->label(),
                 ];
-                
+
             }
             Cache::put('popular.fase', $container3, 60);
-        }  
-        
+        }
+
         $data = [
-            'popularUsulan' => $container2, 
-            'popularUjiPublik' => $container1, 
+            'popularUsulan' => $container2,
+            'popularUjiPublik' => $container1,
             'popularFase' => $container3
         ];
 

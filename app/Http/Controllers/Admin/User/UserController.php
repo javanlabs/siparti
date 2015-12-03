@@ -34,7 +34,7 @@ class UserController extends AdminController
         $this->repository = $repository;
         $this->timezone = $timezone;
 
-        $this->authorize(Permission::MANAGE_USER);
+        $this->authorize(Permission::MANAGE_USER()->getKey());
 
         parent::__construct();
     }

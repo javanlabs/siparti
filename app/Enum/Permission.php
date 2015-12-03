@@ -15,4 +15,6 @@ class Permission extends Enum
     const MANAGE_SATUAN_KERJA = 8;
     const MANAGE_COMMENT = 9;
     const VIEW_LOG = 10;
+    const VIEW_DASHBOARD = 11;
+    const MANAGE_CATEGORY = 12;
 }

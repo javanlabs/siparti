@@ -27,45 +27,55 @@ class MenuMiddleware
 
     protected function menuAdmin()
     {
-        Menu::make('admin', function ($menu) {
+        Menu::make('admin-administration', function ($menu) {
             $menu->add(trans('menus.admin.users'), ['route' => ['admin.users.index']])
-                 ->data('permission', Permission::MANAGE_USER)
+                 ->data('permission', Permission::MANAGE_USER()->getKey())
                  ->prepend('<i class="icon user"></i>');
             $menu->add(trans('menus.admin.roles'), ['route' => ['admin.roles.index']])
-                 ->data('permission', Permission::MANAGE_ROLE)
+                 ->data('permission', Permission::MANAGE_ROLE()->getKey())
                  ->prepend('<i class="icon unlock alternate"></i>');
             $menu->add(trans('menus.admin.audit_trail'), ['route' => ['admin.auditTrail.index']])
-                 ->data('permission', Permission::VIEW_AUDIT_TRAIL)
+                 ->data('permission', Permission::VIEW_AUDIT_TRAIL()->getKey())
                  ->prepend('<i class="icon history"></i>');
             $menu->add(trans('menus.admin.settings'), ['route' => ['admin.settings.index']])
-                 ->data('permission', Permission::MANAGE_SETTING)
+                 ->data('permission', Permission::MANAGE_SETTING()->getKey())
                  ->prepend('<i class="icon options"></i>');
-            $menu->add(trans('menus.admin.category'), ['route' => ['admin.category.index']])
-                 ->data('permission', 'manage-settings')
-                 ->prepend('<i class="icon list"></i>');
+            $menu->add(trans('menus.admin.manage_log'), ['route' => ['admin.logs.index']])
+                 ->data('permission', Permission::VIEW_LOG()->getKey())
+                 ->prepend('<i class="sidebar icon"></i>');
+
+        })->filter(function ($item) {
+            return auth()->user()->can($item->data('permission'));
+        });
+
+        Menu::make('admin-content', function ($menu) {
             $menu->add(trans('menus.admin.manage_program_kerja'), ['route' => ['admin.programKerja.index']])
-                 ->data('permission', Permission::MANAGE_PROGRAM_KERJA)
+                 ->data('permission', Permission::MANAGE_PROGRAM_KERJA()->getKey())
                  ->prepend('<i class="configure icon"></i>');
             $menu->add(trans('menus.admin.manage_fase_program_kerja'), ['route' => ['admin.faseProgramKerja.index']])
-                 ->data('permission', Permission::MANAGE_PROGRAM_KERJA)
+                 ->data('permission', Permission::MANAGE_PROGRAM_KERJA()->getKey())
                  ->prepend('<i class="wait icon"></i>');
             $menu->add(trans('menus.admin.manage_program_kerja_usulan'),
                 ['route' => ['admin.programKerjaUsulan.index']])
-                 ->data('permission', Permission::MANAGE_USULAN)
+                 ->data('permission', Permission::MANAGE_USULAN()->getKey())
                  ->prepend('<i class="announcement icon"></i>');
-            $menu->add(trans('menus.admin.satuan_kerja'), ['route' => ['admin.satuanKerja.index']])
-                 ->data('permission', Permission::MANAGE_SATUAN_KERJA)
-                 ->prepend('<i class="sitemap icon"></i>');
             $menu->add(trans('menus.admin.uji_publik'), ['route' => ['admin.ujiPublik.index']])
-                 ->data('permission', Permission::MANAGE_UJI_PUBLIK)
+                 ->data('permission', Permission::MANAGE_UJI_PUBLIK()->getKey())
                  ->prepend('<i class="book icon"></i>');
             $menu->add(trans('menus.admin.manage_comments'), ['route' => ['admin.comments.index']])
-                 ->data('permission', Permission::MANAGE_COMMENT)
+                 ->data('permission', Permission::MANAGE_COMMENT()->getKey())
                  ->prepend('<i class="comments icon"></i>');
-            $menu->add(trans('menus.admin.manage_log'), ['route' => ['admin.logs.index']])
-                 ->data('permission', Permission::VIEW_LOG)
-                 ->prepend('<i class="sidebar icon"></i>');
+        })->filter(function ($item) {
+            return auth()->user()->can($item->data('permission'));
+        });
 
+        Menu::make('admin-master', function ($menu) {
+            $menu->add(trans('menus.admin.category'), ['route' => ['admin.category.index']])
+                 ->data('permission', Permission::MANAGE_CATEGORY()->getKey())
+                 ->prepend('<i class="icon list"></i>');
+            $menu->add(trans('menus.admin.satuan_kerja'), ['route' => ['admin.satuanKerja.index']])
+                 ->data('permission', Permission::MANAGE_SATUAN_KERJA()->getKey())
+                 ->prepend('<i class="sitemap icon"></i>');
         })->filter(function ($item) {
             return auth()->user()->can($item->data('permission'));
         });

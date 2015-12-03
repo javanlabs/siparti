@@ -29,7 +29,7 @@ class ProgramKerjaUsulanController extends AdminController
 
         $this->programKerjaRepository = $programKerjaRepository;
 
-        $this->authorize(Permission::MANAGE_USULAN);
+        $this->authorize(Permission::MANAGE_USULAN()->getKey());
 
         parent::__construct();
     }

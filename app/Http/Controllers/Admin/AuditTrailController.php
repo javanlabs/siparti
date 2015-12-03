@@ -15,7 +15,7 @@ class AuditTrailController extends AdminController
      */
     public function __construct()
     {
-        $this->authorize(Permission::VIEW_AUDIT_TRAIL);
+        $this->authorize(Permission::VIEW_AUDIT_TRAIL()->getKey());
         parent::__construct();
     }
 

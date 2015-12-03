@@ -41,7 +41,7 @@ class ProgramKerjaController extends AdminController
 
         $this->programKerjaUsulanRepository = $programKerjaUsulanRepository;
 
-        $this->authorize(Permission::MANAGE_PROGRAM_KERJA);
+        $this->authorize(Permission::MANAGE_PROGRAM_KERJA()->getKey());
 
         parent::__construct();
     }

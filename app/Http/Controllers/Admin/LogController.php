@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\Permission;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -19,7 +20,7 @@ class LogController extends AdminController
     {
         $this->activityRepository = $activityRepository;
 
-        $this->authorize('manage-log');
+        $this->authorize(Permission::VIEW_LOG()->getKey());
 
         parent::__construct();
     }

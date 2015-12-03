@@ -1,38 +1,60 @@
 <div class="ui divider hidden"></div>
 <div class="ui menu borderless" style="box-shadow: none; border: 0 none">
     <div class="ui container">
-        <a class="item item-browse-menu">
-            Menu
+
+        <a href="{{ route('admin.home') }}" class="item"><i class="icon dashboard big"></i></a>
+
+        @if(Menu::get('admin-content')->roots()->count() > 0)
+        <a class="item item-popup" data-target="#popup-content">
+            Konten
             <i class="angle down icon"></i>
         </a>
-        <div class="ui flowing popup popup-menu-admin vertical menu">
-            @foreach(Menu::get('admin')->roots() as $item)
+        <div class="ui flowing popup popup-menu-admin vertical menu" id="popup-content">
+            @foreach(Menu::get('admin-content')->roots() as $item)
             <a class="item" href="{{ $item->url() }}">{!!  $item->title !!}</a>
             @endforeach
         </div>
-        {{--<div href="#" class="header item">--}}
-            {{--<img class="logo" src="{{ asset('img/logo-laravolt.png') }}">--}}
-            {{--&nbsp;--}}
-            {{--&nbsp;--}}
-            {{--<a href="{{url('/')}}">{{ settings('app.name') }}</a>--}}
-        {{--</div>--}}
+        @endif
 
+        @if(Menu::get('admin-master')->roots()->count() > 0)
+        <a class="item item-popup" data-target="#popup-master">
+            Data Master
+            <i class="angle down icon"></i>
+        </a>
+        <div class="ui flowing popup popup-menu-admin vertical menu" id="popup-master">
+            @foreach(Menu::get('admin-master')->roots() as $item)
+            <a class="item" href="{{ $item->url() }}">{!!  $item->title !!}</a>
+            @endforeach
+        </div>
+        @endif
+
+        @if(Menu::get('admin-administration')->roots()->count() > 0)
+        <a class="item item-popup" data-target="#popup-administration">
+            Administrasi
+            <i class="angle down icon"></i>
+        </a>
+        <div class="ui flowing popup popup-menu-admin vertical menu" id="popup-administration">
+            @foreach(Menu::get('admin-administration')->roots() as $item)
+            <a class="item" href="{{ $item->url() }}">{!!  $item->title !!}</a>
+            @endforeach
+        </div>
+        @endif
 
         <div class="menu right">
-            <div class="ui pointing dropdown item">
-                <a href="">
-                    <img src="{{ auth()->user()->getAvatar() }}" alt="" class="ui image avatar">
-                    {{ auth()->user()->name }} <i class="dropdown icon"></i>
-                </a>
-                <div class="menu small">
-                    @foreach(Menu::get('member')->roots() as $item)
-                        <a class="item" href="{{ $item->url() }}">{!!  $item->title !!}</a>
-                        @if($item->divider)
-                            <div class="ui divider"></div>
-                        @endif
-                    @endforeach
-                </div>
+
+            <a class="item item-popup" data-target="#popup-user">
+                <img src="{{ auth()->user()->getAvatar() }}" alt="" class="ui image avatar">
+                {{ auth()->user()->name }} <i class="dropdown icon"></i>
+            </a>
+            <div class="ui flowing popup popup-menu-admin vertical menu" id="popup-user">
+                @foreach(Menu::get('member')->roots() as $item)
+                    <a class="item" href="{{ $item->url() }}">{!!  $item->title !!}</a>
+                    @if($item->divider)
+                        <div class="ui divider"></div>
+                    @endif
+                @endforeach
             </div>
+
         </div>
     </div>
 </div>

@@ -16,7 +16,7 @@ class SettingController extends AdminController
     public function __construct()
     {
         parent::__construct();
-        $this->authorize(Permission::MANAGE_SETTING);
+        $this->authorize(Permission::MANAGE_SETTING()->getKey());
     }
 
 

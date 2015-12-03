@@ -16,17 +16,20 @@ $(function(){
                 .transition('hide')
             ;
         });
-    $('.item-browse-menu')
-        .popup({
-            popup     : '.popup-menu-admin',
-            hoverable : true,
-            position  : 'bottom left',
-            delay     : {
-                show: 100,
-                hide: 500
-            }
-        })
-    ;
+
+    $('.item-popup').each(function(){
+        $(this)
+            .popup({
+                popup     : $(this).data('target'),
+                hoverable : true,
+                position  : 'bottom left',
+                delay     : {
+                    show: 100,
+                    hide: 100
+                }
+            })
+        ;
+    });
 
     $('.browse-proker')
         .popup({

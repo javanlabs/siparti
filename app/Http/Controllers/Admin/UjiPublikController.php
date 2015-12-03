@@ -21,7 +21,7 @@ class UjiPublikController extends AdminController
     {
         $this->ujiPublikRepository = $ujiPublikRepository;
 
-        $this->authorize(Permission::MANAGE_UJI_PUBLIK);
+        $this->authorize(Permission::MANAGE_UJI_PUBLIK()->getKey());
 
         parent::__construct();
     }

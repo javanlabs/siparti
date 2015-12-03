@@ -39,7 +39,7 @@ class FaseProgramKerjaController extends AdminController
 
         $this->programKerjaRepository = $programKerjaRepository;
 
-        $this->authorize(Permission::MANAGE_PROGRAM_KERJA);
+        $this->authorize(Permission::MANAGE_PROGRAM_KERJA()->getKey());
 
         parent::__construct();
     }
