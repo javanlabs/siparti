@@ -52,5 +52,11 @@ class Install extends Command
             'password' => bcrypt($this->ask('Password', 'password')),
             'status'   => UserStatus::ACTIVE,
         ]);
+
+        if(app()->environment() == 'development') {
+            if ($this->confirm('Seed sample data ?', true)) {
+                $this->call('db:seed');
+            }
+        }
     }
 }
