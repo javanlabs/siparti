@@ -91,7 +91,11 @@ class MenuMiddleware
             $menu->add(trans('menus.member.my_program_kerja_usulan'), url('my/usulan'));
             $menu->add(trans('menus.member.logout'), url('auth/logout'));
         })->filter(function ($item) {
-            return auth()->user()->can($item->data('permission'));
+            if ($item->data('permission')) {
+                return auth()->user()->can($item->data('permission'));
+            }
+
+            return true;
         });;
 
     }
