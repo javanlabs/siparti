@@ -57,8 +57,7 @@ class DatabaseSeeder extends Seeder
         factory(\App\Entities\Satker::class, 10)->create()->each(function ($satker) {
                 
             $proker = factory(\App\Entities\ProgramKerja::class, 10)->create([
-                'satker_id' => $satker->id,
-                'category_id' => rand(1, 5)
+                'satker_id' => $satker->id
                 ]);
             $proker->each(function ($proker) {
                 $fase = factory(\App\Entities\Fase::class)->create([
@@ -140,18 +139,18 @@ class DatabaseSeeder extends Seeder
         });
         $this->command->info('Finish Seed ProgramKerjaUsulan');
 
-        // $this->command->info('Start Seed UjiPublik');
-        // factory(\App\Entities\UjiPublik::class, 50)->create()->each(function ($model) {
-        //     $model->addDocument(base_path('resources/assets/files/sample.doc'));
-        //     $model->addDocument(base_path('resources/assets/files/sample.pdf'));
+        $this->command->info('Start Seed UjiPublik');
+        factory(\App\Entities\UjiPublik::class, 50)->create()->each(function ($model) {
+            $model->addDocument(base_path('resources/assets/files/sample.doc'));
+            $model->addDocument(base_path('resources/assets/files/sample.pdf'));
 
-        //     foreach(range(1, rand(1, 10)) as $id) {
-        //         Mural::addComment($model, Faker\Factory::create()->paragraph, 'default');
-        //         Votee::voteUp($model, \App\Entities\User::find($id));
-        //         Votee::voteDown($model, \App\Entities\User::find($id + 10));
-        //     }
-        // });
-        // $this->command->info('Finish Seed UjiPublik');
+            foreach(range(1, rand(1, 10)) as $id) {
+                Mural::addComment($model, Faker\Factory::create()->paragraph, 'default');
+                Votee::voteUp($model, \App\Entities\User::find($id));
+                Votee::voteDown($model, \App\Entities\User::find($id + 10));
+            }
+        });
+        $this->command->info('Finish Seed UjiPublik');
 
        
 
