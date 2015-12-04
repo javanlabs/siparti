@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin\User;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Laravolt\Password\Password;
-use App\Http\Controllers\Controller;
 use App\Repositories\UserRepositoryEloquent;
 use Krucas\Notification\Facades\Notification;
+use App\Http\Controllers\Admin\AdminController;
 
-class PasswordController extends Controller
+class PasswordController extends AdminController
 {
     /**
      * @var UserRepositoryEloquent
@@ -27,6 +27,8 @@ class PasswordController extends Controller
      */
     public function __construct(UserRepositoryEloquent $repository)
     {
+        parent::__construct();
+
         $this->repository = $repository;
         $this->password = app('password');
     }
