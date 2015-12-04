@@ -56,7 +56,7 @@
 @endsection
 @section('content')
   
-  <div id="oldText">
+  <div style="display:none;" id="oldText">
       
       {!! Input::old('description') !!}
 
@@ -181,21 +181,39 @@
     						            <label>Mode Komentar</label>
                         	     <div class="field">
       							             <div class="ui radio checkbox">
-        							               <input name="comment_mode" value="show" checked="checked" type="radio">
+        							               <input name="comment_mode" value="show" 
+                                     
+                                     @if(Input::old('comment_model') == "show" || !Input::old('comment_model'))
+                                        checked="checked"
+                                     @endif
+                                     
+                                     type="radio">
         							               <label>Tampilkan</label>
       							             </div>
     						               </div>
     						
                           <div class="field">
       							         <div class="ui radio checkbox">
-        							           <input name="comment_mode" value="hide" type="radio">
+        							           <input name="comment_mode" 
+
+                                      @if(Input::old('comment_model') == "hide")
+                                        checked="checked"
+                                      @endif
+
+                                 value="hide" type="radio">
         							           <label>Sembunyikan</label>
       							         </div>
     						          </div>
     						
                           <div class="field">
       							           <div class="ui radio checkbox">
-        							             <input name="comment_mode" value="lock" type="radio">
+        							             <input name="comment_mode" value="lock" 
+
+                                      @if(Input::old('comment_model') == "lock")
+                                        checked="checked"
+                                      @endif
+
+                                   type="radio">
         							             <label>Kunci</label>
       							           </div>
     						          </div>
@@ -230,7 +248,8 @@
                         <div class="field">
                       	    <label>Nama Program Kerja</label>
                       		  <div class="ui fluid search selection dropdown">
-  							                <input name="proker_id" type="hidden" value="{{ $fase->present('proker_id') }}">
+  							                <input name="proker_id" type="hidden" 
+                                    value="{{ Input::old('proker_id') ? Input::old('proker_id') : $fase->present('proker_id') }}">
   							                <i class="dropdown icon"></i>
   							                <div class="default text">Nama Program Kerja</div>
   								              <div class="menu">
@@ -246,7 +265,8 @@
                         <div class="field">
                       	    <label>Fase</label>
                       		  <div class="ui selection dropdown">
-  								              <input name="type" type="hidden" value="{{ $fase->present('fase') }}">
+  								              <input name="type" type="hidden" 
+                                    value="{{ Input::old('type') ? Input::old('type') : $fase->present('fase') }}">
   								              <i class="dropdown icon"></i>
   								              <div class="default text">Fase Sekarang</div>
   								              
@@ -261,7 +281,8 @@
                         <div class="field">
                       	    <label>Satuan Kerja</label>
                       		  <div class="ui fluid search selection dropdown">
-  							               <input name="satker_id" type="hidden" value="{{ $fase->present('satker_id') }}">
+  							               <input name="satker_id" type="hidden" 
+                                    value="{{ Input::old('satker_id') ? Input::old('satker_id') : $fase->present('satker_id') }}">
   							               <i class="dropdown icon"></i>
   							               <div class="default text">Satuan Kerja</div>
   								             <div class="menu">
@@ -276,37 +297,44 @@
                         
                         <div class="field">
                         	  <label>Scope</label>
-                        	  <input name="scope" type="text" value="{{ $fase->present('scope') }}" />
+                        	  <input name="scope" type="text" 
+                                value="{{ Input::old('scope') ? Input::old('scope') : $fase->present('scope') }}" />
                         </div>
                         
                         <div class="field">
                         	  <label>Target</label>
-                        	  <input name="target" value="{{ $fase->present('target') }}">
+                        	  <input name="target" 
+                                value="{{ Input::old('target') ? Input::old('target') : $fase->present('target') }}">
                         </div>
                         
                         <div class="field">
                         	  <label>Progress</label>
-                        	  <input name="progress" value="{{ $fase->present('progress') }}">
+                        	  <input name="progress" 
+                                  value="{{ Input::old('progress') ? Input::old('progress') : $fase->present('progress') }}">
                         </div>
                         
                         <div class="field">
                         	  <label>Kendala</label>
-                        	  <input name="kendala" value="{{ $fase->present('kendala') }}">
+                        	  <input name="kendala" 
+                                  value="{{ Input::old('kendala') ? Input::old('kendala') : $fase->present('kendala') }}">
                         </div>
                         
                         <div class="field">
                         	  <label>Instansi Terkait</label>
-                        	  <input name="instansi_terkait" value="{{ $fase->present('instansi_terkait') }}">
+                        	  <input name="instansi_terkait" 
+                                  value="{{ Input::old('instansi_terkait') ? Input::old('instansi_terkait') : $fase->present('instansi_terkait') }}">
                         </div>
                         
            				      <div class="field">
                         	  <label>Tanggal Mulai</label>
-                        	  <input value="{{ $fase->present('tanggal_mulai') }}" name="start_date" type="text" class="dateInput" data-beatpicker-module="icon,today,clear" data-beatpicker="true" />
+                        	  <input value="{{ Input::old('start_date') ? Input::old('start_date') : $fase->present('tanggal_mulai') }}" 
+                                  name="start_date" type="text" class="dateInput" data-beatpicker-module="icon,today,clear" data-beatpicker="true" />
                         </div>
 
                        	<div class="field">
                         	   <label>Tanggal Selesai</label>
-                        	   <input value="{{ $fase->present('tanggal_selesai') }}" name="end_date" type="text" class="dateInput" data-beatpicker-module="icon,today,clear" data-beatpicker="true" />
+                        	   <input value="{{ Input::old('end_date') ? Input::old('end_date') : $fase->present('tanggal_selesai') }}" 
+                                  name="end_date" type="text" class="dateInput" data-beatpicker-module="icon,today,clear" data-beatpicker="true" />
                         </div>
                         
                         <div class="field">
@@ -318,12 +346,14 @@
                         
                         <div class="field">
                         	  <label>Pagu</label>
-                        	  <input name="pagu" value="{{ $fase->present('pagu') }}">
+                        	  <input name="pagu" 
+                                  value="{{ Input::old('pagu') ? Input::old('pagu') : $fase->present('pagu') }}">
                         </div>
                         
                         <div class="field">
                         	  <label>Pic</label>
-                        	  <input name="pic" value="{{ $fase->present('pic') }}">
+                        	  <input name="pic" 
+                                  value="{{ Input::old('pic') ? Input::old('pic') : $fase->present('pic') }}">
                         </div>
                                                	
                        <!-- Table file lampiran -->      	
@@ -377,10 +407,12 @@
                             <div class="field">
       							         <div class="ui radio checkbox">
         							         <input name="comment_mode" value="show" 
-        							           @if ($fase->present('comment_mode') == "show")
+        							           
+                                 @if ($fase->present('comment_mode') == "show" || Input::old('comment_mode') == "show")
         								            checked="checked"
         							           @endif
-        							             type="radio">
+        							             
+                                   type="radio">
         							           <label>Tampilkan</label>
       							         </div>
     						           </div>
@@ -388,10 +420,12 @@
     						        <div class="field">
       							       <div class="ui radio checkbox">
         							         <input name="comment_mode" value="hide" 
-        							         @if ($fase->present('comment_mode') == "hide")
+        							         
+                               @if ($fase->present('comment_mode') == "hide" || Input::old('comment_mode') == "hide")
         								           checked="checked"
-        							             @endif
-        							             type="radio">
+        							         @endif
+        							             
+                                   type="radio">
         							          <label>Sembunyikan</label>
       							       </div>
     						        </div>
@@ -399,10 +433,12 @@
     						        <div class="field">
       							       <div class="ui radio checkbox">
         							         <input name="comment_mode" value="lock" 
-        							         @if ($fase->present('comment_mode') == "lock")
+        							         
+                               @if ($fase->present('comment_mode') == "lock" || Input::old('comment_mode') == "lock")
         								           checked="checked"
         							         @endif
-        							         type="radio">
+        							             
+                                   type="radio">
         							         <label>Kunci</label>
       							       </div>
     						        </div>
@@ -423,9 +459,11 @@
                              
                                     @if ($tags == " ")
                                        
+                                      value="{{ Input::old('tags') ? Input::old('tags') : '' }}"  
+
                                     @else
 
-                                      value="{{ $tags }}" 
+                                      value="{{ Input::old('tags') ? Input::old('tags') : $tags }}" 
 
                                     @endif
                               >
@@ -450,7 +488,7 @@
                        	{!! SemanticForm::submit('Simpan') !!}
                        	
                        	<div id="descriptionText" style="display: none;">
-                       		{{ $fase->present('description') }}
+                       		{{ Input::old('description') ? Input::old('description') : $fase->present('description') }}
                        	</div>
 
                     @endif   	
