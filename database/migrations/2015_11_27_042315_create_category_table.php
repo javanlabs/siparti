@@ -17,6 +17,8 @@ class CreateCategoryTable extends Migration
             $table->string('name');
             $table->integer('parent_id');
             $table->string('status')->default(\App\Enum\CategoryStatus::INACTIVE());
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
