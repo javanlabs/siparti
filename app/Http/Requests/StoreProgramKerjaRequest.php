@@ -25,6 +25,8 @@ class StoreProgramKerjaRequest extends Request
     {
         return [
             'name'  => 'required|string',
+            'satkerChoice' => 'required',
+            'satuanKerjaBaru' => 'required_if:satkerChoice, "baru"'
         ];
     }
 }
