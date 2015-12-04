@@ -53,7 +53,7 @@ class SatuanKerjaController extends AdminController
     {
         $this->satkerRepository->create( $request->all() );
 
-        Notification::success('Program kerja berhasil disimpan.');
+        Notification::success('Data berhasil disimpan.');
 
         return redirect()->route('admin.satuanKerja.index');
     }

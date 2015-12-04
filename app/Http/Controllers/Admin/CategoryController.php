@@ -66,7 +66,7 @@ class CategoryController extends AdminController
     {
         $this->categoryRepository->create( $request->all() );
 
-        Notification::success('Program kerja berhasil disimpan.');
+        Notification::success('Data berhasil disimpan.');
 
         return redirect()->route('admin.category.index');
     }
