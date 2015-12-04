@@ -168,11 +168,13 @@ $(document).ready(function() {
                     });
 
                     // change multiple delete form action, based on selected ids
-                    var url = $('form[data-type="delete-multiple"]').attr('action');
-                    var replaceStartFrom = url.lastIndexOf('/');
-                    var newUrl = url.substr(0, replaceStartFrom) + '/' + ids.join(',');
-
-                    $('form[data-type="delete-multiple"]').attr('action', newUrl);
+                    var form = $('form[data-type="delete-multiple"]');
+                    if (form.length > 0) {
+                        var url = $('form[data-type="delete-multiple"]').attr('action');
+                        var replaceStartFrom = url.lastIndexOf('/');
+                        var newUrl = url.substr(0, replaceStartFrom) + '/' + ids.join(',');
+                        $('form[data-type="delete-multiple"]').attr('action', newUrl);
+                    }
 
                     // set parent checkbox state, but dont trigger its onChange callback
                     if(allChecked) {

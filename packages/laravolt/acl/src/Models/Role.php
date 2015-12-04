@@ -40,17 +40,7 @@ class Role extends Model
 
     public function syncPermission(array $permissions)
     {
-
-        // if string, find corelated id
-        $ids = collect($permissions)->map(function ($item) {
-            if (is_string($item)) {
-                return Permission::whereName($item)->pluck('id');
-            }
-
-            return $item;
-        });
-
-        $ids = $ids->filter(function ($id) {
+        $ids = collect($permissions)->filter(function ($id) {
             return $id > 0;
         });
 
