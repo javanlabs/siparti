@@ -53,7 +53,7 @@ class Install extends Command
             'status'   => UserStatus::ACTIVE,
         ]);
 
-        if(app()->environment() == 'development') {
+        if (in_array(app()->environment(), ['development', 'local'])) {
             if ($this->confirm('Seed sample data ?', true)) {
                 $this->call('db:seed');
             }
