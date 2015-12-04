@@ -55,7 +55,7 @@ class ProgramKerja extends Model implements Presentable
 
     public function getCurrentFase()
     {
-        if (is_null($this->current_fase_id)) {
+        if (!$this->faseSekarang) {
 
             return null;
 

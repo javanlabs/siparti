@@ -33,13 +33,14 @@ class FaseProgramKerjaController extends AdminController
             ProgramKerjaRepositoryEloquent $programKerjaRepository
     )
     {
+        $this->authorize(Permission::MANAGE_PROGRAM_KERJA);
+
         $this->faseRepository = $faseRepository;
 
         $this->satkerRepository = $satkerRepository;
 
         $this->programKerjaRepository = $programKerjaRepository;
 
-        $this->authorize(Permission::MANAGE_PROGRAM_KERJA()->getKey());
 
         parent::__construct();
     }
@@ -54,7 +55,6 @@ class FaseProgramKerjaController extends AdminController
     {
 
       $programKerja = $this->faseRepository->paginate(20);
-
       return view('admin.faseProgramKerja.index', compact('programKerja'));
     }
 
@@ -128,9 +128,11 @@ class FaseProgramKerjaController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Res
      */
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $this->faseRepository->delete($id);
+        $ids = explode(',', $ids);
+        Fase::destroy($ids);
+
         return redirect()->back();
 
     }

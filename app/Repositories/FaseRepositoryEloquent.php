@@ -24,11 +24,6 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
 
     protected $skipPresenter = true;
 
-    //protected $fieldSearchable = [
-    //    'name' => 'like',
-    //    'satker_id',
-    //    'type'
-    //];
     /**
      * Specify Model class name
      *
@@ -50,7 +45,7 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
-        $this->pushCriteria(app(ProgramKerjaSearchCriteria::class));
+        //$this->pushCriteria(app(ProgramKerjaSearchCriteria::class));
     }
 
     public function lists()
@@ -122,7 +117,7 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
 
     public function create(array $attributes)
     {
-        
+
         $model = $this->model->newInstance($attributes);
 
         $model->save();
@@ -170,7 +165,7 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
         $model = $this->model->findOrFail($id);
         $model->fill($attributes);
         $model->save();
-        
+
         $tags = explode(",", $this->sanitize($attributes['tags']));
 
         $model->untag();
@@ -178,7 +173,7 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
         foreach($tags as $tag) {
 
             $model->tag($tag);
-            
+
         }
 
         if (isset($attributes['deletedMedia'])) {
@@ -210,7 +205,7 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
 
     private function sanitize($str)
     {
-        
+
         $sanitized = preg_replace('/\s\s+/', ' ', $str);
 
         $sanitized = str_replace(" ", "", $sanitized);
