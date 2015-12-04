@@ -18,10 +18,8 @@
                         <a class="item {{ (request()->segment(2) == 'password')?'active':'' }}" href="{{ route('admin.password.edit', $user['id']) }}">@lang('users.menu.password')</a>
                         <a class="item {{ (request()->segment(2) == 'role')?'active':'' }}" href="{{ route('admin.role.edit', $user['id']) }}">@lang('users.menu.role')</a>
                     </div>
-                    <div class="ui segment bottom attached" data-tab="first">
-                        <div class="ui segment basic padded">
-                            @yield('content-user-edit')
-                        </div>
+                    <div class="ui segment bottom attached very padded" data-tab="first">
+                        @yield('content-user-edit')
                     </div>
                 </div>
             </div>
