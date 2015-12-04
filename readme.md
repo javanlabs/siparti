@@ -1,12 +1,13 @@
 ## Installation
-- `git clone https://github.com/laravolt/ampere.git <foldername>`
+- Clone this repository
+- Copy `.env.example` to `.env`, customize based on your local environment
 - `cd <foldername>`
 - `composer install`
-- `php artisan migrate --seed`
+- `php artisan siparti:install`
 
 ### Login
-- username: root@laravolt.com
-- password: password
+During installation (when `php artisan siparti:install` executed), you will prompted with super user (a.k.a root) credentials.
+Use those value to login into system. Login page can be accessed in `/auth/login`.
 
 ### URL
 - `/` frontend
