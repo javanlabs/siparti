@@ -6,7 +6,14 @@
 @section('script-head')
         @include('admin.layouts.script')
 
+<?php $usulanArray = []; ?>
+                        
+@foreach($usulan as $data)
+      <?php $usulanArray[$data->id] = $data->name; ?>
+@endforeach 
+        
         <script>
+        
         function lockAddButton() 
         {
             $optionsCount = $("select#optionProgramKerja").find("option").length;
@@ -22,6 +29,15 @@
         }
 
         $(document).ready(function() {
+
+            @if (Input::old('usulanId'))
+
+                @foreach(Input::old('usulanId') as $id)
+                      {!! '$(".ui.fluid.search.dropdown")' !!}
+                      {!! '.dropdown("set selected", "' . $id . '");' !!}
+                @endforeach
+
+            @endif  
 
             $.ajaxSetup({
                 headers: {
@@ -128,9 +144,7 @@
             $("input[type=radio]").change(function() {
                 checkRadio();
             });
-
-          
-      });
+        });
      
     </script>
 
@@ -164,7 +178,7 @@
                         
                         <div class="field">
                             <label>Nama Program Kerja</label>
-                            <input type="text" name="name" />
+                            <input type="text" name="name" value="{{ Input::old('name') }}" />
                         </div>
 
                         <div class="field">
@@ -237,21 +251,19 @@
 
                                     <option value="">Pilih Program Usulan Kerja</option>
 
-                                @foreach($usulan as $data)
+                                @foreach($usulanArray as $key => $value)
 
-                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                    <option value="{{ $key }}">{{ $value }}</option>
 
                                 @endforeach 
 
                             </select>
 
-                        </div>
-                        
                         @endif
 
                         <br />
                         {!! SemanticForm::submit('Simpan') !!}
-
+                        
                         @else
 
                         <br />
