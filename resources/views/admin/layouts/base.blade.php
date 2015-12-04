@@ -1,7 +1,8 @@
 @extends('layouts.base')
 
 @section('script-head')
-
+    @parent
+    <script src="{{ asset('js/admin.js') }}"></script>
 @endsection
 
 @section('body')

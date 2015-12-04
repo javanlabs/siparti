@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Repositories\CategoryRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 use App\Http\Requests\StoreSatkerRequest;
 use Notification;
-use Presenter;
 
 
 class CategoryController extends AdminController
@@ -20,9 +17,10 @@ class CategoryController extends AdminController
     protected $prokerUsulanRepository;
 
     public function __construct(CategoryRepositoryEloquent $categoryRepository,
-                                ProgramKerjaRepositoryEloquent $prokerRepository, 
+                                ProgramKerjaRepositoryEloquent $prokerRepository,
                                 ProgramKerjaUsulanRepositoryEloquent $prokerUsulanRepository)
     {
+        parent::__construct();
 
         $this->categoryRepository = $categoryRepository;
         $this->prokerRepository = $prokerRepository;
@@ -36,7 +34,7 @@ class CategoryController extends AdminController
     public function index()
     {
         $allSubCategories = $this->categoryRepository->getCategories();
-        
+
         return view('admin.category.index', compact('allSubCategories'));
         var_dump($allSubCategories);
 
@@ -95,7 +93,7 @@ class CategoryController extends AdminController
         $listparent = $this->categoryRepository->getParent();
 
         $route = Route('admin.category.update', ['id' => $id]);
-        
+
         return view('admin.category.form', compact('category', 'action', 'route', 'listparent', 'child'));
     }
 
@@ -128,7 +126,7 @@ class CategoryController extends AdminController
         $prokerUsulan = $this->prokerUsulanRepository->findByField('category_id',$id)->count();
 
         if($proker!=0 AND $prokerUsulan!=0){
-                
+
             Notification::error('Data masih di pakai');
 
             return redirect()->back();
@@ -142,10 +140,10 @@ class CategoryController extends AdminController
                     $this->categoryRepository->delete($child->id);
                 }
                 $this->categoryRepository->delete($id);
-                
+
                 Notification::success('Data kategori dan sub kategori berhasil dihapus');
                 return redirect()->back();
-            } 
+            }
             else{
                 $this->categoryRepository->delete($id);
 

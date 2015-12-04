@@ -2,4 +2,3 @@
 <script src="{{ asset('js/BeatPicker.min.js') }}"></script>
 <script src="{{ asset('js/redactor.min.js') }}"></script>
 <script src="{{ asset('js/imagemanager.js') }}"></script>
-<script src="{{ asset('js/admin.js') }}"></script>

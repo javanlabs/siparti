@@ -60,7 +60,7 @@
                                 <input type="checkbox">
                             </div>
                         </th>
-                        <th>Nama Progran Kerja</th>
+                        <th>Nama</th>
                         <th>Fase Sekarang</th>
                         <th>Satker</th>
                         <th>Ditambahkan Oleh</th>
