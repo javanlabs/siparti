@@ -23,7 +23,7 @@
                   @if ($action == "create")    
                       {{ csrf_field() }}
 
-                      {!! SemanticForm::text('name', 'Nama Kategori') !!}
+                      {!! SemanticForm::text('name', 'Nama Kategori', old('name')) !!}
                       <div class="field">
                             <label>Parent</label>
                           <div class="ui fluid search selection dropdown">
@@ -45,13 +45,13 @@
                     
                       <div class="field">
                       	<label>Nama Kategori</label>
-                      	<input name="name" value="{{ $category->present('name') }}">
+                      	<input name="name" value="{{ (old('name')) ? old('name') : $category->present('name') }}">
                       </div>
 
        				        <div class="field">
                         <label>Parent</label>
                         <div class="ui fluid search selection dropdown">
-                            <input name="parent_id" type="hidden" value="{{ $child }}">
+                            <input name="parent_id" type="hidden" value="{{ (old('parent_id')) ? old('parent_id') : $child }}">
                             <i class="dropdown icon"></i>
                             <div class="default text">Parent</div>
                             <div class="menu">
@@ -66,7 +66,7 @@
                       <div class="field">
                         <label>Fase</label>
                           <div class="ui selection dropdown">
-                  <input name="status" type="hidden" value="{{ $category->present('status') }}">
+                  <input name="status" type="hidden" value="{{ (old('status')) ? old('status') : $category->present('status') }}">
                   <i class="dropdown icon"></i>
                   <div class="default text">Gender</div>
                   <div class="menu">
