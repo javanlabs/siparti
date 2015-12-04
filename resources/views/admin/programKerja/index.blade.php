@@ -17,7 +17,7 @@
                     <div class="ui right aligned item">
                         <form method="GET" action="{{ route('admin.programKerja.index') }}">
                             <div class="ui transparent icon input">
-                                <input class="prompt" name="nama" value="{{ request('search') }}" type="text" placeholder="Cari Program Kerja">
+                                <input class="prompt" name="search" value="{{ request('search') }}" type="text" placeholder="Cari...">
                                 <i class="search link icon"></i>
                             </div>
                         </form>

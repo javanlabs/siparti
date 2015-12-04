@@ -9,10 +9,11 @@ use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
 use App\Entities\ProgramKerjaDanUsulanRelation;
 use App\Enum\FaseType;
+use Sofa\Eloquence\Eloquence;
 
 class ProgramKerja extends Model implements Presentable
 {
-    use PresentableTrait, HasRevisionsTrait, SoftDeletes;
+    use PresentableTrait, HasRevisionsTrait, SoftDeletes, Eloquence;
 
     protected $table = 'program_kerja';
 
