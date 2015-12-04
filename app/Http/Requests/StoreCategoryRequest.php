@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class StoreProgramKerjaRequest extends Request
+class StoreCategoryRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class StoreProgramKerjaRequest extends Request
     public function rules()
     {
         return [
-            'name'  => 'required|string',
-            'satkerChoice' => 'required',
-            'satuanKerjaBaru' => 'required_if:satkerChoice, "baru"'
+            'name' => 'required'
+                            
         ];
     }
 }
