@@ -67,7 +67,7 @@ $factory->defineAs(App\Entities\Fase::class, 'berjalan', function (Faker\Generat
 $factory->define(App\Entities\ProgramKerja::class, function (Faker\Generator $faker) {
     return [
         'name'   => $faker->sentence(),
-        'creator_id' => factory(\App\Entities\User::class)->create()->id  
+        'creator_id' => factory(\App\Entities\User::class)->create()->id,  
         'category_id' => rand(1, 5)              
     ];
 });
