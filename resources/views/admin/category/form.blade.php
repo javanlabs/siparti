@@ -27,7 +27,7 @@
                       <div class="field">
                             <label>Parent</label>
                           <div class="ui fluid search selection dropdown">
-                            <input name="parent_id" type="hidden">
+                            <input name="parent_id" type="hidden" value="{{ old('parent_id') }}">
                             <i class="dropdown icon"></i>
                             <div class="default text">Parent</div>
                               <div class="menu">
