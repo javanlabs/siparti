@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Repositories\SatkerRepositoryEloquent;
 use App\Http\Requests\StoreSatkerRequest;
@@ -15,9 +13,10 @@ class SatuanKerjaController extends AdminController
 
     public function __construct(SatkerRepositoryEloquent $satkerRepository)
     {
-
+        parent::__construct();
         $this->satkerRepository = $satkerRepository;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,6 +25,7 @@ class SatuanKerjaController extends AdminController
     public function index()
     {
         $satker = $this->satkerRepository->paginate(20);
+
         return view('admin.satuanKerja.index', compact('satker'));
     }
 
@@ -46,12 +46,12 @@ class SatuanKerjaController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreSatkerRequest $request)
     {
-        $this->satkerRepository->create( $request->all() );
+        $this->satkerRepository->create($request->all());
 
         Notification::success('Data berhasil disimpan.');
 
@@ -61,7 +61,7 @@ class SatuanKerjaController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -78,8 +78,8 @@ class SatuanKerjaController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(StoreSatkerRequest $request, $id)
@@ -94,7 +94,7 @@ class SatuanKerjaController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

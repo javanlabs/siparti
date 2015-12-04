@@ -13,13 +13,9 @@ class Category extends Model implements Transformable, Presentable
     use TransformableTrait;
     use PresentableTrait;
 
-    protected $nullable = ['parent_id'];
-
     protected $table = 'category';
 
     protected $fillable = ['id','name','parent_id', 'status'];
-
-    public $timestamps = false;
 
     public function programKerja()
     {

@@ -15,7 +15,7 @@ class FaseTransformer extends TransformerAbstract
 {
 
     protected $defaultIncludes = [
-        'programKerja'
+        //'programKerja'
     ];
 
     /**
@@ -53,14 +53,14 @@ class FaseTransformer extends TransformerAbstract
             'media'            => $model->getMedia(),
             'proker_id'        => $model->proker_id,
             'satker_id'        => $model->satker_id,
-            'start_date'       =>  $model->start_date->formatLocalized('%e %B %Y'), 
+            'start_date'       =>  $model->start_date->formatLocalized('%e %B %Y'),
             'end_date'         =>  $model->end_date->formatLocalized('%e %B %Y'),
             'tanggal_mulai'    => date("Y-m-d",strtotime($model->start_date)),
-            'tanggal_selesai'  => date("Y-m-d",strtotime($model->end_date)), 
+            'tanggal_selesai'  => date("Y-m-d",strtotime($model->end_date)),
             'comment_mode'     => $model->comment_mode,
-            'tags'             => $model->tagNames(), 
-            'avaibleTags'      => $model->existingTags(), 
-            
+            'tags'             => $model->tagNames(),
+            'avaibleTags'      => $model->existingTags(),
+
             'created_at' => $model->created_at->formatLocalized('%e %B %Y'),
             'updated_at' => $model->updated_at
         ];

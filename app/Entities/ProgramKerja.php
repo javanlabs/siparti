@@ -9,10 +9,11 @@ use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
 use App\Entities\ProgramKerjaDanUsulanRelation;
 use App\Enum\FaseType;
+use Sofa\Eloquence\Eloquence;
 
 class ProgramKerja extends Model implements Presentable
 {
-    use PresentableTrait, HasRevisionsTrait, SoftDeletes;
+    use PresentableTrait, HasRevisionsTrait, SoftDeletes, Eloquence;
 
     protected $table = 'program_kerja';
 
@@ -55,13 +56,12 @@ class ProgramKerja extends Model implements Presentable
 
     public function getCurrentFase()
     {
-        if (is_null($this->current_fase_id)) {
+        if (!$this->faseSekarang) {
 
-            return "null";
-        
-        } else {
+            return null;
 
-            return (new FaseType($this->faseSekarang->type))->label();
-        } 
+        }
+
+        return (new FaseType($this->faseSekarang->type))->label();
     }
 }

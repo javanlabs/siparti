@@ -54,7 +54,7 @@ return array(
     | :message - message text.
     |
     */
-    'default_format'                        => '<div class="ui message attached :type">:message</div>',
+    'default_format'                        => '<div class="ui message attached :type"><div class="ui container">:message</div></div>',
 
     /*
     |--------------------------------------------------------------------------
@@ -89,10 +89,10 @@ return array(
     |
     */
     'default_formats'                       => array(
-        'info'                  => '<div class="ui message attached info">:message</div>',
-        'success'               => '<div class="ui message attached success">:message</div>',
-        'warning'               => '<div class="ui message attached warning">:message</div>',
-        'error'                 => '<div class="ui message attached error">:message</div>',
+        'info'                  => '<div class="ui message attached info"><div class="ui container">:message</div></div>',
+        'success'               => '<div class="ui message attached success"><div class="ui container">:message</div></div>',
+        'warning'               => '<div class="ui message attached warning"><div class="ui container">:message</div></div>',
+        'error'                 => '<div class="ui message attached error"><div class="ui container">:message</div></div>',
     ),
 
     /*

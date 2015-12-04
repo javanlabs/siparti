@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\RoleRequest;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use Laravolt\Acl\Models\Permission;
 use Laravolt\Acl\Models\Role;
 
@@ -50,7 +50,7 @@ class RoleController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
         $role = Role::create($request->only('name'));
         $role->syncPermission($request->get('permissions', []));
@@ -80,7 +80,7 @@ class RoleController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleRequest $request, $id)
     {
         $role = Role::findOrFail($id);
         $role->name = $request->get('name');

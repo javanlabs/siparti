@@ -1,7 +1,13 @@
 @extends('layouts.base')
 
-@section('script-head')
+@section('style-head')
+    @parent
+    @include('admin.layouts.style')
+@endsection
 
+@section('script-end')
+    @parent
+    @include('admin.layouts.script')
 @endsection
 
 @section('body')

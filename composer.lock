@@ -2108,12 +2108,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/support.git",
-                "reference": "784e32de91d0258e242a8fc49aa4bd4ddc4b545f"
+                "reference": "1f20be9a3d55aceac41efd323a0e26d76516bec5"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravolt/support/zipball/1f20be9a3d55aceac41efd323a0e26d76516bec5",
-                "reference": "784e32de91d0258e242a8fc49aa4bd4ddc4b545f",
+                "reference": "1f20be9a3d55aceac41efd323a0e26d76516bec5",
                 "shasum": ""
             },
             "require": {

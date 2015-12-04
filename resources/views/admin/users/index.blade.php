@@ -8,26 +8,11 @@
                         <div class="item borderless">
                             <h4>@lang('users.users')</h4>
                         </div>
+                        <div class="item borderless">
+                            <a href="{{ route('admin.users.create') }}" class="ui button"><i class="icon plus"></i> Tambah</a>
+                        </div>
                     </div>
                     <div class="right menu">
-                        {{--<div class="ui dropdown item">--}}
-                        {{--<div class="text">Semua Status</div> <i class="dropdown icon"></i>--}}
-                        {{--<div class="menu">--}}
-                        {{--<a href="" class="item">Semua (90)</a>--}}
-                        {{--@foreach(\App\Enum\UserStatus::values() as $key=>$value)--}}
-                        {{--<a href="" class="item">{{ $value }}</a>--}}
-                        {{--@endforeach--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="ui dropdown item">--}}
-                        {{--Semua Role <i class="dropdown icon"></i>--}}
-                        {{--<div class="menu">--}}
-                        {{--<a href="" class="item">Semua (90)</a>--}}
-                        {{--@foreach(\App\Enum\UserStatus::values() as $key=>$value)--}}
-                        {{--<a href="" class="item">{{ $value }}</a>--}}
-                        {{--@endforeach--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
                         <div class="ui right aligned item">
                             <form action="">
                                 <div class="ui transparent icon input">

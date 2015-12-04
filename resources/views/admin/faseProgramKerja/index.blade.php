@@ -1,25 +1,15 @@
 @extends('admin.layouts.base')
 
-@section('style-head')
-	@include('admin.layouts.style')
-@endsection
-
-@section('script-head')
-		@include('admin.layouts.script')
-@endsection
-
 @section('content')
 
     <div class="ui container">
-		<a href="{{ route('admin.faseProgramKerja.create') }}" class="ui primary button">Buat Fase Progran Kerja</a>
         <section class="section-audit-trails">
-		 <br />
-		
-            <div class="ui top attached menu">
-                <div class="menu">
-                    <div class="item borderless">
-                        <h4>Daftar Fase Program Kerja</h4>
-                    </div>
+            <div class="ui top attached menu small">
+                <div class="item borderless">
+                    <h4>Fase Program Kerja</h4>
+                </div>
+                <div class="item borderless">
+                    <a href="{{ route('admin.faseProgramKerja.create') }}" class="ui button"><i class="icon plus"></i> Tambah</a>
                 </div>
                 <div class="right menu">
                     <div class="ui right aligned item">
@@ -32,11 +22,26 @@
                     </div>
                 </div>
             </div>
+
+            @if(!$programKerja->isEmpty())
+                <div class="ui menu attached">
+                    <div class="menu">
+                        <div class="item borderless">
+                            <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->summary() !!}</small>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <div class="ui segment attached fitted">
-                <table class="ui very compact table bottom small sortable">
+                <table class="ui very compact table bottom small">
                     <thead>
                     <tr>
-                        <th ><button data-click-state="0" id="checkAll"><i class="check circle icon icon-button"></i></button></th>
+                        <th width="50px">
+                            <div class="ui checkbox" data-toggle="checkall" data-selector=".checkbox[data-type='check-all-child']">
+                                <input type="checkbox">
+                            </div>
+                        </th>
                         <th>Nama Progran Kerja</th>
                         <th>Fase Sekarang</th>
                         <th>Instansi Terkait</th>
@@ -44,16 +49,17 @@
                         <th><i class="comments icon"></i></th>
                         <th><i class="thumbs up icon"></i></th>
                         <th><i class="thumbs down icon"></i></th>
-                        <th>Dokumen</th>
-
-
                         <th>&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
                     @forelse($programKerja as $data)
                         <tr>
-                            <td><input class="deletedId" type="checkbox" value="{!! $data->present('id') !!}" /></td>
+                            <td>
+                                <div class="ui checkbox" data-type="check-all-child">
+                                    <input type="checkbox" name="ids[]" value="{{ $data->id }}">
+                                </div>
+                            </td>
                             <td>{!! $data->present('name') !!}</td>
                             <td class="nameColumn">{!! $data->present('label') !!}</td>
                             <td>{!! $data->present('instansi_terkait') !!}</td>
@@ -61,21 +67,16 @@
                             <td>{!! $data->present('komentar') !!}</td>
                             <td>{!! $data->present('dukungan') !!}</td>
                             <td>{!! $data->present('penolakan') !!}</td>
-                            <td>
-                                @foreach($data->present('media') as $item)
-                                    <a href="{{ $item->getUrl() }}">{{ $item->file_name }}</a>
-                                @endforeach
-                            </td>
-
                             <td class="right aligned">
-								<a class="ui green button basic mini" href="{{ Route('admin.faseProgramKerja.edit', ['id' => $data->present('id')]) }}"><i class="large edit icon"></i></a>	
-                              	
-                              	<form role="form" action="{{ route('admin.faseProgramKerja.destroy',  [ 'id' => $data->present('id') ]) }}" method="POST" id="delete-form">
-                                	<input type="hidden" name="_method" value="DELETE">
-                                	{{ csrf_field() }}
-                              	</form>
+                                <div class="ui icon buttons mini basic">
+                                    <a class="ui button" href="{{ Route('admin.faseProgramKerja.edit', ['id' => $data->id]) }}"><i class="edit icon"></i></a>
 
-                              	<button class="ui red button basic mini delete-button"><i class="large remove icon"></i></button>
+                                    <form role="form" action="{{ route('admin.faseProgramKerja.destroy',  $data->id) }}" method="POST" onsubmit="return confirm('Anda yakin?')">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="ui button"><i class="delete icon"></i></button>
+                                    </form>
+                                </div>
                             </td>
 
                         </tr>
@@ -86,18 +87,16 @@
                         </tr>
                     @endforelse
                   </tbody>
-                  <tfoot>
-                    	<tr>
-                    		<td>
-                    			<button class="negative ui button" id="deleteMultiple">X</button>
-                    		</td>
-                    	</tr>
-                    </tfoot>
                 </table>
             </div>
             <div class="ui menu bottom attached">
                 <div class="item borderless">
-                    <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->summary() !!}</small>
+                    <form role="form" data-type="delete-multiple" action="{{ route('admin.faseProgramKerja.destroy', ':ids') }}" method="POST" onsubmit="return confirm('Anda yakin?')">
+                        <input type="hidden" name="_method" value="DELETE">
+                        {{ csrf_field() }}
+                        <button type="submit" class="ui button basic mini">Hapus Terpilih</button>
+                    </form>
+                    {{--<small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->summary() !!}</small>--}}
                 </div>
                 {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->render('attached bottom right') !!}
             </div>

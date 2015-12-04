@@ -1,32 +1,21 @@
 @extends('admin.layouts.base')
 
-@section('style-head')
-    @include('admin.layouts.style')
-@endsection
-
-@section('script-head')
-        @include('admin.layouts.script')
-@endsection
-
 @section('content')
 
     <div class="ui container">
-        <a href="{{ route('admin.category.create') }}" class="ui primary button">Buat Kategori</a>
         <section class="section-audit-trails">
-         <br />
-        
-            <div class="ui top attached menu">
-                <div class="menu">
-                    <div class="item borderless">
-                        <h4>Daftar Kategori</h4>
-                    </div>
+            <div class="ui top attached menu borderless small">
+                <div class="item">
+                    <h4>Daftar Kategori</h4>
                 </div>
-                
+                <div class="item">
+                    <a href="{{ route('admin.category.create') }}" class="ui button"><i class="icon plus"></i> Tambah</a>
+                </div>
             </div>
             <div class="ui segment attached fitted">
                 <table class="ui very compact table bottom small sortable">
                     <thead>
-                    <tr>                        
+                    <tr>
                         <th>Nama Kategori</th>
                         <th>Status</th>
                         <th>&nbsp;</th>
@@ -38,37 +27,51 @@
                             <td>{{ $subCate->name }} </td>
                             <td>{{ $subCate->status }} </td>
                             <td class="right aligned">
-                                <a class="ui green button basic mini" href="{{ Route('admin.category.edit', ['id' => $subCate->id]) }}"><i class="large edit icon"></i></a> 
-                                
-                                <form role="form" action="{{ route('admin.category.destroy',  [ 'id' => $subCate->id ]) }}" method="POST" id="delete-form">
+                                <a class="ui green button basic mini" href="{{ Route('admin.category.edit', 
+                                                                                ['id' => $subCate->id]) }}">
+                                    <i class="large edit icon"></i>
+                                </a>
+
+                                <form role="form" action="{{ route('admin.category.destroy',  
+                                                            [ 'id' => $subCate->id ]) }}" 
+                                    method="POST" id="delete-form">
                                     <input type="hidden" name="_method" value="DELETE">
                                     {{ csrf_field() }}
                                 </form>
 
-                                <button class="ui red button basic mini delete-button"><i class="large remove icon"></i></button>
+                                <button class="ui red button basic mini delete-button">
+                                    <i class="large remove icon"></i>
+                                </button>
                             </td>
                         </tr>
-                        <ol>
+
                             @foreach($subCate->subCategory as $firstNestedSub)
-                            
+
                             <tr>
-                                <td><li value="{{ $firstNestedSub->name }}">{{ $firstNestedSub->name }}</li>  </td>
+                                <td><li value="{{ $firstNestedSub->name }}">{{ $firstNestedSub->name }}</li></td>
                                 <td>{{ $firstNestedSub->status }} </td>
                                 <td class="right aligned">
-                                    <a class="ui green button basic mini" href="{{ Route('admin.category.edit', ['id' => $firstNestedSub->id]) }}"><i class="large edit icon"></i></a> 
-                                    
-                                    <form role="form" action="{{ route('admin.category.destroy',  [ 'id' => $firstNestedSub->id ]) }}" method="POST" id="delete-form">
+                                    <a class="ui green button basic mini" href="{{ Route('admin.category.edit', 
+                                                                                    ['id' => $firstNestedSub->id]) }}">
+                                        <i class="large edit icon"></i>
+                                    </a>
+
+                                    <form role="form" action="{{ route('admin.category.destroy',  
+                                                                [ 'id' => $firstNestedSub->id ]) }}" 
+                                        method="POST" id="delete-form">
                                         <input type="hidden" name="_method" value="DELETE">
                                         {{ csrf_field() }}
                                     </form>
 
-                                    <button class="ui red button basic mini delete-button"><i class="large remove icon"></i></button>
+                                    <button class="ui red button basic mini delete-button">
+                                        <i class="large remove icon"></i>
+                                    </button>
                                 </td>
                             </tr>
-                             
-                            @endforeach()
-                        </ol>
-                        @endforeach()
+
+                            @endforeach
+                    
+                        @endforeach
                   </tbody>
                   <tfoot>
                     </tfoot>

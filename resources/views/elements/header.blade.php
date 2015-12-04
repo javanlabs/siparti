@@ -41,7 +41,7 @@
                 {{--<h4 class="header">Hubungi <i class="meta">Pengelola Aplikasi</i></h4>--}}
             {{--</a>--}}
             @if(auth()->check())
-                <a href="#" class="item" id="browse-user-menu">
+                <a class="item item-popup" data-target="#popup-user-menu" data-position="bottom right">
                     <img src="{{ auth()->user()->getAvatar() }}" alt="" class="ui image avatar">
                     {{ auth()->user()->name }} <i class="angle down icon"></i>
                 </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Entities\ProgramKerja;
 use App\Enum\Permission;
 use Illuminate\Http\Request;
 
@@ -29,11 +30,10 @@ class ProgramKerjaController extends AdminController
      * ProgramKerjaController constructor.
      */
     public function __construct(
-            SatkerRepositoryEloquent $satkerRepository,
-            ProgramKerjaRepositoryEloquent $programKerjaRepository,
-            ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository
-    )
-    {
+        SatkerRepositoryEloquent $satkerRepository,
+        ProgramKerjaRepositoryEloquent $programKerjaRepository,
+        ProgramKerjaUsulanRepositoryEloquent $programKerjaUsulanRepository
+    ) {
 
         $this->satkerRepository = $satkerRepository;
 
@@ -54,10 +54,9 @@ class ProgramKerjaController extends AdminController
      */
     public function index(Request $request)
     {
+        $programKerja = $this->programKerjaRepository->paginate(20);
 
-      $programKerja = $this->programKerjaRepository->paginate(20);
-
-      return view('admin.programKerja.index', compact('programKerja'));
+        return view('admin.programKerja.index', compact('programKerja'));
     }
 
     /*
@@ -89,7 +88,7 @@ class ProgramKerjaController extends AdminController
 
         $programKerja = $this->programKerjaRepository->create($attributes);
 
-        if($request->input('usulanId')) {
+        if ($request->input('usulanId')) {
 
             $usulanIds = $request->input('usulanId');
 
@@ -98,7 +97,7 @@ class ProgramKerjaController extends AdminController
 
         Notification::success('Program kerja berhasil disimpan');
 
-        return redirect()->back();
+        return redirect()->route('admin.programKerja.index');
 
     }
 
@@ -137,12 +136,14 @@ class ProgramKerjaController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $ids
      * @return \Illuminate\Http\Res
      */
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $this->programKerjaRepository->delete($id);
+        $ids = explode(',', $ids);
+        ProgramKerja::destroy($ids);
+
         return redirect()->back();
 
     }
@@ -150,21 +151,21 @@ class ProgramKerjaController extends AdminController
     /**
      * Menghapus multiple comment
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function deleteMultiple(Request $request)
     {
 
-      $toBeDeletedIds = $request->get('deletedId');
+        $toBeDeletedIds = $request->get('deletedId');
 
-      foreach ($toBeDeletedIds as $id) {
+        foreach ($toBeDeletedIds as $id) {
 
-        $this->programKerjaRepository->delete((int)$id);
+            $this->programKerjaRepository->delete((int)$id);
 
-      }
+        }
 
-      return redirect()->back();
+        return redirect()->back();
 
     }
 
@@ -179,17 +180,17 @@ class ProgramKerjaController extends AdminController
             $satker = $this->satkerRepository->create($satkerName);
 
             $attributes = [
-                'name'          => $request->input('name'),
-                'satker_id'     => $satker->id,
-                'creator_id'    => Auth::user()->id
+                'name'       => $request->input('name'),
+                'satker_id'  => $satker->id,
+                'creator_id' => Auth::user()->id
             ];
 
         } else {
 
             $attributes = [
-                'name'          => $request->input('name'),
-                'satker_id'     => $request->input('satker_id'),
-                'creator_id'    => Auth::user()->id
+                'name'       => $request->input('name'),
+                'satker_id'  => $request->input('satker_id'),
+                'creator_id' => Auth::user()->id
             ];
         }
 
@@ -197,11 +198,11 @@ class ProgramKerjaController extends AdminController
     }
 
     /**
-    *  Menampilkan form buat program kerja baru berdasar program kerja usulan
-    *
-    *  @param int $usulan_id
-    *  @return \Illuminate\Http\Response
-    */
+     *  Menampilkan form buat program kerja baru berdasar program kerja usulan
+     *
+     * @param int $usulan_id
+     * @return \Illuminate\Http\Response
+     */
     public function createProkerBasedUsulan(Request $request)
     {
 
@@ -215,10 +216,10 @@ class ProgramKerjaController extends AdminController
     }
 
     /**
-    *  Menyimpan data program kerja berdasar usulan
-    *
-    *  @return \Illuminate\Http\Response
-    */
+     *  Menyimpan data program kerja berdasar usulan
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function storeProkerBasedUsulan(StoreProgramKerjaRequest $request)
     {
         $attributes = $this->getAttributes($request);
@@ -273,7 +274,7 @@ class ProgramKerjaController extends AdminController
     {
         $idArray = [];
 
-        foreach($array as $data) {
+        foreach ($array as $data) {
 
             $idArray[] = $data->usulan_id;
         }
