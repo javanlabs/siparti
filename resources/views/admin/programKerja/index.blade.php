@@ -9,10 +9,6 @@
                 <div class="item borderless">
                     <h4>Program Kerja</h4>
                 </div>
-                <div class="item borderless">
-                    <a href="{{ route('admin.programKerja.create') }}" class="ui button"><i class="icon plus"></i> Tambah</a>
-                </div>
-
                 <div class="right menu">
                     <div class="ui right aligned item">
                         <form method="GET" action="{{ route('admin.programKerja.index') }}">
@@ -23,24 +19,26 @@
                         </form>
                     </div>
                 </div>
-
-                {{--@if(!$programKerja->isEmpty())--}}
-                {{--<div class="menu right">--}}
-                    {{--<a href="" class="item"><i class="icon file pdf outline red"></i></a>--}}
-                    {{--<a href="" class="item"><i class="icon file excel outline green"></i></a>--}}
-                {{--</div>--}}
-                {{--@endif--}}
-
             </div>
 
             @if(!$programKerja->isEmpty())
-            <div class="ui menu attached">
-                <div class="menu">
+                <div class="ui menu attached">
                     <div class="item borderless">
-                        <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->summary() !!}</small>
+                        <a href="{{ route('admin.programKerja.create') }}" class="ui button"><i class="icon plus"></i> Tambah</a>
+                    </div>
+                    <div class="item borderless">
+                        <form role="form" data-type="delete-multiple" action="{{ route('admin.programKerja.destroy', ':ids') }}" method="POST" onsubmit="return confirm('Anda yakin?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            {{ csrf_field() }}
+                            <button type="submit" class="ui button disabled">Hapus Terpilih</button>
+                        </form>
+                    </div>
+                    <div class="menu right">
+                        <div class="item borderless">
+                            <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->summary() !!}</small>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endif
 
             <div class="ui segment attached fitted">
@@ -95,66 +93,17 @@
                             <td colspan="7" class="warning center aligned" style="font-size: 1.5rem;padding:40px;font-style: italic">Data tidak tersedia</td>
                         </tr>
                     @endforelse
-                  </tbody>
+                    </tbody>
                 </table>
             </div>
             <div class="ui menu bottom attached">
-                @if(!$programKerja->isEmpty())
                 <div class="item borderless">
-
-                    <form role="form" data-type="delete-multiple" action="{{ route('admin.programKerja.destroy', ':ids') }}" method="POST" onsubmit="return confirm('Anda yakin?')">
-                        <input type="hidden" name="_method" value="DELETE">
-                        {{ csrf_field() }}
-                        <button type="submit" class="mini ui button basic">Hapus Terpilih</button>
-                    </form>
+                    <small>{!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->pager() !!}</small>
                 </div>
-                {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->render('attached bottom right') !!}
+                @if(!$programKerja->isEmpty())
+                    {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($programKerja))->render('attached bottom right') !!}
                 @endif
             </div>
         </section>
     </div>
-
-    <div class="ui small test modal deleteConfirm">
-      <div class="header">
-        Hapus Program Kerja
-      </div>
-    <div class="content">
-      <p>Apakah anda akan menghapus program kerja ini ?</p>
-    </div>
-    <div class="actions">
-        <div class="ui negative button">
-        Tidak
-        </div>
-        <div class="ui positive right labeled icon button yess-button">
-          Ya
-          <i class="checkmark icon"></i>
-        </div>
-      </div>
-    </div>
-
-    <div class="ui small test modal multipleDeleteConfirm">
-      <div class="header">
-        Hapus Beberapa Program Kerja
-      </div>
-    <div class="content">
-      <p>Anda akan menghapus semua program kerja yang telah dicentang ?</p>
-    </div>
-    <div class="actions">
-        <div class="ui negative button">
-        Tidak
-        </div>
-        <div class="ui positive right labeled icon button yess2-button">
-          Ya
-          <i class="checkmark icon"></i>
-        </div>
-      </div>
-    </div>
-
-    <form method="post" action="{{ route('admin.programKerja.deleteMultiple') }}" role="form" id="multipleDeletedForm">
-      {{ csrf_field() }}
-
-    </form>
-
-
-
 @endsection

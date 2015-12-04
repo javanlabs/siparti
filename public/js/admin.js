@@ -179,12 +179,18 @@ $(document).ready(function() {
                     // set parent checkbox state, but dont trigger its onChange callback
                     if(allChecked) {
                         $parentCheckbox.checkbox('set checked');
+                        form.find('[type="submit"]').removeClass('disabled');
+                        //form.css('visibility', 'visible');
                     }
                     else if(allUnchecked) {
                         $parentCheckbox.checkbox('set unchecked');
+                        form.find('[type="submit"]').addClass('disabled');
+                        //form.css('visibility', 'hidden');
                     }
                     else {
                         $parentCheckbox.checkbox('set indeterminate');
+                        form.find('[type="submit"]').removeClass('disabled');
+                        //form.css('visibility', 'visible');
                     }
                 }
             })
