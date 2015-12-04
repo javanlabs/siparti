@@ -24,7 +24,9 @@ class CategoryTransformer extends TransformerAbstract
             'id'         => (int) $model->id,
             'name'       => $model->name,
             'status'     => $model->status,
-            'parent_id'  => (int)$model->parent_id
+            'parent_id'  => (int)$model->parent_id,
+            'created_at' => $model->created_at,
+            'updated_at' => $model->updated_at
         ];
     }
 }

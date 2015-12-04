@@ -23,7 +23,7 @@
                   @if ($action == "create")    
                       {{ csrf_field() }}
 
-                      {!! SemanticForm::text('name', 'Nama Satuan Kerja') !!}
+                      {!! SemanticForm::text('name', 'Nama Satuan Kerja', old('name')) !!}
 
                     	{!! SemanticForm::submit('Simpan') !!}
                   @else
@@ -32,7 +32,7 @@
                     
                       <div class="field">
                       	<label>Nama Satuan Kerja</label>
-                      	<input name="name" value="{{ $satker->present('name') }}">
+                      	<input name="name" value="{{ (old('name')) ? old('name') : $satker->present('name') }}">
                       </div>
        				                        
                    	{!! SemanticForm::submit('Simpan') !!}

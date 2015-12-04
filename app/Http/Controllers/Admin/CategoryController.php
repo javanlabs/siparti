@@ -6,7 +6,7 @@ use App\Http\Requests;
 use App\Repositories\CategoryRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
-use App\Http\Requests\StoreSatkerRequest;
+use App\Http\Requests\StoreCategoryRequest;
 use Notification;
 
 class CategoryController extends AdminController
@@ -58,7 +58,7 @@ class CategoryController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSatkerRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
         $this->categoryRepository->create( $request->all() );
 
@@ -98,7 +98,7 @@ class CategoryController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreSatkerRequest $request, $id)
+    public function update(StoreCategoryRequest $request, $id)
     {
         $this->categoryRepository->update($request->all(), $id);
 
