@@ -9,7 +9,6 @@ use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 use App\Http\Requests\StoreSatkerRequest;
 use Notification;
 
-
 class CategoryController extends AdminController
 {
     protected $categoryRepository;
@@ -26,6 +25,7 @@ class CategoryController extends AdminController
         $this->prokerRepository = $prokerRepository;
         $this->prokerUsulanRepository = $prokerUsulanRepository;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,8 +36,6 @@ class CategoryController extends AdminController
         $allSubCategories = $this->categoryRepository->getCategories();
 
         return view('admin.category.index', compact('allSubCategories'));
-        var_dump($allSubCategories);
-
     }
 
     /**
@@ -48,9 +46,7 @@ class CategoryController extends AdminController
     public function create()
     {
         $action = "create";
-
-        $route = Route('admin.category.store');
-
+        $route = route('admin.category.store');
         $parent = $this->categoryRepository->getParent();
 
         return view('admin.category.form', compact('action', 'route', 'parent'));
@@ -80,19 +76,17 @@ class CategoryController extends AdminController
     public function edit($id)
     {
         $action = "edit";
-
         $category = $this->categoryRepository->find($id);
+
         if($category->parent_id==0){
             $child = "Sebagai Parent";
-        }
-        else{
+        } else {
             $child = $this->categoryRepository->find($category->parent_id);
             $child = $child->name;
         }
 
         $listparent = $this->categoryRepository->getParent();
-
-        $route = Route('admin.category.update', ['id' => $id]);
+        $route = route('admin.category.update', ['id' => $id]);
 
         return view('admin.category.form', compact('category', 'action', 'route', 'listparent', 'child'));
     }
@@ -119,21 +113,21 @@ class CategoryController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         $category = $this->categoryRepository->find($id);
         $proker = $this->prokerRepository->findByField('category_id',$id)->count();
         $prokerUsulan = $this->prokerUsulanRepository->findByField('category_id',$id)->count();
 
-        if($proker!=0 AND $prokerUsulan!=0){
+        if($proker!=0 AND $prokerUsulan != 0){
 
             Notification::error('Data masih di pakai');
 
             return redirect()->back();
 
-        }
-        else{
-            if($category->parent_id==0){
+        } else {
+            if($category->parent_id == 0){
                 $childs = $this->categoryRepository->findByField('parent_id',$id);
 
                 foreach ($childs as $child) {
@@ -142,9 +136,9 @@ class CategoryController extends AdminController
                 $this->categoryRepository->delete($id);
 
                 Notification::success('Data kategori dan sub kategori berhasil dihapus');
+
                 return redirect()->back();
-            }
-            else{
+            } else {
                 $this->categoryRepository->delete($id);
 
                 Notification::success('Data berhasil dihapus');
