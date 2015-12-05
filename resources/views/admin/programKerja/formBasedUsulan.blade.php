@@ -62,7 +62,8 @@
 
                              <div class="field">
                                 <label>Nama Program Kerja</label>
-                                <input type="text" name="name" />
+                                <input type="text" name="name" 
+                                    value="{{ Input::old('name') ? Input::old('name') : "" }}"/>
                             </div>
 
                             <div class="field">
