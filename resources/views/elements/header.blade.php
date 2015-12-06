@@ -20,7 +20,7 @@
         <div class="item">
             <div class="ui buttons">
                 <a href="{{ route('proker-usulan.create') }}" class="ui button primary"><i class="icon file text"></i> Usulkan Program Kerja</a>
-                <a href="{{ route('uji-publik.create') }}" class="ui button teal"><i class="icon file text"></i> Uji Publik Baru</a>
+                <a href="{{ route('admin.ujiPublik.create') }}" class="ui button teal"><i class="icon file text"></i> Uji Publik Baru</a>
             </div>
         </div>
         @endif
