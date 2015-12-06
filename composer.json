@@ -67,6 +67,7 @@
             "database"
         ],
         "psr-4": {
+            "Laravolt\\Tablet\\": "packages/laravolt/tablet/src",
             "Laravolt\\Acl\\": "packages/laravolt/acl/src",
             "App\\": "app/"
         }

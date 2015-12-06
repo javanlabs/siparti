@@ -160,6 +160,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Laravolt\Tablet\ServiceProvider::class,
         Laravolt\SemanticForm\ServiceProvider::class,
         Laravolt\Trail\ServiceProvider::class,
         Laravolt\Acl\ServiceProvider::class,
@@ -232,7 +233,8 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Avatar'    => Laravolt\Avatar\Facade::class,
         'SemanticForm'    => Laravolt\SemanticForm\Facade::class,
-        'Feed' => 'Roumen\Feed\Facades\Feed'
+        'Feed' => 'Roumen\Feed\Facades\Feed',
+        'Tablet' => Laravolt\Tablet\Facade::class,
     ],
 
 ];
