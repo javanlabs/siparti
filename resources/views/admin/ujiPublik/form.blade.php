@@ -21,12 +21,13 @@
                       	
                       	<div class="field">
                       	    <label>Nama Uji Publik</label>
-                      		<input type="text" name="name" value="{{ $ujiPublik->present('name') }}" />
+                      		<input type="text" name="name" 
+                                value="{{ Input::old('name') ? Input::old('name') : $ujiPublik->present('name') }}" />
                       	</div>
                       	
                         <div class="field">
                         	<label>Materi</label>
-                        	<input type="text" name="materi" value="{{ $ujiPublik->present('materi') }}" />
+                        	<textarea name="materi">{{ Input::old('materi') ? Input::old('materi') : $ujiPublik->present('materi') }}</textarea>
                         </div>
                         
                        <div class="field">
