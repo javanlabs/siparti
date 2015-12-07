@@ -12,10 +12,13 @@
 
         <section class="section-audit-trails">
 
-            <div class="ui top attached menu">
+            <div class="ui top attached menu small">
                 <div class="menu">
                     <div class="item borderless">
                         <h4>Daftar Uji Publik</h4>
+                    </div>
+                    <div class="item borderless">
+                        <a href="{{ route('admin.ujiPublik.create') }}" class="ui button"><i class="icon plus"></i> Tambah</a>
                     </div>
                 </div>
                 <div class="right menu">
@@ -37,6 +40,9 @@
                         <th>Nama</th>
                         <th>Materi</th>
                         <th>Dokumen</th>
+                        <th><i class="comments icon"></i></th>
+                        <th><i class="thumbs up icon"></i></th>
+                        <th><i class="thumbs down icon"></i></th>
                         <th>Dibuat pada tanggal</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -54,6 +60,15 @@
                               </ul>
                             </td>
                             <td>
+                              {!! $data->present('komentar') !!}
+                            </td>
+                             <td>
+                              {!! $data->present('dukungan') !!}
+                            </td>
+                             <td>
+                              {!! $data->present('penolakan') !!}
+                            </td>
+                             <td>
                               {!! $data->present('created_at') !!}
                             </td>
                             <td class="right aligned">

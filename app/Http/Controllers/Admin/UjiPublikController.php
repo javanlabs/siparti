@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enum\Permission;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Requests\StoreUjiPublikRequest;
 use App\Repositories\UjiPublikRepositoryEloquent;
 use Notification;
 
@@ -37,7 +36,20 @@ class UjiPublikController extends AdminController
 
       $ujiPublik = $this->ujiPublikRepository->paginate(20);
       return view('admin.ujiPublik.index', compact('ujiPublik'));
-      //dd($ujiPublik);
+    }
+
+    public function create(Request $request)
+    {
+        return view('admin.ujiPublik.create');
+    }
+
+    public function store(StoreUjiPublikRequest $request)
+    {
+        $ujiPublik = $this->ujiPublikRepository->create($request->only(['name', 'materi']));
+        $this->ujiPublikRepository->attachDocument($ujiPublik, $request->file('file'));
+
+        Notification::success('Uji publik berhasil disimpan.');
+        return redirect()->back();
     }
 
     /**
@@ -87,7 +99,7 @@ class UjiPublikController extends AdminController
     /*
      *  Update data
      */
-    public function update(Request $request, $id)
+    public function update(StoreUjiPublikRequest $request, $id)
     {
         $this->ujiPublikRepository->update($request->all(), $id);
 

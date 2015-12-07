@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Repositories\ProgramKerjaUsulanRepositoryEloquent;
 use App\Repositories\ProgramKerjaRepositoryEloquent;
+use App\Http\Requests\UpdateProgramKerjaUsulanRequest;
 use Notification;
 
 class ProgramKerjaUsulanController extends AdminController
@@ -98,7 +99,7 @@ class ProgramKerjaUsulanController extends AdminController
     /*
      * Update data
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProgramKerjaUsulanRequest $request, $id)
     {
         $this->programKerjaUsulanRepository->update($request->all(), $id);
 

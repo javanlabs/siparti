@@ -274,7 +274,7 @@
                         
                         <div class="field">
                             <label>Nama Program Kerja</label>
-                            <input type="text" name="name" value="{{ $programKerja->present('name') }}" />
+                            <input type="text" name="name" value="{{ Input::old('name') ? Input::old('name') : $programKerja->present('name') }}" />
                         </div>
                        
                         <div class="field">
@@ -286,12 +286,21 @@
                                     <div class="column">
                                          <div class="field" id="choice2">
                                             <div class="ui radio checkbox">
-                                                <input checked="checked" name="satkerChoice" value="pilih" type="radio" >
+                                                <input 
+                                                    
+                                                    @if(Input::old('satkerChoice') == "pilih" || !Input::old('satkerChoice'))  
+                                                        checked="checked" 
+                                                    @endif
+                                                    
+                                                    name="satkerChoice" value="pilih" type="radio" >
                                                 <label>Pilih Satuan Kerja</label>
                                             </div>
                                             <label></label>
                                             <div class="ui fluid search selection dropdown">
-                                                <input name="satker_id" type="hidden" value="{{ $programKerja->present('satker') }}">
+                                                <input name="satker_id" type="hidden" 
+
+                                                    value="{{ Input::old('satker_id') ? Input::old('satker_id') : $programKerja->present('satker') }}">
+                                                
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Pilih Satuan Kerja</div>
                                                 <div class="menu">
@@ -305,11 +314,17 @@
 
                                     <div class="column">
                                     <div class="ui radio checkbox">
-                                            <input name="satkerChoice" type="radio" value="baru">
+                                            
+                                            <input name="satkerChoice" 
+                                                  @if(Input::old('satkerChoice') == "baru")
+                                                      checked = "checked";
+                                                  @endif
+                                            type="radio" value="baru">
+                                            
                                             <label>Buat Baru</label>
                                         </div>
                                         <div id="choice1">
-                                            <input type="text" name="satuanKerjaBaru" placeholder="Buat Satuan Kerja Baru" />
+                                            <input type="text" name="satuanKerjaBaru" placeholder="Buat Satuan Kerja Baru" value="{{ Input::old('satuanKerjaBaru') }}" />
                                         </div>
                                     </div>
                                 </div>

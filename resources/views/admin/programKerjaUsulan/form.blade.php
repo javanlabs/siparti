@@ -160,7 +160,8 @@
 
                       	<div class="field">
                       	    <label>Nama Program Kerja Usulan</label>
-                      		<input type="text" name="name" value="{{ $programKerjaUsulan->present('name') }}" />
+                      		<input type="text" name="name" 
+                                value="{{ Input::old('name') ? Input::old('name') : $programKerjaUsulan->present('name') }}" />
                       	</div>
 
                       	<div class="field">
@@ -170,22 +171,26 @@
 
                         <div class="field">
                       	    <label>Instansi Terkait</label>
-                      		<input type="text" name="instansi_stakeholder" value="{{ $programKerjaUsulan->present('instansi_terkait') }}" />
+                      		<input type="text" name="instansi_stakeholder" 
+                                value="{{ Input::old('instansi_stakeolder') ? Input::old('istansi_stakeholder') : $programKerjaUsulan->present('instansi_terkait') }}" />
                       	</div>
 
                          <div class="field">
                         	<label>Manfaat</label>
-                        	<input name="manfaat" type="text" value="{{ $programKerjaUsulan->present('manfaat') }}"  />
+                        	<input name="manfaat" type="text" 
+                                value="{{ Input::old('manfaat') ? Input::old('manfaat') : $programKerjaUsulan->present('manfaat') }}"  />
                         </div>
 
                         <div class="field">
                         	<label>Lokasi</label>
-                        	<input name="lokasi" type="text" value="{{ $programKerjaUsulan->present('lokasi') }}"  />
+                        	<input name="lokasi" type="text" 
+                                value="{{ Input::old('lokasi') ? Input::old('lokasi') : $programKerjaUsulan->present('lokasi') }}"  /> 
                         </div>
 
                         <div class="field">
                         	<label>Target</label>
-                        	<input name="target" type="text" value="{{ $programKerjaUsulan->present('target') }}"  />
+                        	<input name="target" type="text" 
+                                value="{{ Input::old('target') ? Input::old('target') : $programKerjaUsulan->present('target') }}"  />
                         </div>
 
                         <div class="field">
@@ -236,7 +241,7 @@
                         </div>
 
  						            <div id="descriptionText" style="display: none;">
-                       		{{ $programKerjaUsulan->present('description') }}
+                       		{{ Input::old('description') ? Input::old('description') : $programKerjaUsulan->present('description') }}
                        	</div>
 
 

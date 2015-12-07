@@ -3,9 +3,6 @@
 @section('content')
     <section class="ui container page" id="page-program-kerja-usulan">
         <h2 class="ui header"><span>Usulan</span> Program Kerja Yang Pernah Dibuat</h2>
-
-
-        
         <div class="ui segment padded attached">
             <div class="ui three stackable doubling cards">
                 @foreach($usulan as $item)
@@ -19,6 +16,5 @@
             </div>
             {!! with(new \Laravolt\Support\Pagination\SemanticUiPagination($usulan))->render('attached bottom right') !!}
         </div>
-
     </section>
 @endsection
