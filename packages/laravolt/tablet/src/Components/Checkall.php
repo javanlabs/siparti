@@ -1,9 +1,10 @@
 <?php
 namespace Laravolt\Tablet\Components;
 
+use Laravolt\Tablet\Components\Component as BaseComponent;
 use Laravolt\Tablet\Contracts\Component;
 
-class Checkall implements Component
+class Checkall extends BaseComponent implements Component
 {
     public function header()
     {
@@ -14,5 +15,4 @@ class Checkall implements Component
     {
         return render('tablet::checkall.cell', compact('data'));
     }
-
 }

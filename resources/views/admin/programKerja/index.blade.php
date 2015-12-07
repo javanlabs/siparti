@@ -5,7 +5,8 @@
     <div class="ui container">
         {!! Tablet::source($programKerja)
         ->title('Program Kerja')
-        ->addToolbar(render('admin.programKerja.toolbar.create'))
+        ->baseRoute('admin.programKerja')
+        ->addToolbar(render('tablet::buttons.create', ['url' => route('admin.programKerja.create')]))
         ->addToolbar(render('tablet::toolbars.delete', ['url' => route('admin.programKerja.destroy', ':ids')]))
         ->columns([
             new \Laravolt\Tablet\Components\Checkall(),
@@ -14,7 +15,7 @@
             ['header' => 'Satuan Kerja', 'present' => 'satker_name'],
             ['header' => 'Ditambahkan Oleh', 'present' => 'creator_name'],
             ['header' => 'Ditambahkan Pada', 'present' => 'date_for_human'],
-            ['view' => 'admin.programKerja.action']
+            new \Laravolt\Tablet\Components\Action()
         ])
         ->render() !!}
     </div>

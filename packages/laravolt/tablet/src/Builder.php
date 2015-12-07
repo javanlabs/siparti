@@ -16,6 +16,8 @@ class Builder
 
     protected $toolbars = [];
 
+    protected $baseRoute = null;
+
     /**
      * Builder constructor.
      */
@@ -54,6 +56,13 @@ class Builder
         return $this;
     }
 
+    public function baseRoute($route)
+    {
+        $this->baseRoute = $route;
+
+        return $this;
+    }
+
     public function render()
     {
         $data = [
@@ -83,6 +92,7 @@ class Builder
         }
 
         if($field instanceof Component) {
+            $field->boot($this);
             return $field->cell($data);
         }
 
@@ -98,5 +108,14 @@ class Builder
         if ($column instanceof Component) {
             return $column->header();
         }
+    }
+
+    public function getRoute($verb, $param = null)
+    {
+        if($this->baseRoute) {
+            return route($this->baseRoute . '.' . $verb, $param);
+        }
+
+        return false;
     }
 }
