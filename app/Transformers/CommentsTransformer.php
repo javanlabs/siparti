@@ -28,8 +28,8 @@ class CommentsTransformer extends TransformerAbstract
 
             /* place your other model properties here */
 
-            'created_at'    => $model->created_at->formatLocalized('%e %B %Y'),
-            'updated_at'    => $model->updated_at
+            'created_at'    => $model->created_at->formatLocalized('%e %B %Y %H:%M:%S'),
+            'updated_at'    => $model->updated_at->formatLocalized('%e %B %Y')
         ];
     }
 }
