@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Entities\UjiPublik;
 use App\Enum\Permission;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUjiPublikRequest;
@@ -34,7 +35,7 @@ class UjiPublikController extends AdminController
     public function index(Request $request)
     {
 
-      $ujiPublik = $this->ujiPublikRepository->paginate(20);
+      $ujiPublik = $this->ujiPublikRepository->with('creator')->paginate(20);
       return view('admin.ujiPublik.index', compact('ujiPublik'));
     }
 
@@ -55,12 +56,14 @@ class UjiPublikController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $ids
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $this->ujiPublikRepository->delete($id);
+        $ids = explode(',', $ids);
+        UjiPublik::destroy($ids);
+
         return redirect()->back();
 
     }
