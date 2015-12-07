@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Entities\ProgramKerjaUsulan;
 use App\Enum\Permission;
 use Illuminate\Http\Request;
 
@@ -53,12 +54,14 @@ class ProgramKerjaUsulanController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $this->programKerjaUsulanRepository->delete($id);
-        return redirect()->back();
-    }
+        $ids = explode(',', $ids);
+        ProgramKerjaUsulan::destroy($ids);
 
+        return redirect()->back();
+
+    }
     /**
      * Menghapus multiple programKerjaUsulan
      *
