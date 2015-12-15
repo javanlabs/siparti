@@ -9,7 +9,7 @@ use App\Http\Requests\User\CreateAccount;
 use App\Repositories\UserRepositoryEloquent;
 use Illuminate\Support\Facades\Mail;
 use Krucas\Notification\Facades\Notification;
-use App\Repositories\TimezoneRepositoryArray;
+use Laravolt\Support\Contracts\TimezoneRepository;
 
 
 class UserController extends AdminController
@@ -29,7 +29,7 @@ class UserController extends AdminController
      * @param UserRepositoryEloquent $repository
      * @param TimezoneRepositoryArray $timezone
      */
-    public function __construct(UserRepositoryEloquent $repository, TimezoneRepositoryArray $timezone)
+    public function __construct(UserRepositoryEloquent $repository, TimezoneRepository $timezone)
     {
         $this->repository = $repository;
         $this->timezone = $timezone;
