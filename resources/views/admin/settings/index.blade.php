@@ -1,71 +1,67 @@
 @extends('admin.layouts.base')
 
 @section('style-head')
-    
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/redactor.css') }}">
 
 @endsection
 
 @section('script-head')
-        
-        <script src="{{ asset('js/redactor.min.js')}}"></script>
 
-        <script>
-             
+    <script src="{{ asset('js/redactor.min.js')}}"></script>
 
-             $(document).ready(function() {
+    <script>
 
-                $("#textRedactor").redactor({
-                    minHeight: 300,
-                    imageUpload: '/image/upload',
-                    plugins : ['imageManager'],
-                    buttons: ['html', 'bold', 'italic', 'deleted', 'link', 'unorderedlist', 'orderedlist', 
+
+        $(document).ready(function () {
+
+            $("#textRedactor").redactor({
+                minHeight: 300,
+                imageUpload: '/image/upload',
+                plugins: ['imageManager'],
+                buttons: ['html', 'bold', 'italic', 'deleted', 'link', 'unorderedlist', 'orderedlist',
                     'outdent', 'indent', 'image', 'link', 'alignment', 'horizontalrule'],
-                    
-                    modalClosedCallback : function()
-                    {
 
-                        $("html, body").animate({ scrollTop: 1000 }, 1); 
-                    },
-                    
-                    imageUploadErrorCallback: function()
-                    {
+                modalClosedCallback: function () {
 
-                        alert("Tidak bisa upload gambar, periksa koneksi internet")
-                    }
-                });
-  
-                $("#welcomeRedactor").redactor({
-                    minHeight: 300,
-                    imageUpload: '/image/upload',
-                    plugins : ['imageManager'],
-                    buttons: ['formatting', 'html', 'bold', 'italic', 'deleted', 'link', 'unorderedlist', 'orderedlist', 
-                    'outdent', 'indent', 'image', 'link', 'alignment', 'horizontalrule'],
-                    
-                    modalClosedCallback: function()
-                    {
-                        $("html, body").animate({ scrollTop: 600 }, 1); 
-                    },
-                    
-                    imageUploadErrorCallback: function()
-                    {
+                    $("html, body").animate({scrollTop: 1000}, 1);
+                },
 
-                        alert("Tidak bisa upload gambar, periksa koneksi internet")
-                    }
-                });
-                
-                var textWelcome = $("#welcomeText").text();
-                
-                var textTentang = $("#descriptionText").text();
-        
-                $(".redactor-editor").text("");   
-                
-                $("#textRedactor").redactor('code.set', textTentang);
-                $("#welcomeRedactor").redactor('code.set', textWelcome);
+                imageUploadErrorCallback: function () {
 
+                    alert("Tidak bisa upload gambar, periksa koneksi internet")
+                }
             });
-        
-        </script>
+
+            $("#welcomeRedactor").redactor({
+                minHeight: 300,
+                imageUpload: '/image/upload',
+                plugins: ['imageManager'],
+                buttons: ['formatting', 'html', 'bold', 'italic', 'deleted', 'link', 'unorderedlist', 'orderedlist',
+                    'outdent', 'indent', 'image', 'link', 'alignment', 'horizontalrule'],
+
+                modalClosedCallback: function () {
+                    $("html, body").animate({scrollTop: 600}, 1);
+                },
+
+                imageUploadErrorCallback: function () {
+
+                    alert("Tidak bisa upload gambar, periksa koneksi internet")
+                }
+            });
+
+            var textWelcome = $("#welcomeText").text();
+
+            var textTentang = $("#descriptionText").text();
+
+            $(".redactor-editor").text("");
+
+            $("#textRedactor").redactor('code.set', textTentang);
+            $("#welcomeRedactor").redactor('code.set', textWelcome);
+
+        });
+
+    </script>
 
 
 @endsection
@@ -104,6 +100,10 @@
                     <label>Twitter</label>
                     <input type="text" name="url_twitter" value="{{ settings('app.url_twitter') }}">
                 </div>
+                <div class="field">
+                    <label>Instagram</label>
+                    <input type="text" name="url_twitter" value="{{ settings('app.url_instagram') }}">
+                </div>
 
 
                 <div class="field">
@@ -118,22 +118,21 @@
                     <textarea name="tentang" id="textRedactor" rows="50"></textarea>
                 </div>
 
-                 <div id="welcomeText" style="display: none;">
+                <div id="welcomeText" style="display: none;">
                     {{ settings('app.welcome') }}
                 </div>
-                
+
                 <div id="descriptionText" style="display: none;">
                     {{ settings('app.tentang') }}
                 </div>
 
-               
-                
+
                 <button class="ui button primary">Simpan</button>
             </form>
         </div>
-         
-            
+
+
     </div>
 
-   
+
 @endsection
