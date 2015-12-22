@@ -42,7 +42,6 @@
                 </table>
 
                 <div class="ui segment very padded">
-                    @include('elements.share', ['title' => $usulanProker->present('name')])
                     <p>
                         Bagaimana pendapat Anda tentang program kerja ini?<br>
                         Berikan penilaian setuju atau tidak setuju, dan jangan lupa memberikan komentar yang membangun.
@@ -52,6 +51,7 @@
 
                 {!! Mural::render($usulanProker, 'default', ['class' => 'very padded']) !!}
 
+                @include('elements.share', ['title' => $usulanProker->present('name')])
 
             </div>
             <div class="column six wide">
