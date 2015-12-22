@@ -46,6 +46,11 @@ class FaseRepositoryEloquent extends BaseRepository implements FaseRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
         //$this->pushCriteria(app(ProgramKerjaSearchCriteria::class));
+
+        $this->scopeQuery(function($model){
+            return $model->orderBy('created_at', 'DESC');
+        });
+
     }
 
     public function lists()

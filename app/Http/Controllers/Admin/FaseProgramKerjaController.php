@@ -54,7 +54,7 @@ class FaseProgramKerjaController extends AdminController
     public function index(Request $request)
     {
 
-      $programKerja = $this->faseRepository->paginate(20);
+      $programKerja = $this->faseRepository->with(['programKerja', 'satker'])->paginate(20);
       return view('admin.faseProgramKerja.index', compact('programKerja'));
     }
 

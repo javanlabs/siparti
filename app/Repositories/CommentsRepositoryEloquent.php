@@ -42,6 +42,9 @@ class CommentsRepositoryEloquent extends BaseRepository implements CommentsRepos
         $this->pushCriteria(app(RequestCriteria::class));
         $this->pushCriteria(app(CommentsSearchCriteria::class));
 
+        $this->scopeQuery(function($model){
+            return $model->orderBy('created_at', 'DESC');
+        });
     }
 
     public function paginate($limit = null, $columns = array('*'))

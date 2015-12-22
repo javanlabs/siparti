@@ -41,6 +41,10 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
     {
         $this->pushCriteria(app(RequestCriteria::class));
         $this->pushCriteria(app(ProgramKerjaUsulanRequestCriteria::class));
+
+        $this->scopeQuery(function($model){
+            return $model->orderBy('created_at', 'DESC');
+        });
     }
 
     public function terpopuler($limit)
@@ -55,9 +59,9 @@ class ProgramKerjaUsulanRepositoryEloquent extends BaseRepository implements Pro
         $model = $this->model->newInstance($attributes);
 
         $model->creator()->associate(auth()->user());
-        
+
         $model->save();
-        
+
         $this->resetModel();
 
         return $this->parserResult($model);
