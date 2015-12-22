@@ -44,17 +44,6 @@
 
         <div class="ui equal width grid stackable">
             <div class="row">
-                <a class="column" href="{{ route('proker.arsip') }}">
-                    <div class="ui inverted segment red very padded compact" style="margin: 0 auto">
-                        <img src="{{ asset('img/icon-arsip.png') }}" alt="Arsip Program Kerja">
-                    </div>
-
-                    <h3 class="ui header">
-                        Arsip Program Kerja
-                        <div class="sub header">Daftar semua program kerja yang pernah dibuat.</div>
-                    </h3>
-                </a>
-
                 <a class="column" href="{{ route('proker.berjalan') }}">
                     <div class="ui inverted segment blue very padded compact" style="margin: 0 auto">
                         <img src="{{ asset('img/icon-proker.png') }}" alt="Program Kerja Berjalan">
@@ -73,6 +62,16 @@
                     <h3 class="ui header">
                         Usulan Program Kerja
                         <div class="sub header">Usulan program kerja dari masyarakat.</div>
+                    </h3>
+                </a>
+                <a class="column" href="{{ route('proker.arsip') }}">
+                    <div class="ui inverted segment red very padded compact" style="margin: 0 auto">
+                        <img src="{{ asset('img/icon-arsip.png') }}" alt="Arsip Program Kerja">
+                    </div>
+
+                    <h3 class="ui header">
+                        Arsip Program Kerja
+                        <div class="sub header">Daftar semua program kerja yang pernah dibuat.</div>
                     </h3>
                 </a>
             </div>
