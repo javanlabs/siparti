@@ -37,6 +37,7 @@
         "laravolt/avatar": "dev-master",
         "laravolt/password": "dev-master",
         "laravolt/email": "dev-master",
+        "laravolt/acl": "dev-master",
         "efriandika/laravel-settings": "^1.2",
         "prettus/l5-repository": "dev-master",
         "sofa/eloquence": "~5.1@dev",
@@ -68,7 +69,6 @@
         ],
         "psr-4": {
             "Laravolt\\Tablet\\": "packages/laravolt/tablet/src",
-            "Laravolt\\Acl\\": "packages/laravolt/acl/src",
             "App\\": "app/"
         }
     },
